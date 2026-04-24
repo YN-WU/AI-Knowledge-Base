@@ -140,9 +140,9 @@
   @media(max-width:700px){.articles.three-col{grid-template-columns:1fr}}
   .article-card{background:var(--card-bg);backdrop-filter:blur(10px);padding:18px;border:1.5px solid var(--border-strong);cursor:pointer;position:relative;overflow:hidden;clip-path:var(--clip-md);display:flex;flex-direction:column}
   .article-card:hover{transform:translateY(-3px);border-color:var(--accent)}
-  .article-cover{width:calc(100% + 36px);aspect-ratio:16/9;margin:-18px -18px 6px;background-size:cover;background-position:center;position:relative;overflow:hidden;background-color:#0a1228}
+  .article-cover{width:calc(100% + 36px);aspect-ratio:16/9;margin:-18px -18px 18px;background-size:cover;background-position:center;position:relative;overflow:hidden;background-color:#0a1228}
   .article-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(10,18,40,0.4))}
-  .article-card .tag{display:inline-block;padding:3px 10px;background:rgba(94,245,255,0.15);color:var(--accent);border-radius:999px;font-size:12px;font-weight:600;margin-bottom:10px;border:1px solid rgba(94,245,255,0.3);align-self:flex-start;width:auto}
+  .article-card .tag{display:inline-block;padding:4px 10px;background:rgba(94,245,255,0.15);color:var(--accent);border-radius:4px;font-size:12px;font-weight:600;margin-bottom:10px;border:none;align-self:flex-start;width:auto}
   .article-card h4{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:8px}
   .article-card .summary{font-size:14px;color:var(--text-light);line-height:1.6;margin-bottom:10px}
   .article-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--text-light)}
@@ -183,24 +183,29 @@
   @media(max-width:700px){.issue-hero h2{font-size:22px}.issue-hero .sub-title{font-size:14px}.issue-hero-body{padding:20px 24px}}
 
   /* 本期章節（新聞＋工具＋Prompt 混合） */
-  .issue-section-title{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-left:12px;border-left:3px solid var(--accent);font-size:15px;font-weight:800;color:var(--text);letter-spacing:1px}
-  .issue-section-title .count{color:var(--text-light);font-size:12px;font-weight:600;letter-spacing:0}
+  .issue-section-title{display:flex;align-items:center;margin-bottom:12px;padding-left:12px;border-left:3px solid var(--accent);font-size:15px;font-weight:800;color:var(--text);letter-spacing:1px;white-space:nowrap;width:100%}
+  .issue-section-title .count{color:var(--text-light);font-size:12px;font-weight:600;letter-spacing:0;margin-left:10px;display:none}
+  .issue-section-line{flex:1;height:1px;background:linear-gradient(90deg, var(--border-strong), rgba(94,245,255,0.3));margin:0 12px;min-width:20px}
+  .issue-section-more{display:inline-flex;align-items:center;padding:4px 8px;background:transparent;color:#6b7490;border:none;border-radius:0;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none;letter-spacing:0.5px;box-shadow:none;text-shadow:none}
+  .issue-section-more .chevron{background:linear-gradient(90deg,rgba(77,159,255,0.6),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;letter-spacing:-1px;margin-right:6px;font-size:12px;transition:all .2s;display:inline-block}
+  .issue-section-more:hover{background:transparent;color:var(--accent);box-shadow:none;text-shadow:0 0 8px rgba(94,245,255,0.5);transform:translateX(2px)}
+  .issue-section-more:hover .chevron{background:linear-gradient(90deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
   .issue-block{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:18px;clip-path:var(--clip-md);transition:all .2s;cursor:pointer}
-  .issue-block:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.1)}
+  .issue-block:hover{border-color:var(--accent);transform:translateY(-2px)}
   .issue-block.tool{}
   .issue-block-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
-  .issue-block-tag{padding:2px 10px;background:rgba(94,245,255,0.15);color:var(--accent);border:1px solid rgba(94,245,255,0.3);border-radius:999px;font-size:11px;font-weight:700;letter-spacing:0.5px}
+  .issue-block-tag{padding:3px 10px;background:rgba(77,159,255,0.15);color:#a5c8ff;border:none;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:0.5px}
   .issue-block h4{font-size:15px;font-weight:700;line-height:1.5;color:var(--text);margin:0}
   .issue-block .snippet{font-size:13px;color:var(--text-light);line-height:1.35;margin-top:6px}
 
   /* 本期目錄 TOC */
   .toc-list{display:flex;flex-direction:column;gap:2px}
-  .toc-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;text-decoration:none;color:var(--text);transition:all .2s;background:transparent}
+  .toc-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-radius:6px;text-decoration:none;color:var(--text);transition:all .2s;background:transparent}
   .toc-item:hover{background:rgba(77,159,255,0.12);transform:translateY(-2px)}
   .toc-item:hover .toc-title{color:var(--accent);text-shadow:0 0 6px rgba(94,245,255,0.3)}
   .toc-num{font-size:11px;color:var(--accent);font-weight:700;font-family:'SF Mono',Menlo,Consolas,monospace;opacity:0.7;flex-shrink:0;min-width:20px;letter-spacing:-0.5px}
   .toc-icon{font-size:14px;flex-shrink:0;min-width:20px;text-align:center}
-  .toc-dot{width:6px;height:6px;flex-shrink:0;margin-left:7px;margin-right:7px;background:var(--accent);transform:rotate(45deg);box-shadow:0 0 8px rgba(94,245,255,0.6);opacity:0.7;transition:all .2s}
+  .toc-dot{width:6px;height:6px;flex-shrink:0;background:var(--accent);transform:rotate(45deg);box-shadow:0 0 8px rgba(94,245,255,0.6);opacity:0.7;transition:all .2s}
   .toc-item:hover .toc-dot{opacity:1;box-shadow:0 0 12px rgba(94,245,255,0.9)}
   .toc-title{font-size:13px;line-height:1.4;flex:1;min-width:0;transition:all .15s;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .toc-divider{height:1px;background:rgba(77,159,255,0.15);margin:6px 0}
@@ -283,8 +288,8 @@
   .prompt-list-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media(max-width:1200px){.prompt-list-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:700px){.prompt-list-grid{grid-template-columns:1fr}}
-  .prompt-compact-card{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;border-radius:0;transition:all .2s;text-decoration:none}
-  .prompt-compact-card:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.12);box-shadow:0 0 16px rgba(94,245,255,0.2)}
+  .prompt-compact-card{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;border-radius:0;transition:all .2s;text-decoration:none;clip-path:var(--clip-md)}
+  .prompt-compact-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 0 16px rgba(94,245,255,0.2)}
   .pc-cover{width:calc(100% + 28px);aspect-ratio:16/9;margin:-14px -14px 10px;background-size:cover;background-position:center;border-bottom:1px solid var(--border-strong)}
   .prompt-compact-card .pc-cat{display:inline-block;padding:3px 10px;background:rgba(94,245,255,0.15);color:var(--accent);border-radius:999px;font-size:12px;font-weight:700;border:1px solid rgba(94,245,255,0.3);align-self:flex-start}
   .prompt-compact-card .pc-title{font-size:16px;font-weight:700;line-height:1.4;color:var(--text)}
@@ -333,7 +338,9 @@
   .am-content .news-columns{display:block;margin:24px 0}
   .am-content .column{margin-bottom:16px}
   .am-content strong{color:var(--accent-2);font-weight:600}
-  .am-content .link-group{margin-top:24px;padding:16px;background:rgba(255,255,255,0.05);border-radius:8px}
+  .am-content .link-group{margin-top:32px;display:flex;flex-direction:column;align-items:center;gap:12px}
+  .am-content .news-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 44px;background:linear-gradient(135deg,rgba(77,159,255,0.2),rgba(94,245,255,0.1));color:var(--accent);border:1.5px solid var(--accent);border-radius:0;font-size:14px;font-weight:700;letter-spacing:0.5px;text-decoration:none;box-shadow:0 0 0 1px rgba(94,245,255,0.15) inset,0 0 18px rgba(94,245,255,0.3);text-shadow:0 0 8px rgba(94,245,255,0.4);transition:all .2s}
+  .am-content .news-link:hover{background:linear-gradient(135deg,rgba(77,159,255,0.35),rgba(94,245,255,0.2));box-shadow:0 0 26px rgba(94,245,255,0.5);transform:translateY(-2px)}
   .am-content .link-item{display:flex;align-items:center;gap:8px;margin-bottom:8px;color:var(--accent);font-size:14px}
   .am-footer{padding:30px 40px;border-top:1px solid var(--border);background:rgba(5,10,26,0.3);display:flex;justify-content:space-between;align-items:center}
   .am-meta{font-size:13px;color:var(--text-light)}
@@ -346,7 +353,7 @@
   /* Prompt resource sites */
   .prompt-sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
   .prompt-site-card{display:flex;align-items:center;gap:12px;padding:14px;background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);text-decoration:none;color:var(--text) !important;clip-path:var(--clip-sm);transition:all .2s}
-  .prompt-site-card:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.12);box-shadow:0 0 16px rgba(94,245,255,0.2)}
+  .prompt-site-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 0 16px rgba(94,245,255,0.2)}
   .site-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0}
   .site-info{flex:1;min-width:0}
   .site-name{font-size:15px;font-weight:700;margin-bottom:3px;color:var(--text)}
@@ -424,8 +431,10 @@
   .internal-highlight .tool-name{color:var(--accent);text-shadow:0 0 10px rgba(94,245,255,0.3);letter-spacing:0.5px}
   .internal-highlight .tool-sub{color:var(--text-light) !important}
 
-  /* Case cards */
-  .case-card{background:var(--card-bg);backdrop-filter:blur(10px);padding:22px;border:1.5px solid var(--border-strong);margin-bottom:16px;clip-path:var(--clip-md)}
+  .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px}
+  @media(max-width:1200px){.case-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:800px){.case-grid{grid-template-columns:1fr}}
+  .case-card{background:var(--card-bg);backdrop-filter:blur(10px);padding:22px;border:1.5px solid var(--border-strong);clip-path:var(--clip-md);display:flex;flex-direction:column;height:100%}
   .case-card:hover{transform:translateY(-2px);border-color:var(--accent)}
   .case-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;flex-wrap:wrap}
   .case-author{display:flex;align-items:center;gap:10px}
@@ -519,7 +528,7 @@
     <span class="tab-sep">|</span>
     <button class="tab" data-page="tools">AI 工具資源</button>
     <span class="tab-sep">|</span>
-    <button class="tab" data-page="cases">公司同仁應用案例</button>
+    <button class="tab" data-page="cases">應用案例</button>
     <span class="tab-sep">|</span>
     <button class="tab" data-page="learning">學習資源</button>
     <span class="tab-sep">|</span>
@@ -549,7 +558,7 @@
           </a>
         </div>
         <div class="panel">
-          <h3><span class="dot"></span>本期速覽 <span style="font-size:11px;color:var(--text-light);font-weight:500;margin-left:6px" id="latestIssueLabel">LOADING...</span></h3>
+          <h3><span class="dot"></span>最新速覽 <span style="font-size:11px;color:var(--text-light);font-weight:500;margin-left:6px" id="latestIssueLabel">LOADING...</span></h3>
           <div class="toc-list" id="latestIssueTOC">
             <!-- 動態載入本期目錄 -->
           </div>
@@ -561,7 +570,7 @@
 
         <!-- 本期新聞 -->
         <div style="margin-top:24px" id="thisIssueNewsSection">
-          <div class="issue-section-title">本期新聞 <span class="count" id="thisIssueCount"></span></div>
+          <div class="issue-section-title">最新消息<div class="issue-section-line"></div><div class="issue-section-more" onclick="switchTab('news')"><span class="chevron">❯❯❯</span> 看更多</div></div>
           <div class="articles" id="thisIssueNewsWrap">
             <!-- 動態載入本期新聞 -->
           </div>
@@ -570,8 +579,6 @@
         <!-- 本期 Prompt / 工具由最新一期文章中抽取 -->
         <div id="thisIssueSpecialSection"></div>
 
-        <!-- AI 精選快訊 (短新聞彙整) -->
-        <div id="thisIssueDigestSection"></div>
 
         <!-- 前往完整電子報連結 -->
         <div style="text-align:center;margin-top:12px;margin-bottom:20px" id="fullIssueLinkWrap">
@@ -624,15 +631,16 @@
       <h2>AI 趨勢消息</h2>
       <p>自動彙整全球 AI 媒體，每日更新最新趨勢與產品發表</p>
     </div>
-    <div class="chips">
-      <button class="chip active">全部</button>
-      <button class="chip">LLM 模型</button>
-      <button class="chip">影像生成</button>
-      <button class="chip">AI Agent</button>
-      <button class="chip">開發工具</button>
-      <button class="chip">應用案例</button>
-      <button class="chip">產業動態</button>
-      <button class="chip">政策法規</button>
+    <div class="chips trend-filters">
+      <button class="chip active" data-filter="全部">全部</button>
+      <button class="chip" data-filter="模型發布">模型發布</button>
+      <button class="chip" data-filter="圖像生成">圖像生成</button>
+      <button class="chip" data-filter="影音創作">影音創作</button>
+      <button class="chip" data-filter="AI 代理">AI 代理</button>
+      <button class="chip" data-filter="智慧搜尋">智慧搜尋</button>
+      <button class="chip" data-filter="應用技巧">應用技巧</button>
+      <button class="chip" data-filter="法律規範">法律規範</button>
+      <button class="chip" data-filter="產業動態">產業動態</button>
     </div>
     <div class="articles three-col" id="trendGrid">
       <!-- 由 JS 動態載入最新一期文章 -->
@@ -654,7 +662,7 @@
       <button class="chip" data-filter="生圖指令">生圖指令</button>
       <button class="chip" data-filter="情境應用">情境應用</button>
       <button class="chip" data-filter="模型技巧">模型技巧</button>
-      <button class="chip" data-filter="AIWIZE 自動化">AIWIZE 自動化</button>
+
     </div>
     <div class="prompt-list-grid" id="promptContainer">
       <!-- 由 JS 動態渲染 -->
@@ -1291,20 +1299,27 @@
   </div>
 </div>
 
-<!-- ============ 公司同仁應用案例 ============ -->
+<!-- ============ 應用案例 ============ -->
 <div class="page" id="page-cases">
   <div class="container">
     <div class="page-header">
-      <h2>公司同仁應用案例</h2>
+      <h2>應用案例</h2>
       <p>看看同事們怎麼用 AI 解決實際工作問題，歡迎投稿分享</p>
     </div>
+    <div style="display:flex;justify-content:center;margin-bottom:24px">
+      <button class="btn btn-primary" style="padding:12px 32px;font-size:15px">＋ 投稿你的應用案例</button>
+    </div>
+
     <div class="chips">
       <button class="chip active">全部</button>
       <button class="chip">新聞部</button>
       <button class="chip">行銷部</button>
       <button class="chip">企劃部</button>
       <button class="chip">工程部</button>
+      <button class="chip">網路實測</button>
     </div>
+
+    <div class="case-grid">
 
     <div class="case-card">
       <div class="case-head">
@@ -1384,13 +1399,10 @@
       <div class="case-title">用 Nano Banana Pro 做 4K 繁中新聞配圖</div>
       <div class="case-desc">過去 AI 生圖常遇到繁中字錯亂、解析度不夠的問題。改用 Nano Banana Pro 後，能直接生成帶繁體中文標題的 4K 海報素材，幾分鐘就能出一張合格的新聞配圖。</div>
       <div class="case-result"><strong>效益：</strong>配圖速度提升 8 倍，不用再排稿等美編檔期。</div>
-    </div>
-
-    <div style="text-align:center;margin-top:28px">
-      <button class="btn btn-primary">＋ 投稿你的應用案例</button>
-    </div>
-  </div>
-</div>
+    </div> <!-- end .case-card -->
+  </div> <!-- end .case-grid -->
+  </div> <!-- end .container -->
+</div> <!-- end #page-cases -->
 
 <!-- ============ 學習資源 ============ -->
 <div class="page" id="page-learning">
@@ -1532,7 +1544,7 @@
           <div class="checkbox-opt" onclick="toggleCheck(this)">AI 術語小辭典</div>
           <div class="checkbox-opt" onclick="toggleCheck(this)">主流模型比較</div>
           <div class="checkbox-opt" onclick="toggleCheck(this)">AI 工具資源</div>
-          <div class="checkbox-opt" onclick="toggleCheck(this)">同仁應用案例</div>
+          <div class="checkbox-opt" onclick="toggleCheck(this)">應用案例</div>
         </div>
       </div>
       <div class="form-group">
@@ -1652,6 +1664,19 @@ document.querySelectorAll('.chip').forEach(function(c){
     if(c.parentElement.classList.contains('prompt-filters')) {
       if(typeof renderPrompts === 'function') renderPrompts(c.dataset.filter);
     }
+    // 如果是在新聞趨勢
+    if(c.parentElement.classList.contains('trend-filters')) {
+      var filter = c.dataset.filter;
+      var cards = document.querySelectorAll('#trendGrid .article-card');
+      cards.forEach(function(card) {
+        var tag = card.querySelector('.tag').textContent.trim();
+        if(filter === '全部' || tag === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
   });
 });
 
@@ -1698,6 +1723,20 @@ if(slideTotal>0){renderDots();setInterval(function(){slideMove(1);},5000);}
 
 var demoReplies=['好問題！建議先看「PROMPT 專欄」裡的範本。','推薦看「AI 工具資源」頁面。','AIWIZE 是公司內部最強的 AI 助理。','想知道最新 AI 趨勢？去「AI 趨勢消息」頁看看。'];
 function toggleChat(){var p=document.getElementById('chatPanel');p.classList.toggle('open');var b=document.querySelector('.chat-fab .badge');if(b&&p.classList.contains('open'))b.style.display='none';}
+function quickAsk(q){ document.getElementById('chatInput').value=q; sendMsg(); }
+function sendMsg(){
+  var i=document.getElementById('chatInput'),m=document.getElementById('chatMsgs');
+  if(!i.value.trim())return;
+  var u=document.createElement('div');u.className='chat-msg user';u.innerHTML='<div class="bubble">'+i.value+'</div>';m.appendChild(u);
+  var q = i.value; i.value='';m.scrollTop=m.scrollHeight;
+  setTimeout(function(){
+    var b=document.createElement('div');b.className='chat-msg bot';
+    var svg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l1.5 4"/><circle cx="7" cy="4" r="1" fill="currentColor" stroke="none"/><path d="M17 4l-1.5 4"/><circle cx="17" cy="4" r="1" fill="currentColor" stroke="none"/><rect x="4" y="8" width="16" height="12" rx="3"/><circle cx="9" cy="13" r="1.3" fill="currentColor"/><circle cx="15" cy="13" r="1.3" fill="currentColor"/><path d="M9 17h6"/></svg>';
+    var reply = demoReplies[Math.floor(Math.random() * demoReplies.length)] || "好問題！你可以搜尋看看關鍵字。";
+    b.innerHTML='<div class="avatar">'+svg+'</div><div class="bubble">'+reply+'</div>';
+    m.appendChild(b);m.scrollTop=m.scrollHeight;
+  },600);
+}
 const articleData = {
   '017-clawdbot': {
     title: 'Clawdbot ( OpenClaw ) 爆紅！讓電腦直接變 AI 助手 免開 APP 就能做事',
@@ -1789,13 +1828,14 @@ var issuesData = [];
 var searchIndex = [];
 
 function getTag(title) {
+  if(title.includes('實測')) return '網路實測';
   if(title.includes('影片') || title.includes('影音') || title.includes('音樂') || title.includes('Veo') || title.includes('Sora') || title.includes('Lyria') || title.includes('Vidu') || title.includes('可靈')) return '影音創作';
   if(title.includes('生圖') || title.includes('繪圖') || title.includes('圖像') || title.includes('照片') || title.includes('Banana')) return '圖像生成';
   if(title.includes('代理') || title.includes('Agent') || title.includes('助理') || title.includes('Cowork') || title.includes('平台')) return 'AI 代理';
   if(title.includes('搜尋') || title.includes('Search') || title.includes('瀏覽器') || title.includes('Chrome') || title.includes('Atlas')) return '智慧搜尋';
   if(title.includes('法律') || title.includes('版權') || title.includes('專利') || title.includes('訴訟') || title.includes('判')) return '法律規範';
   if(title.includes('登場') || title.includes('發布') || title.includes('推出') || title.includes('更新') || title.includes('Pro') || title.includes('級') || title.includes('模型')) return '模型發布';
-  if(title.includes('實測') || title.includes('教戰') || title.includes('技巧') || title.includes('攻略') || title.includes('案例')) return '應用技巧';
+  if(title.includes('教戰') || title.includes('技巧') || title.includes('攻略') || title.includes('案例')) return '應用技巧';
   return '產業動態';
 }
 
@@ -1831,14 +1871,21 @@ function showArticle(data) {
 }
 
 function showArticleByTitle(title) {
+  if(!title) return;
   const cleanTitle = title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim();
-  let item = searchIndex.find(it => it.title === title || it.title.includes(cleanTitle));
+  // 優先匹配完全一致的標題
+  let item = searchIndex.find(it => it.title === title);
+  // 次之匹配不含 Emoji 的純文字部分
+  if(!item) item = searchIndex.find(it => it.title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim() === cleanTitle);
+  // 再者匹配包含關係
+  if(!item) item = searchIndex.find(it => it.title.includes(cleanTitle) || cleanTitle.includes(it.title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim()));
+
   if(item) {
     showArticle(item);
   } else {
-    // If not in search index, check articleData keys
     for(let k in articleData) {
-      if(articleData[k].title === title || articleData[k].title.includes(cleanTitle)) {
+      const art = articleData[k];
+      if(art.title === title || art.title.includes(cleanTitle)) {
         showArticle(k);
         return;
       }
@@ -1887,7 +1934,7 @@ async function initDashboardData() {
       if(label) label.textContent = `VOL. ${issue.no}`;
       const heroContainer = document.getElementById('latestHeroContainer');
       if(heroContainer) {
-        heroContainer.innerHTML = `<a href="https://tvbsainews.netlify.app/issues/${issue.no}.html" target="_blank" style="text-decoration:none">
+        heroContainer.innerHTML = `<div onclick="switchTab('news')" style="text-decoration:none; cursor:pointer">
           <div class="issue-hero">
             <div class="issue-hero-img" style="background-image:url('${issue.img || ''}')"></div>
             <div class="issue-hero-body">
@@ -1898,9 +1945,9 @@ async function initDashboardData() {
               </div>
               <h2>${issue.title}</h2>
               <div class="sub-title">${issue.desc || ''}</div>
-              <span class="issue-hero-btn">閱讀完整電子報 →</span>
+              <span class="issue-hero-btn">掌握更多 AI 趨勢 →</span>
             </div>
-          </div></a>`;
+          </div></div>`;
       }
       const issueArticles = searchIndex.filter(it => it.url && it.url.includes(`${issue.no}.html`));
       
@@ -1910,7 +1957,7 @@ async function initDashboardData() {
         tocWrap.innerHTML = issueArticles
           .filter(it => !it.title.includes('本期重點摘要'))
           .map(it => `
-          <div onclick="showArticleByTitle('${it.title.replace(/'/g, "\\'")}')" class="toc-item">
+          <div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))" class="toc-item">
             <span class="toc-dot"></span>
             <span class="toc-title">${it.title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim()}</span>
           </div>`).join('');
@@ -1923,7 +1970,7 @@ async function initDashboardData() {
         const countLabel = document.getElementById('thisIssueCount');
         if(countLabel) countLabel.textContent = newsItems.length;
         newsWrap.innerHTML = newsItems.map(it => `
-          <div class="issue-block" onclick="showArticleByTitle('${it.title.replace(/'/g, "\\'")}')">
+          <div class="issue-block" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
             <div class="issue-block-head">
               <span class="issue-block-tag">${getTag(it.title)}</span>
               <h4>${it.title}</h4>
@@ -1933,38 +1980,64 @@ async function initDashboardData() {
         `).join('');
       }
 
-      // Special Section (Tools/Prompt/Case)
+      // Special Section (Tools & Prompts)
       const specialWrap = document.getElementById('thisIssueSpecialSection');
-      const specialItems = issueArticles.filter(it => it.title.match(/[🛠️💡🧩🌟]/));
-      if(specialWrap && specialItems.length > 0) {
-        specialWrap.innerHTML = '<div class="issue-section-title" style="margin-top:24px">AI 工具推薦</div>' + 
-        specialItems.map(it => {
-          return `
-            <div class="issue-block tool" onclick="showArticleByTitle('${it.title.replace(/'/g, "\\'")}')">
+      if (specialWrap) {
+        let splHTML = '';
+        let promptSectionHTML = '';
+        let toolSectionHTML = '';
+
+        // 1. PROMPT 專欄
+        let prompts = issueArticles.filter(it => it.title.includes('💡') || it.title.includes('指令工坊'));
+        
+        // 臨時補全：如果本期沒有 prompt，從 promptData 抓取最新的一篇遞補
+        if (prompts.length === 0 && typeof promptData !== 'undefined' && promptData.length > 0) {
+          const fallback = promptData[0];
+          prompts = [{
+            title: fallback.title,
+            content: fallback.sub,
+            isFallback: true
+          }];
+        }
+
+        if (prompts.length > 0) {
+          promptSectionHTML += '<div class="issue-section-title" style="margin-top:24px;border-left-color:var(--accent)">PROMPT 專欄<div class="issue-section-line"></div><div class="issue-section-more" onclick="switchTab(\'prompt\')"><span class="chevron">❯❯❯</span> 看更多</div></div>';
+          promptSectionHTML += prompts.map(it => {
+            const clickAction = it.isFallback ? "switchTab('prompt')" : `showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))`;
+            return `
+            <div class="issue-block" style="background:rgba(94,245,255,0.05);border-color:rgba(94,245,255,0.2);min-height:140px;" onclick="${clickAction}">
+              <div class="issue-block-head">
+                <span class="issue-block-tag" style="background:rgba(94,245,255,0.15);color:var(--accent)">PROMPT 教學</span>
+                <h4 style="font-size:15px">${it.title.replace(/[🛠️💡🧩🌟]/g, '').replace(/指令工坊[:：]/g, '').replace(/AIWIZE\s*TIPS[:：]/g, '').trim()}</h4>
+              </div>
+              <div class="snippet" style="line-height:1.35;font-size:13px">${(it.content||'').slice(0, 90)}...</div>
+            </div>
+          `}).join('');
+        }
+
+        // 2. 工具推薦
+        const tools = issueArticles.filter(it => !it.title.includes('💡') && !it.title.includes('指令工坊') && it.title.match(/[🛠️🧩🌟]/));
+        if (tools.length > 0) {
+          toolSectionHTML += '<div class="issue-section-title" style="margin-top:24px;border-left-color:var(--primary)">AI 工具介紹<div class="issue-section-line"></div><div class="issue-section-more" onclick="switchTab(\'tool-intro\')"><span class="chevron">❯❯❯</span> 看更多</div></div>';
+          toolSectionHTML += tools.map(it => `
+            <div class="issue-block tool" style="min-height:140px;" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
               <div class="issue-block-head">
                 <span class="issue-block-tag">${getTag(it.title)}</span>
-                <h4>${it.title.replace(/[🛠️💡🧩🌟]/g, '').replace(/AI\s*工具推薦[:：]/g, '').replace(/指令工坊[:：]/g, '').replace(/AIWIZE\s*TIPS[:：]/g, '').trim()}</h4>
+                <h4 style="font-size:15px">${it.title.replace(/[🛠️💡🧩🌟]/g, '').replace(/AI\s*工具推薦[:：]/g, '').trim()}</h4>
               </div>
-              <div class="snippet" style="line-height:1.35">${(it.content||'').slice(0, 90)}...</div>
+              <div class="snippet" style="line-height:1.35;font-size:13px">${(it.content||'').slice(0, 90)}...</div>
             </div>
-          `;
-        }).join('');
-      }
-
-      // 4. AI 精選快訊 (Digest)
-      const digestWrap = document.getElementById('thisIssueDigestSection');
-      const digestItems = issueArticles.filter(it => it.title.includes('精選新聞'));
-      if(digestWrap && digestItems.length > 0) {
-        digestWrap.innerHTML = '<div class="issue-section-title" style="margin-top:24px">AI 科技快訊</div>' + 
-        digestItems.map(it => `
-          <div class="issue-block digest" style="background:rgba(255,255,255,0.03);border:1px solid var(--border)" onclick="window.open('https://tvbsainews.netlify.app${it.url}','_blank')">
-            <div class="issue-block-head">
-              <span class="issue-block-tag" style="background:rgba(255,255,255,0.1);color:var(--text)">快訊彙整</span>
-              <h4 style="font-size:14px">${it.title}</h4>
-            </div>
-            <div class="snippet" style="line-height:1.4;font-size:12px;color:rgba(255,255,255,0.5)">${it.content}</div>
-          </div>
-        `).join('');
+          `).join('');
+        }
+        
+        if(promptSectionHTML || toolSectionHTML) {
+          splHTML = `<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">`;
+          if (promptSectionHTML) splHTML += `<div>${promptSectionHTML}</div>`;
+          if (toolSectionHTML) splHTML += `<div>${toolSectionHTML}</div>`;
+          splHTML += `</div>`;
+        }
+        
+        specialWrap.innerHTML = splHTML;
       }
 
       // 5. AI 趨勢消息卡片牆 (Trend Grid)
@@ -1975,11 +2048,11 @@ async function initDashboardData() {
           // 嘗試找尋該文章是否有在動態資料庫定義圖片，若無則用預設圖
           const artImg = it.img || issue.img || 'https://i.meee.com.tw/zg5kCCS.webp'; 
           return `
-            <div class="article-card" onclick="showArticleByTitle('${it.title.replace(/'/g, "\\'")}')">
+            <div class="article-card" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
               <div class="article-cover" style="background-image:url('${artImg}')"></div>
               <span class="tag">${getTag(it.title)}</span>
               <h4>${it.title}</h4>
-              <div class="summary">${it.content.substring(0,80)}...</div>
+              <div class="summary">${(it.content||'').substring(0,80)}...</div>
               <div class="article-meta">
                 <span>第 ${issue.no} 期</span>
                 <span>${issue.date}</span>
@@ -2032,7 +2105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var m = (r.url || '').match(/(\d{3})\.html/);
       var no = m ? m[1] : '';
       var u = 'https://tvbsainews.netlify.app' + (r.url.indexOf('/') === 0 ? r.url : '/' + r.url);
-      return `<div onclick="showArticleByTitle('${r.title.replace(/'/g, "\\'")}')" style="text-decoration:none"><div class="search-result-item"><div class="search-result-title">${hl(r.title, q)}</div><div class="search-result-snippet">${hl((r.content || '').slice(0, 120), q)}…</div>${no ? `<div class="search-result-meta">第 ${no} 期</div>` : ''}</div></div>`;
+      return `<div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(r.title).replace(/'/g, "%27")}'))" style="text-decoration:none;cursor:pointer"><div class="search-result-item"><div class="search-result-title">${hl(r.title, q)}</div><div class="search-result-snippet">${hl((r.content || '').slice(0, 120), q)}…</div>${no ? `<div class="search-result-meta">第 ${no} 期</div>` : ''}</div></div>`;
     }).join('');
     b.classList.add('open');
   }

@@ -145,7 +145,7 @@
   .article-card:hover{transform:translateY(-3px);border-color:var(--accent)}
   .article-cover{width:calc(100% + 36px);aspect-ratio:16/9;margin:-18px -18px 14px;background-size:cover;background-position:center;position:relative;overflow:hidden;background-color:#0a1228}
   .article-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(10,18,40,0.4))}
-  .article-card .tag{display:inline-block;padding:3px 10px;background:rgba(77,159,255,0.15);color:var(--accent);border-radius:999px;font-size:12px;font-weight:600;margin-bottom:10px;border:1px solid rgba(94,245,255,0.2);align-self:flex-start;width:auto}
+  .article-card .tag{display:inline-block;padding:4px 10px;background:rgba(94,245,255,0.15);color:var(--accent);border-radius:4px;font-size:12px;font-weight:600;margin-bottom:10px;border:none;align-self:flex-start;width:auto}
   .article-card h4{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:8px}
   .article-card .summary{font-size:14px;color:var(--text-light);line-height:1.6;margin-bottom:10px}
   .article-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--text-light)}
@@ -186,24 +186,29 @@
   @media(max-width:700px){.issue-hero h2{font-size:22px}.issue-hero .sub-title{font-size:14px}.issue-hero-body{padding:20px 24px}}
 
   /* 本期章節（新聞＋工具＋Prompt 混合） */
-  .issue-section-title{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-left:12px;border-left:3px solid var(--accent);font-size:15px;font-weight:800;color:var(--text);letter-spacing:1px}
-  .issue-section-title .count{color:var(--text-light);font-size:12px;font-weight:600;letter-spacing:0}
+  .issue-section-title{display:flex;align-items:center;margin-bottom:12px;padding-left:12px;border-left:3px solid var(--accent);font-size:15px;font-weight:800;color:var(--text);letter-spacing:1px;white-space:nowrap;width:100%}
+  .issue-section-title .count{color:var(--text-light);font-size:12px;font-weight:600;letter-spacing:0;margin-left:10px;display:none}
+  .issue-section-line{flex:1;height:1px;background:linear-gradient(90deg, var(--border-strong), rgba(94,245,255,0.3));margin:0 12px;min-width:20px}
+  .issue-section-more{display:inline-flex;align-items:center;padding:4px 8px;background:transparent;color:#6b7490;border:none;border-radius:0;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none;letter-spacing:0.5px;box-shadow:none;text-shadow:none}
+  .issue-section-more .chevron{background:linear-gradient(90deg,rgba(77,159,255,0.6),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;letter-spacing:-1px;margin-right:6px;font-size:12px;transition:all .2s;display:inline-block}
+  .issue-section-more:hover{background:transparent;color:var(--accent);box-shadow:none;text-shadow:0 0 8px rgba(94,245,255,0.5);transform:translateX(2px)}
+  .issue-section-more:hover .chevron{background:linear-gradient(90deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
   .issue-block{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:18px;clip-path:var(--clip-md);transition:all .2s;cursor:pointer}
   .issue-block:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.1)}
   .issue-block.tool{}
   .issue-block-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
-  .issue-block-tag{padding:2px 10px;background:rgba(94,245,255,0.15);color:var(--accent);border:1px solid rgba(94,245,255,0.3);border-radius:999px;font-size:11px;font-weight:700;letter-spacing:0.5px}
+  .issue-block-tag{padding:3px 10px;background:rgba(77,159,255,0.15);color:#a5c8ff;border:none;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:0.5px}
   .issue-block h4{font-size:15px;font-weight:700;line-height:1.5;color:var(--text);margin:0}
   .issue-block .snippet{font-size:13px;color:var(--text-light);line-height:1.6;margin-top:6px}
 
   /* 本期目錄 TOC */
   .toc-list{display:flex;flex-direction:column;gap:1px}
-  .toc-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;text-decoration:none;color:var(--text);transition:all .2s;background:transparent}
+  .toc-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-radius:6px;text-decoration:none;color:var(--text);transition:all .2s;background:transparent}
   .toc-item:hover{background:rgba(77,159,255,0.12);transform:translateY(-2px)}
   .toc-item:hover .toc-title{color:var(--accent);text-shadow:0 0 6px rgba(94,245,255,0.3)}
   .toc-num{font-size:11px;color:var(--accent);font-weight:700;font-family:'SF Mono',Menlo,Consolas,monospace;opacity:0.7;flex-shrink:0;min-width:20px;letter-spacing:-0.5px}
   .toc-icon{font-size:14px;flex-shrink:0;min-width:20px;text-align:center}
-  .toc-dot{width:6px;height:6px;flex-shrink:0;margin-left:7px;margin-right:7px;background:var(--accent);transform:rotate(45deg);box-shadow:0 0 8px rgba(94,245,255,0.6);opacity:0.7;transition:all .2s}
+  .toc-dot{width:6px;height:6px;flex-shrink:0;background:var(--accent);transform:rotate(45deg);box-shadow:0 0 8px rgba(94,245,255,0.6);opacity:0.7;transition:all .2s}
   .toc-item:hover .toc-dot{opacity:1;box-shadow:0 0 12px rgba(94,245,255,0.9)}
   .toc-title{font-size:13px;line-height:1.4;flex:1;min-width:0;transition:all .15s}
   .toc-divider{height:1px;background:rgba(77,159,255,0.15);margin:6px 0}
@@ -285,7 +290,7 @@
   /* Prompt compact cards */
   .prompt-list-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
   .prompt-compact-card{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:16px;cursor:pointer;display:flex;flex-direction:column;gap:8px;clip-path:var(--clip-md);transition:all .2s}
-  .prompt-compact-card:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.12);box-shadow:0 0 16px rgba(94,245,255,0.2)}
+  .prompt-compact-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 0 16px rgba(94,245,255,0.2)}
   .prompt-compact-card .pc-cat{display:inline-block;padding:3px 10px;background:rgba(77,159,255,0.15);color:var(--accent);border-radius:999px;font-size:12px;font-weight:700;border:1px solid rgba(94,245,255,0.2);align-self:flex-start}
   .prompt-compact-card .pc-title{font-size:16px;font-weight:700;line-height:1.4;color:var(--text)}
   .prompt-compact-card .pc-sub{font-size:13px;color:var(--text-light);line-height:1.5}
@@ -482,7 +487,7 @@
     <span class="tab-sep">|</span>
     <button class="tab" data-page="tools">AI 工具資源</button>
     <span class="tab-sep">|</span>
-    <button class="tab" data-page="cases">公司同仁應用案例</button>
+    <button class="tab" data-page="cases">應用案例</button>
     <span class="tab-sep">|</span>
     <button class="tab" data-page="learning">學習資源</button>
     <span class="tab-sep">|</span>
@@ -524,7 +529,7 @@
 
         <!-- 本期新聞 -->
         <div style="margin-top:24px" id="thisIssueNewsSection">
-          <div class="issue-section-title">本期新聞 <span class="count" id="thisIssueCount">...</span></div>
+          <div class="issue-section-title">最新消息<div class="issue-section-line"></div><div class="issue-section-more" onclick="switchTab('news')"><span class="chevron">❯❯❯</span> 看更多</div></div>
           <div class="articles" id="thisIssueNewsWrap">
             <!-- 動態載入本期新聞 -->
           </div>
@@ -584,17 +589,18 @@
       <h2>AI 趨勢消息</h2>
       <p>自動彙整全球 AI 媒體，每日更新最新趨勢與產品發表</p>
     </div>
-    <div class="chips">
-      <button class="chip active">全部</button>
-      <button class="chip">LLM 模型</button>
-      <button class="chip">影像生成</button>
-      <button class="chip">AI Agent</button>
-      <button class="chip">開發工具</button>
-      <button class="chip">應用案例</button>
-      <button class="chip">產業動態</button>
-      <button class="chip">政策法規</button>
+    <div class="chips trend-filters">
+      <button class="chip active" data-filter="全部">全部</button>
+      <button class="chip" data-filter="模型發布">模型發布</button>
+      <button class="chip" data-filter="圖像生成">圖像生成</button>
+      <button class="chip" data-filter="影音創作">影音創作</button>
+      <button class="chip" data-filter="AI 代理">AI 代理</button>
+      <button class="chip" data-filter="智慧搜尋">智慧搜尋</button>
+      <button class="chip" data-filter="應用技巧">應用技巧</button>
+      <button class="chip" data-filter="法律規範">法律規範</button>
+      <button class="chip" data-filter="產業動態">產業動態</button>
     </div>
-    <div class="articles three-col">
+    <div class="articles three-col" id="trendGrid">
       <div class="article-card">
         <div class="article-cover" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80')"></div>
         <span class="tag">AI Agent</span>
@@ -676,7 +682,7 @@
       <button class="chip">生圖指令</button>
       <button class="chip">情境應用</button>
       <button class="chip">模型技巧</button>
-      <button class="chip">AIWIZE 自動化</button>
+
     </div>
     <div class="prompt-list-grid">
       <a href="https://tvbsainews.netlify.app/issues/017.html" target="_blank" class="prompt-compact-card" style="text-decoration:none">
@@ -1362,11 +1368,11 @@
   </div>
 </div>
 
-<!-- ============ 公司同仁應用案例 ============ -->
+<!-- ============ 應用案例 ============ -->
 <div class="page" id="page-cases">
   <div class="container">
     <div class="page-header">
-      <h2>公司同仁應用案例</h2>
+      <h2>應用案例</h2>
       <p>看看同事們怎麼用 AI 解決實際工作問題，歡迎投稿分享</p>
     </div>
     <div class="chips">
@@ -1915,7 +1921,7 @@ function renderHero(issue) {
 
   // B. 渲染主看板
   container.innerHTML = `
-    <a href="${issueUrl}" target="_blank" style="text-decoration:none">
+    <div onclick="switchTab('news')" style="text-decoration:none; cursor:pointer">
       <div class="issue-hero">
         <div class="issue-hero-img" style="background-image:url('${issue.img || 'https://i.meee.com.tw/zg5kCCS.webp'}')"></div>
         <div class="issue-hero-body">
@@ -1926,10 +1932,10 @@ function renderHero(issue) {
           </div>
           <h2>${issue.title}</h2>
           <div class="sub-title">${issue.desc}</div>
-          <span class="issue-hero-btn">閱讀完整電子報 →</span>
+          <span class="issue-hero-btn">掌握更多 AI 趨勢 →</span>
         </div>
       </div>
-    </a>
+    </div>
   `;
 
   // C. 從搜尋索引中提取該期的文章 (加上安全檢查)
@@ -1959,28 +1965,52 @@ function renderHero(issue) {
 
   // F. 渲染 Prompt 與工具單元 (如果有)
   let specialHTML = '';
+  let promptSectionHTML = '';
+  let toolSectionHTML = '';
+  
+  // 臨時補全：如果本期沒有 prompt，從 promptData 抓取最新的一篇遞補
+  if (prompts.length === 0 && typeof promptData !== 'undefined' && promptData.length > 0) {
+    const fallback = promptData[0];
+    prompts = [{
+      title: fallback.title,
+      content: fallback.sub,
+      isFallback: true
+    }];
+  }
+
   if (prompts.length > 0) {
-    specialHTML += `
-      <div style="margin-top:28px">
-        <div class="issue-section-title" style="border-left-color:var(--accent)">本期 PROMPT 專欄</div>
-        <div class="issue-block" onclick="switchTab('prompt')">
-          <h4>${prompts[0].title.replace('💡', '')}</h4>
-          <div class="snippet">${prompts[0].content.slice(0, 80)}...</div>
+    promptSectionHTML += `
+      <div style="margin-top:24px">
+        <div class="issue-section-title" style="border-left-color:var(--accent)">PROMPT 專欄<div class="issue-section-line"></div><div class="issue-section-more" onclick="switchTab('prompt')"><span class="chevron">❯❯❯</span> 看更多</div></div>
+        <div class="issue-block" onclick="switchTab('prompt')" style="background:rgba(94,245,255,0.05);border-color:rgba(94,245,255,0.2);min-height:140px;">
+          <div class="issue-block-head">
+            <span class="issue-block-tag" style="background:rgba(94,245,255,0.15);color:var(--accent)">PROMPT 教學</span>
+            <h4 style="font-size:15px">${prompts[0].title.replace(/[🛠️💡🧩🌟]/g, '').replace(/指令工坊[:：]/g, '').replace(/AIWIZE\s*TIPS[:：]/g, '').trim()}</h4>
+          </div>
+          <div class="snippet" style="font-size:13px">${(prompts[0].content||'').slice(0, 80)}...</div>
         </div>
       </div>
     `;
   }
   if (tools.length > 0) {
-    specialHTML += `
-      <div style="margin-top:28px">
-        <div class="issue-section-title" style="border-left-color:var(--primary)">本期工具推薦</div>
-        <a href="${tools[0].url}" target="_blank" class="issue-block tool" style="display:block;text-decoration:none">
-          <h4>${tools[0].title.replace('🛠️', '')}</h4>
-          <div class="snippet">${tools[0].content.slice(0, 100)}...</div>
+    toolSectionHTML += `
+      <div style="margin-top:24px">
+        <div class="issue-section-title" style="border-left-color:var(--primary)">AI 工具介紹<div class="issue-section-line"></div><div class="issue-section-more" onclick="switchTab('tool-intro')"><span class="chevron">❯❯❯</span> 看更多</div></div>
+        <a href="${tools[0].url}" target="_blank" class="issue-block tool" style="display:block;text-decoration:none;min-height:140px;">
+          <h4 style="font-size:15px">${tools[0].title.replace(/[🛠️💡🧩🌟]/g, '').replace(/AI\s*工具推薦[:：]/g, '').trim()}</h4>
+          <div class="snippet" style="font-size:13px">${(tools[0].content||'').slice(0, 100)}...</div>
         </a>
       </div>
     `;
   }
+
+  if(promptSectionHTML || toolSectionHTML) {
+    specialHTML = `<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">`;
+    if (promptSectionHTML) specialHTML += `<div>${promptSectionHTML}</div>`;
+    if (toolSectionHTML) specialHTML += `<div>${toolSectionHTML}</div>`;
+    specialHTML += `</div>`;
+  }
+
   specialSection.innerHTML = specialHTML;
   
   fullLinkWrap.innerHTML = `<a href="${issueUrl}" target="_blank" class="issue-hero-btn">閱讀第 ${issue.no} 期完整內容 →</a>`;

@@ -283,8 +283,8 @@
   .prompt-list-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media(max-width:1200px){.prompt-list-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:700px){.prompt-list-grid{grid-template-columns:1fr}}
-  .prompt-compact-card{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;border-radius:0;transition:all .2s;text-decoration:none}
-  .prompt-compact-card:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.12);box-shadow:0 0 16px rgba(94,245,255,0.2)}
+  .prompt-compact-card{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:8px;border-radius:0;transition:all .2s;text-decoration:none;clip-path:var(--clip-md)}
+  .prompt-compact-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 0 16px rgba(94,245,255,0.2)}
   .pc-cover{width:calc(100% + 28px);aspect-ratio:16/9;margin:-14px -14px 10px;background-size:cover;background-position:center;border-bottom:1px solid var(--border-strong)}
   .prompt-compact-card .pc-cat{display:inline-block;padding:3px 10px;background:rgba(77,159,255,0.15);color:var(--accent);border-radius:999px;font-size:12px;font-weight:700;border:1px solid rgba(94,245,255,0.2);align-self:flex-start}
   .prompt-compact-card .pc-title{font-size:16px;font-weight:700;line-height:1.4;color:var(--text)}
@@ -513,7 +513,7 @@
     <span class="tab-sep">|</span>
     <button class="tab" data-page="tools">AI 工具資源</button>
     <span class="tab-sep">|</span>
-    <button class="tab" data-page="cases">公司同仁應用案例</button>
+    <button class="tab" data-page="cases">應用案例</button>
     <span class="tab-sep">|</span>
     <button class="tab" data-page="learning">學習資源</button>
     <span class="tab-sep">|</span>
@@ -1326,11 +1326,11 @@
   </div>
 </div>
 
-<!-- ============ 公司同仁應用案例 ============ -->
+<!-- ============ 應用案例 ============ -->
 <div class="page" id="page-cases">
   <div class="container">
     <div class="page-header">
-      <h2>公司同仁應用案例</h2>
+      <h2>應用案例</h2>
       <p>看看同事們怎麼用 AI 解決實際工作問題，歡迎投稿分享</p>
     </div>
     <div class="chips">
