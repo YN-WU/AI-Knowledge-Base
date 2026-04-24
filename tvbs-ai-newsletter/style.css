@@ -332,6 +332,7 @@ footer {
     display: flex;
     align-items: center;
     position: relative;
+    scroll-margin-top: 50px;
 }
 
 .section-title::after { /* 標題底線動畫 */
