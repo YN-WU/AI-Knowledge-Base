@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正在帶您前往最新一期 AI NEWS LETTER...</title>
+
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5FPJBLQJ');</script>
+
+    <script>
+        async function redirectToLatest() {
+            try {
+                const response = await fetch('./issues-metadata.json');
+                const data = await response.json();
+                // 找出第一筆有圖片(代表已發布)的期數，或是直接抓第一筆
+                const latest = data.find(it => it.img !== "") || data[0];
+                if (latest && latest.no) {
+                    const latestUrl = `./issues/${latest.no}.html`;
+                    // 更新備援連結
+                    const fb = document.getElementById('fallbackWrap');
+                    if(fb) fb.innerHTML = `如果頁面沒有自動跳轉，請<a href="${latestUrl}">點擊這裡</a>。`;
+                    // 執行跳轉
+                    window.location.href = latestUrl;
+                }
+            } catch (err) {
+                console.error('跳轉偵測失敗:', err);
+                // 備援：如果抓不到 JSON，跳转到 018
+                window.location.href = './issues/018.html';
+            }
+        }
+        redirectToLatest();
+    </script>
+
+    <style>
+        /* 頁面基本樣式，套用電子報的背景和字體 */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', 'Noto Sans TC', Arial, sans-serif;
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210619/pngtree-cute-lilac-simple-horizontal-gradient-background-image_729224.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #4a4a4a;
+        }
+
+        /* 載入容器 */
+        .loader-container {
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(107, 78, 157, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        /* CSS 載入動畫 (Spinner) */
+        .loader-spinner {
+            border: 5px solid rgba(107, 78, 157, 0.2);
+            /* 淺紫色底圈 */
+            border-top: 5px solid #6b4e9d;
+            /* 主色系紫色的轉動圈 */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 文字樣式 */
+        p {
+            font-size: 1.1em;
+            margin: 10px 0 0 0;
+        }
+
+        /* 備用連結樣式 */
+        .fallback-link {
+            font-size: 0.9em;
+            margin-top: 15px;
+            color: #888;
+        }
+
+        .fallback-link a {
+            color: #6b4e9d;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FPJBLQJ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <div class="loader-container">
+        <div class="loader-spinner"></div>
+        <p>正在載入最新一期電子報...</p>
+        <p class="fallback-link" id="fallbackWrap">如果頁面沒有自動跳轉，請<a href="./issues/018.html">點擊這裡</a>。</p>
+    </div>
+</body>
+
+</html>

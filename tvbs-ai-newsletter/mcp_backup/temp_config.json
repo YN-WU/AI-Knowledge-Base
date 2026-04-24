@@ -1,0 +1,25 @@
+{
+    "mcpServers": {
+        "netlify": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@netlify/mcp"
+            ],
+            "env": {
+                "NETLIFY_AUTH_TOKEN": "REDACTED"
+            }
+        },
+        "google-drive": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-gdrive"
+            ],
+            "env": {
+                "CLIENT_ID": "REDACTED",
+                "CLIENT_SECRET": "REDACTED"
+            }
+        }
+    }
+}

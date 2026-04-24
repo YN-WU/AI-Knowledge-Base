@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+    
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5FPJBLQJ');</script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI NEWS LETTER - 第003期</title>
+        <link rel="stylesheet" href="../style.css">
+        <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+        </head>
+        <body>
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FPJBLQJ"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <nav class="quick-jump-nav" id="quickJumpNav">
+                <h4>本期目錄</h4>
+        <ul id="quickJumpList"></ul>
+    </nav>
+    <button class="quick-jump-toggle" id="quickJumpToggle">目錄</button>
+    
+    <div class="newsletter-container">
+        <header class="header">
+            <h1>AI NEWS LETTER</h1>
+            <p>第003期 | 2025年4月</p>
+        <div class="search-container">
+                <input type="search" id="searchInput" placeholder="搜尋本站所有文章...">
+                <div id="searchResults" class="search-results-container"></div>
+            </div>
+        </header>
+
+        <div class="period-selector-container">
+            <div class="period-selector">
+                <select id="periodSelect">
+                </select>
+            </div>
+        </div>
+
+        <div class="outline-box">
+            <h2>本期重點摘要</h2>
+            <ul>
+                <li>OpenAI <strong>o3 與 o4-mini</strong> 模型登場，首具「看圖思考」視覺推理能力。</li>
+                <li>全新圖像生成模型 <strong>GPT-image-1</strong> 上線，API 開放帶來更自由創作。</li>
+                <li>Google <strong>Veo 2</strong> 免費試用，強調真實物理效果與電影級質感。</li>
+                <li>工具推薦：<strong>Claude 3.7 Sonnet</strong> 強力 AI 助手，擅長程式與資料視覺化 (SVG)。</li>
+                <li><strong>AIWIZE 更新</strong>：模型選單介面調整、Autopilot 新增 JSON 工具與測試模擬功能。</li>
+            </ul>
+        </div>
+        
+        <div class="news-item">
+            <span class="tag">OpenAI</span>
+            <span class="tag">新模型</span>
+            <span class="tag">視覺推理</span>
+            <h3>ChatGPT 推理模型 o3 與 o4-mini 登場！首次實現「看圖思考」</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://i.meee.com.tw/WfOYZem.jpg" alt="OpenAI o3 and o4-mini models">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        OpenAI 推出最新模型 o3 與 o4-mini。（圖／翻攝自 OpenAI）
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">OpenAI 日前推出最新模型 o3 與 o4-mini，首次具備了「<strong>視覺推理</strong>」的能力，能拆解圖象中的元素，並結合如放大、裁切、旋轉等操作，進行解讀分析與判斷，也可<strong>整合 Python 腳本、網路即時搜尋、資料分析、圖片生成</strong>等功能，大幅提升解決複雜問題的能力，不再只是表面地只是看見或描述圖片而已。</p>
+                        <p>　o3 與 o4-mini 最多可支援 20 萬詞元 (tokens) 的上下文，約 15 萬字。其中，o3 屬於旗艦模型，優勢在複雜的推理與深度思考；o4-mini 性能雖然不及 o3，但速度快、成本低，適合高效率執行任務。</p>
+                    </div>
+                    <div class="column">
+                        <p>　從網友實測來看，o3 不僅能<strong>辨識照片中的物體或實景</strong>，還能根據照片中的細節，<strong>推斷出拍攝地點、時間</strong><strong>、交通資訊或活動資訊</strong>等；此外，o3 也可做到<strong>理解圖像中模糊或品質不佳的內容</strong>、<strong>辨識手寫筆記</strong>、破解迷宮等。雖然目前仍可能存在誤判或出現幻覺的錯誤，不過，據媒體與開發者的實測回饋，o3 及 o4-mini 整體表現已優於前一代模型。</p>
+                        <p>　目前 ChatGPT 免費版無法使用 o3 模型，o4-mini 有限制次數；ChatGPT Plus、Team 與 Enterprise 用戶在兩種模型上皆有限制次數；ChatGPT Pro 用戶則幾乎無限制使用。</p>
+                    </div>
+                </div>
+                <div class="link-group">
+                    <a href="https://openai.com/index/introducing-o3-and-o4-mini/" target="_blank" class="news-link">官方介紹 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item">
+            <span class="tag">OpenAI</span>
+            <span class="tag">圖像生成</span>
+            <span class="tag">API</span>
+            <h3>AI 繪圖再進化！GPT-Image-1 模型上線 客製化設定創作更自由</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://i.meee.com.tw/tiO0eZ6.jpg" alt="GPT-Image-1 image synthesis example">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        GPT-image-1 將四張圖片中不同的物體進行精準合成。（圖／翻攝自 OpenAI）
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">OpenAI 日前推出全新圖像生成模型 GPT-image-1，並同步開放 API 供開發者透過 Playground 平台進行試用。其最大特色就是具備<strong>自訂參數</strong>的圖像調整能力，大幅提升創作自由度。</p>
+                        <p>　相較 ChatGPT 內建基礎圖像生成功能，GPT-image-1 能讓使用者自訂輸出格式，包括<strong>背景、畫質、透明度、輸出尺寸、渲染品質與壓縮格式</strong>等，皆能透過參數調整，支援輸出 JPG、PNG 或 WebP 格式，也能一次生成多張圖片，或是進行<strong>更精準的圖片局部修改與合成</strong>，提升創作效率。</p>
+                    </div>
+                    <div class="column">
+                        <p>　GPT-image-1 支持文字與圖片輸入，以 token 計價，分成文字提示、圖片輸入及圖片生成 3 種計費模式，生成圖片的成本會因品質高低而有差異，讓用戶能更靈活的控制成本。</p>
+                        <p>　此模型也已被多家知名平台導入實際應用，包括 Adobe 將其整合至 Firefly 與 Express；雲端設計平台 Figma 讓使用者能透過文字提示快速生成與編輯圖像；AI 影片平台 HeyGen 運用其強化角色造型與背景的編輯能力；Canva、Instacart、Wix 等企業也在試行，探索更多創作潛力。</p>
+                    </div>
+                </div>
+                <div class="link-group">
+                    <a href="https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1" target="_blank" class="news-link">官方詳細介紹 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item">
+            <span class="tag">Google</span>
+            <span class="tag">AI影片</span>
+            <span class="tag">Veo 2</span>
+            <h3>AI 影片技術再升級！Google Veo 2 免費生成電影級影片</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://i.meee.com.tw/sy8FSgV.png" alt="Google Veo 2 video generation example">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        Veo 2 產出效果自然的影片畫面。（圖／翻攝自 Google X）
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">Google 推出最新 AI 影片生成模型 Veo 2，已於 Google AI Studio 開放免費試用，使用者只需輸入文字描述或上傳靜態圖片，就能快速生成<strong>最長達 8 秒、解析度達 720p</strong> 的生動影片，操作簡單又直覺。</p>
+                        <p>　除了基本影像生成，Veo 2 更強調<strong>模擬真實的物理效果</strong>，像是光影變化、細緻的紋理、物體互動的細節等，效果更自然逼真，宛如電影級一般。</p>
+                    </div>
+                    <div class="column">
+                         <p>　至於該如何用 Veo 2 產出令人驚艷的影片？Google 官方提出了一系列建議，強調寫提示詞 (prompt) 的兩個核心原則：<strong>清晰度和細節</strong>，也就是要避免模糊不清或太過籠統的描述，而提供越多資訊，生成的影片就會越豐富、越有層次。具體優化提示詞的面向包括：</p>
+                         <ul style="padding-left: 20px; margin-top: 5px; list-style-type: disc;">
+                             <li>主體：影片的主要焦點是什麼？</li>
+                             <li>動作：畫面中發生什麼事？主體是靜止、移動，還是在與某物互動？</li>
+                             <li>場景/背景：場景發生在哪裡？環境氛圍如何？</li>
+                             <li>攝影機角度/運鏡：是特寫、廣角還是動態跟拍？</li>
+                             <li>光線：場景的光線如何？是明亮陽光，還是昏暗帶情緒的？</li>
+                             <li>風格/氛圍：你想要傳達什麼樣的整體感覺或美學風格？(例如：優雅、未來感、自然寫實)</li>
+                         </ul>
+                    </div>
+                </div>
+                <div class="link-group">
+                    <a href="https://developers.googleblog.com/en/veo-2-video-generation-now-generally-available/" target="_blank" class="news-link">更多官方範例 →</a> <a href="https://aistudio.google.com/" target="_blank" class="news-link">Google AI Studio →</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">🛠️ AI 工具推薦</h2>
+            <div class="tool-item"> 
+                <div style="max-width: 700px; margin: 0 auto; text-align: left;"> 
+                    <h3 style="margin-bottom: 20px; color: #6b4e9d; font-size: 1.5em; text-align: center;">
+                        Claude 3.7 Sonnet：寫程式與資訊視覺化的強力 AI 幫手
+                    </h3>
+                    <p style="text-align: center; margin-bottom: 30px;">
+                        <img src="https://i.meee.com.tw/88lNa88.jpeg" alt="Claude 3 illustration" style="max-width: 90%; width: 600px; height: auto; border-radius: 8px; box-shadow: 0 5px 15px rgba(107, 78, 157, 0.15); display: block; margin: 0 auto;">
+                    </p>
+                    <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 25px;">
+                        AI 巨擘 Anthropic 推出的模型「<strong>Claude 3.7 Sonnet</strong>」，結合優秀的混合推理能力，成為許多專業用戶的首選。Claude AI 目前<strong>免費開放</strong>給所有用戶使用 (有每日訊息上限與流量限制)。
+                    </p>
+                    <p style="margin-top: 30px; margin-bottom: 15px; font-weight:bold; color:#5a4e8c; font-size: 1.2em; border-bottom: 1px solid #e8e1f8; padding-bottom: 5px;">
+                        <strong>Claude 3.7 Sonnet 解析：</strong>
+                    </p>
+                    <ul style="padding-left: 25px; list-style-type: disc; margin-bottom: 30px;">
+                         <li style="margin-bottom: 8px; line-height: 1.7;">處理複雜問題：在 <strong>STEM</strong> 領域 (科學 Science、科技 Technology、工程 Engineering、數學 Math) 表現優異，尤其是數據處理、程式生成、錯誤排除。</li>
+                         <li style="margin-bottom: 8px; line-height: 1.7;">互動式內容生成：無論是有組織或凌亂的資料，都能自動建立儀表板、視覺化作品、模擬動畫。</li>
+                         <li style="margin-bottom: 8px; line-height: 1.7;">軟體開發表現：寫程式的<strong>正確率高達 62%～70%</strong>，領先業界其他模型。</li>
+                    </ul>
+                    <p style="margin-top: 30px; margin-bottom: 15px; font-weight:bold; color:#5a4e8c; font-size: 1.2em; border-bottom: 1px solid #e8e1f8; padding-bottom: 5px;">
+                        <strong>功能亮點：</strong>
+                    </p>
+                    <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 15px;">
+                        在資料視覺化領域，Claude 3.7 Sonnet 展現了令人驚豔的能力，尤其是可直接生成 <strong>SVG</strong> (可縮放向量圖形) 格式的圖表。
+                    </p>
+                    <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 15px;">
+                        例如：提供文字素材，Claude 3.7 Sonnet 就能幫你轉換成精緻的 SVG 圖表。
+                    </p>
+                    <p style="text-align: center; margin: 25px 0;"> 
+                        <img src="https://i.meee.com.tw/nMweyXz.png" alt="Claude 3.7 Sonnet generating SVG chart example" style="max-width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(107, 78, 157, 0.1); display: inline-block;">
+                         <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                             Claude 3.7 Sonnet 生成的 SVG 圖表。(圖／Claude) </p>
+                    </p>
+                    <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 15px;">
+                        這些 SVG 檔案可以下載成圖片檔案，或嵌入任何支援 HTML 程式語言的平台工具繼續編輯。目前也可以選擇在 AIWIZE 上選取該模型，同樣能生成 SVG 程式碼，然後將其嵌入支援 HTML 的平台生成圖表。
+                    </p>
+                    <p style="text-align: center; margin: 25px 0;"> 
+                        <img src="https://i.meee.com.tw/5DY8I1n.gif" alt="AIWIZE Claude 3.7 added to menu" style="max-width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(107, 78, 157, 0.1); display: inline-block;">
+                         <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                             AIWIZE Claude 3.7 Sonnet 已加入 AIWIZE 模型選單 (影／翻攝自 AIWIZE) </p>
+                    </p>
+                    <div class="link-group" style="margin-top: 30px; justify-content: center;"> 
+                        <a href="https://claude.ai/login?returnTo=%2F%3F" target="_blank" class="news-link">馬上試試 Claude →</a>
+                        <a href="https://www.youtube.com/watch?v=t1eHNDB2LOM" target="_blank" class="news-link">網路教學 →</a>
+                    </div>
+                    <div style="margin-top: 30px; text-align: center;"> 
+                        <span class="tag">Anthropic</span>
+                        <span class="tag">Claude 3.7 Sonnet</span>
+                        <span class="tag">資料視覺化</span>
+                        <span class="tag">程式碼生成</span>
+                        <span class="tag">免費試用</span>
+                     </div>
+                </div> 
+            </div> 
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">💡 AIWIZE TIPS</h2>
+            <div class="update-banner" style="margin: 0 0 30px;">
+                <img src="https://i.meee.com.tw/Zc3z1kj.png"
+                     style="width: 100%; height: 160px; object-fit: cover; display: block; border-radius: 0;" />
+            </div>
+            <div class="tool-item"> 
+                <div style="max-width: 700px; margin: 0 auto; text-align: left;"> 
+                    <h3 style="margin-bottom: 25px; color: #6b4e9d; font-size: 1.5em; text-align: center;">
+                        AIWIZE Tips：用 Claude 3.7 Sonnet 點亮你的數據！
+                    </h3>
+                    <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 20px;">
+                        想把枯燥的文字資料變成清晰易懂的視覺圖表嗎？還在手動調整樣式、耗費時間嗎？現在，你可以直接在 AIWIZE 平台點選強大的 <strong>Claude 3.7 Sonnet</strong> 模型，釋放它的 SVG 超能力！
+                    </p>
+                    <p style="text-align: center; margin: 30px 0;"> 
+                        <img src="https://i.meee.com.tw/XkjyMEm.png" 
+                             alt="AIWIZE Claude SVG Example 1" 
+                             style="max-width: 90%; height: auto; border-radius: 8px; box-shadow: 0 5px 15px rgba(107, 78, 157, 0.1); display: block; margin: 0 auto;">
+                         <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                             使用 AIWIZE 內建 Claude 3.7 Sonnet 生成 SVG 程式碼。(圖／翻攝自 AIWIZE) </p>
+                    </p>
+                    <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 20px;">
+                        只需要將你的文本素材 (像是文章摘要、數據列表等) 貼給它，再搭配簡單的 prompt 指令 (例如「請用 SVG 長條圖呈現這些銷售數據，並加上標題」)，就能快速生成專業、可任意縮放的 <strong>SVG 向量圖表程式碼</strong>！
+                    </p>
+                    <p style="text-align: center; margin: 30px 0;"> 
+                        <img src="https://i.meee.com.tw/NUEScfZ.png" 
+                             alt="AIWIZE Claude SVG Example 2" 
+                             style="max-width: 90%; height: auto; border-radius: 8px; box-shadow: 0 5px 15px rgba(107, 78, 157, 0.1); display: block; margin: 0 auto;">
+                         <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                             使用 AIWIZE 內建 Claude 3.7 Sonnet 生成 SVG 向量生成圖表流程圖。(圖／SVG Viewer) </p>
+                    </p>
+                    <div style="margin-top: 30px; margin-bottom: 30px; padding: 20px 25px; background-color: #f9f7fc; border-radius: 10px; border: 1px solid #e8e1f8;">
+                        <p style="font-weight:bold; color:#5a4e8c; font-size: 1.15em; margin-bottom: 18px; text-align: center;">🚀 試試這些組合技，讓你的 SVG 更上一層樓：</p>
+                        <ul style="padding-left: 25px; list-style: none; margin: 0;">
+                            <li style="margin-bottom: 12px; line-height: 1.7; padding-left: 30px; position: relative;">
+                                <span style="position: absolute; left: 0; top: 1px;">🎨</span> <strong>指定主題色：</strong> 直接提供具體的色碼 (例如「#6b4e9d」)，或請 AI 幫你挑選，讓圖表符合你的品牌或簡報風格。
+                            </li>
+                            <li style="margin-bottom: 12px; line-height: 1.7; padding-left: 30px; position: relative;">
+                                <span style="position: absolute; left: 0; top: 1px;">📊</span> <strong>要求特定圖表：</strong> 請 AI 嘗試以「時間軸」、「流程圖」或其他特定視覺化樣式來生成。
+                            </li>
+                            <li style="margin-bottom: 12px; line-height: 1.7; padding-left: 30px; position: relative;">
+                                <span style="position: absolute; left: 0; top: 1px;">🤖</span> <strong>先規劃再執行：</strong> 不確定哪種圖表最適合？可以先請 AI 分析你的文字，推薦幾種視覺呈現方式，與 AI 討論確認後，再請它生成最終的 SVG。
+                            </li>
+                            <li style="margin-bottom: 0px; line-height: 1.7; padding-left: 30px; position: relative;">
+                                <span style="position: absolute; left: 0; top: 1px;">📄</span> <strong>SVG 變簡報：</strong> 要求 AI 將視覺化內容以 SVG 格式，直接生成多頁簡報結構。
+                            </li>
+                        </ul>
+                    </div>
+                    <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 20px;">
+                        你可以輕鬆預覽樣式、直接下載成 PNG 圖檔使用，或者透過這些進階技巧，讓 AI 提供更多元的排版設計。告別繁瑣的圖表製作過程，快來 AIWIZE 試試用 Claude 3.7 Sonnet 這個強大的視覺化功能，讓你的資料溝通更有效率、更吸睛！
+                    </p>
+                    <div class="link-group" style="margin-top: 30px; justify-content: center;">
+                        <a href="https://youtu.be/IaXe91GnFP4?si=Qfq38_zpX-Kt1RqF" target="_blank" class="news-link">教學影片 →</a>
+                    </div>
+                    <div style="margin-top: 30px; text-align: center;"> 
+                        <span class="tag">AIWIZE</span>
+                        <span class="tag">Claude 3.7 Sonnet</span>
+                        <span class="tag">SVG</span>
+                        <span class="tag">資料視覺化</span>
+                        <span class="tag">Prompt</span>
+                        <span class="tag">效率提升</span>
+                     </div>
+                </div> 
+            </div> 
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🔄 AIWIZE 近期更新</h2>
+            <div class="update-banner">
+                <img src="https://yt3.googleusercontent.com/iHXWaKeIGgJdDyTWzSxPr2f5YknNoMaEn-NKDwj8gF6cJK4sdRf0_pHq6rZ_nm_ud70G6sWXyNI=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" 
+                     alt="TVBS AI Banner"> 
+            </div>
+            <div class="update-item">
+                 <h3>1. UI 介面更新</h3>
+                 <p>模型選單位置更改至聊天介面左上角。</p>
+                 <p style="margin-top: 10px;"> 
+                     <img src="https://i.meee.com.tw/gWNdSNm.png" 
+                          alt="AIWIZE New Model Menu Location" 
+                          style="max-width: 100%; height: auto; border-radius: 4px; display: block;">
+                      <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                          AIWIZE 模型選單 UI 更改 (圖／翻攝自 AIWIZE) </p>
+                 </p>
+            </div>
+            <div class="update-item">
+                 <h3>2. Autopilot 更新：新增「JSON 格式化工具」</h3>
+                 <p>在「Formatter」工具中，新增了「Create JSON」的功能，它可以將輸入的文字解析成可以直接使用的 JSON 物件。</p>
+                 <p>將資料轉換成 JSON 格式的好處是，能把資料從「人類可讀」變成「機器可理解和操作」，進而快速、自動化串接到各種後續流程，減少手動整理的時間和錯誤。</p>
+                 <p><strong>使用情境舉例</strong>： 從網頁擷取到一段產品資料描述，或從表單收集到客戶回饋時，就可以轉換成 JSON 物件，接著繼續串接後面的處理步驟。</p>
+                 <p style="margin-top: 10px;"> 
+                     <img src="https://i.meee.com.tw/htVHOvx.png" 
+                          alt="AIWIZE Autopilot JSON Formatter Tool" 
+                          style="max-width: 100%; height: auto; border-radius: 4px; display: block;">
+                      <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                          Autopilot 新增「JSON 格式化工具」 (圖／翻攝自 AIWIZE) </p>
+                 </p>
+            </div>
+            <div class="update-item">
+                 <h3>3. Autopilot 更新：測試執行模擬功能</h3>
+                 <p>當在測試流程中，遇到需要等待外部 API 回應的狀況時，不再需要因為資料延遲而中斷整個流程設計。你可以手動設定一組模擬資料，立即驗證後續步驟的運作是否符合預期的設定，提升建置與調整自動化流程的速度和彈性。</p>
+                 <p style="margin-top: 10px;"> 
+                     <img src="https://i.meee.com.tw/uocPYtz.gif" 
+                          alt="AIWIZE Autopilot Test Simulation Feature" 
+                          style="max-width: 100%; height: auto; border-radius: 4px; display: block;">
+                      <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                          Autopilot 更新測試執行模擬功能 (影／翻攝自 AIWIZE) </p>
+                 </p>
+            </div>
+        </section>
+
+ 
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="https://discord.gg/v3sfBYh9" target="_blank" class="social-button discord-button">
+                    <img src="https://cdn.simpleicons.org/discord/white" alt="Discord logo" style="width: 30px; height: auto;">
+                    <span>加入 Discord 社群</span>
+                </a>
+                <a href="https://www.threads.com/@ai_wize?hl=zh-tw" target="_blank" class="social-button threads-button-style"> 
+                    <img src="https://i.meee.com.tw/b4pVr9Q.png" alt="Threads logo" style="width: 30px; height: auto;">
+                    <span>在 Threads 上追蹤</span>
+                </a>
+                <a href="https://www.youtube.com/@ai_wize_" target="_blank" class="social-button youtube-button">
+                    <img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube logo" style="width: 30px; height: auto;">
+                    <span>訂閱 YouTube 頻道</span>
+                </a>
+            </div>
+        </section>
+        <footer>
+           <p>本電子報為公司內部刊物，僅供公司內部學習參考，相關資訊版權歸原作者所有。</p>
+            <p>© 台北市內湖區瑞光路451號 | 聯利媒體股份有限公司</p>
+            <p>2025 TVBS AI 未來科技部</p> </footer>
+    </div>
+    
+    <script src="../scripts.js"></script> 
+</body>
+</html>

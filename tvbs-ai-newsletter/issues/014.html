@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+    
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5FPJBLQJ');</script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI NEWS LETTER - 第014期</title>
+        <link rel="stylesheet" href="../style.css">
+        <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+        <style>
+            /* 針對本期優化的內聯樣式 (不影響全站) */
+            .prompt-box {
+                background-color: #f4f4f4;
+                border-left: 4px solid #6b4e9d;
+                padding: 15px;
+                margin: 10px 0 15px 0;
+                border-radius: 4px;
+                font-family: Consolas, Monaco, 'Andale Mono', monospace;
+                font-size: 0.95em;
+                color: #444;
+                line-height: 1.6;
+                white-space: pre-line; /* 保留換行 */
+            }
+            .showcase-container {
+                display: grid;
+                gap: 40px;
+            }
+            .showcase-item {
+                background: #fff;
+                padding: 25px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+                border: 1px solid rgba(0,0,0,0.05);
+            }
+            .showcase-item h4 {
+                color: #6b4e9d;
+                font-size: 1.3em;
+                margin-top: 0;
+                border-bottom: 2px solid #f0f0f0;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+            .compare-images {
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            .compare-item {
+                flex: 1;
+                min-width: 250px;
+            }
+            .compare-label {
+                display: block;
+                text-align: center;
+                font-size: 0.9em;
+                color: #888;
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FPJBLQJ"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    <nav class="quick-jump-nav" id="quickJumpNav">
+        <h4>本期目錄</h4>
+        <ul id="quickJumpList"></ul>
+    </nav>
+    <button class="quick-jump-toggle" id="quickJumpToggle">目錄</button>
+
+    <div class="newsletter-container">
+        <header class="header">
+            <h1>AI NEWS LETTER</h1>
+            <p>第014期 | 2025年11月</p>
+            <div class="search-container">
+                <input type="search" id="searchInput" placeholder="搜尋本站所有文章...">
+                <div id="searchResults" class="search-results-container"></div>
+            </div>
+        </header>
+
+        <div class="period-selector-container">
+            <div class="period-selector">
+                <select id="periodSelect">
+                </select>
+            </div>
+        </div>
+        
+        <div class="outline-box">
+            <h2>本期重點摘要</h2>
+            <ul>
+                <li><strong>Gemini 3 強勢登場！</strong>代理能力大升級，從規劃到執行全包辦。</li>
+                <li><strong>Nano Banana Pro 震撼來襲！</strong>支援 4K 高畫質、圖文排版，繁中字生成正確度大升級。</li>
+                <li><strong>GPT-5.1 登場！</strong>變得更聰明、更好聊，8種語氣性格任你選。</li>
+                <li><strong>全新 AI 行銷工具 Pomelli 亮相！</strong>品牌素材製作更快速。</li>
+                <li><strong>Prompt 專欄：</strong>如何運用 AI 優化提示詞？三步驟找出盲點。</li>
+                <li><strong>n8n 案例分享：</strong>FB 週末自動發文流程。</li>
+                <li><strong>AI Tools 推薦：</strong>ChatGPT 新功能：群組聊天正式試行！協作更高效。</li>
+                <li><strong>AI 精選新聞：</strong>收錄輝達超級電腦、Sora 2 上線、OpenAI 音樂模型等 32 則最新動態。</li>
+            </ul>
+        </div>
+
+        <div class="news-item">
+            <span class="tag">Google</span>
+            <span class="tag">Gemini 3</span>
+            <span class="tag">AI Agent</span>
+            <h3>Gemini 3 登場！代理能力大升級 從規劃到執行全包辦</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://i.meee.com.tw/0ZE0lmC.webp" alt="Gemini 3 登場">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        Gemini 3 登場。 ( 圖 / 翻攝自 Google Blog )
+                    </p>
+                </div>
+                
+                <p class="first-paragraph" style="margin-bottom: 30px;">Google 發表新一代模型 Gemini 3，號稱是目前最聰明的模型，升級方向不再只是單純提升模型能力，而是將搜尋、介面生成、任務代理和開發環境全面整合，讓 AI 更能夠理解、參與使用者的整個作業流程。</p>
+
+                <div class="news-columns">
+                    <div class="column">
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-size: 1.15em; font-weight: bold;">1. 推理與語意理解能力變更強</h4>
+                            <p style="margin: 0; color: #444;">Gemini 3 在推理和語意理解上不再局限於字面抓取，而是能深入分析語境與理解用戶意圖，補足模糊問題所缺的信息，並在專業內容處理中提供完整、精確的觀點，顯著提升了回答的細膩度和準確性。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-size: 1.15em; font-weight: bold;">2. 處理多模態能力更成熟</h4>
+                            <p style="margin: 0; color: #444;">Gemini 3 不單純只能辨識文字、圖片、影片、聲音等多種模態的資料，還能理解背後的意義，比如能同時理解影像中的動作、手寫筆記等，並延伸補充說明。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-size: 1.15em; font-weight: bold;">3. 生成式介面（Generative UI）</h4>
+                            <p style="margin: 0; color: #444;">當你詢問複雜的問題，Gemini 3 不再只是用文字提供答案，還能生成動態視覺化介面、可操作的模擬器等（例如：在分析房貸比較利率時，AI 可以生成一份利率的比較工具），更直觀的幫助用戶解決問題，大幅提升功能實用性。</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-size: 1.15em; font-weight: bold;">4. Vibe Coding</h4>
+                            <p style="margin: 0; color: #444;">Gemini 3 讓用戶僅需描述概念和風格，不用寫程式碼，就能直接生成可互動、可運作、或是有動畫完整界面，也就是用自然語言與想像，就能打造 UI 頁面。</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-size: 1.15em; font-weight: bold;">5. Gemini Agent</h4>
+                            <p style="margin: 0; color: #444;">這是一個能執行多步驟任務並與 Google 生態系統整合的 AI 助理，例如他能幫忙整理Gmail、管理日程、協助比價、跨 App 操作，甚至自動完成一串複雜的流程，比如從抓出日期，並做好飯店與租車比價，最後提供結果給使用者確認。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-size: 1.15em; font-weight: bold;">6. Antigravity 平台</h4>
+                            <p style="margin: 0; color: #444;">Google 推出新的開發平台 Antigravity，基於 Gemini 3 強大的推理與操作能力，它不僅能生成程式碼、執行測試、協助資料處理或元件設計，還能修正 bug，或是直接完成一個初版的成果等，讓開發過程更有效率，是個能幫助開發者規劃完整開發流程的小幫手。</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-size: 1.15em; font-weight: bold;">7. 長期規劃能力與安全性升級</h4>
+                            <p style="margin: 0; color: #444;">Gemini 3 在模擬長期任務的測試中，表現顯著優於其他模型，代表它在執行長鏈推理與多步驟任務中不易跑偏，能讓 Agent 更穩靠。此外，Gemini 3 的安全訓練較過去模型完整，在抗誘導能力、降低幻覺、避免被惡意指令操控、注重事實性都有所強化。</p>
+                        </div>
+
+                        <div style="background-color: #f5f0ff; padding: 20px; border-radius: 12px; margin-top: 20px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-weight: bold;">Gemini 3 哪裡可以用？</h4>
+                            <p style="margin: 0; line-height: 1.7;">首發版本 Gemini 3 Pro 將導入 Google 搜尋的 AI Mode（AI 模式）、Gemini 應用程式以及開發者工具中；一般用戶至 Gemini 網頁，在對話時選擇「Thinking」模式，系統預設就會是 Gemini 3 Pro，或是到 Google AI Studio 網站也能免費體驗。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="link-group" style="justify-content: center; margin-top: 30px;">
+                    <a href="https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-gemini-3/" target="_blank" class="news-link">官方介紹 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item">
+            <span class="tag">Google</span>
+            <span class="tag">Nano Banana Pro</span>
+            <span class="tag">圖像生成</span>
+            <h3>Nano Banana Pro 震撼來襲！支援 4K 高畫質、圖文排版 繁中字生成正確度大升級</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://i.meee.com.tw/f5vIpdF.png" alt="Nano Banana Pro 生成之漫畫風格圖片">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        Nano Banana Pro 奇襲登場。 ( 圖 / 翻攝自 Google 官網 )
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">Google 宣布推出最新 AI 圖像生成模型 Nano Banana Pro（Gemini 3 Pro Image），是以 Gemini 3 Pro 為基底打造，在 AI 圖像處理上，不管是文字呈現、影像生成精準度，還是真實感模擬，都較前一代 Nano Banana（Gemini 2.5 Flash Image） 的效果大幅提升，被號稱是目前最強的生圖模型。以下介紹 Nano Banana Pro 功能及升級亮點：</p>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 8px 0; font-size: 1.1em; font-weight: bold;">1. 影像品質與控制力更好</h4>
+                            <p style="margin: 0; line-height: 1.7; color: #444;">Nano Banana Pro 支援 2K 和 4K 的高解析度影像生成，不僅能輕鬆切換場景，還可精確調整影像的光線、鏡頭角度、焦距、色調及構圖等參數，最多還能處理14張圖像的融合，保持5位角色的一致性，大幅提升創作的自由度與靈活性，對於商業視覺素材開發很有幫助。</p>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 8px 0; font-size: 1.1em; font-weight: bold;">2. 文字渲染能力再進化</h4>
+                            <p style="margin: 0; line-height: 1.7; color: #444;">跟先前的版本相比，Nano Banana Pro 在處理圖片中的文字表現更為卓越。不論整段文案或簡短的句子文字，都能更準確地呈現，並支援語言翻譯和語意理解，對製作海報、圖卡等文字加圖片的素材很有幫助。<strong>經實測，在繁體中文的效果上，雖然對於較複雜的繁體中文字仍可能顯示錯誤，但整體正確度已大幅提升。</strong></p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 8px 0; font-size: 1.1em; font-weight: bold;">3. 知識應用與即時信息整合</h4>
+                            <p style="margin: 0; line-height: 1.7; color: #444;">由於建立在 Gemini 3 Pro 架構之上，Nano Banana Pro 展現了強大的世界知識推理能力，並能支援與 Google Search 的 grounding 功能，讓生成的影像更貼近真實世界。此外，此模型還能視覺化即時資訊，如天氣或運動賽事，在製作教育資訊圖等方面也十分有幫助。<strong>經實測，讓模型生成台灣街景內加入指定知名店家品牌，街景真實度與招牌樣貌與現實的樣子相似度極高。</strong></p>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 8px 0; font-size: 1.1em; font-weight: bold;">4. 安全與標示</h4>
+                            <p style="margin: 0; line-height: 1.7; color: #444;">為了確保內容的安全性，Nano Banana Pro 模型也有內建 SynthID 浮水印功能，標示生成內容為 AI 來源。針對 Google AI Ultra 訂閱者以及透過 Google AI Studio 開發者工具所生成的影像，考量專業工作需要乾淨視覺的要求，則能移除可見浮水印。</p>
+                        </div>
+
+                        <div style="background-color: #c0a3ec; padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid #eee;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 10px 0; font-weight: bold;">Nano Banana Pro 在哪裡可以用？</h4>
+                            <p style="margin: 0; line-height: 1.7;">目前 Nano Banana Pro 已開放給所有 Gemini 用戶，免費用戶可以體驗的生成次數有限，付費用戶則可享有更多的生成額度。要啟用 Nano Banana Pro，需進入「工具」→「建立圖像」→ 切換至「思考型」即可。此外，在 Google AI studio 也能體驗 Nano Banana Pro，不過需要有 API key 才能使用。</p>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="link-group" style="justify-content: center;">
+                        
+                        <a href="https://blog.google/intl/zh-tw/products/explore-get-answers/nano-banana-pro/" target="_blank" class="news-link">官方介紹 →</a>
+                    </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">🎨 Nano Banana Pro 實測特展</h2>
+            
+            <div class="showcase-container">
+                <div class="showcase-item">
+                    <h4>【製作圖卡】1. 健康圖卡</h4>
+                    <div class="prompt-box"><strong>Prompt：</strong>針對以下內容，做一張簡約可愛設計質感風的4:5 臉書社群發文圖卡：
+營養價值
+單元不飽和脂肪酸（油酸）：降低壞膽固醇，促進心血管健康。
+膳食纖維：促進腸道蠕動，改善消化，幫助血糖與血脂調節。
+維生素E：抗氧化，保護細胞免受自由基傷害。
+葉酸：促進細胞分裂與 DNA 合成，孕婦補充重要營養。
+鉀：調節體液平衡，維持血壓穩定。
+維生素 C：增強免疫力，促進鐵吸收。
+維生素 K：促進血液凝固與骨骼健康。
+維生素 B 群（B5、B6）：支持能量代謝與神經系統健康。
+鎂：協助肌肉與神經功能，促進骨骼健康。
+抗氧化物質：減緩老化，保護心臟與大腦。</div>
+                    <img src="https://i.meee.com.tw/mlJkvhA.jpg" alt="健康圖卡生成結果" style="width: 100%; max-width: 600px; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                </div>
+
+                <div class="showcase-item">
+                    <h4>【製作圖卡】2. 手沖咖啡流程圖</h4>
+                    <div class="prompt-box"><strong>Prompt：</strong>畫出一張手沖咖啡流程圖附上簡單說明，日本流行雜誌風格，但是說明文字是台灣繁體中文。</div>
+                    <img src="https://i.meee.com.tw/hDZN6YU.jpg" alt="手沖咖啡流程圖生成結果" style="width: 100%; max-width: 600px; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                </div>
+
+                <div class="showcase-item">
+                    <h4>【圖片壓字】</h4>
+                    <div class="prompt-box"><strong>Prompt：</strong>將以下文字壓在圖片正中間，文字後方加上一條半透明黑底色，原始圖片尺寸及樣貌保持不變：
+普發一萬懶人包
+5大領取方式、入帳時間一次看</div>
+                    <div class="compare-images">
+                        <div class="compare-item">
+                            <span class="compare-label">輸入素材圖</span>
+                            <img src="https://i.meee.com.tw/12Au2sz.jpg" alt="輸入素材圖" style="width: 100%; border-radius: 8px;">
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-label">生成結果圖</span>
+                            <img src="https://i.meee.com.tw/A1RaoKw.jpg" alt="生成結果圖" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <h4>【多素材融合】</h4>
+                    <div class="prompt-box"><strong>Prompt：</strong>讓這位女生一手拿甘甘好跟眠益生菌，另一手拿滴雞精，目的是活動宣傳形象照，動作雀躍笑容開心，服裝改成時尚購物風格，生成一張風格高級帶有繽紛活動海報。街景背景去掉改成爆炸風格，並把公司logo擺在角落。海報上面有文字，同樣是爆炸風格吸引民眾目光：
+1111購物盛典
+10.25-11.30
+享時尚官網獨降
+限時搶61折</div>
+                    <div class="compare-images" style="margin-bottom: 20px;">
+                        <div class="compare-item">
+                            <span class="compare-label">素材圖 (女)</span>
+                            <img src="https://i.meee.com.tw/Eqc1A1E.jpg" alt="素材圖(女)" style="width: 100%; border-radius: 8px;">
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-label">素材圖</span>
+                            <img src="https://i.meee.com.tw/ch96aDn.png" alt="素材圖(商品)" style="width: 100%; border-radius: 8px;">
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <span class="compare-label">生成結果圖</span>
+                        <img src="https://i.meee.com.tw/XuPkLVl.png" alt="生成結果圖" style="width: 100%; max-width: 600px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <h4>【有對話框的風格漫畫】</h4>
+                    <div class="prompt-box"><strong>Prompt：</strong>將這張照片改成一張充滿動態感的黑白日式少年漫畫的風格。女生奔跑在街上，強烈的速度線和集中線向中心匯聚。畫面具有衝擊力和爆發力。粗獷的墨線，明顯的網點陰影效果。帶有巨大的日文擬聲詞效果字。爆炸性的對話框，文字用繁體中文寫「快趕不上公車了！」</div>
+                    <div class="compare-images">
+                        <div class="compare-item">
+                            <span class="compare-label">輸入素材圖</span>
+                            <img src="https://i.meee.com.tw/Eqc1A1E.jpg" alt="輸入素材圖" style="width: 100%; border-radius: 8px;">
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-label">生成結果圖</span>
+                            <img src="https://i.meee.com.tw/FkH1O09.jpg" alt="生成結果圖" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <h4>【街景品牌辨識】</h4>
+                    <div class="prompt-box"><strong>Prompt：</strong>生成一張台灣街景圖 圖片中要有蝦皮店到店、屈臣氏、全聯的店家。</div>
+                    <img src="https://i.meee.com.tw/E0sDIqL.jpg" alt="街景品牌辨識生成結果" style="width: 100%; max-width: 600px; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                </div>
+                <div class="showcase-item">
+                    <h4>【3D產品圖】</h4>
+                    <div class="prompt-box"><strong>Prompt：</strong>一張超逼真的3D商業資訊圖像，呈現真實的漢堡，採用微爆炸視角展現所有結構層次，並置中於潔白圓形底座上，漸變優雅時尚深色背景。重點指示：仔細分析並分解主題為4到5個中英對照核心特徵，向量文字，並製作漂浮霧面效果呈現，4K。</div>
+                    <div class="compare-images">
+                        <div class="compare-item">
+                            <span class="compare-label">輸入素材圖</span>
+                            <img src="https://i.meee.com.tw/wH7rBxG.jpg" alt="輸入素材圖" style="width: 100%; border-radius: 8px;">
+                        </div>
+                        <div class="compare-item">
+                            <span class="compare-label">生成結果圖</span>
+                            <img src="https://i.meee.com.tw/vBJWtCG.jpg" alt="生成結果圖" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background-color: #f5f0ff; padding: 20px; border-radius: 12px; margin-top: 30px; text-align: center;">
+                    <h4 style="color: #6b4e9d; margin: 0 0 10px 0;">更多 Nano Banana 提示詞庫</h4>
+                    <p style="margin-bottom: 20px;">隨著 Nano Banana 爆紅，國外也陸續出現蒐集專為 Nano Banana 及  Nano Banana Pro 設計的提示詞的網站，裡面有多達上百種 prompt，大家可以參考不同的圖片風格，改成自己喜歡的樣子。</p>
+                    <p style="margin-bottom: 20px;">以下分享 3 個提示詞庫網站，快來動手玩玩看吧！</p>
+                    
+                    <div class="link-group" style="justify-content: center;">
+                        <a href="https://nanobananaprompt.org/prompts/" target="_blank" class="news-link">Nano Banana 提示詞庫 1</a>
+                        <a href="https://opennana.com/awesome-prompt-gallery/" target="_blank" class="news-link">Nano Banana 提示詞庫 2</a>
+                        <a href="https://muset-ai.github.io/awesome-nano-banana-pro/" target="_blank" class="news-link">Nano Banana Pro 提示詞庫</a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="news-item">
+            <span class="tag">OpenAI</span>
+            <span class="tag">GPT-5.1</span>
+            <span class="tag">ChatGPT</span>
+            <h3>GPT-5.1 登場！變得更聰明、更好聊 8種語氣性格任你選</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://i.meee.com.tw/gGvk6dW.webp" alt="GPT 5.1 新增多種語氣風格">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        GPT 5.1 新增多種語氣風格。( 圖 / 翻攝自 OpenAI 官網 )
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">OpenAI 日前發表最新版本模型 GPT-5.1，是針對 GPT-5 的升級版更新，不僅推理能力提升，語感變得也更自然、更聽話，在處理簡單任務上更快速，面對複雜問題則更有耐心。來看看這次更新亮點：</p>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 8px 0; font-size: 1.1em; font-weight: bold;">分為 Instant / Thinking 兩個模型</h4>
+                            <p style="margin: 0; line-height: 1.7; color: #444;">
+                                <strong>GPT‑5.1 Instant：</strong>專為提供即時回應設計，適合需要快速獲得答案的情境，同時也具備自適應推理能力，能在面對較複雜的問題時，決定是否先思考再回答，提供更周延且精準的回應，但同樣迅速。<br><br>
+                                <strong>GPT‑5.1 Thinking：</strong>可透過長時間來思考來得到更好的回答，適合處理複雜問題與事實核查，整體表現更有效率，貼近日常使用。此外，也減少了行業術語與模糊不明的詞彙，讓用戶覺得更親切、更好懂。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 8px 0; font-size: 1.1em; font-weight: bold;">新的語氣風格設定</h4>
+                            <p style="margin: 0; line-height: 1.7; color: #444;">GPT-5.1 在 ChatGPT 回應語氣的選項中，新增了多種風格，除了更新「預設」、「友善」（Friendly，原稱「傾聽者」）與「有效率」（Efficient，原稱「機器人」）三種個性，還多了「專業」（Professional）、「坦率」（Candid）與「俏皮」（Quirky）等風格選項，並保留先前推出的「極客」（Nerdy）與「憤世嫉俗」（Cynical）。</p>
+                        </div>
+                        
+                        <p>目前 GPT-5.1 已開放 Plus、Pro、Go、Business 等付費用戶可在 ChatGPT 平台上使用，舊版 GPT-5 模型將暫時保留三個月當過渡期。</p>
+                    </div>
+                </div>
+                <div class="link-group" style="justify-content: center; margin-top: 30px;">
+                    <a href="https://openai.com/zh-Hant/index/gpt-5-1/" target="_blank" class="news-link">官方介紹 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item">
+            <span class="tag">Google</span>
+            <span class="tag">Pomelli</span>
+            <span class="tag">AI 行銷</span>
+            <h3>全新 AI 行銷工具 Pomelli 亮相！品牌素材製作更快速</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://i.meee.com.tw/pHZbo7v.webp" alt="AI 行銷平台 Pomelli 登場">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        AI 行銷平台 Pomelli 登場。 ( 圖 / 翻攝自 Pomelli 官網 )
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">Google Labs 與 Google DeepMind 合作推出一款專為內容行銷及社群媒體經營者設計的 AI 工具「Pomelli」，它不單只是產生文案的工具，更是整合多種格式的協作平台，能自動生成品牌風格、內容素材與行銷文案，幫助中小企業輕鬆建立品牌形象。</p>
+                    </div>
+                    <div class="column">
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #6b4e9d; margin: 0 0 8px 0; font-size: 1.1em; font-weight: bold;">Pomelli 能做什麼？</h4>
+                            <p style="margin: 0; line-height: 1.7; color: #444;">Pomelli 的核心功用在於，透過單一靈感或素材，快速發展出多樣化的行銷素材。你只需提供品牌的網站連結，Pomelli 就能針對該網站的品牌訊息、產品亮點、使用的字體、語氣、顏色或影像風格等進行分析，接著快速生成貼近品牌個性的素材，像是網站橫幅、社群貼文，或廣告素材等；也可以上傳一個素材，一張產品照片或活動標語，建立屬於該商品的行銷檔案。</p>
+                        </div>
+                        
+                        <p>不過，Pomelli 目前僅開放給美國、加拿大、澳洲和紐西蘭四個地區進行測試，且只支援英文，台灣用戶若想使用要再等等了。</p>
+                    </div>
+                </div>
+                <div class="link-group" style="justify-content: center; margin-top: 30px;">
+                    <a href="https://labs.google.com/pomelli/about/" target="_blank" class="news-link">Pomelli 官網 →</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">💡Prompt 專欄</h2>
+            <div class="tool-item">
+                <div style="max-width: 700px; margin: 0 auto; text-align: left;">
+                    <h3 style="margin-bottom: 20px; color: #6b4e9d; font-size: 1.6em; text-align: center; line-height: 1.4;">
+                        如何運用 AI 優化提示詞
+                    </h3>
+                    
+                    <div style="text-align: center; margin-bottom: 35px;">
+                        <img src="https://i.meee.com.tw/gytRE58.jpg" alt="提示詞寫不好？試試用 AI 來幫你優化" style="max-width: 90%; width: 600px; height: auto; border-radius: 12px; box-shadow: 0 6px 18px rgba(107, 78, 157, 0.18); display: block; margin: 0 auto;">
+                        <p style="font-size: 12px; color: #888888; font-style: italic; margin-top: 12px; text-align: center;">
+                            提示詞寫不好？試試用 AI 來幫你優化。( 圖 / AI 生成 )
+                        </p>
+                    </div>
+                   
+                    <p style="line-height: 1.8; font-size: 1.1em; margin-bottom: 25px;">
+                        OpenAI 推出新模型 GPT-5.1，擅長各種代理人（Agent）和編碼任務，在個性、語氣和輸出格式方面也更具可控性。不過，要讓模型更遵循我們的需求，最基本的還是要把提示詞（Prompt）寫好，但我們通常比較難自行找出提示詞的盲點，這時就可以請 AI 來幫忙！
+                    </p>
+                    
+                    <p style="line-height: 1.8; font-size: 1.1em; margin-bottom: 25px;">
+                        想要解決優化提示詞的問題，我們可以按照下步驟來看看我們的提示詞哪裡說偏了。
+                    </p>
+
+                    <div style="background-color: #f5f0ff; padding: 25px; border-radius: 12px; border-left: 4px solid #6b4e9d; margin-bottom: 20px;">
+                        <h4 style="margin: 0 0 10px 0; color: #5a4e8c; font-size: 1.2em;">步驟一：找出問題</h4>
+                        <p style="margin: 0; line-height: 1.7; color: #444;">先準備好我們目前使用的提示詞和一些產出不符需求的結果，並簡單解釋一下這些產出結果為什麼不符合需求，交給 GPT 後，讓它分析產出那樣結果的原因。在這個階段，不用急著找解決方案，只找根本原因就好。</p>
+                    </div>
+
+                    <div style="background-color: #f5f0ff; padding: 25px; border-radius: 12px; border-left: 4px solid #6b4e9d; margin-bottom: 20px;">
+                        <h4 style="margin: 0 0 10px 0; color: #5a4e8c; font-size: 1.2em;">步驟二：修改和優化</h4>
+                        <p style="margin-bottom: 15px; line-height: 1.7; color: #444;">從分析結果中找到問題以後，再請 GPT 給出修改建議，注意不需要全部打掉重來，只需小修小補。在請它給修改建議時，可以同時視情況給它一些修改的限制條件，以免我們原本的提示詞被改動太多，失去原意，比如：</p>
+                        <ul style="margin: 0; padding-left: 20px; color: #444; line-height: 1.7;">
+                            <li style="margin-bottom: 5px;">不要從頭設計整個提示詞。</li>
+                            <li style="margin-bottom: 5px;">優先考慮小而明確的編輯：澄清矛盾的規則，刪除冗餘或矛盾的內容，收緊模糊的指導。</li>
+                            <li style="margin-bottom: 5px;">明確做出條件取捨。</li>
+                            <li>除非簡短的合併能去除明顯的重複，否則保持結構和總長度大致與原來相似。</li>
+                        </ul>
+                    </div>
+
+                    <div style="background-color: #f5f0ff; padding: 25px; border-radius: 12px; border-left: 4px solid #6b4e9d; margin-bottom: 25px;">
+                        <h4 style="margin: 0 0 10px 0; color: #5a4e8c; font-size: 1.2em;">步驟三：完成修改與測試</h4>
+                        <p style="margin: 0; line-height: 1.7; color: #444;">確認得到的新提示詞大致沒問題後，再進行測試，看看生成效果有沒有變好。</p>
+                    </div>
+                    
+                    <p style="line-height: 1.8; font-size: 1.1em; margin-bottom: 20px;">以上這些過程可以多重複幾次，直到搞定所有問題為止。</p>
+                    
+                    <div class="link-group" style="justify-content: center; margin-top: 30px;">
+                        <a href="https://sfa.gh.miniasp.com/2025/11-14/GPT-5.1%20Prompting%20Guide.html?fbclid=IwY2xjawOHs7dleHRuA2FlbQIxMQBicmlkETFTU3RtNmJqb25jVG1jZnF5c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MghjYWxsc2l0ZQIzMAABHhoiiH-Pp7PRyMOWvneAIw4oyVZW1GkdxwLOm22dViUikpJBYLBXGj64_9oA_aem_WjH1DWLCrGahGYSGpl8e4w" target="_blank" class="news-link">GPT-5.1 官方提示詞指南 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <section class="section">
+    <h2 class="section-title">🧩 n8n Automation - 同仁實戰案例分享</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 30px; line-height: 1.6;">
+        探索內部團隊如何運用 n8n 解決日常痛點，釋放創意與產能！<br>
+        
+    </p>
+
+    <div style="background-color: #f8f5ff; border-left: 4px solid #6b4e9d; padding: 20px 25px; border-radius: 0 8px 8px 0; margin-bottom: 35px; box-shadow: 0 2px 8px rgba(107, 78, 157, 0.05);">
+        <h3 style="margin: 0 0 10px 0; color: #6b4e9d; font-size: 1.25em; display: flex; align-items: center; gap: 10px;">
+            
+            什麼是 n8n？
+        </h3>
+        <p style="margin: 0; color: #555; line-height: 1.7; font-size: 1em;">
+            n8n 是一款強大的<strong>自動化工作流程工具（Workflow Automation Tool）</strong>。它採用「節點式」的可視化介面，讓使用者像拼圖一樣，將不同的應用程式（如 Google Sheets、Line、Slack、ChatGPT）串接起來。
+        </p>
+        <p style="margin: 10px 0 0 0; color: #555; line-height: 1.7; font-size: 1em;">
+            <strong>✨ 核心優勢：</strong>無需複雜的程式碼背景，即可讓重複性高、繁瑣的日常任務自動運行，是提升團隊效率的數位神隊友。
+        </p>
+    </div>
+    <div class="tool-item" style="background: linear-gradient(to bottom, #ffffff, #fcfaff); border: 1px solid #e0d8f5; padding: 0; overflow: hidden;">
+        
+        <div style="padding: 30px 20px 20px 20px; text-align: center;">
+            <span class="tag" style="background: #6b4e9d; color: white; margin-bottom: 15px; display: inline-block;">數位事業部數位行銷組</span>
+            <h3 style="margin: 5px 0 15px; color: #2c3e50; font-size: 1.8em;">
+                週末流量救星：女大 FB 發文小幫手
+            </h3>
+            
+            <div style="background: #f0fdf4; border: 1px solid #c3e6cb; border-radius: 12px; padding: 15px; margin: 20px auto; max-width: 600px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="font-size: 0.9em; color: #155724; margin-bottom: 5px;">🏆 自動化頻率</div>
+                    <div style="font-weight: bold; color: #28a745; font-size: 1.2em;">每小時自動發文</div>
+                    <div style="font-size: 0.8em; color: #666;">(週末 09:00-20:00)</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 0.9em; color: #155724; margin-bottom: 5px;">📈 流量成效</div>
+                    <div style="font-weight: bold; color: #28a745; font-size: 1.2em;">PV 穩定增長</div>
+                    <div style="font-size: 0.8em; color: #666;">(平均 1,200~1,500+)</div>
+                </div>
+            </div>
+            
+            <p style="color: #666; font-size: 1em; line-height: 1.6;">
+                解決週末人力不足痛點，打造 24 小時待命的「數位管家」，<br>讓發文排程全自動化，確保流量不間斷！
+            </p>
+        </div>
+
+        <div style="background: #f8f9fa; padding: 20px 10px; border-top: 1px dashed #e0d8f5; border-bottom: 1px dashed #e0d8f5; text-align: center;">
+            <h4 style="text-align: center; margin: 0 0 35px 0; color: #6b4e9d; font-size: 1.3em;">
+                🛠️ 使用工具(Tech Stack)
+            </h4>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <div style="background: white; padding: 8px 15px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px;">
+                    <img src="https://i.meee.com.tw/i4i6V5d.png" alt="n8n" style="height: 20px; width: auto;">
+                    <span style="font-size: 0.9em; font-weight: 500; color: #333;">n8n</span>
+                </div>
+                <div style="background: white; padding: 8px 15px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Google_Sheets_logo_%282014-2020%29.svg/1024px-Google_Sheets_logo_%282014-2020%29.svg.png" alt="Google Sheets" style="height: 20px; width: auto;">
+                    <span style="font-size: 0.9em; font-weight: 500; color: #333;">Google Sheet 稿單管理</span>
+                </div>
+                <div style="background: white; padding: 8px 15px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px;">
+                    <img src="https://ottokit.s3.us-west-2.amazonaws.com/production/bannerbear.png" alt="Bannerbear" style="height: 20px; width: auto;">
+                    <span style="font-size: 0.9em; font-weight: 500; color: #333;">Bannerbear 自動製圖</span>
+                </div>
+                <div style="background: white; padding: 8px 15px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" style="height: 20px; width: auto;">
+                    <span style="font-size: 0.9em; font-weight: 500; color: #333;">Graph API 自動發佈</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 30px 15px;">
+            <h4 style="text-align: center; margin: 0 0 35px 0; color: #6b4e9d; font-size: 1.3em;">
+                🤖 自動化流程大解密
+            </h4>
+
+            <div style="width: 100%; margin: 0 auto 50px auto;">
+                <div style="text-align: left; margin-bottom: -2px;">
+                    <div style="background: #6b4e9d; color: white; padding: 8px 20px; border-radius: 8px 8px 0 0; font-size: 1em; display: inline-block; font-weight: 500;">
+                        🧠 業務邏輯圖
+                    </div>
+                </div>
+                <div style="border: 3px solid #6b4e9d; border-radius: 0 8px 8px 8px; overflow: hidden; background: white; box-shadow: 0 4px 15px rgba(107, 78, 157, 0.15);">
+                    <a href="https://i.meee.com.tw/yaIqOOh.png" target="_blank" title="點擊查看大圖">
+                        <img src="https://i.meee.com.tw/yaIqOOh.png" alt="女大 FB 周末發文流程圖" style="width: 100%; height: auto; display: block;">
+                    </a>
+                </div>
+                <p style="font-size: 0.9em; color: #999; margin-top: 10px; text-align: center;">點擊圖片可放大查看細節。 ( 圖 / NotebookLM 生成 )</p>
+            </div>
+
+            <div style="width: 100%; margin: 0 auto 40px auto;">
+                <div style="text-align: left; margin-bottom: -2px;">
+                    <div style="background: #ff9f43; color: white; padding: 8px 20px; border-radius: 8px 8px 0 0; font-size: 1em; display: inline-block; font-weight: 500;">
+                        ⚙️ n8n 實作圖
+                    </div>
+                </div>
+                <div style="border: 3px solid #ff9f43; border-radius: 0 8px 8px 8px; overflow: hidden; background: white; box-shadow: 0 4px 15px rgba(255, 159, 67, 0.15);">
+                    <a href="https://i.meee.com.tw/uCCdpr3.png" target="_blank" title="點擊查看大圖">
+                        <img src="https://i.meee.com.tw/uCCdpr3.png" alt="n8n 自動化流程圖" style="width: 100%; height: auto; display: block;">
+                    </a>
+                </div>
+                <p style="font-size: 0.9em; color: #999; margin-top: 10px; text-align: center;">點擊圖片可放大查看細節。( 圖 / 翻攝自 n8n Workflow )</p>
+            </div>
+
+            <div style="background: #fcfaff; padding: 25px; border-radius: 12px; border: 1px solid #eee; margin-top: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px;">
+                    <div style="text-align: left;">
+                        <strong style="color: #6b4e9d; display: block; margin-bottom: 8px; font-size: 1.1em;">Step 1. 檢查任務</strong>
+                        <p style="font-size: 0.95em; color: #666; margin: 0; line-height: 1.6;">
+                            定時讀取 Google Sheet 稿單，自動篩選出「未發布」的文章，並剔除重複內容。
+                        </p>
+                    </div>
+                    <div style="text-align: left;">
+                        <strong style="color: #6b4e9d; display: block; margin-bottom: 8px; font-size: 1.1em;">Step 2. 智能製圖</strong>
+                        <p style="font-size: 0.95em; color: #666; margin: 0; line-height: 1.6;">
+                            抓取標題與圖片，透過 Bannerbear 套用「女大專屬版型」，自動生成精美 FB 圖片。
+                        </p>
+                    </div>
+                    <div style="text-align: left;">
+                        <strong style="color: #6b4e9d; display: block; margin-bottom: 8px; font-size: 1.1em;">Step 3. 發布互動</strong>
+                        <p style="font-size: 0.95em; color: #666; margin: 0; line-height: 1.6;">
+                            準時發佈到粉絲專頁，並在發文後自動在留言區補上文章連結，增加點擊。
+                        </p>
+                    </div>
+                    <div style="text-align: left;">
+                        <strong style="color: #6b4e9d; display: block; margin-bottom: 8px; font-size: 1.1em;">Step 4. 回報進度</strong>
+                        <p style="font-size: 0.95em; color: #666; margin: 0; line-height: 1.6;">
+                            任務完成後，自動將 FB 貼文連結回填至 Google Sheet 並更新狀態為「已發布」以便後續追蹤。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <h2 class="section-title">🛠️ AI Tools 推薦</h2>
+    <div class="tool-item">
+        <div style="max-width: 750px; margin: 0 auto; text-align: left; background-color: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(107, 78, 157, 0.1); border: 1px solid #eef;">
+            
+            <div style="text-align: center; margin-bottom: 25px; border-bottom: 2px solid #f0ebfa; padding-bottom: 20px;">
+                <span style="background-color: #6b4e9d; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; display: inline-block; margin-bottom: 10px;">New Feature</span>
+                <h3 style="margin: 0 0 15px 0; color: #6b4e9d; font-size: 1.8em; line-height: 1.3; font-weight: 800;">
+                    ChatGPT 群組聊天正式試行！<br>多人協作更高效
+                </h3>
+                <p style="line-height: 1.7; font-size: 1.1em; margin: 0 auto; max-width: 90%; color: #555;">
+                    AI 首次提供「共享對話體驗」！OpenAI 在部分地區試行 ChatGPT Group Chats，邀請朋友、同事進入同一個聊天室，一起討論、規劃與集思廣益。
+                </p>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="https://i.meee.com.tw/17bZ7SA.jpg" alt="群組聊天示意圖" style="max-width: 100%; width: 600px; height: auto; border-radius: 12px; box-shadow: 0 8px 20px rgba(107, 78, 157, 0.15); display: block; margin: 0 auto;">
+            </div>
+        <div style="background-color: #f8f6fc; padding: 20px; border-radius: 12px; margin-bottom: 35px; border: 1px solid #e0d8f5;">
+        <h4 style="margin: 0 0 15px 0; font-weight: 700; color:#5a4e8c; font-size: 1.2em; display: flex; align-items: center;">
+        <span style="margin-right: 8px;">🚀</span> 首波試點資訊
+        </h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <div style="background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <strong style="display: block; color: #6b4e9d; font-size: 0.9em; margin-bottom: 4px; background: none;">開放地區</strong>
+            <span style="color: #333;">台灣、日本、紐西蘭、韓國。</span>
+        </div>
+        <div style="background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <strong style="display: block; color: #6b4e9d; font-size: 0.9em; margin-bottom: 4px; background: none;">適用對象</strong>
+            <span style="color: #333;">Free, Go, Plus, Pro 所有用戶。</span>
+        </div>
+        <div style="background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <strong style="display: block; color: #6b4e9d; font-size: 0.9em; margin-bottom: 4px; background: none;">人數上限</strong>
+            <span style="color: #333;">每個群組最多 20 人。</span>
+        </div>
+        <div style="background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <strong style="display: block; color: #6b4e9d; font-size: 0.9em; margin-bottom: 4px; background: none;">如何建立</strong>
+            <span style="color: #333;">點擊對話右上角「人物圖示」。</span>
+        </div>
+        </div>
+            </div>
+            <div style="margin-bottom: 35px;">
+                <h4 style="color: #6b4e9d; font-size: 1.3em; margin-bottom: 20px; text-align: center; font-weight: 700;">💡 群組聊天三大應用場景</h4>
+                
+                <div style="display: flex; flex-wrap: nowrap; gap: 20px; justify-content: center;">
+                    <div style="flex: 1; min-width: 200px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px; transition: transform 0.2s;">
+                        <div style="color: #6b4e9d; font-size: 2em; margin-bottom: 10px;">📅</div>
+                        <h5 style="color: #5a4e8c; font-size: 1.15em; font-weight: bold; margin: 0 0 10px 0;">活動與行程規劃</h5>
+                        <p style="margin: 0; color: #555; font-size: 0.95em; line-height: 1.6;">整合大家意見生成行程表，提供投票功能協助決策，無論員工旅遊或聚會都能輕鬆搞定。</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 200px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px;">
+                        <div style="color: #6b4e9d; font-size: 2em; margin-bottom: 10px;">💼</div>
+                        <h5 style="color: #5a4e8c; font-size: 1.15em; font-weight: bold; margin: 0 0 10px 0;">工作與專案協作</h5>
+                        <p style="margin: 0; color: #555; font-size: 0.95em; line-height: 1.6;">上傳會議紀錄，AI 自動整理摘要、列出待辦事項與生成甘特圖，提升會議效率。</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 200px; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 20px;">
+                        <div style="color: #6b4e9d; font-size: 2em; margin-bottom: 10px;">🎨</div>
+                        <h5 style="color: #5a4e8c; font-size: 1.15em; font-weight: bold; margin: 0 0 10px 0;">創意討論與設計</h5>
+                        <p style="margin: 0; color: #555; font-size: 0.95em; line-height: 1.6;">在產品設計或提案時，整合團隊意見並生成可視化圖像，讓創意具象化。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <div style="background-color: #fcfaff; border-left: 4px solid #6b4e9d; padding: 20px; border-radius: 0 12px 12px 0; margin-bottom: 20px;">
+                     <h4 style="color: #6b4e9d; font-size: 1.2em; margin: 0 0 10px 0; font-weight: 700;">✨ 協作流暢，功能不打折</h4>
+                     <p style="line-height: 1.7; color: #444; margin: 0;">支援網頁搜尋、圖片/文件上傳、圖片生成及語音輸入。費率限制只計算 ChatGPT 的回應，<strong>成員間的訊息交流完全不受限</strong>。</p>
+                </div>
+                
+                <div style="background-color: #fff5f8; border-left: 4px solid #d63384; padding: 20px; border-radius: 0 12px 12px 0;">
+                     <h4 style="color: #d63384; font-size: 1.2em; margin: 0 0 10px 0; font-weight: 700;">🛡️ 隱私與安全優先</h4>
+                     <ul style="padding-left: 20px; margin: 0; line-height: 1.7; color: #444;">
+                         <li><strong>獨立記憶：</strong>群組聊天獨立於私人對話，不會讀取也不會影響個人記憶。</li>
+                         <li><strong>權限管理：</strong>需受邀才能加入，成員可隨時離開，保護自主權。</li>
+                         <li><strong>安全防護：</strong>若有未成年用戶，AI 自動啟動敏感內容防護機制。</li>
+                     </ul>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #6b4e9d 0%, #8b6bb7 100%); color: white; padding: 25px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                <h4 style="margin: 0 0 10px 0; font-weight: 700; font-size: 1.3em;">⚡ 搭載 GPT-5.1 Auto 模型</h4>
+                <p style="margin-bottom: 15px; font-size: 1.05em; opacity: 0.95;">讓 AI 更懂「空氣」，知道何時該發言、何時該安靜。</p>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 15px; font-size: 0.9em;">🧠 邏輯更強</span>
+                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 15px; font-size: 0.9em;">💡 創意豐富</span>
+                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 15px; font-size: 0.9em;">💬 互動自然</span>
+                </div>
+            </div>
+            
+           <div class="link-group" style="justify-content: center; margin-top: 30px;">
+                        <a href="https://chatgpt.com/?utm_source=google&utm_medium=paidsearch_brand&utm_campaign=GOOG_C_SEM_GBR_Core_CHT_BAU_ACQ_PER_MIX_ALL_APAC_TW_EN_042225&utm_term=chatgpt&utm_content=178063357803&utm_ad=747827310696&utm_match=e&gad_source=1&gad_campaignid=22472172890&gbraid=0AAAAA-IW-UVlzhfrlNvZ9bOeTxkmAtABJ&gclid=Cj0KCQiAoZDJBhC0ARIsAERP-F-mqfrOf3lIC9B8T_qY0gGkrsgZyK8rAJhLEPAB3fYj8yXyq14gbCMaAqS4EALw_wcB" target="_blank" class="news-link">馬上試試 →</a>
+                    </div>
+        </div>
+    </div>
+</section>
+
+ <section class="section news-roundup">
+            <h2 class="section-title">AI 科技精選新聞</h2>
+            <p style="text-align:center; margin-bottom: 30px; color: #555;">【點擊下方圖片，查看詳細新聞報導】</p>
+            <div class="roundup-grid-final">
+                <a href="https://3c.ltn.com.tw/news/63993" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/zKcHAlh.jpg" alt="開車也能用最強AI助理了！Google Gemini正式登上Android Auto">
+                </a>
+                <a href="https://www.technice.com.tw/issues/ai/199263/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/3eMSjaG.jpg" alt="Perplexity Comet瀏覽器正式登陸Android 搶攻行動AI瀏覽市場">
+                </a>
+                <a href="https://www.cw.com.tw/article/5138441" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/9WYX91z.jpg" alt="Nano Banana Pro怎麼用？有哪些功能？免費嗎？與前一代差在哪？">
+                </a>
+                <a href="https://tw.news.yahoo.com/google-expands-ai-mode-applications-flight-deals-search-goes-global-canvas-adds-trip-planning-assistance-and-restaurant-reservations-are-available-in-the-us-173604627.html" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/V2KjR3t.jpg" alt="Google擴大AI Mode應用：Flight Deals搜尋推向全球、新增Canvas協助行程規劃">
+                </a>
+                <a href="https://www.ithome.com.tw/news/172076" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/V63SXx0.jpg" alt="Google Maps即將導入Gemini，帶來全新對話式導航體驗">
+                </a>
+                <a href="https://www.techbang.com/posts/126471-google-private-ai-compute-privacy-performance" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/jfCEAVs.jpg" alt="Google 推出 Private AI Compute 私有雲：兼顧隱私與 AI 效能的新方案">
+                </a>
+                <a href="https://www.inside.com.tw/article/40023-google-nested-learning-a-new-ml-paradigm-for-continual-learning" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/zSThzCj.jpg" alt="Google 最新 AI 研究成果：嵌套學習 Nested Learning 是什麼？">
+                </a>
+                <a href="https://www.blocktempo.com/chatgpt-group-chat-taiwan-pilot/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/WCAqPvB.jpg" alt="ChatGPT 推出群組聊天：最多 20 人同時對話，台灣搶先體驗">
+                </a>
+                <a href="https://www.gvm.com.tw/article/125847" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/ZBwzrhg.jpg" alt="ChatGPT升級5.1，更給情緒價值！怎麼用？應用教學">
+                </a>
+                <a href="https://tech.udn.com/tech/amp/story/123454/9143368" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/6pajxxC.jpg" alt="ChatGPT終於學會聽指令！不再濫用長破折號 讓AI生成內容更難識破">
+                </a>
+                <a href="https://www.bnext.com.tw/article/84984/ghibli-ai-coda-japan" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/E9pZLQC.jpg" alt="吉卜力不忍了！版權協會發函OpenAI，提出2大具體要求：不能再用來訓練AI">
+                </a>
+                <a href="https://technews.tw/2025/11/05/google-maps-ai-lane/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/9F1Q3Cx.jpg" alt="Google Maps 升級，這項「AI 車道神功能」不怕錯過交流道">
+                </a>
+                <a href="https://www.arch-web.com.tw/%E7%A7%91%E5%AD%B8%E6%8A%80%E8%A1%93/tinder-%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%AF%E4%BB%A5%E9%80%9A%E9%81%8E%E6%8E%83%E6%8F%8F%E4%BD%A0%E7%9A%84%E7%9B%B8%E6%A9%9F%E8%86%A0%E5%8D%B7%E6%89%BE%E5%88%B0%E6%9B%B4%E5%A5%BD/223205/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/DlYGYBa.jpg" alt="Tinder 的人工智能可以通過掃描你的相機膠卷找到更好的匹配對象">
+                </a>
+                <a href="https://ai.ettoday.net/amp/amp_news.php7?news_id=3062417" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/filFjfU.jpg" alt="Nano Banana 2登場倒數？">
+                </a>
+                <a href="https://www.forecastock.tw/article/cmoneyairesearcher-d604ba60-bb47-11f0-9a3f-30b024714886" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/G0FSlvP.jpg" alt="Google Finance 新平臺整合 Kalshi 與 Polymarket 預測市場資料">
+                </a>
+                <a href="https://www.ithome.com.tw/news/172218" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/o7bypiM.jpg" alt="OpenAI GPT-5.1登場，強調更人性化與自然">
+                </a>
+                  <a href="https://today.line.me/tw/v3/article/JPwBmqq" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/Gm5YDFI.jpg" alt="馬斯克 xAI 推出 Grokipedia 挑戰 Wikipedia，卻被發現內容抄襲">
+                </a>
+                <a href="https://www.figma.com/blog/welcome-weavy-to-figma/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/4eGFcpF.jpg" alt="Introducing Figma Weave: The next generation of AI-native creation at Figma">
+                </a>
+                <a href="https://www.cw.com.tw/article/5137854" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/DpkLGXK.jpg" alt="Sora 2 是什麼？與前代Sora比較、使用教學、爭議一次看">
+                </a>
+                <a href="https://www.bnext.com.tw/article/82357/canva-free-commercial-use" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/C2YcwHS.jpg" alt="Canva發布9大更新，Affinity將永久免費！還有哪些AI新功能？">
+                </a>
+                <a href="https://www.digitimes.com.tw/tech/dt/n/shwnws.asp?id=0000736998_F5TLV9AV8LLW719ZRQEF7" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/a4rRZ1p.jpg" alt="Andon Labs測六大AI模型　具身智慧應用仍有侷限">
+                </a>
+                   <a href="https://www.gvm.com.tw/article/125312" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/wxnTwWx.jpg" alt="ChatGPT的Atlas瀏覽器怎麼用？最完整應用教學">
+                </a>
+                <a href="https://www.bnext.com.tw/article/84953/sora-video-generation-app-launches-in-taiwan" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/215w1vw.jpg" alt="實測教學｜AI 影片平台 Sora 2 在台上線！3大玩法一次看：Cameos怎麼做？">
+                </a>
+                <a href="https://www.ithome.com.tw/news/171909" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/9pxaRmu.jpg" alt="Google擴大Earth AI應用範疇，結合Gemini模型強化地理空間分析">
+                </a>
+                <a href="https://unwire.pro/2025/10/25/openai-company-knowledge/ai/amp/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/kusHCpn.jpg" alt="OpenAI 推企業知識功能　ChatGPT 連接組織數據生成商業答案">
+                </a>
+                <a href="https://news.cnyes.com/news/id/6204519" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/88jR5Fo.jpg" alt="OpenAI進軍音樂模型！ 全球科技巨頭競逐AI「旋律革命」">
+                </a>
+                <a href="https://www.ctee.com.tw/news/20251015700733-430502" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/GOVD3S3.jpg" alt="輝達超級AI電腦開賣囉！DGX Spark一台多少錢、效能有多頂？">
+                </a>
+                <a href="https://news.cnyes.com/news/id/6196212" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/LFnhLro.jpg" alt="AI玩過頭？OpenAI停用金恩博士影片生成引熱議">
+                </a>
+                <a href="https://technews.tw/2025/10/20/camera-roll-sharing-suggestions/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/DavEr1d.jpg" alt="Facebook 新 AI 功能自動推薦照片分享，用戶擔心個資外洩風險">
+                </a>
+                <a href="https://news.futunn.com/hk/post/63457886/analysis-shows-that-the-download-and-daily-active-user-growth?level=1&data_ticket=1763478023956052" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/XBYuvWS.jpg" alt="分析顯示ChatGPT應用下載及日活增速陷入瓶頸">
+                </a>
+                <a href="https://techorange.com/2025/10/17/wikimedia-foundation-ai/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/P1KVv68.jpg" alt="每月少 11 億次點擊！維基百科流量崩跌，AI 正在「吃掉知識的來源」">
+                </a>
+                <a href="https://tw.news.yahoo.com/google-integrates-nano-banana-ai-image-editing-into-search-notebooklm-and-photos-201416540.html?guccounter=1&guce_referrer=aHR0cHM6Ly9sLnRocmVhZHMuY29tLw&guce_referrer_sig=AQAAAMWS4nVzW6aE26AjtOtt9HMJb_tvm7Ts7ZYIhgcnSeGopEOkBxHiMNTN1CK78eaDGImAQxcE6g53Pa_vTHNFGrJuvYRsBrfclDU-loSFE7C0mXKW0pUYl9nG-XTKOzZWOBBb55a9xRw4-SPnZ7ezpgOTsptX1oCsfyh073xDpOfo" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/ysAYxlt.jpg" alt="Google將Nano Banana AI圖像編輯功能整合進搜尋、NotebookLM與Photos服務">
+                </a>  
+                
+            </div>
+        </section>
+        
+        <section class="social-connect-section" style="text-align: center; margin: 40px 0 20px 0; padding: 20px 0; border-top: 1px solid rgba(107, 78, 157, 0.1); border-bottom: 1px solid rgba(107, 78, 157, 0.1);">
+            <h2 style="color: #6b4e9d; font-size: 1.5em; margin-bottom: 25px;">加入社群 & 追蹤我們</h2>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="https://discord.gg/v3sfBYh9" target="_blank" class="social-button discord-button">
+                    <img src="https://cdn.simpleicons.org/discord/white" alt="Discord logo" style="width: 30px; height: auto;">
+                    <span>加入 Discord 社群</span>
+                </a>
+                <a href="https://www.threads.com/@ai_wize?hl=zh-tw" target="_blank" class="social-button threads-button-style"> 
+                    <img src="https://i.meee.com.tw/b4pVr9Q.png" alt="Threads logo" style="width: 30px; height: auto;">
+                    <span>在 Threads 上追蹤</span>
+                </a>
+                <a href="https://www.youtube.com/@ai_wize_" target="_blank" class="social-button youtube-button">
+                    <img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube logo" style="width: 30px; height: auto;">
+                    <span>訂閱 YouTube 頻道</span>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>本電子報為公司內部刊物，僅供公司內部學習參考，相關資訊版權歸原作者所有。</p>
+            <p>© 台北市內湖區瑞光路451號 | 聯利媒體股份有限公司</p>
+            <p>2025 TVBS AI 未來科技部</p>
+        </footer>
+    </div>
+    
+    <script src="../scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+[
+  {
+    "no": "019",
+    "date": "Coming soon",
+    "year": "2026",
+    "title": "第 019 期（準備中）",
+    "desc": "新一期電子報正在籌備中，敬請期待！",
+    "img": ""
+  },
+  {
+    "no": "018",
+    "date": "2026年3月",
+    "year": "2026",
+    "title": "Nano Banana 2 發布！高品質生圖免費開放",
+    "desc": "聚焦生圖技術、Gemini 3.1 Pro 推理升級。",
+    "img": "https://i.meee.com.tw/zg5kCCS.webp"
+  },
+  {
+    "no": "017",
+    "date": "2026年1月",
+    "year": "2026",
+    "title": "Clawdbot 爆紅！讓電腦直接變 AI 助手",
+    "desc": "OpenClaw、Chrome AI 整合、Grok 影音升級。",
+    "img": "https://i.meee.com.tw/MTqMQds.jpg"
+  },
+  {
+    "no": "016",
+    "date": "2026年1月",
+    "year": "2026",
+    "title": "Claude Cowork 化身工作夥伴",
+    "desc": "幫你整理資料夾、寫文件。",
+    "img": "https://i.meee.com.tw/AIw3oWe.jpg"
+  },
+  {
+    "no": "015",
+    "date": "2025年12月",
+    "year": "2025",
+    "title": "GPT-5.2 登場！視覺資訊處理升級",
+    "desc": "可靈 O1 影片生成、AIWIZE 更新。",
+    "img": "https://i.meee.com.tw/QD2IGgP.jpg"
+  },
+  {
+    "no": "014",
+    "date": "2025年11月",
+    "year": "2025",
+    "title": "Gemini 3 登場！代理能力大升級",
+    "desc": "Nano Banana Pro 實測、n8n 同仁案例。",
+    "img": "https://i.meee.com.tw/0ZE0lmC.webp"
+  },
+  {
+    "no": "013",
+    "date": "2025年10月",
+    "year": "2025",
+    "title": "ChatGPT 應用程式平台！Sora 2 突破",
+    "desc": "Google 搜尋 AI 模式、ChatGPT Atlas。",
+    "img": "https://i.meee.com.tw/m4c0d82.png"
+  },
+  {
+    "no": "012",
+    "date": "2025年9月",
+    "year": "2025",
+    "title": "Claude 用聊天生成簡報、試算表",
+    "desc": "Chrome 10 項 AI 功能更新。",
+    "img": "https://i.meee.com.tw/JbXuv9g.png"
+  },
+  {
+    "no": "011",
+    "date": "2025年9月",
+    "year": "2025",
+    "title": "Gemini 2.5 Flash Image",
+    "desc": "角色不再變臉；Google Vids 免費開放。",
+    "img": "https://i.meee.com.tw/07b04wq.png"
+  },
+  {
+    "no": "010",
+    "date": "2025年8月",
+    "year": "2025",
+    "title": "GPT-5 登場！",
+    "desc": "新增性格設定、錯誤率大降。",
+    "img": "https://i.meee.com.tw/IIX9CrU.png"
+  },
+  {
+    "no": "009",
+    "date": "2025年8月",
+    "year": "2025",
+    "title": "ChatGPT agent 登場",
+    "desc": "不再只是聊天，直接替你完成任務。",
+    "img": "https://i.meee.com.tw/dRZNO37.png"
+  },
+  {
+    "no": "008",
+    "date": "2025年7月",
+    "year": "2025",
+    "title": "Grok 4 登場！",
+    "desc": "支援多代理、情感語音。",
+    "img": "https://i.meee.com.tw/RJ9LuKQ.png"
+  },
+  {
+    "no": "007",
+    "date": "2025年6月",
+    "year": "2025",
+    "title": "Gemini 2.5 系列大更新！",
+    "desc": "Flash-Lite 登場。",
+    "img": "https://i.meee.com.tw/lYanXuc.webp"
+  },
+  {
+    "no": "006",
+    "date": "2025年6月",
+    "year": "2025",
+    "title": "Sora 首度免費開放！",
+    "desc": "微軟 Bing AI 影片生成上線。",
+    "img": "https://i.meee.com.tw/Iet0R46.png"
+  },
+  {
+    "no": "005",
+    "date": "2025年5月",
+    "year": "2025",
+    "title": "Veo 3 轟動全球！",
+    "desc": "I/O 大會懶人包；Claude 4 登場。",
+    "img": "https://i.meee.com.tw/5cesJDY.png"
+  },
+  {
+    "no": "004",
+    "date": "2025年5月",
+    "year": "2025",
+    "title": "NotebookLM 大升級",
+    "desc": "一鍵生成中文 Podcast 摘要。",
+    "img": "https://i.meee.com.tw/NNBBtan.png"
+  },
+  {
+    "no": "003",
+    "date": "2025年4月",
+    "year": "2025",
+    "title": "ChatGPT o3 與 o4-mini 登場",
+    "desc": "首次實現「看圖思考」。",
+    "img": "https://i.meee.com.tw/WfOYZem.jpg"
+  },
+  {
+    "no": "002",
+    "date": "2025年4月",
+    "year": "2025",
+    "title": "Canva AI 功能全面進化",
+    "desc": "Google AI Studio Stream 秒變語音助教。",
+    "img": "https://i.meee.com.tw/pW0ghKf.jpg"
+  },
+  {
+    "no": "001",
+    "date": "2025年4月",
+    "year": "2025",
+    "title": "AI 搜尋衝擊傳統資訊平台",
+    "desc": "AI 圖片編輯技術大升級。",
+    "img": ""
+  }
+]

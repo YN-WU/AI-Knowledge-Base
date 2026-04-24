@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+    
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5FPJBLQJ');</script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI NEWS LETTER - 第006期</title>
+        <link rel="stylesheet" href="../style.css">
+        <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+        </head>
+        <body>
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FPJBLQJ"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <nav class="quick-jump-nav" id="quickJumpNav">
+                <h4>本期目錄</h4>
+        <ul id="quickJumpList"></ul>
+    </nav>
+    <button class="quick-jump-toggle" id="quickJumpToggle">目錄</button>
+
+    <div class="newsletter-container">
+        <header class="header">
+            <h1>AI NEWS LETTER</h1>
+            <p>第006期 | 2025年7月</p> 
+        <div class="search-container">
+                <input type="search" id="searchInput" placeholder="搜尋本站所有文章...">
+                <div id="searchResults" class="search-results-container"></div>
+            </div>
+        </header>
+
+        <div class="period-selector-container">
+            <div class="period-selector">
+                <select id="periodSelect" onchange="changePeriod()">
+                    </select>
+            </div>
+        </div>
+
+        <div class="outline-box">
+            <h2>本期重點摘要</h2>
+            <ul>
+                <li>微軟 Bing 整合 <strong>Sora</strong> 技術，首度免費開放 AI 影片生成。</li>
+                <li>深度求索 <strong>DeepSeek-R1</strong> 模型升級，稱性能接近國際頂尖模型。</li>
+                <li>OpenAI 釋出最強模型 <strong>o3-Pro</strong>。</li>
+                <li>工具推薦：<strong>NotebookLM</strong>「公開連結」分享功能，讓知識共享再進化。</li>
+                <li>AIWIZE Tips：三步驟用 <strong>Telegram 打造專屬 AI 聊天機器人</strong>。</li>
+                <li><strong>本期特輯：</strong> 精選近兩週 10 則 AI 科技新聞。</li>
+            </ul>
+        </div>
+        
+        <div class="news-item">
+            <span class="tag">Microsoft</span>
+            <span class="tag">Sora</span>
+            <span class="tag">AI影片</span>
+            <h3>Sora 首度免費開放！微軟 Bing 全新 AI 影片生成功能上線</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://i.meee.com.tw/Iet0R46.png" alt="Bing Video Creator with Sora">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        微軟整合 Sora 推出全新 AI 影片生成功能。(圖／翻攝自微軟 Bing 部落格)
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">微軟 (Microsoft) 日前宣布推出全新「Bing Video Creator」AI 影片生成功能，整合了 OpenAI 的 Sora 影片生成技術，讓使用者可透過文字描述生成 AI 影片，現已在旗下 Bing 手機版 App 上線。而<strong>這也是 Sora 首度以免費形式開放給一般用戶</strong>，只需登入 Microsoft 帳號即可體驗。</p>
+                    </div>
+                    <div class="column">
+                        <p>　在使用條件上，用戶可<strong>免費生成最多 10 支影片，每次最多可同時排隊生成 3 段影片</strong>，若超出免費額度，一支影片需用 100 點 Microsoft Rewards 點數兌換。生成的影片會在 Bing App 中最多保存 90 天。</p>
+                        <p>　目前每段生成影片的長度固定為 5 秒，僅支援 9:16 直式比例格式，解析度最高 480p，尚無法調整。不過微軟表示，未來將陸續推出更多格式種類，以及桌機版功能，以因應更多元的內容需求。</p>
+                    </div>
+                </div>
+                <div class="link-group">
+                    <a href="https://www.youtube.com/watch?v=t1eHNDB2LOM4" target="_blank" class="news-link">官方介紹影片 →</a>
+                    <a href="https://blogs.bing.com/search/June-2025/Introducing-Bing-Video-Creator" target="_blank" class="news-link">官方部落格文章 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item">
+            <span class="tag">DeepSeek</span>
+            <span class="tag">大型語言模型</span>
+            <span class="tag">AI趨勢</span>
+            <h3>DeepSeek 宣布推理模型 R1 升級！稱表現近 OpenAI、Google</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://cdn.deepseek.com/api-docs/r1_0528_benchmark_1.webp" alt="DeepSeek R1 Benchmark">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        深度求索 (DeepSeek) 推理模型 R1 升級，整體性能已接近國際頂尖模型。(圖／翻攝自 Deepseek 官方部落格)
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">中國大陸 AI 新創公司深度求索 (DeepSeek) 近日宣布旗下推理模型 R1 升級，並針對數學、程式設計及通用邏輯等能力進行強化，整體性能已接近國際頂尖模型 (如 OpenAI 的 o3 與 Google 的 Gemini-2.5-Pro)，在生成文字內容的準確度與品質上也有提升。</p>
+                        <p>　根據官方公告，新版 DeepSeek-R1-0528 模型在 AIME2025 數學測試中，準確率由舊版的 70% 提升至 87.5%，並且平均每題處理字數從 1.2 萬 tokens (約 9000 字) 增加至 2.3 萬 tokens (約 1.7 萬字)，展現出更縝密的邏輯運算與分析能力，特別在複雜任務中的表現更加穩定出色。</p>
+                    </div>
+                    <div class="column">
+                        <p>　除邏輯推理外，新版模型在生成內容的準確性與文體適應性上亦有進步，<strong>出現幻覺的比率降低約 45 至 50%，改善過去在改寫、摘要與理解任務中的錯誤資訊問題</strong>。此外，在生成議論文、小說與散文等長文內容時，<strong>文本結構與風格更趨人性化與完整性。</strong></p>
+                        <p>　官方指出，根據模型評測的結果，新版 R1 模型的能力和 OpenAI 的 o1-high 相當，但和 OpenAI 的 o3-High 與 Claude 4 Sonnet 還是有差距。目前使用者可透過 DeepSeek 的網站或 APP 體驗這款最新版本。</p>
+                    </div>
+                </div>
+                <div class="link-group">
+                    <a href="https://api-docs.deepseek.com/zh-cn/news/news250528" target="_blank" class="news-link">官方公告 →</a>
+                    <a href="https://www.ettoday.net/news/20250530/2969673.htm" target="_blank" class="news-link">資料來源 →</a>
+                </div>
+            </div>
+        </div>
+        <div class="news-item">
+            <span class="tag">OpenAI</span>
+            <span class="tag">新模型</span>
+            <span class="tag">o3-pro</span>
+            <h3>OpenAI 釋出最強模型 o3-pro！能力評測壓 Gemini、Claude 價格大調降</h3>
+            <div class="news-content">
+                <div class="news-image-top">
+                    <img src="https://downloads.intercomcdn.com/i/o/dgkjq2bp/1564910952/40ace2dda267c1707dfaeeef3ece/image.png?expires=1749729600&signature=1487488a0e376cf852bea2074f73db21d0a821d1c6af9352683e4055f5048806&req=dSUhEsB%2FnYhaW%2FMW3nq%2BgQwvBOdsn%2Bys5kA5ScUvYDHOaD603QUEbas9O14d%0ACXoipkMUuSYY3vqh1LsjQkg9cjo%3D%0A" alt="DeepSeek R1 Benchmark">
+                    <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
+                        o3-pro 在各項能力測驗中，皆比同系列的 o3 佳。(圖／翻攝自 OpenAI 官方部落格)
+                    </p>
+                </div>
+                <div class="news-columns">
+                    <div class="column">
+                        <p class="first-paragraph">OpenAI 昨 (11 日) 正式發表升級版推理模型 <strong>o3-pro</strong>，官方說明，這款模型在科學研究、程式設計、教育、數據分析與寫作等應用表現，皆比同系列的 o3 佳，<strong>回答一致性、清晰度、準確性與遵循指令等層面的表現也更加穩定</strong>，優於 o1-pro 與 o3。</p>
+                        <p>　根據 OpenAI 多項內部測試結果，o3-pro 在 AIME 2024 數學能力測驗中，得分超越 Google Gemini 2.5 Pro；在測試博士級科學知識的 <strong>GPQA Diamond</strong> 測試中，也贏過 Anthropic 的 Claude 4 Opus。</p>
+                        <p>　雖然 OpenAI 表示，o3-pro 的回應速度略慢，暫不支援圖像生成及 Canvas 協作的功能，但推理能力仍保有水準，也延續了高階模型的工具整合性能，包括：<strong>可使用 Python 做資料分析、支援圖像推理與理解、能存取網路進行即時搜尋、分析文件與表格及運用「記憶功能」客製化回覆</strong>。</p>
+                    </div>
+                    <div class="column">
+                        <p>　目前 o3-pro 已開放給 ChatGPT Pro 和 Team 用戶，企業與教育版本預計於下週釋出，也整合進 OpenAI API 中。其價格每百萬個輸入 token (約 75 萬個字) 20 美元、輸出 token 80 美元，約只有 o1-pro 的 87%。</p>
+                        <p>　此外，隨着 o3-pro 的上線，OpenAI 執行長也宣佈 o3 大降價，從先前每百萬輸入 token 10 美元、輸出 token 40 美元，降至 2 美元與 8 美元，價格調降幅度高達 80%。</p>
+                    </div>
+                </div>
+                <div class="link-group">
+                    <a href="https://help.openai.com/en/articles/9624314-model-release-notes" target="_blank" class="news-link">官方資料 →</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">🛠️ AI 工具推薦</h2>
+            <div class="tool-item"> 
+                <div style="max-width: 700px; margin: 0 auto; text-align: left;"> 
+                    <h3 style="margin-bottom: 20px; color: #6b4e9d; font-size: 1.6em; text-align: center; line-height: 1.4;">
+                        知識共享再進化！<br>NotebookLM 開放「公開連結」分享筆記
+                    </h3>
+                    <p style="text-align: center; margin-bottom: 35px;">
+                        <img src="https://i.meee.com.tw/PrRHTWA.gif" alt="NotebookLM public sharing feature" style="max-width: 90%; width: 600px; height: auto; border-radius: 12px; box-shadow: 0 6px 18px rgba(107, 78, 157, 0.18); display: block; margin: 0 auto;">
+                        <p style="font-size: 0.9em; color: #888888; font-style: italic; margin-top: 12px; text-align: center;">
+                            NotebookLM 開放「公開連結」分享功能。(圖／翻攝自 Google 官方部落格)
+                        </p>
+                    </p>
+                    <p style="line-height: 1.8; font-size: 1.1em; margin-bottom: 25px;">
+                        你是否也希望能將用 NotebookLM 精心整理的 AI 筆記，輕鬆分享給更多人？現在分享功能終於推出！Google 正式為 NotebookLM 推出了眾所期盼的「<strong>公開連結</strong>」分享功能，讓你的筆記不再只是個人擁有，更能成為與同學、同事、朋友甚至全世界交流的知識庫。
+                    </p>
+                    <h4 style="margin-top: 35px; margin-bottom: 12px; font-weight:bold; color:#5a4e8c; font-size: 1.25em; border-bottom: 1px solid #e8e1f8; padding-bottom: 8px;">一鍵分享，互動不受限</h4>
+                    <p style="line-height: 1.7; font-size: 1.05em; margin-bottom: 20px;">
+                        現在，無論是任何內容，使用者都可以產生一個連結，讓任何擁有連結的人都能查看你的 NotebookLM 筆記內容。重要的是，檢視者無法編輯原始資料，但他們仍然可以與這份公開筆記互動！他們可以對你的筆記內容提出問題，或探索 AI 自動生成的內容，像是語音總覽 (Audio Overviews)、常見問答 (FAQs) 或簡報文件 (Briefing docs)，讓你的知識分享更具深度和價值。
+                    </p>
+                    <h4 style="margin-top: 35px; margin-bottom: 12px; font-weight:bold; color:#5a4e8c; font-size: 1.25em; border-bottom: 1px solid #e8e1f8; padding-bottom: 8px;">如何設定公開分享？</h4>
+                    <ol style="padding-left: 30px; list-style-type: decimal; margin-bottom: 25px; font-size: 1.05em;">
+                        <li style="margin-bottom: 8px; line-height: 1.7;">在你的筆記本介面，點擊右上角的「<strong>共用 (Share)</strong>」按鈕。</li>
+                        <li style="margin-bottom: 8px; line-height: 1.7;">將存取權限設定為「<strong>知道連結的使用者 (Anyone with the link)</strong>」。</li>
+                    </ol>
+                    <p style="line-height: 1.8; font-size: 1.1em; margin-top: 20px;">
+                        公開分享讓 NotebookLM 不再只是一個個人的筆記工具，更進化成一個強大的知識探索、理解與集體創作平台。快去試試看，分享你獨一無二的 AI 筆記吧！
+                    </p>
+                    <div class="link-group" style="margin-top: 30px; justify-content: center; margin-bottom: 30px;"> 
+                        <a href="https://blog.google/technology/google-labs/notebooklm-public-notebooks/" target="_blank" class="news-link">官方介紹 →</a>
+                    </div>
+                    <div style="margin-top: 30px; text-align: center;"> 
+                        <span class="tag">Google</span>
+                        <span class="tag">NotebookLM</span>
+                        <span class="tag">AI筆記</span>
+                        <span class="tag">知識共享</span>
+                        <span class="tag">新功能</span>
+                    </div>
+                </div> 
+            </div> 
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">💡 AIWIZE TIPS</h2>
+            <div class="update-banner" style="margin: 0 0 30px;">
+                <img src="https://i.meee.com.tw/Zc3z1kj.png"
+                     style="width: 100%; height: 160px; object-fit: cover; display: block; border-radius: 0;" />
+            </div>
+            <div class="tool-item"> 
+                <div style="max-width: 700px; margin: 0 auto; text-align: left;"> 
+                    <h3 style="margin-bottom: 25px; color: #6b4e9d; font-size: 1.5em; text-align: center;">
+                        AIWIZE Autopilot：三步驟打造你的 Telegram AI 聊天機器人
+                    </h3>
+                    <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 20px;">
+                        想擁有一個專屬的 AI 聊天機器人，在你忙碌時自動處理訊息嗎？以下影片將示範如何利用 <strong>Autopilot 自動化流程</strong>，串接 Telegram 與 ChatGPT 模型，打造一個能執行翻譯、摘要、撰寫文案等任務的私人 AI 助理！
+                    </p>
+
+                    <p style="background-color: #f9f7fc; border-left: 3px solid #9b7fd0; padding: 12px 18px; margin: 25px 0; font-size: 0.95em; color: #555; line-height: 1.6;">
+                        <strong>為什麼選擇 Telegram？</strong><br>
+                        我們之所以選擇它，是因為 Telegram 官方支援強大的機器人 (Bot) 功能，能穩定地接收與回覆訊息，整合性高，非常適合做為自動化流程的觸發點。
+                    </p>
+                    <p style="margin-top: 15px; margin-bottom: 10px; font-weight:bold; color:#5a4e8c; font-size: 1.15em;">流程三步驟概覽：</p>
+                     <ol style="padding-left: 30px; margin-bottom: 15px; line-height: 1.7;">
+                        <li style="margin-bottom: 8px;"><strong>建立 Telegram Bot 並取得權杖 (Token)：</strong>透過 Telegram 官方的 @BotFather 創建你的專屬機器人，並取得獨一無二的 API Token 作為連接憑證。</li>
+                        <li style="margin-bottom: 8px;"><strong>在 Autopilot 設定觸發與 AI 處理：</strong>在 AIWIZE Autopilot 中，設定 Telegram 為觸發器並貼上 Token。接著，設定將收到的訊息傳送給 ChatGPT 模型，並下達你的指令。</li>
+                        <li style="margin-bottom: 8px;"><strong>設定回傳路徑並發布：</strong>取得你與機器人對話的 Chat ID，並在 Autopilot 設定最後一個步驟，將 AI 的回覆自動傳回指定的 Telegram 聊天室。</li>
+                    </ol>
+                     <p style="line-height: 1.8; font-size: 1.05em; margin-bottom: 20px;">
+                        透過此流程，你能將 Telegram 升級成一個強大的 AI 工作平台。你可以讓它幫你摘要文章、撰寫公告、處理客服訊息，或生成社群貼文草稿，應用彈性非常強大。
+                    </p>
+                    <p style="font-weight: bold; color: #5a4e8c; font-size: 1.15em; margin-top: 35px; margin-bottom: 10px; text-align: center;">
+                        🎬 完整教學影片：
+                    </p>
+                    <div class="video-responsive-wrapper" style="position: relative; padding-bottom: 56.25%; /* 16:9 Aspect Ratio */ height: 0; overflow: hidden; max-width: 100%; margin: 30px auto; /* 上下間距，左右自動 (因為父層已限寬) */ background: #f0f0f0; /* 影片載入前的背景色 */">
+                        <iframe 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                            width="560" 
+                            height="315" 
+                            src="https://www.youtube.com/embed/huHFwh7UgOw?si=JXrCgng3w7x2hqIJ" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                     <div style="margin-top: 30px; text-align: center;"> 
+                         <span class="tag">AIWIZE</span>
+                         <span class="tag">Autopilot</span>
+                         <span class="tag">自動化</span>
+                         <span class="tag">Telegram</span>
+                         <span class="tag">ChatGPT</span>
+                     </div>
+                </div> 
+            </div> 
+        </section>
+
+        <section class="section news-roundup">
+            <h2 class="section-title">AI 科技精選新聞</h2>
+            <p style="text-align:center; margin-bottom: 30px; color: #555;">【點擊下方圖片，查看詳細新聞報導】</p>
+            
+            <div class="roundup-grid-final">
+                <a href="https://www.ithome.com.tw/news/169138" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/RDnVlJI.jpg" alt="Open AI and Jony Ive">
+                </a>
+                <a href="https://ithome.com.tw/news/169247" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/8uSBWPy.jpg" alt="Anthropic 公布 Claude 語音模式">
+                </a>
+                <a href="https://www.ithome.com.tw/news/169248" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/AJ5UcS8.jpg" alt="Opera 推出代理式 AI 瀏覽器 Neon 可幫用戶寫報告、打 Game">
+                </a>
+                <a href="https://www.ettoday.net/amp/amp_news.php7?news_id=2969578" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/SmNBZ1V.jpg" alt="Perplexity 全新功能 Labs 上線 開啟多模態創作時代">
+                </a>
+                <a href="https://www.threads.com/@ai_wize/post/DKuXH__z8YR?xmt=AQF0uFBkgwJifpAhb8Lw0HAej26AiHIhsgg5pTkBLqhT0w" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/OSj44lS.jpg" alt="WWDC 2025 預期亮點：iOS 26 設計大改、AirPods 翻譯功能、蘋果 AI">
+                </a>
+                <a href="https://today.line.me/hk/v2/amp/article/9mlDx9q" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/cwKwavn.jpg" alt="Google NotebookLM 新增公開分享功能">
+                </a>
+                <a href="https://tech.udn.com/tech/amp/story/123454/8786511" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/ezaVJoz.jpg" alt="變全能智慧 AI 助理！ChatGPT Mac 版新增錄音功能">
+                </a>
+                <a href="https://www.ettoday.net/amp/amp_news.php7?news_id=2973412" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/PDPbpVa.jpg" alt="Gemini 2.5 Pro 預覽版再升級 回應更專業、格式更清晰！">
+                </a>
+                <a href="https://blog.google/technology/google-labs/portraits/" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/6pIEjB2.jpg" alt="Google Lab 推出新功能 Portraits">
+                </a>
+                <a href="https://www.ithome.com.tw/news/169424" target="_blank" class="roundup-image-link">
+                    <img src="https://i.meee.com.tw/SKIgLC8.jpg" alt="Google Gemini 排程行動功能上線，提供付費用戶">
+                </a>
+                
+
+            </div>
+        </section>
+
+        
+        <section class="social-connect-section" style="text-align: center; margin: 40px 0 20px 0; padding: 20px 0; border-top: 1px solid rgba(107, 78, 157, 0.1); border-bottom: 1px solid rgba(107, 78, 157, 0.1);">
+            <h2 style="color: #6b4e9d; font-size: 1.5em; margin-bottom: 25px;">加入社群 & 追蹤我們</h2>
+           <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+               <a href="https://discord.gg/v3sfBYh9" target="_blank" class="social-button discord-button">
+                   <img src="https://cdn.simpleicons.org/discord/white" alt="Discord logo" style="width: 30px; height: auto;">
+                   <span>加入 Discord 社群</span>
+               </a>
+               <a href="https://www.threads.com/@ai_wize?hl=zh-tw" target="_blank" class="social-button threads-button-style"> 
+                   <img src="https://i.meee.com.tw/b4pVr9Q.png" alt="Threads logo" style="width: 30px; height: auto;">
+                   <span>在 Threads 上追蹤</span>
+               </a>
+               <a href="https://www.youtube.com/@ai_wize_" target="_blank" class="social-button youtube-button">
+                   <img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube logo" style="width: 30px; height: auto;">
+                   <span>訂閱 YouTube 頻道</span>
+               </a>
+           </div>
+       </section>
+
+       <footer>
+           <p>本電子報為公司內部刊物，僅供公司內部學習參考，相關資訊版權歸原作者所有。</p>
+           <p>© 台北市內湖區瑞光路451號 | 聯利媒體股份有限公司</p>
+           <p>2025 TVBS AI 未來科技部</p>
+       </footer>
+   </div>
+   
+   <script src="../scripts.js"></script> 
+</body>
+</html>

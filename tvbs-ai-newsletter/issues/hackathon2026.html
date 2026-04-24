@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5FPJBLQJ');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI NEWS LETTER - 2026 黑客松特刊</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <style>
+        /* 特刊專用樣式 */
+        .hackathon-article {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            font-size: 16px;
+            color: #444;
+            line-height: 1.85;
+        }
+
+        .hackathon-article p {
+            margin: 0 0 18px 0;
+        }
+
+        /* 章節標題 */
+        .chapter-heading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 52px 0 20px 0;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #ede8f7;
+        }
+
+        .chapter-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #6b4e9d, #9b7fd4);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .chapter-heading h2 {
+            margin: 0;
+            font-size: 1.25em;
+            font-weight: bold;
+            color: #3d2870;
+        }
+
+        /* 步驟標題 */
+        .step-heading {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 32px 0 12px 0;
+        }
+
+        .step-heading h4 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #6b4e9d;
+        }
+
+        /* 提示詞框 */
+        .prompt-box {
+            background: #f5f0ff;
+            border-left: 4px solid #6b4e9d;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 12px 0 20px 0;
+            font-size: 15px;
+            color: #444;
+            line-height: 1.75;
+        }
+
+        .prompt-box p {
+            margin: 0;
+        }
+
+        /* ❌ ✅ 對比卡片 */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 16px 0 24px 0;
+        }
+
+        @media (max-width: 600px) {
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .compare-card {
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .compare-card.bad {
+            background: #fff5f5;
+            border: 1px solid #ffcdd2;
+        }
+
+        .compare-card.good {
+            background: #f0fff4;
+            border: 1px solid #a5d6a7;
+        }
+
+        .compare-card .label {
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .compare-card.bad .label { color: #c62828; }
+        .compare-card.good .label { color: #2e7d32; }
+
+        .compare-card .hint {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* CDO 三卡片 */
+        .cdo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin: 16px 0 8px 0;
+        }
+
+        .cdo-card {
+            background: #faf8ff;
+            border: 1px solid #d1c4e9;
+            border-radius: 10px;
+            padding: 16px 18px;
+        }
+
+        .cdo-card .cdo-title {
+            font-weight: bold;
+            color: #6b4e9d;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .cdo-card .cdo-body {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .cdo-card .cdo-example {
+            color: #888;
+        }
+
+        /* Prototype 方法卡片 */
+        .method-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 16px 0;
+        }
+
+        .method-card {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 8px 4px;
+        }
+
+        .method-icon {
+            font-size: 26px;
+            flex-shrink: 0;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .method-title {
+            font-weight: bold;
+            color: #6b4e9d;
+            font-size: 16px;
+            margin: 0 0 6px 0;
+        }
+
+        .method-desc {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        /* 佔位框 */
+        .coming-soon-box {
+            text-align: center;
+            padding: 56px 20px;
+            background: #faf8ff;
+            border-radius: 12px;
+            border: 2px dashed #d1c4e9;
+            margin: 16px 0;
+        }
+
+        .coming-soon-box .icon {
+            font-size: 44px;
+            margin-bottom: 14px;
+        }
+
+        .coming-soon-box .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6b4e9d;
+            margin: 0 0 8px 0;
+        }
+
+        .coming-soon-box .desc {
+            font-size: 15px;
+            color: #888;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* 章節分隔 */
+        .section-divider {
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, #6b4e9d, #c4b0e8);
+            border-radius: 2px;
+            margin: 48px auto 0;
+        }
+
+        /* 引言段落 */
+        .intro-text {
+            font-size: 17px;
+            color: #555;
+            line-height: 1.9;
+            margin: 28px 0 0 0;
+        }
+
+        /* 圖說 */
+        .img-caption {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+            text-align: center;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FPJBLQJ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+
+    <nav class="quick-jump-nav" id="quickJumpNav">
+        <h4>本期目錄</h4>
+        <ul id="quickJumpList"></ul>
+    </nav>
+    <button class="quick-jump-toggle" id="quickJumpToggle">目錄</button>
+
+    <div class="newsletter-container">
+        <header class="header">
+            <h1>AI NEWS LETTER</h1>
+            <p>2026 黑客松特刊</p>
+            <div class="search-container">
+                <input type="search" id="searchInput" placeholder="搜尋本站所有文章...">
+                <div id="searchResults" class="search-results-container"></div>
+            </div>
+        </header>
+
+        <div class="period-selector-container">
+            <div class="period-selector">
+                <select id="periodSelect"></select>
+            </div>
+        </div>
+
+        <!-- 主文章：引言 + 一、二、三 -->
+        <section class="section">
+            <h2 class="section-title">🏆 2026 AI 黑客松特刊</h2>
+            <div class="hackathon-article">
+
+                <!-- 主圖 -->
+                <img src="https://i.meee.com.tw/9VxCFdo.png" alt="2026 AI 黑客松特刊"
+                    style="width: 100%; border-radius: 12px; display: block;">
+                <p class="img-caption">示意圖 / AI 生成</p>
+
+                <!-- 引言 -->
+                <p class="intro-text">
+                    一年一度的 AI 黑客松再次登場！今年的活動強調「全員參與」，同時還要做出 Prototype（成品的原型），希望藉由大家不同的經歷與視野，激盪出更多應用可能。
+                </p>
+                <p class="intro-text">
+                    不過，不少同仁應該是初次參賽，或是對技術感到陌生，不知從何開始。別擔心，跟著這期電子報，帶你一步步找到題材方向與製作方法。
+                </p>
+
+                <!-- ── 章節一 ── -->
+                <div class="chapter-heading">
+                    <span class="chapter-number">1</span>
+                    <h2>題目哪裡來？掌握「三步驟」入魂</h2>
+                </div>
+
+                <p>不知道要參賽什麼？先請大家放輕鬆，題目沒有好壞，只有「夠不夠具體」。掌握以下三個問題方向，讓 AI 幫你把「抱怨」變成「提案」。</p>
+
+                <!-- 第一步 -->
+                <div class="step-heading">
+                    <h4>第一步：痛點挖掘</h4>
+                </div>
+                <p>想想自己每天在工作中最重複、最枯燥、最想大喊「為什麼還在人工做這個」的事情是什麼，並將這個煩惱描述丟給 AI，下指令告訴它：</p>
+                <div class="prompt-box">
+                    <p>「分析這個問題的流程，並告訴我 AI 可以在哪個步驟介入？」</p>
+                </div>
+
+                <!-- 第二步 -->
+                <div class="step-heading">
+                    <h4>第二步：品質優化</h4>
+                </div>
+                <p>當你有了初步的想法，接下來要注意兩個重點：<strong>別讓想法太發散（做不到）</strong>，以及要避免<strong>「為了用 AI 而用 AI」</strong>。</p>
+
+                <p style="font-weight: bold; color: #444; margin-bottom: 10px;">什麼情境叫太發散呢？</p>
+                <div class="compare-grid">
+                    <div class="compare-card bad">
+                        <div class="label">❌ 太發散的題目</div>
+                        「我想做一個 AI 自動寫新聞系統。」<br>
+                        <span class="hint">→ 描述太廣泛，AI 寫出來的通常也不能直接用</span>
+                    </div>
+                    <div class="compare-card good">
+                        <div class="label">✅ 經範圍限縮後</div>
+                        「我想做一個 AI 自動生成新聞標題與 SEO 關鍵字建議工具，針對即時快訊類別的新聞。」<br>
+                        <span class="hint">→ 明確指出了具體範圍，更容易著手</span>
+                    </div>
+                </div>
+
+                <p>如果不知道怎麼收斂想法，AI 可以扮演好諮詢顧問的角色，幫你進行題目健檢。你可以這樣問 AI：</p>
+                <div class="prompt-box">
+                    <p>「我有一個黑客松的想法：[填入你的點子]。請扮演一個挑剔的評審，告訴我這個想法哪裡不切實際，並給我 3 個修正建議讓它變得很厲害。」</p>
+                </div>
+                <p>或是將你的想法告訴 AI 後，這樣說：</p>
+                <div class="prompt-box">
+                    <p>
+                        「請你扮演一位專業的資深產品經理，從以下三個維度嚴厲地批評這個點子：<br>
+                        ・<strong>技術可行性：</strong>現在的 AI 技術真的做得到嗎？<br>
+                        ・<strong>商業價值：</strong>解決這個問題能幫助公司省錢、省時、增加點閱，還是有其他益處？<br>
+                        ・<strong>落地難度：</strong>一天之內做得出 Prototype 嗎？」
+                    </p>
+                </div>
+                <p>至於要怎麼避免「為了用 AI 而用 AI」呢？就是要確保這件事是否一定需要 AI 才能解決。你可以把想法丟給 AI 後反問：</p>
+                <div class="prompt-box">
+                    <p>「針對 [你的想法]，如果不用 AI，用傳統的 Excel 或 Google 搜尋能不能解決？如果可以，那我的想法亮點在哪？請幫我找出『非 AI 不可』的關鍵技術點。」</p>
+                </div>
+
+                <!-- 第三步 -->
+                <div class="step-heading">
+                    <h4>第三步：提升專業性</h4>
+                </div>
+                <p>最後，如果想提升題目的品質，請確保你的提案裡包含這三個關鍵元素：</p>
+                <div class="cdo-grid">
+                    <div class="cdo-card">
+                        <div class="cdo-title">📍 情境 (Context)</div>
+                        <p class="cdo-body">誰在什麼時候會用到？<br><span class="cdo-example">例：記者在記者會現場要發即時稿時</span></p>
+                    </div>
+                    <div class="cdo-card">
+                        <div class="cdo-title">📊 數據來源 (Data)</div>
+                        <p class="cdo-body">你的 AI 要讀什麼資料？<br><span class="cdo-example">例：公司過往的稿件、影片庫等</span></p>
+                    </div>
+                    <div class="cdo-card">
+                        <div class="cdo-title">🎯 產出 (Output)</div>
+                        <p class="cdo-body">最後會看到什麼？<br><span class="cdo-example">例：一個自動摘要的 Slack 通知</span></p>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- ── 章節二 ── -->
+                <div class="chapter-heading">
+                    <span class="chapter-number">2</span>
+                    <h2>有想法但不知道怎麼做？讓 AI 當你的「架構師」</h2>
+                </div>
+
+                <p>當你有了題目，最怕的是「不知道怎麼落地」。這時你可以問 AI：</p>
+                <div class="prompt-box">
+                    <p>「我想要做一個 [你的想法]，但我完全不會寫程式。請幫我拆解：如果要做出一個 Demo，我需要準備哪些資料？第一步、第二步、第三步分別要做什麼？」</p>
+                </div>
+                <p>AI 會幫你把計畫拆解成容易理解的步驟，讓你對開發流程心裡有數。不管你是文字工作者、業務，還是完全沒碰過程式碼的人，只要能說清楚「我想解決什麼問題」，AI 就能幫你規劃出一條路。</p>
+
+                <div class="section-divider"></div>
+
+                <!-- ── 章節三 ── -->
+                <div class="chapter-heading">
+                    <span class="chapter-number">3</span>
+                    <h2>什麼是 Prototype？非技術人員可以怎麼做？</h2>
+                </div>
+
+                <p>黑客松要看的「Prototype（原型）」，目的是<strong>證明你的點子可行</strong>，而不是要做出一個完美的成品。</p>
+                <p>不過，非技術背景的人一聽到 Prototype 可能會很緊張，怕「如果做不出成品怎麼辦？」。別擔心！AI 就是你的神隊友，有三種方法可以幫助你呈現 Prototype：</p>
+
+                <div class="method-list">
+                    <div class="method-card">
+                        <div class="method-icon">🎨</div>
+                        <div>
+                            <p class="method-title">方法一：精美介面</p>
+                            <p class="method-desc">雖然沒有後端功能，但你可以用 AI 工具做出「看起來像真的」的操作畫面，讓評審直觀感受你的設計概念。</p>
+                        </div>
+                    </div>
+                    <div class="method-card">
+                        <div class="method-icon">📊</div>
+                        <div>
+                            <p class="method-title">方法二：畫流程圖</p>
+                            <p class="method-desc">用流程圖說明 AI 是如何處理資料的，配上幾張模擬效果圖，讓人清楚理解整個運作邏輯。</p>
+                        </div>
+                    </div>
+                    <div class="method-card">
+                        <div class="method-icon">🛠️</div>
+                        <div>
+                            <p class="method-title">方法三：建立工具</p>
+                            <p class="method-desc">利用各種 AI 工具直接建立出一個專屬的小工具，讓你可以現場 Demo，直接展示成果最有說服力。</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </section>
+
+        <!-- TVBS 黑客松助理 -->
+        <section class="section">
+            <h2 class="section-title">🤖 TVBS AI 黑客松助理</h2>
+            <div style="max-width: 820px; margin: 0 auto; padding: 0 20px 48px;">
+
+                <!-- CTA Banner -->
+                <div style="background: linear-gradient(135deg, #6b4e9d, #9b7fd4); border-radius: 16px; padding: 36px 32px; text-align: center; margin-bottom: 32px;">
+                    <p style="margin: 0 0 10px 0; font-size: 22px; font-weight: bold; color: #fff; line-height: 1.6;">
+                        破頭想不出點子？ <br>還是不知道怎麼下手嗎？
+                    </p>
+                    <p style="margin: 0 0 24px 0; font-size: 18px; font-weight: bold; color: #fff; line-height: 1.6;">
+                        TVBS 專屬的「AI 黑客松助理」可以幫你！<br>從挖掘問題到產出完整提案一步步引導，讓你的創意想法成形。</br>
+                    </p>
+                    
+                        
+                    
+                    <a href="https://chat.tvbs.ai/" target="_blank"
+                        style="display: inline-block; background: #fff; color: #6b4e9d; font-size: 16px; font-weight: bold; padding: 14px 36px; border-radius: 50px; text-decoration: none;">
+                        點我立刻開啟「AI 黑客松助理」 →
+                    </a>
+                </div>
+
+                <!-- 助理截圖 -->
+                <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202026-03-20%20161755.png" alt="TVBS 黑客松助理介面"
+                    style="width: 100%; border-radius: 12px; display: block; margin-bottom: 28px;">
+
+                <!-- 工具說明 -->
+                <div style="margin-bottom: 28px;">
+                    <h4 style="color: #3d2870; font-size: 1.1em; margin: 0 0 10px 0;">這個工具是什麼？</h4>
+                    <p style="color: #555; font-size: 16px; line-height: 1.8; margin: 0;">
+                        AI 引導你找到值得解決的問題，幫你產出完整的黑客松提案大綱。<br>
+                        完成後可直接把提案貼到 AIWIZE、ChatGPT、Gemini 等工具開始做 Prototype。
+                    </p>
+                </div>
+
+                <!-- 步驟表格 -->
+                <div style="margin-bottom: 12px;">
+                    <h4 style="color: #3d2870; font-size: 1.1em; margin: 0 0 14px 0;">能得到什麼幫助？</h4>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 15px;">
+                        <thead>
+                            <tr style="background: #6b4e9d;">
+                                <th style="color: #fff; padding: 10px 16px; text-align: center; width: 60px; border-radius: 8px 0 0 0;">步驟</th>
+                                <th style="color: #fff; padding: 10px 16px; text-align: left; border-radius: 0 8px 0 0;">AI 幫你做什麼</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #faf8ff;">
+                                <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d; border-bottom: 1px solid #ede8f7;">1</td>
+                                <td style="padding: 10px 16px; color: #444; border-bottom: 1px solid #ede8f7;">了解你的部門與角色</td>
+                            </tr>
+                            <tr style="background: #fff;">
+                                <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d; border-bottom: 1px solid #ede8f7;">2</td>
+                                <td style="padding: 10px 16px; color: #444; border-bottom: 1px solid #ede8f7;">挖掘你最痛的問題</td>
+                            </tr>
+                            <tr style="background: #faf8ff;">
+                                <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d; border-bottom: 1px solid #ede8f7;">3</td>
+                                <td style="padding: 10px 16px; color: #444; border-bottom: 1px solid #ede8f7;">確認解決後的價值</td>
+                            </tr>
+                            <tr style="background: #fff;">
+                                <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d; border-bottom: 1px solid #ede8f7;">4</td>
+                                <td style="padding: 10px 16px; color: #444; border-bottom: 1px solid #ede8f7;">發想 2–3 個解法方向</td>
+                            </tr>
+                            <tr style="background: #faf8ff;">
+                                <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d; border-bottom: 1px solid #ede8f7;">5</td>
+                                <td style="padding: 10px 16px; color: #444; border-bottom: 1px solid #ede8f7;">設計具體解法</td>
+                            </tr>
+                            <tr style="background: #fff;">
+                                <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d;">6</td>
+                                <td style="padding: 10px 16px; color: #444;">產出完整提案大綱 + 起始 Prompt</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin: 12px 0 0 0; font-size: 14px; color: #6b4e9d; background: #f0ebff; padding: 10px 16px; border-radius: 8px;">
+                        💡 完成後可直接把提案貼到 AIWIZE / ChatGPT / Gemini 等工具開始做 Prototype
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- AI 工具推薦 -->
+        <section class="section">
+            <h2 class="section-title">AI 黑客松工具推薦</h2>
+            <div style="max-width: 820px; margin: 0 auto; padding: 0 20px 48px;">
+
+                <!-- 公司內部工具 -->
+                <h4 style="color: #3d2870; font-size: 1.1em; margin: 0 0 14px 0;">🔒 公司內部工具</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px;">
+                    <a href="https://dashboard-v2.aiwize.com" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+                        <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/Gemini_Generated_Image_70lvtp70lvtp70lv.jfif" alt="AIWIZE" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; border-radius: 6px;">
+                        <div>
+                            <p style="margin: 0 0 2px 0; font-weight: bold; color: #3d2870; font-size: 15px;">AIWIZE</p>
+                            <p style="margin: 0; font-size: 13px; color: #888;">dashboard-v2.aiwize.com</p>
+                        </div>
+                    </a>
+                    <a href="https://streams.aiwize.com/" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+                        <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/N8N%20LOGO.png" alt="TVBS n8n" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0;">
+                        <div>
+                            <p style="margin: 0 0 2px 0; font-weight: bold; color: #3d2870; font-size: 15px;">TVBS n8n</p>
+                            <p style="margin: 0; font-size: 13px; color: #888;">streams.aiwize.com</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 零程式 Prototype 工具 -->
+                <h4 style="color: #3d2870; font-size: 1.1em; margin: 0 0 14px 0;">⚡ 快速做 Prototype</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 32px;">
+                    <a href="https://stitch.withgoogle.com/" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+                        <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/Stitch%20logo.png" alt="Google Stitch" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0;">
+                        <div>
+                            <p style="margin: 0 0 2px 0; font-weight: bold; color: #3d2870; font-size: 15px;">Google Stitch</p>
+                            <p style="margin: 0; font-size: 13px; color: #888;">stitch.withgoogle.com</p>
+                        </div>
+                    </a>
+                    <a href="https://aistudio.google.com/apps" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+                        <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/AI%20STUDIO%20LOGO.png" alt="Google AI Studio" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0;">
+                        <div>
+                            <p style="margin: 0 0 2px 0; font-weight: bold; color: #3d2870; font-size: 15px;">Google AI Studio Build</p>
+                            <p style="margin: 0; font-size: 13px; color: #888;">aistudio.google.com/apps</p>
+                        </div>
+                    </a>
+                    <a href="https://lovable.dev/" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+                        <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/lovable%20logo.png" alt="Lovable" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0;">
+                        <div>
+                            <p style="margin: 0 0 2px 0; font-weight: bold; color: #3d2870; font-size: 15px;">Lovable</p>
+                            <p style="margin: 0; font-size: 13px; color: #888;">lovable.dev</p>
+                        </div>
+                    </a>
+                    <a href="https://bolt.new/" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+                        <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/BOLT%20LOGO.png" alt="Bolt.new" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0;">
+                        <div>
+                            <p style="margin: 0 0 2px 0; font-weight: bold; color: #3d2870; font-size: 15px;">Bolt.new</p>
+                            <p style="margin: 0; font-size: 13px; color: #888;">bolt.new</p>
+                        </div>
+                    </a>
+                    <a href="https://antigravity.google/" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+                        <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/antigravity%20logo.png" alt="Antigravity" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0;">
+                        <div>
+                            <p style="margin: 0 0 2px 0; font-weight: bold; color: #3d2870; font-size: 15px;">Antigravity</p>
+                            <p style="margin: 0; font-size: 13px; color: #888;">antigravity.google</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 簡報製作工具 -->
+                <h4 style="color: #3d2870; font-size: 1.1em; margin: 0 0 14px 0;">📓 資料整理、簡報製作</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px;">
+                    <a href="https://notebooklm.google.com/" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+                        <img src="https://cdn.jsdelivr.net/gh/linolin1994/my_image/img/notebooklm%20LOGO.webp" alt="NotebookLM" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0;">
+                        <div>
+                            <p style="margin: 0 0 2px 0; font-weight: bold; color: #3d2870; font-size: 15px;">NotebookLM</p>
+                            <p style="margin: 0; font-size: 13px; color: #888;">notebooklm.google.com</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 教學影片 -->
+                <h4 style="color: #3d2870; font-size: 1.1em; margin: 0 0 14px 0;">🎬 教學影片</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <a href="https://elearn.tvbs.com.tw/course/84" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: block;">
+                        <p style="margin: 0 0 4px 0; font-weight: bold; color: #3d2870; font-size: 15px;">Prototype 教學影片</p>
+                        <p style="margin: 0; font-size: 13px; color: #888;">elearn.tvbs.com.tw</p>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=yjFixFO5TUs" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: block;">
+                        <p style="margin: 0 0 4px 0; font-weight: bold; color: #3d2870; font-size: 15px;">NotebookLM 做簡報教學</p>
+                        <p style="margin: 0; font-size: 13px; color: #888;">YouTube</p>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=BSzTCXO8q-4" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: block;">
+                        <p style="margin: 0 0 4px 0; font-weight: bold; color: #3d2870; font-size: 15px;">Google AI Studio 教學影片</p>
+                        <p style="margin: 0; font-size: 13px; color: #888;">YouTube</p>
+                    </a>
+                    <a href="https://elearn.tvbs.com.tw/course_library/8" target="_blank" style="text-decoration: none; background: #fff; border: 1px solid #d1c4e9; border-radius: 10px; padding: 16px 18px; display: block;">
+                        <p style="margin: 0 0 4px 0; font-weight: bold; color: #3d2870; font-size: 15px;">數位學習平台學習資源</p>
+                        <p style="margin: 0; font-size: 13px; color: #888;">elearn.tvbs.com.tw</p>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 黑客松重要資訊 -->
+        <section style="padding: 40px 30px; border-top: 1px solid #eeeeee;">
+            <h2 style="color: #6b4e9d; font-size: 1.4em; font-weight: bold; padding: 0 0 12px 0; border-bottom: 2px solid #ede8f7; margin: 0 0 8px 0;">📋 2026 黑客松重要資訊</h2>
+            <div style="max-width: 820px; margin: 0 auto; padding: 0 20px 48px;">
+
+                <p style="font-size: 15px; color: #555; margin: 0 0 20px 0;">
+                    <strong>組隊：</strong>2–5 人，可跨部門，每人只能加入一組
+                </p>
+
+                <!-- 時間軸 -->
+                <h3 style="color: #3d2870; font-size: 1.05em; margin: 0 0 12px 0;">時程</h3>
+                <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 24px;">
+                    <thead>
+                        <tr style="background: #6b4e9d;">
+                            <th style="color: #fff; padding: 10px 16px; text-align: center; width: 100px; border-radius: 8px 0 0 0;">時間</th>
+                            <th style="color: #fff; padding: 10px 16px; text-align: left; border-radius: 0 8px 0 0;">事項</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #fff8f0;">
+                            <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #c0392b; border-bottom: 1px solid #ede8f7;">4/10</td>
+                            <td style="padding: 10px 16px; color: #444; border-bottom: 1px solid #ede8f7;">⚠️ 繳交書面提案 + 可運作 Prototype</td>
+                        </tr>
+                        <tr style="background: #faf8ff;">
+                            <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d; border-bottom: 1px solid #ede8f7;">4/11–4/30</td>
+                            <td style="padding: 10px 16px; color: #444; border-bottom: 1px solid #ede8f7;">評審審查，選出 20 組進決賽</td>
+                        </tr>
+                        <tr style="background: #fff;">
+                            <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d; border-bottom: 1px solid #ede8f7;">5/01–6/30</td>
+                            <td style="padding: 10px 16px; color: #444; border-bottom: 1px solid #ede8f7;">精緻化 Prototype，實際導入場景</td>
+                        </tr>
+                        <tr style="background: #faf8ff;">
+                            <td style="padding: 10px 16px; text-align: center; font-weight: bold; color: #6b4e9d;">7 月</td>
+                            <td style="padding: 10px 16px; color: #444;">決賽 Live Demo（1 號攝影棚）🎬</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 評分 & 獎金 -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                    <div>
+                        <h3 style="color: #3d2870; font-size: 1.05em; margin: 0 0 12px 0;">評分標準</h3>
+                        <ul style="margin: 0; padding-left: 18px; font-size: 15px; color: #555; line-height: 2;">
+                            <li>實際影響力 <strong>35%</strong></li>
+                            <li>問題與解法適配 <strong>25%</strong></li>
+                            <li>AI 關鍵性 <strong>20%</strong></li>
+                            <li>導入可行性 <strong>20%</strong></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #3d2870; font-size: 1.05em; margin: 0 0 12px 0;">獎金</h3>
+                        <ul style="margin: 0; padding-left: 18px; font-size: 15px; color: #555; line-height: 2;">
+                            <li>🥇 $50,000</li>
+                            <li>🥈 $30,000</li>
+                            <li>🥉 $20,000</li>
+                            <li>4–5 名 $15,000 / $10,000</li>
+                            <li>佳作 $2,500</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="margin: 0; font-size: 14px; color: #888; border-top: 1px solid #ede8f7; padding-top: 16px;">
+                    📞 聯絡：人力資源部 Yvonne　分機 88884
+                </p>
+
+            </div>
+        </section>
+
+        <section class="social-connect-section">
+            <h2>加入社群 &amp; 追蹤我們</h2>
+            <div>
+                <a href="https://discord.gg/v3sfBYh9" target="_blank" class="social-button discord-button">
+                    <img src="https://cdn.simpleicons.org/discord/white" alt="Discord logo"
+                        style="width: 30px; height: auto;">
+                    <span>加入 Discord 社群</span>
+                </a>
+                <a href="https://www.threads.com/@ai_wize?hl=zh-tw" target="_blank"
+                    class="social-button threads-button-style">
+                    <img src="https://i.meee.com.tw/b4pVr9Q.png" alt="Threads logo" style="width: 30px; height: auto;">
+                    <span>在 Threads 上追蹤</span>
+                </a>
+                <a href="https://www.youtube.com/@ai_wize_" target="_blank" class="social-button youtube-button">
+                    <img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube logo"
+                        style="width: 30px; height: auto;">
+                    <span>訂閱 YouTube 頻道</span>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>本電子報為公司內部刊物，僅供公司內部學習參考，相關資訊版權歸原作者所有。</p>
+            <p>© 台北市內湖區瑞光路451號 | 聯利媒體股份有限公司</p>
+            <p>2026 TVBS AI 未來科技部</p>
+        </footer>
+    </div>
+
+    <script src="../scripts.js"></script>
+</body>
+
+</html>
