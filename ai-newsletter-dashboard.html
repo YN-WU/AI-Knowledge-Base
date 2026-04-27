@@ -60,20 +60,27 @@
 
   /* Tabs */
   .tabs-wrap{position:sticky;top:70px;z-index:90;backdrop-filter:blur(16px);background:rgba(10,18,40,0.75);border-bottom:1px solid var(--border)}
-  .tabs{max-width:1600px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:center;overflow-x:auto;scrollbar-width:none;flex-wrap:wrap}
-  .tabs::-webkit-scrollbar{display:none}
+  .tabs{max-width:1600px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:center;overflow:visible;flex-wrap:wrap}
   .tab{padding:14px 18px;font-size:14px;font-weight:600;color:var(--text-light);background:transparent;border:none;cursor:pointer;position:relative;white-space:nowrap;font-family:inherit;letter-spacing:0.5px}
   .tab:hover{color:var(--accent);text-shadow:0 0 10px rgba(94,245,255,0.4)}
   .tab.active{color:var(--accent);font-weight:700;text-shadow:0 0 12px rgba(94,245,255,0.6)}
   .tab.active::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:3px 3px 0 0;box-shadow:0 0 12px rgba(94,245,255,0.6)}
   .tab-sep{color:var(--border);font-size:14px;user-select:none;pointer-events:none;font-weight:300}
+  .nav-dropdown{position:relative;display:inline-block}
+  .nav-dropdown:hover .dropdown-content{display:flex}
+  .dropdown-content{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(10,18,40,0.95);backdrop-filter:blur(12px);border:1px solid var(--border-strong);border-radius:8px;padding:8px 0;min-width:150px;z-index:100;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+  .dropdown-item{padding:10px 16px;width:100%;text-align:center;border-radius:0}
+  .dropdown-item.active{background:rgba(77,159,255,0.15)}
+  .dropdown-item.active::after{display:none !important}
+  .dropdown-toggle{padding:14px 18px;font-size:14px;font-weight:600;color:var(--text-light);background:transparent;border:none;cursor:default;position:relative;white-space:nowrap;font-family:inherit;letter-spacing:0.5px;display:inline-block}
+  .nav-dropdown:hover .dropdown-toggle{color:var(--accent);text-shadow:0 0 10px rgba(94,245,255,0.4)}
 
   /* Layout */
   .container{max-width:1600px;margin:0 auto;padding:16px 32px 24px;width:100%}
   .page{display:none;animation:fadeIn .4s ease}
   .page.active{display:block}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-  .layout-3col{display:grid;grid-template-columns:260px 1fr 300px;gap:24px;align-items:start}
+  .layout-3col{display:grid;grid-template-columns:260px 1fr 300px;gap:24px;align-items:start;min-height:100vh}
   @media(max-width:1100px){.layout-3col{grid-template-columns:1fr}}
   aside.side{display:flex;flex-direction:column;gap:16px;position:sticky;top:140px;align-self:start}
   @media(max-width:1100px){aside.side{position:static}}
@@ -186,6 +193,7 @@
   .issue-section-title{display:flex;align-items:center;margin-bottom:12px;padding-left:12px;border-left:3px solid var(--accent);font-size:15px;font-weight:800;color:var(--text);letter-spacing:1px;white-space:nowrap;width:100%}
   .issue-section-title .count{color:var(--text-light);font-size:12px;font-weight:600;letter-spacing:0;margin-left:10px;display:none}
   .issue-section-line{flex:1;height:1px;background:linear-gradient(90deg, var(--border-strong), rgba(94,245,255,0.3));margin:0 12px;min-width:20px}
+  #thisIssueNewsWrap { min-height: 500px; display: grid; grid-template-columns: 1fr; gap: 12px; transition: min-height 0.3s; }
   .issue-section-more{display:inline-flex;align-items:center;padding:4px 8px;background:transparent;color:#6b7490;border:none;border-radius:0;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none;letter-spacing:0.5px;box-shadow:none;text-shadow:none}
   .issue-section-more .chevron{background:linear-gradient(90deg,rgba(77,159,255,0.6),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;letter-spacing:-1px;margin-right:6px;font-size:12px;transition:all .2s;display:inline-block}
   .issue-section-more:hover{background:transparent;color:var(--accent);box-shadow:none;text-shadow:0 0 8px rgba(94,245,255,0.5);transform:translateX(2px)}
@@ -251,8 +259,8 @@
   .hack-step-desc{font-size:13px;color:var(--text);line-height:1.5}
   .hack-step.current .hack-step-date{color:var(--accent);text-shadow:0 0 8px rgba(94,245,255,0.4);font-size:15px}
   .hack-step.current .hack-step-desc{font-weight:700;color:#ffffff;font-size:16px;line-height:1.5;text-shadow:0 0 8px rgba(94,245,255,0.3)}
-  .hack-step.past .hack-step-date{color:#6b7490}
-  .hack-step.past .hack-step-desc{color:#6b7490;text-decoration:line-through;opacity:0.7}
+  .hack-step.past .hack-step-date{color:#6b7490;font-size:10px}
+  .hack-step.past .hack-step-desc{color:#6b7490;text-decoration:line-through;opacity:0.7;font-size:11px}
   .hack-prize{margin-top:12px;padding:10px 12px;background:rgba(94,245,255,0.08);border:1px solid rgba(94,245,255,0.2);clip-path:var(--clip-sm);font-size:12px;line-height:1.6}
   .hack-prize-title{font-weight:700;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:4px;letter-spacing:1px;font-size:14px}
   .hack-prize-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:13px;color:var(--text)}
@@ -524,17 +532,22 @@
     <span class="tab-sep">|</span>
     <button class="tab" data-page="prompt">PROMPT 專欄</button>
     <span class="tab-sep">|</span>
-    <button class="tab" data-page="tool-intro">AI 工具介紹</button>
-    <span class="tab-sep">|</span>
-    <button class="tab" data-page="tools">AI 工具資源</button>
-    <span class="tab-sep">|</span>
-    <button class="tab" data-page="cases">應用案例</button>
-    <span class="tab-sep">|</span>
-    <button class="tab" data-page="learning">學習資源</button>
-    <span class="tab-sep">|</span>
-    <button class="tab" data-page="models">AI 模型比較</button>
-    <span class="tab-sep">|</span>
-    <button class="tab" data-page="glossary">AI 術語小辭典</button>
+    <div class="nav-dropdown">
+      <span class="dropdown-toggle">AI 工具 ▾</span>
+      <div class="dropdown-content">
+        <button class="tab dropdown-item" data-page="tool-intro">AI 工具介紹</button>
+        <button class="tab dropdown-item" data-page="tools">AI 工具資源</button>
+      </div>
+    </div>
+    <div class="nav-dropdown">
+      <span class="dropdown-toggle">AI 學習包 ▾</span>
+      <div class="dropdown-content">
+        <button class="tab dropdown-item" data-page="learning">學習資源</button>
+        <button class="tab dropdown-item" data-page="cases">應用案例</button>
+        <button class="tab dropdown-item" data-page="models">AI 模型比較</button>
+        <button class="tab dropdown-item" data-page="glossary">AI 術語小辭典</button>
+      </div>
+    </div>
     <span class="tab-sep">|</span>
     <button class="tab" data-page="archive">歷期電子報</button>
     <span class="tab-sep">|</span>
@@ -1711,7 +1724,7 @@ function vote(el){
   document.querySelectorAll('.poll-option').forEach(function(o){o.classList.add('voted');o.style.setProperty('--pct',o.dataset.pct+'%');});
   el.style.fontWeight='700';
 }
-function selectRating(el){document.querySelectorAll('.rating-opt').forEach(function(o){o.classList.remove('selected');});el.classList.add('selected');}
+function selectRating(el){var isSelected = el.classList.contains('selected');document.querySelectorAll('.rating-opt').forEach(function(o){o.classList.remove('selected');});if(!isSelected){el.classList.add('selected');}}
 function toggleCheck(el){el.classList.toggle('checked');}
 function submitFeedback(btn){btn.textContent='✓ 已送出，謝謝你的回饋！';setTimeout(function(){btn.textContent='🚀 送出回饋';},3000);}
 
@@ -1918,6 +1931,7 @@ function renderArchive(f){
       </div>`;
   }).join('');
 }
+
 var issuesData = [];
 async function initDashboardData() {
 
@@ -1955,7 +1969,7 @@ async function initDashboardData() {
       const tocWrap = document.getElementById('latestIssueTOC');
       if(tocWrap) {
         tocWrap.innerHTML = issueArticles
-          .filter(it => !it.title.includes('本期重點摘要'))
+          .filter(it => !it.title.includes('本期重點摘要') && !it.title.includes('科技精選新聞'))
           .map(it => `
           <div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))" class="toc-item">
             <span class="toc-dot"></span>
@@ -1963,20 +1977,36 @@ async function initDashboardData() {
           </div>`).join('');
       }
 
-      // Latest News (All)
+      // Latest News (Grouped by Tags)
       const newsWrap = document.getElementById('thisIssueNewsWrap');
       if(newsWrap) {
         const newsItems = issueArticles.filter(it => !it.title.match(/[🛠️💡🧩🌟]/) && !it.title.includes('摘要') && !it.title.includes('精選新聞'));
-        const countLabel = document.getElementById('thisIssueCount');
-        if(countLabel) countLabel.textContent = newsItems.length;
-        newsWrap.innerHTML = newsItems.map(it => `
-          <div class="issue-block" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
-            <div class="issue-block-head">
-              <span class="issue-block-tag">${getTag(it.title)}</span>
-              <h4>${it.title}</h4>
-            </div>
-            <div class="snippet" style="line-height:1.35">${(it.content||'').slice(0, 85)}...</div>
+        
+        // 分類群組
+        const groups = {};
+        newsItems.forEach(it => {
+          const t = getTag(it.title);
+          if(!groups[t]) groups[t] = [];
+          groups[t].push(it);
+        });
+
+        const tagPriority = { '模型發布': 1, '產業動態': 2, '圖像生成': 3 };
+        const sortedTags = Object.keys(groups).sort((a, b) => (tagPriority[a] || 99) - (tagPriority[b] || 99));
+
+        newsWrap.innerHTML = sortedTags.map(tag => `
+          <div class="news-group-header" style="grid-column: 1 / -1; margin-top: 24px; margin-bottom: 0px; color: var(--accent); font-weight: 800; font-size: 14px; display: flex; align-items: center; letter-spacing: 1px;">
+            <i class="fas fa-hashtag" style="margin-right: 8px; font-size: 12px; opacity: 0.7;"></i>
+            ${tag.toUpperCase()}
           </div>
+          ${groups[tag].map(it => `
+            <div class="issue-block" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
+              <div class="issue-block-head">
+                <span class="issue-block-tag">${getTag(it.title)}</span>
+                <h4>${it.title}</h4>
+              </div>
+              <div class="snippet" style="line-height:1.35">${(it.content||'').slice(0, 85)}...</div>
+            </div>
+          `).join('')}
         `).join('');
       }
 
@@ -2005,7 +2035,7 @@ async function initDashboardData() {
           promptSectionHTML += prompts.map(it => {
             const clickAction = it.isFallback ? "switchTab('prompt')" : `showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))`;
             return `
-            <div class="issue-block" style="background:rgba(94,245,255,0.05);border-color:rgba(94,245,255,0.2);min-height:140px;" onclick="${clickAction}">
+            <div class="issue-block" style="background:transparent;min-height:140px;" onclick="${clickAction}">
               <div class="issue-block-head">
                 <span class="issue-block-tag" style="background:rgba(94,245,255,0.15);color:var(--accent)">PROMPT 教學</span>
                 <h4 style="font-size:15px">${it.title.replace(/[🛠️💡🧩🌟]/g, '').replace(/指令工坊[:：]/g, '').replace(/AIWIZE\s*TIPS[:：]/g, '').trim()}</h4>
@@ -2043,10 +2073,24 @@ async function initDashboardData() {
       // 5. AI 趨勢消息卡片牆 (Trend Grid)
       const trendWrap = document.getElementById('trendGrid');
       if(trendWrap) {
-        const trendItems = issueArticles.filter(it => !it.title.match(/[🛠️💡🧩🌟]/) && !it.title.includes('摘要') && !it.title.includes('精選新聞'));
+        const currentTrendItems = issueArticles.filter(it => !it.title.match(/[🛠️💡🧩🌟]/) && !it.title.includes('重點摘要') && !it.title.includes('精選新聞'));
+        
+        // 抓取第 17 期的 3 篇文章
+        const issue17Data = issuesData.find(it => it.no === "017") || { no: "017", date: "2024年4月", img: 'https://i.meee.com.tw/zg5kCCS.webp' };
+        const pastTrendItems = searchIndex
+          .filter(it => it.url && it.url.includes("017.html"))
+          .filter(it => !it.title.match(/[🛠️💡🧩🌟]/) && !it.title.includes('重點摘要') && !it.title.includes('精選新聞'))
+          .slice(0, 3);
+          
+        const trendItems = [
+          ...currentTrendItems.map(it => ({ ...it, issueDetail: issue })),
+          ...pastTrendItems.map(it => ({ ...it, issueDetail: issue17Data }))
+        ];
+
         trendWrap.innerHTML = trendItems.map(it => {
+          const iss = it.issueDetail;
           // 嘗試找尋該文章是否有在動態資料庫定義圖片，若無則用預設圖
-          const artImg = it.img || issue.img || 'https://i.meee.com.tw/zg5kCCS.webp'; 
+          const artImg = it.img || iss.img || 'https://i.meee.com.tw/zg5kCCS.webp'; 
           return `
             <div class="article-card" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
               <div class="article-cover" style="background-image:url('${artImg}')"></div>
@@ -2054,8 +2098,8 @@ async function initDashboardData() {
               <h4>${it.title}</h4>
               <div class="summary">${(it.content||'').substring(0,80)}...</div>
               <div class="article-meta">
-                <span>第 ${issue.no} 期</span>
-                <span>${issue.date}</span>
+                <span>第 ${iss.no} 期</span>
+                <span>${iss.date}</span>
               </div>
             </div>
           `;
