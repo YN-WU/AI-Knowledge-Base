@@ -1,0 +1,149 @@
+[
+  {
+    "cat": "應用技巧",
+    "title": "Typeless：AI 語音聽寫工具，跨應用即時轉文字",
+    "sub": "AI 語音聽寫工具，能將語音即時轉成文字並自動移除贅字。支援 100+ 語言、跨應用使用、本機處理不上雲。",
+    "issue": 19,
+    "openInModal": true
+  },
+  {
+    "cat": "AI 工具",
+    "title": "Antigravity：自然語言操作電腦的 AI 工具",
+    "sub": "第 018 期 AI 工具推薦：透過自然語言指令操作桌面、檔案、瀏覽器，讓 AI 真正成為你的工作助理。",
+    "issue": 18,
+    "url": "https://ainews.tvbs.ai/issues/018.html#section-jump-7"
+  },
+  {
+    "cat": "影片生成",
+    "title": "Flow AI 實戰教學（Veo 3.1）",
+    "sub": "Google 旗下 AI 影音實驗室，搭載最新 Veo 3.1 模型。定位偏向「電影分鏡與鏡頭語言模擬」，在畫質、運鏡、配音、環境音自然度都極高水準。",
+    "issue": 17,
+    "url": "https://ainews.tvbs.ai/issues/017.html#section-jump-4"
+  },
+  {
+    "cat": "筆記知識",
+    "title": "Gemini x NotebookLM 整合",
+    "sub": "Google 兩大 AI 工具深度整合，視覺化輸出、互動對話功能加倍；一站完成知識輸入、整理、呈現的全流程。",
+    "issue": 16,
+    "url": "https://ainews.tvbs.ai/issues/016.html#section-jump-4"
+  },
+  {
+    "cat": "設計創作",
+    "title": "2025 設計圈黑馬：Lovart 使用全攻略",
+    "sub": "全球首款專業級 AI 設計代理人，將繁瑣設計流程簡化為「對話」與「畫布」兩步驟。零設計背景也能做出專業 Logo、海報、宣傳短片。",
+    "issue": 15,
+    "url": "https://ainews.tvbs.ai/issues/015.html#section-jump-4"
+  },
+  {
+    "cat": "簡報設計",
+    "title": "Gamma：AI 驅動簡報與內容製作平台",
+    "sub": "重新定義簡報製作體驗，結合生成式 AI 與互動式內容設計，極短時間內完成兼具專業外觀與視覺吸引力的簡報、報告、文件。",
+    "issue": 13,
+    "url": "https://ainews.tvbs.ai/issues/013.html#section-jump-5"
+  },
+  {
+    "cat": "筆記知識",
+    "title": "NotebookLM 2025 最大更新",
+    "sub": "不只是摘要工具，升級為完整的學習與知識管理 AI。可快速整理、分析、視覺化內容並生成多媒體，是研究與學習的絕佳夥伴。",
+    "issue": 12,
+    "url": "https://ainews.tvbs.ai/issues/012.html#section-jump-4"
+  },
+  {
+    "cat": "對話助理",
+    "title": "Google Gemini AI 全面解析",
+    "sub": "從基礎版本到 Pro 的完整功能介紹，涵蓋對話、多模態、工作整合、Gemini App 應用情境，適合初接觸 Gemini 的使用者。",
+    "issue": 11,
+    "url": "https://ainews.tvbs.ai/issues/011.html#section-jump-3"
+  },
+  {
+    "cat": "搜尋研究",
+    "title": "資訊搜尋 AI 神器：Perplexity",
+    "sub": "結合搜尋引擎與 AI 的新一代資訊工具，回答附原始來源連結，適合查核專題資料、追蹤國外新聞或冷門主題。",
+    "issue": 10,
+    "url": "https://ainews.tvbs.ai/issues/010.html#section-jump-3"
+  },
+  {
+    "cat": "影音處理",
+    "title": "Google AI Studio 秒產字幕檔",
+    "sub": "Google 整合的 AI 多工平台，上傳影片後能快速產出字幕檔，還可進一步編輯與翻譯，大幅簡化影片後製工作流程。",
+    "issue": 9,
+    "url": "https://ainews.tvbs.ai/issues/009.html#section-jump-4"
+  },
+  {
+    "cat": "工具教學",
+    "title": "三步驟打造 LINE AI 聊天機器人",
+    "sub": "AIWIZE Autopilot 搭配 Webhook 串接 LINE 與 ChatGPT，打造能翻譯、摘要、寫文案的私人 AI 助理。",
+    "issue": 7,
+    "url": "https://ainews.tvbs.ai/issues/007.html#section-jump-3"
+  },
+  {
+    "cat": "工具教學",
+    "title": "三步驟打造 Telegram AI 聊天機器人",
+    "sub": "用 AIWIZE Autopilot 自動化流程串接 Telegram 與 ChatGPT，打造 24 小時在線、能處理多種任務的私人 AI 助理。",
+    "issue": 6,
+    "url": "https://ainews.tvbs.ai/issues/006.html#section-jump-3"
+  },
+  {
+    "cat": "工具教學",
+    "title": "YouTube 最新影片自動摘要",
+    "sub": "用 AIWIZE Autopilot 結合 RSS 與 Gemini 模型，自動抓取指定頻道新影片並產出摘要，輕鬆跟上你想追蹤的 YouTuber 動態。",
+    "issue": 5,
+    "url": "https://ainews.tvbs.ai/issues/005.html#section-jump-2"
+  },
+  {
+    "cat": "多模態",
+    "title": "Gemini App 推出 Live 螢幕共享功能",
+    "sub": "不只是打字問 AI，還能直接用手機相機拍照讓 AI 看，或分享手機螢幕讓 AI 即時分析畫面內容，多模態互動大幅升級。",
+    "issue": 4,
+    "url": "https://ainews.tvbs.ai/issues/004.html#section-jump-4"
+  },
+  {
+    "cat": "工具教學",
+    "title": "打造 AI 自我反思的自動化流程",
+    "sub": "用 AIWIZE Autopilot 建立「AI 自我反思」的工作流程，示範如何把部落格文章高效改寫成影片腳本。",
+    "issue": 4,
+    "url": "https://ainews.tvbs.ai/issues/004.html#section-jump-4"
+  },
+  {
+    "cat": "寫程式",
+    "title": "Claude 3.7 Sonnet：寫程式與資訊視覺化強援",
+    "sub": "Anthropic 推出的混合推理模型，成為許多專業用戶首選。免費開放所有用戶使用（有每日訊息上限），寫程式與視覺化任務表現突出。",
+    "issue": 3,
+    "url": "https://ainews.tvbs.ai/issues/003.html#section-jump-3"
+  },
+  {
+    "cat": "工具教學",
+    "title": "用 Claude 3.7 Sonnet 點亮你的數據",
+    "sub": "想把枯燥的文字資料變成清晰易懂的視覺圖表？在 AIWIZE 平台直接呼叫 Claude 3.7 Sonnet 的 SVG 超能力，一鍵搞定。",
+    "issue": 3,
+    "url": "https://ainews.tvbs.ai/issues/003.html#section-jump-3"
+  },
+  {
+    "cat": "筆記知識",
+    "title": "NotebookLM：免費超強 AI 筆記工具",
+    "sub": "Google I/O 2023 推出的實驗產品，支援文字、音訊、YouTube 影片分析，可自動將內容轉換成 Podcast 形式，摘要分析一次到位。",
+    "issue": 2,
+    "url": "https://ainews.tvbs.ai/issues/002.html#section-jump-3"
+  },
+  {
+    "cat": "工具教學",
+    "title": "圖片轉影片，直存 Google Drive",
+    "sub": "用 AIWIZE 自動化流程搭配 Wan2.1 模型，將靜態圖片變身吸睛影片，成品自動存進 Google Drive，社群素材製作再省時。",
+    "issue": 2,
+    "url": "https://ainews.tvbs.ai/issues/002.html#section-jump-3"
+  },
+  {
+    "cat": "搜尋研究",
+    "title": "Grok 3 DeepSearch 功能",
+    "sub": "xAI 推出的深度搜尋功能，能快速搜尋、分析、過濾並總結資訊，提供精準答案。目前完全免費使用，並附各家 Deep Research 特色比較。",
+    "issue": 1,
+    "url": "https://ainews.tvbs.ai/issues/001.html#section-jump-3"
+  },
+  {
+    "cat": "工具教學",
+    "title": "快速指令，效率翻倍！",
+    "sub": "厭倦了重複輸入相同的 Prompt？AIWIZE 的快速指令功能一次解決，收錄常用指令範本、可自訂快捷鍵，省下重複打字的時間。",
+    "issue": 1,
+    "url": "https://ainews.tvbs.ai/issues/001.html#section-jump-3"
+  }
+]
