@@ -1,0 +1,177 @@
+[
+  {
+    "id": "feed-workspace",
+    "tag": "應用技巧",
+    "title": "Google Workspace Intelligence 發表",
+    "summary": "Cloud Next '26 發表全新 Workspace Intelligence，將 AI 從「問答工具」轉型為「主動助理」。整合 Gmail、Drive、Calendar 等數據，主動理解用戶意圖並動手完成任務，消除切換應用的效率黑洞。",
+    "sourceUrl": "https://workspace.google.com/blog/"
+  },
+  {
+    "id": "feed-notebooklm",
+    "tag": "應用技巧",
+    "title": "NotebookLM 從筆記工具升級為知識中心",
+    "summary": "核心定位從「筆記工具」轉變為「理解、整理、建構」中心。新增自動標籤與分類功能：上傳 5 個以上來源時自動分類命名，支援自訂類別與跨主題標籤。UI 也支援改名稱、拖拉排序、加 emoji。",
+    "sourceUrl": "https://notebooklm.google.com"
+  },
+  {
+    "id": "feed-aistudio",
+    "tag": "應用技巧",
+    "title": "Google AI Studio 整合 Gemini Pro 訂閱",
+    "summary": "打通 AI Studio 與 Gemini Pro 訂閱帳戶，可低門檻使用 Gemini 3.1 Pro 與 Nano Banana 2 等高階模型。訂閱 AI Pro ($19.99/月) 或 Ultra 後 API 額度從每日 50 次提升至 500 次。",
+    "sourceUrl": "https://aistudio.google.com"
+  },
+  {
+    "id": "feed-deep-research",
+    "tag": "AI 代理",
+    "title": "Gemini Deep Research / Deep Research Max 發布",
+    "summary": "建立在 Gemini 3.1 Pro 上的自主研究代理，支援 MCP 接入企業資料庫（FactSet、S&P Global、PitchBook 合作中）、原生 HTML 圖表輸出、協作式研究規劃。目前 Public Preview，透過 Gemini API 付費層開放。",
+    "sourceUrl": "https://aistudio.google.com"
+  },
+  {
+    "id": "feed-google-anthropic",
+    "tag": "產業動態",
+    "title": "Google 投資 Anthropic 400 億美元",
+    "summary": "Google 確認投資 Anthropic 高達 400 億美元，並綁定 Claude 模型在 Google Cloud 運行（高達 5GW 規模），使 Google 同時成為其股東與關鍵雲端供應商。",
+    "sourceUrl": "https://www.anthropic.com/news"
+  },
+  {
+    "id": "feed-gemini-docs",
+    "tag": "應用技巧",
+    "title": "Gemini 直接生成 Docs / Sheets / Slides / PDF",
+    "summary": "Gemini 現在可以直接產出 Google Docs、Sheets、Slides 文件，甚至直接輸出 PDF，省去複製貼上與格式調整的步驟。",
+    "sourceUrl": "https://www.threads.com/@aiposthub/post/DXvTQYUEaWL"
+  },
+  {
+    "id": "feed-claude-opus",
+    "tag": "模型發布",
+    "title": "Claude Opus 4.7 發布",
+    "summary": "主打軟體工程能力大幅進化，編碼基準效能提升 10–15%。視覺處理能力提升三倍，支援 2,576 像素高解析度影像，能精確判讀複雜圖表報表。具更嚴謹指令遵從度與自我驗證能力，多步驟任務可精準控管運算資源與預算。",
+    "sourceUrl": "https://www.anthropic.com/news/claude-opus-4-7"
+  },
+  {
+    "id": "feed-claude-design",
+    "tag": "應用技巧",
+    "title": "Anthropic 推出 Claude Design",
+    "summary": "將對話轉化為視覺原型的工具，強項在即時渲染與互動性，能將 AI 生成的 React 或 HTML 代碼直接轉化為可操作的網頁組件。透過自然語言即可調整 UI 與風格，大幅降低原型設計門檻。",
+    "sourceUrl": "https://www.anthropic.com/news"
+  },
+  {
+    "id": "feed-claude-video",
+    "tag": "應用技巧",
+    "title": "Claude 支援 YouTube / TikTok / IG 影片解析",
+    "summary": "丟一個影片連結進去，Claude 直接拆解整支影片內容，包含畫面描述、對白整理、重點摘要。對媒體做影片轉錄、競品分析、社群監測非常實用。",
+    "sourceUrl": "https://www.threads.com/@aiposthub/post/DX3uYtOjz0V"
+  },
+  {
+    "id": "feed-claude-blender",
+    "tag": "應用技巧",
+    "title": "Claude 接上 Blender 用對話改 3D 場景",
+    "summary": "Claude 正式整合 Blender，可用對話直接 debug 場景、建立 scripts / workflow 工具、批次修改所有物件。把 3D 製作工作流的部分機械操作交給 AI。",
+    "sourceUrl": "https://www.threads.com/@aiposthub/post/DXruHLikYQ0"
+  },
+  {
+    "id": "feed-claude-security",
+    "tag": "應用技巧",
+    "title": "Claude Security 進入工程團隊安全工作流",
+    "summary": "Claude Enterprise 客戶 public beta 開放，掃描整個 codebase 找出潛在安全漏洞並進一步驗證 finding 降低誤報率。Claude 從「寫程式助手」往「AI 安全工程協作者」靠近一步。",
+    "sourceUrl": "https://www.threads.com/@aiposthub/post/DXx7ms5Enbh"
+  },
+  {
+    "id": "feed-adobe-connector",
+    "tag": "應用技巧",
+    "title": "Adobe × Claude 推出 Adobe Creativity Connector",
+    "summary": "不用開任何 Adobe 軟體，描述需求 Claude 即自動調用工具排流程完成。需登入 Adobe 帳號才能使用完整功能（約 40+ 工具與跨對話儲存），未登入僅能用基本工具。",
+    "sourceUrl": "https://www.threads.com/@aiposthub/post/DXsWlA8DcWG"
+  },
+  {
+    "id": "feed-codex",
+    "tag": "應用技巧",
+    "title": "OpenAI Codex 重大更新（含寵物模式）",
+    "summary": "迎來 7 項更新：自動審核模式、OS 全域語音聽寫、瀏覽器控制、Office 整合及 .tex 插件，實現「自己寫 Code 自己修」自動化流程。新增 /pet 寵物模式：開啟電子寵物即時顯示 Codex 工作狀態，無須打開應用即可查看進度。",
+    "sourceUrl": "https://openai.com/codex"
+  },
+  {
+    "id": "feed-image2-line-chat",
+    "tag": "圖像生成",
+    "title": "GPT Image 2.0 可生成 LINE 對話截圖",
+    "summary": "社群實測發現 Image 2.0 能精準生成 LINE 風格對話紀錄，可用於行銷素材、防詐騙宣導範例。中文渲染準確率高，連訊息泡泡與時間戳都能一次到位。",
+    "sourceUrl": "https://www.threads.com/@linkmusicnow/post/DX3E3KEDzwA"
+  },
+  {
+    "id": "feed-codex-skills",
+    "tag": "應用技巧",
+    "title": "Awesome Codex Skills 工作流技能合集",
+    "summary": "社群整理出幾十個可直接丟進工作流用的 Codex 技能：代碼遷移 + PR 審查、CI 修復 + Sentry 錯誤診斷、會議紀要自動生成、履歷優化 + 競品分析等。",
+    "sourceUrl": "https://www.threads.com/@aiposthub/post/DXtHMFrgdew"
+  },
+  {
+    "id": "feed-grok-43",
+    "tag": "模型發布",
+    "title": "xAI Grok 4.3 低調上線",
+    "summary": "預計推出 Grok Build 與 Grok Computer 桌面應用（Mac/Windows）。特色含「競技場模式 (Arena mode)」，允許多個 AI 代理同時處理任務，由開發者選取最佳輸出。1M context window 是 Claude Opus 4.7 的 12 倍，API 成本更低。",
+    "sourceUrl": "https://x.ai"
+  },
+  {
+    "id": "feed-xai-voices",
+    "tag": "應用技巧",
+    "title": "xAI Custom Voices 一分鐘語音克隆",
+    "summary": "建立於 Grok Speech-to-Text、Text-to-Speech API 與 Grok Voice Think Fast 1.0 語音代理之上的 Custom Voices 功能，僅需一分鐘樣本即可克隆語音。",
+    "sourceUrl": "https://hk.news.yahoo.com/xai-%E6%8E%A8%E5%87%BA-custom-voices-%E5%8A%9F%E8%83%BD-185940765.html"
+  },
+  {
+    "id": "feed-deepseek-v4",
+    "tag": "模型發布",
+    "title": "DeepSeek-V4 系列發布（V4-Pro / V4-Flash）",
+    "summary": "推出開源模型 V4-Pro 與 V4-Flash，支援 1M 上下文。Pro 在數學、程式推理任務表現驚人，Flash 主打高性價比。引入 Token 壓縮與稀疏注意力 (DSA) 技術，以極低成本挑戰頂級閉源模型。",
+    "sourceUrl": "https://www.deepseek.com"
+  },
+  {
+    "id": "feed-deepseek-pricing",
+    "tag": "產業動態",
+    "title": "DeepSeek API 全面降價（快取命中 1/10）",
+    "summary": "全系 API 服務輸入快取命中價降至原價 1/10。Pro 模型 5/5 前疊加 2.5 折限時優惠。舊接口 deepseek-chat / deepseek-reasoner 將於 2026/7/24 停用，當前分別指向 deepseek-v4-flash 的非思考與思考模式。",
+    "sourceUrl": "https://www.deepseek.com"
+  },
+  {
+    "id": "feed-tencent-hymt",
+    "tag": "應用技巧",
+    "title": "騰訊混元 Hy-MT1.5 離線翻譯模型（440MB）",
+    "summary": "極致量化壓縮版手機端離線翻譯模型，基於 18 億參數的 Hy-MT1.5-1.8B，透過 Sherry 稀疏三值量化技術壓縮至僅 440MB。支援 33 種語言、5 種方言，1056 個翻譯方向，無需聯網本地運行，官方標榜質量超越 Google 翻譯。",
+    "sourceUrl": "https://hunyuan.tencent.com"
+  },
+  {
+    "id": "feed-kling-3",
+    "tag": "影音創作",
+    "title": "Kling 3.0（可靈 3.0）登場",
+    "summary": "AI 影片生成進入 4K 原生時代，快手公司旗下 Kling 3.0 模型能直接輸出高品質 4K 影片，而非傳統的後製升頻。",
+    "sourceUrl": "https://klingai.com"
+  },
+  {
+    "id": "feed-nvidia-nim",
+    "tag": "產業動態",
+    "title": "Nvidia NIM 平台無限免費 API",
+    "summary": "用戶可存取 80 種以上的旗艦 AI 模型（Qwen 3.5、DeepSeek 等），僅限速而不限總量，大幅降低開發者測試與原型開發門檻。",
+    "sourceUrl": "https://www.nvidia.com/en-us/ai/"
+  },
+  {
+    "id": "feed-copilot-pricing",
+    "tag": "產業動態",
+    "title": "GitHub Copilot 6/1 起改用量計費",
+    "summary": "代碼補全與 Next Edit 仍包含在訂閱內，不消耗 AI Credits。代碼審查除消耗 Credits 外還消耗 Actions 運行時長。Pro $10/月含 $10 Credits，Pro+ $39/月含 $39 Credits，社群引發大量爭議。",
+    "sourceUrl": "https://github.com/features/copilot"
+  },
+  {
+    "id": "feed-lobsterclaw",
+    "tag": "AI 代理",
+    "title": "Telegram LobsterClaw 一鍵建 AI Bot",
+    "summary": "用戶無需程式背景，僅需取名與設定帳號即可在數秒內建立 AI Bot，將 AI 代理製作流程大眾化、社群化。",
+    "sourceUrl": "https://t.me/LobsterClaw_bot"
+  },
+  {
+    "id": "feed-claude-chinese-tax",
+    "tag": "應用技巧",
+    "title": "Claude 「中文稅」現象觀察",
+    "summary": "社群討論 Claude 模型回應中文 prompt 時 token 使用量明顯較高的現象。對中文使用者而言，相同任務下 API 計費成本可能比英文高出數倍，影響成本估算。",
+    "sourceUrl": "https://www.threads.com/@prompt_case/post/DXvRviuFAr-"
+  }
+]

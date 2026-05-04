@@ -1,0 +1,28 @@
+[
+  {
+    "title": "一般 Prompt（文字・寫作・對話）",
+    "barColor": "var(--primary)",
+    "sites": [
+      {"name": "Awesome ChatGPT Prompts", "url": "https://github.com/f/awesome-chatgpt-prompts", "icon": "⭐", "iconBg": "linear-gradient(135deg,#24292e,#0d1117)", "desc": "GitHub 10 萬+ Star 超人氣範本庫"},
+      {"name": "Anthropic Prompt Library", "url": "https://docs.anthropic.com/claude/prompt-library", "icon": "An", "iconBg": "linear-gradient(135deg,#cc785c,#a0563c)", "desc": "Claude 官方範本"},
+      {"name": "FlowGPT", "url": "https://flowgpt.com", "icon": "FG", "iconBg": "linear-gradient(135deg,#10b981,#059669)", "desc": "最大 Prompt 分享社群"},
+      {"name": "Prompt Engineering Guide", "url": "https://www.promptingguide.ai", "icon": "PG", "iconBg": "linear-gradient(135deg,#f59e0b,#ea580c)", "desc": "完整教學含中文版"},
+      {"name": "Learn Prompting", "url": "https://learnprompting.org", "icon": "LP", "iconBg": "linear-gradient(135deg,#0ea5e9,#0284c7)", "desc": "免費 Prompt 學習平台"},
+      {"name": "Snack Prompt", "url": "https://snackprompt.com", "icon": "SP", "iconBg": "linear-gradient(135deg,#fb923c,#f97316)", "desc": "精選 Prompt，一鍵套用"},
+      {"name": "PromptBase", "url": "https://promptbase.com", "icon": "PB", "iconBg": "linear-gradient(135deg,#6366f1,#6d7bff)", "desc": "Prompt 交易市集"},
+      {"name": "AIPRM", "url": "https://www.aiprm.com", "icon": "AP", "iconBg": "linear-gradient(135deg,#14b8a6,#0f766e)", "desc": "ChatGPT 瀏覽器擴充"}
+    ]
+  },
+  {
+    "title": "影音圖像生成 Prompt",
+    "barColor": "var(--accent)",
+    "sites": [
+      {"name": "PromptHero", "url": "https://prompthero.com", "icon": "PH", "iconBg": "linear-gradient(135deg,#6d7bff,#3a4bc9)", "desc": "Midjourney / SD 最大社群"},
+      {"name": "Lexica", "url": "https://lexica.art", "icon": "Lx", "iconBg": "linear-gradient(135deg,#6d7bff,#6366f1)", "desc": "AI 圖像搜尋 + Prompt 查詢"},
+      {"name": "Civitai", "url": "https://civitai.com", "icon": "Cv", "iconBg": "linear-gradient(135deg,#0ea5e9,#0284c7)", "desc": "Stable Diffusion 模型與 Prompt"},
+      {"name": "OpenArt", "url": "https://openart.ai", "icon": "OA", "iconBg": "linear-gradient(135deg,#f59e0b,#d97706)", "desc": "AI 圖像 Prompt 書籤收藏"},
+      {"name": "MidLibrary", "url": "https://www.midlibrary.io", "icon": "ML", "iconBg": "linear-gradient(135deg,#2d2d2d,#555)", "desc": "Midjourney 風格參考大全"},
+      {"name": "PromptoMANIA", "url": "https://www.promptomania.com", "icon": "Po", "iconBg": "linear-gradient(135deg,#f97316,#ea580c)", "desc": "圖像 Prompt 生成器"}
+    ]
+  }
+]

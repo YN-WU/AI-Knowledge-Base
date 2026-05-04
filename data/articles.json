@@ -1,0 +1,58 @@
+[
+  {
+    "id": "019-gpt-image-2",
+    "date": "2026-04-30",
+    "tag": "圖像生成",
+    "title": "從「好看」到「精確」 GPT Image 2.0 有多強？跟 Nano Banana 差在哪？",
+    "summary": "OpenAI 近期發布的圖像生成模型 GPT Image 2.0 掀起網路熱潮，解決 AI 繪圖文字出錯的痛點，產出內容更高效精準。",
+    "image": "https://i.meee.com.tw/NCXsIiZ.png",
+    "imageCaption": "GPT Image 2.0 登場。 ( 圖 / 翻攝自 OpenAI 官網 )",
+    "sourceUrl": "https://openai.com/zh-Hant/index/introducing-chatgpt-images-2-0/#textmode",
+    "sourceLabel": "GPT Image 2.0 官方完整介紹 →",
+    "content": "<p class=\"first-paragraph\">OpenAI 近期發布的圖像生成模型 GPT Image 2.0 掀起網路熱潮，只要透過簡單的指令，就能產出專業級的視覺排版，不僅解決了長久以來 AI 繪圖文字出錯的痛點，產出內容也更高效精準。來看看 GPT Image 2.0 究竟具備哪些能力：</p><h4>GPT Image 2.0 的三大特色</h4><p>GPT Image 2.0 不再只是單純的圖像生成器，其核心進化在於將「邏輯推理」注入「視覺創作」。</p><ul><li><strong>文字渲染「零翻車」</strong>：這是全球首個能精準處理中、英、日三語渲染的模型，準確率突破 95%。對編輯團隊而言，這意味著 AI 生成的圖可直接作為標題封面，無需設計師二度修字，大幅縮短即時新聞的產製流程。</li><li><strong>先想後畫（Thinking Mode）</strong>：該模型具備構圖推理能力。在生成如選舉地圖、經濟走勢等「資訊圖表（Infographic）」時，其地理位置與數據比例具備高度真實參考價值，解決了以往 AI 繪圖「數據造假」的致命傷。</li><li><strong>跨場景連貫性</strong>：透過強大的物件鎖定技術，GPT Image 2.0 能確保虛擬品牌大使或產品特徵在不同報導、分鏡中保持外型一致，為長期的專題報導或影音前置分鏡提供穩定支援。</li></ul><h4>GPT Image 2.0 和 Nano Banana 2 的差異</h4><p>自從 GPT Image 2.0 推出後，其產圖的品質被不少網友稱完勝 Google 的 Nano Banana 2 / Pro 模型。究竟這兩種圖像生成模型差異在哪裡？運用在工作上應該怎麼選？</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">1. 核心定位差異：精品 vs. 量產</h4><p><strong>GPT Image 2</strong>：適合需要絕對精確度與排版美學的專案，如專業雜誌排版或全球行銷活動。它深諳字體權重與留白層次，產出的首張結果通常即可直接採納，專注於「精品級」視覺。</p><p><strong>Nano Banana 2</strong>：憑藉 Flash 架構，Nano Banana 2 是追求極致效率的首選。其平均延遲僅約 0.85 秒，適合大規模自動化生產與社群媒體高頻率發文，能以極低成本快速驗證創意。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">2. 效能與成本對照表</h4><div style=\"overflow-x:auto;margin:10px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13px\"><thead><tr style=\"background:rgba(94,245,255,0.08);border-bottom:1.5px solid var(--accent)\"><th style=\"padding:8px 10px;text-align:left\">評測項目</th><th style=\"padding:8px 10px;text-align:left\">GPT Image 2</th><th style=\"padding:8px 10px;text-align:left\">Nano Banana 2</th><th style=\"padding:8px 10px;text-align:left\">Nano Banana Pro</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:8px 10px\">視覺優勢</td><td style=\"padding:8px 10px\">UI 設計、排版邏輯</td><td style=\"padding:8px 10px\">色彩科學、視覺衝擊力</td><td style=\"padding:8px 10px\">專業多功能（均衡）</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:8px 10px\">拼字準確度</td><td style=\"padding:8px 10px\"><strong>98.5%（最高）</strong></td><td style=\"padding:8px 10px\">91.2%</td><td style=\"padding:8px 10px\">94.8%</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:8px 10px\">平均延遲</td><td style=\"padding:8px 10px\">~4.2s（較慢）</td><td style=\"padding:8px 10px\"><strong>~0.85s（最快）</strong></td><td style=\"padding:8px 10px\">~1.8s</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:8px 10px\">單張成本（1k 標準解析度）</td><td style=\"padding:8px 10px\">約 NTD 6.8</td><td style=\"padding:8px 10px\">約 NTD 2.2</td><td style=\"padding:8px 10px\">約 NTD 4.3</td></tr><tr><td style=\"padding:8px 10px\">適合場景</td><td style=\"padding:8px 10px\">專業排版、品牌主視覺包裝</td><td style=\"padding:8px 10px\">社群媒體、自動化產線、即時效率需求</td><td style=\"padding:8px 10px\">生產級多功能應用</td></tr></tbody></table></div><h4>實際應用效果比較</h4><p>使用同一組基礎提示詞的情況下，在整體排版上 GPT Image 2.0 的產出結果更有設計感、更精緻。</p><div style=\"background:rgba(20,35,75,0.4);border-left:3px solid var(--accent);padding:12px 16px;margin:12px 0;font-size:13px;color:var(--text-light)\"><strong>提示詞：</strong>幫我生成一張廣告文宣，商品資訊如下：<br>■ 商品名稱：【享食尚】滴雞精 10 入（45ml/入）<br>■ 產品規格：45ml/10 入/盒、本組共 10 入<br>■ 產品成份：100% 台灣黑羽土雞滴雞精<br>■ 完整產銷履歷認證、食安最高標準<br>■ 獨家禽類粗蛋白萃取專利技術，超高營養質量<br>■ 每 100ml 含 8.7g 蛋白質，有助於組織修復與生長發育<br>■ 18 種胺基酸（內含 8 種人體必需胺基酸）<br>■ 無防腐劑、零脂肪、零膽固醇、口感濃醇無腥味<br>■ 常溫保存，送禮自用第一首選</div><p><strong>原圖素材：</strong></p><p><img src=\"https://i.meee.com.tw/NHtPop4.jpg\" alt=\"原圖素材\" style=\"max-width:100%;border-radius:6px\"></p><p><strong>GPT Image 2.0 成品：</strong></p><p><img src=\"https://i.meee.com.tw/vd6EUvF.png\" alt=\"GPT Image 2.0 成品\" style=\"max-width:100%;border-radius:6px\"></p><p><strong>Nano Banana 2 成品：</strong></p><p><img src=\"https://i.meee.com.tw/H2VXCQH.jpg\" alt=\"Nano Banana 2 成品\" style=\"max-width:100%;border-radius:6px\"></p>",
+    "featured": true,
+    "issueNo": "019"
+  },
+  {
+    "id": "019-gpt-5-5",
+    "date": "2026-04-30",
+    "tag": "模型發布",
+    "title": "GPT-5.5 登場！AI 開始會自己做事 亮點及應用場景一次懂",
+    "summary": "OpenAI 推出最新旗艦 GPT-5.5，從「對話框問答工具」轉型為「跨工具任務代理」。",
+    "image": "https://i.meee.com.tw/xeDXBPO.jpg",
+    "imageCaption": "GPT 5.5 登場。 ( 圖 / 翻攝自 OpenAI 官網 )",
+    "sourceUrl": "https://openai.com/zh-Hant/index/introducing-gpt-5-5/",
+    "sourceLabel": "GPT 5.5 官方完整介紹 →",
+    "content": "<p class=\"first-paragraph\">OpenAI 日前正式推出最新旗艦模型 GPT-5.5。這不僅是一次效能微調，更代表著 ChatGPT 從「對話框裡的問答工具」轉型為「跨工具的任務代理（Task Agent）」的關鍵改變。</p><h4>GPT-5.5 進化核心：從「聽令行事」到「自主執行」</h4><p>GPT-5.5 這次最關鍵的提升在於「Agentic（代理性）」能力。過去，使用者需要將複雜任務拆解，逐步對 AI 下指令、搬運資料；現在，GPT-5.5 能夠在減少人工干預的情況下，自主完成一整串工作流程。</p><p>根據官方說明，GPT-5.5 的能力進化可歸納為以下面向：</p><ul><li><strong>電腦操作能力（Computer Use）</strong>：能結合 Codex 展現強大的電腦操作能力，能在不同應用程式之間切換移動，完成多步驟的複雜任務。</li><li><strong>自主編程（Coding）</strong>：深度整合 Codex 環境，能獨立完成撰寫、除錯到測試的完整開發週期。</li><li><strong>研究整合（Research）</strong>：不再只是搜尋資料，GPT-5.5 能主動交叉比對資訊，並直接產出具結構性的研究摘要。</li><li><strong>文件密集任務</strong>：橫跨簡報、試算表、電子郵件與各類文檔，自動處理海量文字的資訊整合，減少人工搬運的動作。</li><li><strong>高效能 Token 運用</strong>：官方強調「用更少 Token 做更多事」，雖然 API 單價提升，但單一任務所需的 Token 效率大幅優化，輸出更精準。</li></ul><p>在費用方面，GPT-5.5 目前優先開放給 Plus（20 美元/月）、Pro（200 美元/月）及團隊用戶使用。雖然 API 輸入訂價翻倍至每百萬 Token 5 美元，但考量到任務成功率與效率的提升，實際付出的成本未必會增加。</p><h4>媒體工作的應用與影響</h4><p>對於媒體同仁與廣大辦公族而言，GPT-5.5 的實際意義在於「交辦任務完成度」的質變。以往需要「複製、貼上、整合」的手工過程，現在只需一個指令「幫我完成這件事」，AI 便能自主跑完後續流程。應用場景舉例：</p><ul><li><strong>從「單點對話」到「帶狀流程」</strong>：過去需要你下指令寫大綱、再下指令寫全文；現在你可以說：「針對這本 50 頁的報告，幫我寫成三篇不同語氣的社群貼文、配好標籤，並直接存入我們的 Google Drive 協作夾。」</li><li><strong>自主研究員</strong>：它能主動開啟瀏覽器查找資料、交叉比對事實、查核假新聞，最後輸出結構化的背景資料夾，而不是只給你一段文字。</li><li><strong>跨軟體操作</strong>：它能模擬人類操作電腦，在 Excel、Word、Email 和專案管理工具（如 Notion / Asana）之間移動資料，處理繁瑣的行政流程。</li><li><strong>自動化編譯</strong>：24 小時監控外媒訊息，自主翻譯、摘要，並自動抓取相關背景數據。</li><li><strong>社群經營</strong>：只要給它一個核心議題，它能自主完成跨平台（FB / IG / Threads）的文案排期與發布。</li><li><strong>數據分析建議</strong>：直接丟入讀者點擊率報表或政府公開資料夾，它能自主分析趨勢、畫出圖表並提供洞察建議。</li></ul>",
+    "featured": true,
+    "issueNo": "019"
+  },
+  {
+    "id": "019-hermes-agent",
+    "date": "2026-04-30",
+    "tag": "AI 代理",
+    "title": "會自我進化的 AI 助理！Hermes Agent 爆紅 內建學習機制越用越聰明",
+    "summary": "Nous Research 推出開源自進化 AI 助理 Hermes Agent，解決 AI 健忘症痛點，越用越聰明。",
+    "image": "https://i.meee.com.tw/fiWEEEB.jpg",
+    "imageCaption": "Hermes Agent 起始介面。（圖 / 翻攝自 Hermes Agent）",
+    "sourceUrl": "https://github.com/nousresearch/hermes-agent",
+    "sourceLabel": "Hermes Agent GitHub →",
+    "content": "<p class=\"first-paragraph\">由科技公司 Nous Research 開發的開源自進化 AI 助理 Hermes Agent 日前在科技圈爆紅，關鍵的能力在於它解決了 AI 長期以來的「健忘症」痛點，且能透過獨特的學習迴圈機制，實現從單純執行指令到「自進化」的跨越。</p><h4>Hermes Agent 核心定位：模型無關、可自架的 AI 自主代理</h4><p>Hermes Agent 是一款採用 MIT 授權的完全開源工具，可自架，奠基於 Hermes 模型系列（基於 Llama 3.1）。其功能特色強調「自主性」與「跨平台整合」，具備以下基礎特性：</p><ul><li><strong>多平台入口</strong>：支援包含 Telegram、Discord、Slack、WhatsApp 及 Home Assistant 等超過 14 個平台，使用者可透過慣用通訊軟體下達指令。</li><li><strong>靈活後端支援</strong>：支援 OpenRouter、OpenAI、Anthropic 等雲端模型，亦可部署於本地伺服器，並提供 Local、Docker、SSH 等 6 種執行後端。</li><li><strong>工具生態</strong>：內建 40 多種工具（如網頁搜索、瀏覽器自動化、程式執行），並全面支援 MCP（Model Context Protocol，模型上下文協定）標準。</li><li><strong>模型無關</strong>：支援 OpenRouter（擁有 200 個以上的模型）、OpenAI、Anthropic、本地模型。</li></ul><h4>Hermes Agent 關鍵技術：「學習迴圈」與三層記憶系統</h4><p>Hermes Agent 最顯著的功能進步在於其<strong>自進化學習機制</strong>。這並非指修改模型本身的權重，而是透過自動化流程，將每一次成功的任務經驗轉化為可重複利用的知識。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">1. 三層記憶系統</h4><ul><li><strong>永久記憶</strong>：利用 FTS5 全文搜索引擎結合 LLM 摘要，讓 Agent 能跨工作階段（Session），精準召回歷史對話。</li><li><strong>技能文件</strong>：當任務完成後，AI 會自動將解決方案提煉成 Markdown 格式的「技能檔」，供下次調用。</li><li><strong>用戶建模</strong>：持續學習並深化對使用者工作風格、偏好與上下文的理解。</li></ul><h4 style=\"color:#6b4e9d;font-size:1.05em\">2. 五步學習迴圈</h4><p>從「觀察任務」、「提取模式」到「建立技能」，最後透過「精煉」與「定期審查更新」，讓 Agent 隨著使用時間增加而更貼近用戶需求。</p><h4>Hermes Agent 與 OpenClaw 的差異</h4><p>Hermes Agent 跟前陣子爆紅、同樣能自主代理的開源 AI 助理 OpenClaw 有什麼差別呢？其實兩者在技術上有不同取向：OpenClaw 屬於多 Agent 操作系統，適合團隊治理，記憶機制需要手動配置，在安全性方面強調存取控制與團隊管理；而 Hermes Agent 則屬於單一進程，適合個人自架，能自動儲存與提煉記憶，資料完全留存於本地。</p><h4>媒體運用的可能性</h4><p>結合 Hermes Agent 的核心特色，有四大可能的應用場景：</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">1. 自進化「風格校對員」</h4><p><strong>功能特色</strong>：學習迴圈、用戶建模。<br><strong>應用描述</strong>：AI 會自動記憶編輯對文案的修改偏好（如標題風格、用詞禁忌），隨著使用次數增加，它產出的草稿會越來越符合個人「寫作口吻」，實現<strong>越用越像真人編輯</strong>的效果。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">2. 永不失憶的「調查助手」</h4><p><strong>功能特色</strong>：跨工作階段記憶、FTS5 全文搜索。<br><strong>應用描述</strong>：適合長期的專題報導。它能記住數月前對話中的所有細節、網頁連結與原始資料，記者可隨時<strong>精準召回歷史資訊</strong>，確保深度調查的數據連貫性，不再有「AI 健忘症」。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">3. 全天候「跨平台總編」</h4><p><strong>功能特色</strong>：14+ 平台閘道、多後端執行。<br><strong>應用描述</strong>：編輯只需在 Telegram 或 Slack 下達一個指令，Hermes 即可<strong>自主跨工具操作</strong>，同步將稿件轉化為社群貼文、排程至 CMS 系統，並生成對應的配圖或語音，完成一站式發布。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">4. 知識傳承的「技能庫」</h4><p><strong>功能特色</strong>：自動生成技能文件（Skill Docs）。<br><strong>應用描述</strong>：AI 會將處理複雜任務（如數據清洗、特定格式轉換）的成功經驗自動寫成「技能檔」。這讓組織內部的<strong>工作邏輯得以數位化傳承</strong>，新進人員能直接調用前人累積的自動化技能。</p>",
+    "featured": true,
+    "issueNo": "019"
+  },
+  {
+    "id": "typeless",
+    "date": "2026-04-30",
+    "tag": "應用技巧",
+    "title": "Typeless：AI 語音聽寫工具，跨應用即時轉文字",
+    "summary": "AI 語音聽寫工具 Typeless 能將語音即時轉成文字，自動移除贅字並適應不同語氣。支援 100+ 語言、跨應用使用，本機處理不上雲。",
+    "image": "https://i.meee.com.tw/9VxCFdo.png",
+    "imageCaption": "Typeless 為跨平台 AI 語音聽寫工具。（圖 / 翻攝自 Typeless 官網）",
+    "sourceUrl": "https://www.typeless.com",
+    "sourceLabel": "Typeless 官方網站 →",
+    "content": "<p class=\"first-paragraph\">Typeless 是一款 AI 語音聽寫工具，能將語音即時轉換為文字，並依據輸入的應用程式自動調整語氣與格式。可在 Mac、Windows、iOS、Android 上使用，支援任何文字輸入框（郵件、文件、即時通訊、瀏覽器等）。</p><h4>主要功能</h4><ul><li><strong>即時語音轉文字</strong>：自動移除「嗯」、「然後」等贅字與重複，產出可直接使用的文稿。</li><li><strong>跨應用情境調整</strong>：在郵件中產出較正式語氣，在筆記應用中保留口語感。</li><li><strong>多語言支援</strong>：支援 100+ 種語言，可同時處理中英夾雜的語句。</li><li><strong>個人字典</strong>：可自訂專業術語、人名、品牌詞，避免重複校對。</li><li><strong>語音指令編輯</strong>：可用語音直接修改已寫的文字（例如「把上一句改成⋯」）。</li><li><strong>隱私設計</strong>：歷史紀錄保存於本機，宣稱零雲端資料保留，符合 HIPAA 與 GDPR。</li></ul><h4>支援平台</h4><p>macOS、Windows、iOS、Android。</p><h4>價格方案（USD）</h4><div style=\"overflow-x:auto;margin:10px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13px\"><thead><tr style=\"background:rgba(94,245,255,0.08);border-bottom:1.5px solid var(--accent)\"><th style=\"padding:8px 10px;text-align:left\">方案</th><th style=\"padding:8px 10px;text-align:left\">價格</th><th style=\"padding:8px 10px;text-align:left\">字數限制</th><th style=\"padding:8px 10px;text-align:left\">主要差異</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:8px 10px\"><strong>Free</strong></td><td style=\"padding:8px 10px\">$0</td><td style=\"padding:8px 10px\">每週 8,000 字</td><td style=\"padding:8px 10px\">完整核心功能</td></tr><tr><td style=\"padding:8px 10px\"><strong>Pro</strong></td><td style=\"padding:8px 10px\">$12 /月（年繳）<br>或 $30 /月（月繳）</td><td style=\"padding:8px 10px\">不限</td><td style=\"padding:8px 10px\">團隊管理、優先支援、新功能優先試用</td></tr></tbody></table></div><p style=\"font-size:13px;color:var(--text-light)\">註：新帳號可享 30 天 Pro 試用，到期後自動轉為 Free 方案。</p>",
+    "featured": false,
+    "issueNo": "019"
+  }
+]

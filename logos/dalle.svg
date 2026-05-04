@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 1" width="80" height="16">
+	<defs>
+		<style>
+			.a{fill:#FFFF66;}
+			.b{fill:#42FFFF;}
+			.c{fill:#51DA4C;}
+			.d{fill:#FF6E3C;}
+			.e{fill:#3C46FF;}
+		</style>
+	</defs>
+
+	<rect class="a" width="1" height="1"></rect>
+	<rect class="b" x="1" width="1" height="1"></rect>
+	<rect class="c" x="2" width="1" height="1"></rect>
+	<rect class="d" x="3" width="1" height="1"></rect>
+	<rect class="e" x="4" width="1" height="1"></rect>
+</svg>
