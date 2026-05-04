@@ -108,7 +108,7 @@ TVBS AI Newsletter/
 ## 🚀 部署資訊
 
 - **目前部署**: Netlify
-- **網址**: https://tvbsainews.netlify.app/
+- **網址**: https://ainews.tvbs.ai/
 - **自動部署**: 推送到 main 分支自動部署
 - **建置時間**: < 1 分鐘
 

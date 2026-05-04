@@ -6,7 +6,7 @@
 
 這是一個由 TVBS AI 未來科技部製作的 AI 科技電子報網站，定期發布 AI 領域的最新資訊、技術分析、工具介紹和產業動態。
 
-**線上網站：** https://tvbsainews.netlify.app/
+**線上網站：** https://ainews.tvbs.ai/
 
 ## ✨ 主要功能
 

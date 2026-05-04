@@ -1,7 +1,7 @@
 # TVBS AI Newsletter「On Air」— Claude 專案背景
 
 ## 專案簡介
-TVBS AI 電子報，每期一份獨立 HTML 檔案，部署於 Netlify（https://tvbsainews.netlify.app/）。
+TVBS AI 電子報，每期一份獨立 HTML 檔案，部署於 Netlify（https://ainews.tvbs.ai/）。
 目前已出版 001–018 期，019 為 Coming Soon 預留頁面。
 
 ---
