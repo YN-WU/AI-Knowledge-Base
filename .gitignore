@@ -1,0 +1,12 @@
+# OMC working state (Claude Code 工具狀態)
+.omc/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Local dev
+*.log
