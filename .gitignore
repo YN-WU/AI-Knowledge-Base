@@ -10,3 +10,7 @@
 
 # Local dev
 *.log
+
+# One-off scripts and scratch files
+patch.js
+scratch/

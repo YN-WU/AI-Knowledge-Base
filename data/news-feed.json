@@ -129,7 +129,7 @@
     "id": "feed-deepseek-pricing",
     "tag": "產業動態",
     "title": "DeepSeek API 全面降價（快取命中 1/10）",
-    "summary": "全系 API 服務輸入快取命中價降至原價 1/10。Pro 模型 5/5 前疊加 2.5 折限時優惠。舊接口 deepseek-chat / deepseek-reasoner 將於 2026/7/24 停用，當前分別指向 deepseek-v4-flash 的非思考與思考模式。",
+    "summary": "全系 API 服務輸入快取命中價降至原價 1/10。Pro 模型 5/5 前疊加 2.5 折限時優惠。舊接口 deepseek-chat / deepseek-reasoner 將於 2026/07/24 停用，當前分別指向 deepseek-v4-flash 的非思考與思考模式。",
     "sourceUrl": "https://www.deepseek.com"
   },
   {

@@ -1,45 +1,45 @@
-function switchTab(page){
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active',t.dataset.page===page);});
-  document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('active',p.id==='page-'+page);});
-  window.scrollTo({top:0,behavior:'smooth'});
-  
+function switchTab(page) {
+  document.querySelectorAll('.tab').forEach(function (t) { t.classList.toggle('active', t.dataset.page === page); });
+  document.querySelectorAll('.page').forEach(function (p) { p.classList.toggle('active', p.id === 'page-' + page); });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
   // 核心修正：切換到歸檔頁時自動載入內容
-  if(page === 'archive') {
-    if(typeof renderArchive === 'function' && issuesData.length > 0) {
+  if (page === 'archive') {
+    if (typeof renderArchive === 'function' && issuesData.length > 0) {
       renderArchive('all');
     }
   }
 }
-document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){switchTab(t.dataset.page);});});
+document.querySelectorAll('.tab').forEach(function (t) { t.addEventListener('click', function () { switchTab(t.dataset.page); }); });
 
 // 模型類別切換
-document.querySelectorAll('.model-type-tab').forEach(function(t){
-  t.addEventListener('click',function(){
-    document.querySelectorAll('.model-type-tab').forEach(function(x){x.classList.remove('active');});
+document.querySelectorAll('.model-type-tab').forEach(function (t) {
+  t.addEventListener('click', function () {
+    document.querySelectorAll('.model-type-tab').forEach(function (x) { x.classList.remove('active'); });
     t.classList.add('active');
-    document.querySelectorAll('.model-type-pane').forEach(function(p){p.classList.toggle('active',p.id==='pane-'+t.dataset.type);});
+    document.querySelectorAll('.model-type-pane').forEach(function (p) { p.classList.toggle('active', p.id === 'pane-' + t.dataset.type); });
   });
 });
-document.querySelectorAll('.chip').forEach(function(c){
-  c.addEventListener('click',function(){
-    c.parentElement.querySelectorAll('.chip').forEach(function(x){x.classList.remove('active');});
+document.querySelectorAll('.chip').forEach(function (c) {
+  c.addEventListener('click', function () {
+    c.parentElement.querySelectorAll('.chip').forEach(function (x) { x.classList.remove('active'); });
     c.classList.add('active');
-    
+
     // 如果是在存檔頁面
-    if(c.parentElement.classList.contains('archive-filters')) {
-      if(typeof renderArchive === 'function') renderArchive(c.dataset.filter);
+    if (c.parentElement.classList.contains('archive-filters')) {
+      if (typeof renderArchive === 'function') renderArchive(c.dataset.filter);
     }
     // 如果是在 PROMPT 專欄
-    if(c.parentElement.classList.contains('prompt-filters')) {
-      if(typeof renderPrompts === 'function') renderPrompts(c.dataset.filter);
+    if (c.parentElement.classList.contains('prompt-filters')) {
+      if (typeof renderPrompts === 'function') renderPrompts(c.dataset.filter);
     }
     // 如果是在新聞趨勢
-    if(c.parentElement.classList.contains('trend-filters')) {
+    if (c.parentElement.classList.contains('trend-filters')) {
       var filter = c.dataset.filter;
       var cards = document.querySelectorAll('#trendGrid .article-card');
-      cards.forEach(function(card) {
+      cards.forEach(function (card) {
         var tag = card.querySelector('.tag').textContent.trim();
-        if(filter === '全部' || tag === filter) {
+        if (filter === '全部' || tag === filter) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
@@ -77,17 +77,17 @@ function renderPrompts(filter = '全部') {
   `).join('');
 }
 
-var slideIdx=0,slideTotal=0;
-function renderDots(){var d=document.getElementById('sliderDots');if(!d)return;var h='';for(var i=0;i<slideTotal;i++){h+='<div class="slider-dot'+(i===slideIdx?' active':'')+'" onclick="slideGoTo('+i+')"></div>';}d.innerHTML=h;}
-function slideGoTo(i){slideIdx=(i+slideTotal)%slideTotal;var t=document.getElementById('slidesTrack');if(t)t.style.transform='translateX(-'+(slideIdx*100)+'%)';renderDots();}
-function slideMove(d){slideGoTo(slideIdx+d);}
-function initHeroSlider(){
-  slideIdx=0;
-  slideTotal=document.querySelectorAll('#slidesTrack .slide').length;
-  if(slideTotal>0){
+var slideIdx = 0, slideTotal = 0;
+function renderDots() { var d = document.getElementById('sliderDots'); if (!d) return; var h = ''; for (var i = 0; i < slideTotal; i++) { h += '<div class="slider-dot' + (i === slideIdx ? ' active' : '') + '" onclick="slideGoTo(' + i + ')"></div>'; } d.innerHTML = h; }
+function slideGoTo(i) { slideIdx = (i + slideTotal) % slideTotal; var t = document.getElementById('slidesTrack'); if (t) t.style.transform = 'translateX(-' + (slideIdx * 100) + '%)'; renderDots(); }
+function slideMove(d) { slideGoTo(slideIdx + d); }
+function initHeroSlider() {
+  slideIdx = 0;
+  slideTotal = document.querySelectorAll('#slidesTrack .slide').length;
+  if (slideTotal > 0) {
     renderDots();
-    if(window.__sliderTimer) clearInterval(window.__sliderTimer);
-    window.__sliderTimer=setInterval(function(){slideMove(1);},5000);
+    if (window.__sliderTimer) clearInterval(window.__sliderTimer);
+    window.__sliderTimer = setInterval(function () { slideMove(1); }, 5000);
   }
 }
 
@@ -182,31 +182,39 @@ var issuesData = [];
 var searchIndex = [];
 
 function getTag(title) {
-  if(title.includes('實測')) return '網路實測';
-  if(title.includes('影片') || title.includes('影音') || title.includes('音樂') || title.includes('Veo') || title.includes('Sora') || title.includes('Lyria') || title.includes('Vidu') || title.includes('可靈')) return '影音創作';
-  if(title.includes('生圖') || title.includes('繪圖') || title.includes('圖像') || title.includes('照片') || title.includes('Banana')) return '圖像生成';
-  if(title.includes('代理') || title.includes('Agent') || title.includes('助理') || title.includes('Cowork') || title.includes('平台')) return 'AI 代理';
-  if(title.includes('搜尋') || title.includes('Search') || title.includes('瀏覽器') || title.includes('Chrome') || title.includes('Atlas')) return '智慧搜尋';
-  if(title.includes('法律') || title.includes('版權') || title.includes('專利') || title.includes('訴訟') || title.includes('判')) return '法律規範';
-  if(title.includes('登場') || title.includes('發布') || title.includes('推出') || title.includes('更新') || title.includes('Pro') || title.includes('級') || title.includes('模型')) return '模型發布';
-  if(title.includes('教戰') || title.includes('技巧') || title.includes('攻略') || title.includes('案例')) return '應用技巧';
+  if (!title) return '產業動態';
+  // 影音創作
+  if (title.includes('影片') || title.includes('影音') || title.includes('音樂') || title.includes('Veo') || title.includes('可靈') || title.includes('Sora')) return '影音創作';
+  // 圖像生成
+  if (title.includes('生圖') || title.includes('繪圖') || title.includes('圖像') || title.includes('照片')) return '圖像生成';
+  // AI 代理
+  if (title.includes('代理') || title.includes('Agent') || title.includes('助理') || title.includes('Cowork') || title.includes('Telegram') || title.includes('機器人') || title.includes('Bot') || title.includes('Codex')) return 'AI 代理';
+  // 智慧搜尋
+  if (title.includes('搜尋') || title.includes('Search') || title.includes('瀏覽器') || title.includes('Google') || title.includes('Gemini') || title.includes('Workspace') || title.includes('NotebookLM')) return '智慧搜尋';
+  // 法律規範
+  if (title.includes('法律') || title.includes('版權') || title.includes('專利') || title.includes('訴訟') || title.includes('判')) return '法律規範';
+  // 模型發布
+  if (title.includes('登場') || title.includes('發布') || title.includes('推出') || title.includes('更新') || title.includes('模型') || title.includes('GPT') || title.includes('Claude') || title.includes('DeepSeek') || title.includes('Llama') || title.includes('Grok') || title.includes('xAI')) return '模型發布';
+  // 應用技巧
+  if (title.includes('教戰') || title.includes('技巧') || title.includes('攻略') || title.includes('案例')) return '應用技巧';
+
   return '產業動態';
 }
 
 function showArticle(data) {
   let art;
-  if(typeof data === 'string') {
+  if (typeof data === 'string') {
     art = articleData[data];
   } else {
     art = data;
   }
-  if(!art) return;
-  
+  if (!art) return;
+
   let issueNo = "";
-  if(art.url) {
+  if (art.url) {
     const m = art.url.match(/(\d+)\.html/);
     issueNo = m ? m[1] : '';
-  } else if(art.no) {
+  } else if (art.no) {
     issueNo = art.no;
   }
 
@@ -218,7 +226,43 @@ function showArticle(data) {
 
   document.getElementById('amTag').textContent = displayTag;
   document.getElementById('amTitle').textContent = art.title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim();
-  document.getElementById('amCover').style.backgroundImage = `url('${displayImg}')`;
+
+  const headerDateEl = document.getElementById('amHeaderDate');
+  if (headerDateEl) {
+    if (art.source === '趨勢總覽') {
+      headerDateEl.style.display = 'none';
+    } else {
+      headerDateEl.textContent = displayDate;
+      headerDateEl.style.display = displayDate ? 'block' : 'none';
+      headerDateEl.style.textAlign = 'left';
+      headerDateEl.style.marginTop = '8px';
+    }
+  }
+
+  const coverEl = document.getElementById('amCover');
+  const titleEl = document.getElementById('amTitle');
+  const headerEl = document.querySelector('.am-header');
+
+  if (art.source === '趨勢總覽') {
+    coverEl.style.display = 'none';
+    titleEl.style.fontSize = '22px';
+    titleEl.style.lineHeight = '1.4';
+    if (headerEl) {
+      headerEl.style.borderBottom = 'none';
+      headerEl.style.paddingBottom = '0';
+      headerEl.style.marginBottom = '0';
+    }
+  } else {
+    coverEl.style.display = 'block';
+    coverEl.style.backgroundImage = `url('${displayImg}')`;
+    titleEl.style.fontSize = '';
+    titleEl.style.lineHeight = '';
+    if (headerEl) {
+      headerEl.style.borderBottom = '';
+      headerEl.style.paddingBottom = '';
+      headerEl.style.marginBottom = '';
+    }
+  }
   let bodyHtml = art.fullContent || art.content || '';
   if (art.imgCaption) {
     bodyHtml = `<p style="font-size:12px;color:var(--text-light);font-style:italic;margin-top:-4px;margin-bottom:16px">${art.imgCaption}</p>` + bodyHtml;
@@ -232,30 +276,48 @@ function showArticle(data) {
     externalUrl = 'https://ainews.tvbs.ai' + path;
     externalLabel = '閱讀完整文章 →';
   }
-  if (externalUrl) {
-    bodyHtml += `<p style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);text-align:center"><a href="${externalUrl}" target="_blank" style="display:inline-block;padding:10px 20px;background:linear-gradient(135deg,var(--accent),var(--primary));color:#0a1228;border-radius:999px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.5px;box-shadow:0 0 16px rgba(94,245,255,0.3)">${externalLabel}</a></p>`;
+  if (art.source === '趨勢總覽') {
+    let sourceLinkHtml = externalUrl ? `<span style="color:var(--text-light); font-size:14px;">（<a href="${externalUrl}" target="_blank" style="color:var(--text-light); text-decoration:underline; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-light)'">資料來源</a>）</span>` : ``;
+    bodyHtml += `<div style="display:flex; justify-content:space-between; align-items:center; margin-top:32px; padding-bottom:40px;">
+      <span style="font-size:13px; color:var(--accent); font-weight:700;">${displayDate}</span>
+      ${sourceLinkHtml}
+    </div>`;
+  } else {
+    if (externalUrl) {
+      bodyHtml += `<p style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);text-align:center"><a href="${externalUrl}" target="_blank" class="issue-hero-btn" style="padding:8px 16px; font-size:12px; display:inline-block; text-decoration:none;">${externalLabel}</a></p>`;
+    }
   }
   document.getElementById('amBodyContent').innerHTML = bodyHtml;
-  document.getElementById('amMeta').textContent = `${displaySource} ・ ${displayDate}`;
+  const metaEl = document.getElementById('amMeta');
+  if (metaEl) {
+    metaEl.style.display = 'none';
+  }
+  const footerEl = document.querySelector('.am-footer');
+  if (footerEl) footerEl.style.display = 'none';
+  if (art.source === '趨勢總覽') {
+    document.querySelector('.am-body').style.paddingBottom = '0';
+  } else {
+    document.querySelector('.am-body').style.paddingBottom = '40px';
+  }
   document.getElementById('articleModal').classList.add('active');
 }
 
 function showArticleByTitle(title) {
-  if(!title) return;
+  if (!title) return;
   const cleanTitle = title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim();
   // 優先匹配完全一致的標題
   let item = searchIndex.find(it => it.title === title);
   // 次之匹配不含 Emoji 的純文字部分
-  if(!item) item = searchIndex.find(it => it.title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim() === cleanTitle);
+  if (!item) item = searchIndex.find(it => it.title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim() === cleanTitle);
   // 再者匹配包含關係
-  if(!item) item = searchIndex.find(it => it.title.includes(cleanTitle) || cleanTitle.includes(it.title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim()));
+  if (!item) item = searchIndex.find(it => it.title.includes(cleanTitle) || cleanTitle.includes(it.title.replace(/[🛠️💡🔄🧩🌟]/g, '').trim()));
 
-  if(item) {
+  if (item) {
     showArticle(item);
   } else {
-    for(let k in articleData) {
+    for (let k in articleData) {
       const art = articleData[k];
-      if(art.title === title || art.title.includes(cleanTitle)) {
+      if (art.title === title || art.title.includes(cleanTitle)) {
         showArticle(k);
         return;
       }
@@ -266,8 +328,8 @@ function showArticleByTitle(title) {
 function closeArticle() {
   document.getElementById('articleModal').classList.remove('active');
 }
-function renderArchive(f){
-  const g = document.getElementById('archiveGrid'); if(!g || !issuesData.length) return;
+function renderArchive(f) {
+  const g = document.getElementById('archiveGrid'); if (!g || !issuesData.length) return;
   const filtered = issuesData.filter(it => !f || f === 'all' || it.year === f);
   g.innerHTML = filtered.map(it => {
     const cv = it.img ? `background-image:linear-gradient(0deg,rgba(10,18,40,0.5),transparent),url('${it.img}')` : 'background:linear-gradient(135deg,#4f6dff,#2d4bdb)';
@@ -300,7 +362,8 @@ async function initDashboardData() {
       fetch('tvbs-ai-newsletter/issues-metadata.json').then(r => r.json()),
       fetch('tvbs-ai-newsletter/search-index.json').then(r => r.json()),
       fetch('data/articles.json').then(r => r.ok ? r.json() : []).catch(() => []),
-      fetch('data/news-feed.json').then(r => r.ok ? r.json() : []).catch(() => [])
+      fetch('data/news-feed.json').then(r => r.ok ? r.json() : []).catch(() => []),
+      fetch('data/weekly-summaries.json').then(r => r.ok ? r.json() : []).catch(() => [])
     ]);
     issuesData = results[0] || [];
     searchIndex = results[1] || [];
@@ -342,7 +405,25 @@ async function initDashboardData() {
       });
     });
 
-    if(issuesData.length > 0 || articles.length > 0) {
+    if (issuesData.length > 0 || articles.length > 0) {
+      // Weekly Summaries
+      const summaries = (results[4] || []).slice();
+      summaries.sort((a, b) => new Date(b.date) - new Date(a.date));
+      window.__weeklySummaries = summaries;
+      summaries.forEach(s => {
+        searchIndex.push({
+          title: s.title,
+          content: s.summary || '',
+          fullContent: `<p class="first-paragraph">${s.summary || ''}</p>`,
+          url: s.sourceUrl || `/summaries#${s.id}`,
+          img: s.img || fallbackImg,
+          tag: s.tag || '趨勢摘要',
+          date: s.date,
+          source: '趨勢總覽',
+          sourceUrl: s.sourceUrl,
+          sourceLabel: '資料來源 →'
+        });
+      });
       // 用最新文章的 metadata 當 home 的 'issue' 代理
       const latestArt = articles[0];
       const issue = latestArt ? {
@@ -352,12 +433,11 @@ async function initDashboardData() {
         desc: latestArt.summary,
         img: latestArt.image
       } : (issuesData.find(it => it.no === "018") || issuesData[0]);
-      const label = document.getElementById('latestIssueLabel');
-      if(label) label.textContent = `VOL. ${issue.no}`;
+
       const heroContainer = document.getElementById('latestHeroContainer');
       const articles019 = articles.filter(a => a.featured).slice(0, 5);
-      if(heroContainer) {
-        if(articles019.length >= 1) {
+      if (heroContainer) {
+        if (articles019.length >= 1) {
           // 第 019 期 (或之後的原生內容): Hero Slider，5 秒自動切換
           heroContainer.innerHTML = `
             <div class="hero-slider">
@@ -395,7 +475,7 @@ async function initDashboardData() {
 
       // TOC
       const tocWrap = document.getElementById('latestIssueTOC');
-      if(tocWrap) {
+      if (tocWrap) {
         tocWrap.innerHTML = issueArticles
           .filter(it => !it.title.includes('本期重點摘要') && !it.title.includes('科技精選新聞'))
           .map(it => `
@@ -407,7 +487,7 @@ async function initDashboardData() {
 
       // 渲染 AI 新聞快訊：扁平列表（不顯示日期）
       const feedWrap = document.getElementById('newsFeedWrap');
-      if(feedWrap && Array.isArray(window.__newsFeed)) {
+      if (feedWrap && Array.isArray(window.__newsFeed)) {
         const totalCount = window.__newsFeed.length;
         const itemsHtml = window.__newsFeed.map(f => {
           const tipText = (f.summary || '').replace(/"/g, '&quot;');
@@ -419,9 +499,36 @@ async function initDashboardData() {
         }).join('');
         feedWrap.innerHTML = `<div class="news-feed-header"><span class="news-feed-header-label">AI 新聞快訊</span><span class="news-feed-header-line"></span><span style="font-size:11px;color:var(--text-light);white-space:nowrap">${totalCount} 則精選</span></div><div class="feed-day">${itemsHtml}</div>`;
       }
+      // 渲染重點摘要 (Homepage)
+      const summariesWrap = document.getElementById('weeklySummariesWrap');
+      if (summariesWrap && Array.isArray(window.__weeklySummaries) && window.__weeklySummaries.length > 0) {
+        summariesWrap.innerHTML = window.__weeklySummaries.map(s => {
+          return `
+            <div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(s.title).replace(/'/g, "%27")}'))" class="issue-block" style="display:block; padding:20px 25px;">
+              <div style="font-size:12px; color:var(--text-light); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                <span class="feed-tag">${s.tag || '趨勢摘要'}</span>
+                <span style="color:#94a3b8; font-weight:700;">${s.date}</span>
+              </div>
+              <h4 style="margin:0 0 8px 0; color:var(--text); font-size:16px;">${s.title}</h4>
+              <p class="trend-summary">${s.summary.length > 70 ? s.summary.substring(0, 70) + '... <span style="color:var(--accent); font-weight:500; font-size:12px; margin-left:2px;">(詳全文)</span>' : s.summary}</p>
+            </div>
+          `;
+        }).join('');
+      }
+      // 渲染重點摘要 (Sidebar)
+      const trendSidebarWrap = document.getElementById('latestTrendsSidebarTOC');
+      if (trendSidebarWrap && Array.isArray(window.__weeklySummaries)) {
+        trendSidebarWrap.innerHTML = window.__weeklySummaries.slice(0, 7).map(s => `
+          <div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(s.title).replace(/'/g, "%27")}'))" class="toc-item">
+            <span class="toc-dot"></span>
+            <span class="toc-title">${s.title}</span>
+          </div>
+        `).join('');
+      }
+
       // 5. AI 趨勢消息卡片牆 (Trend Grid) — 含第 010 期之後所有文章
       const trendWrap = document.getElementById('trendGrid');
-      if(trendWrap) {
+      if (trendWrap) {
         // 收集所有要在趨勢頁顯示的期號：新文章的 issueNo + 舊期 010+
         const articleIssueNos = [...new Set(articles.map(a => a.issueNo).filter(Boolean))];
         const legacyNos = issuesData
@@ -436,6 +543,7 @@ async function initDashboardData() {
           return searchIndex
             .filter(it => it.url && it.url.includes(`${no}.html`))
             .filter(it => !it.title.match(/[🛠️💡🧩🌟]/) && !it.title.includes('重點摘要') && !it.title.includes('精選新聞'))
+            .filter(it => !it.excludeFromTrend)
             .map(it => ({ ...it, issueDetail: iss }));
         });
 
@@ -446,7 +554,7 @@ async function initDashboardData() {
           // 新文章顯示日期，舊期顯示期號 + 日期
           let metaLeft, metaRight;
           if (isNative) {
-            metaLeft = '最新文章';
+            metaLeft = it.date || '';
             metaRight = '';
           } else {
             metaLeft = `第 ${iss.no} 期`;
@@ -457,11 +565,27 @@ async function initDashboardData() {
               <div class="article-cover" style="background-image:url('${artImg}')"></div>
               <span class="tag">${it.tag || getTag(it.title)}</span>
               <h4>${it.title}</h4>
-              <div class="summary">${(it.content||'').substring(0,80)}...</div>
+              <div class="summary">${(it.content || '').substring(0, 80)}...</div>
               <div class="article-meta">
                 <span>${metaLeft}</span>
                 <span>${metaRight}</span>
               </div>
+            </div>
+          `;
+        }).join('');
+      }
+      // 6. 重點摘要列表 (Trend Summaries List)
+      const trendSummariesWrap = document.getElementById('trendSummariesList');
+      if (trendSummariesWrap && Array.isArray(window.__weeklySummaries)) {
+        trendSummariesWrap.innerHTML = window.__weeklySummaries.map(it => {
+          const contentTag = it.tag || getTag(it.title);
+          return `
+            <div class="summary-list-item" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 0; cursor:pointer; display:flex; gap:24px; align-items:flex-start; transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.03)'" onmouseout="this.style.background='transparent'" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
+              <div style="font-size:13px; color:#94a3b8; font-weight:700; white-space:nowrap; padding-top:4px; padding-left:12px;">${it.date}</div>
+              <h4 style="margin:0; color:var(--text); font-size:16px; line-height:1.5; flex:1; padding-right:12px; font-weight:500;">
+                <span class="feed-tag" style="margin-right:10px; display:inline-block; vertical-align:middle; font-size:10px; padding:1px 6px; background:rgba(94,245,255,0.1); color:var(--accent); border:1px solid rgba(94,245,255,0.2);">${contentTag}</span>
+                <span style="vertical-align:middle;">${it.title}</span>
+              </h4>
             </div>
           `;
         }).join('');
@@ -471,10 +595,11 @@ async function initDashboardData() {
 }
 
 
+
 // ============ Data-driven renderers (B-phase refactor) ============
 function escHtml(s) {
-  return String(s == null ? '' : s).replace(/[&<>"']/g, function(m) {
-    return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[m];
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function (m) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
   });
 }
 
@@ -482,43 +607,43 @@ function toolCardHtml(t, internal) {
   var cls = 'tool-card-big' + (internal ? ' internal-highlight' : '');
   return '<a href="' + escHtml(t.url) + '" target="_blank" class="' + cls + '">'
     + '<div class="tool-icon logo-icon" style="background:' + escHtml(t.iconBg) + '">'
-    +   '<img src="' + escHtml(t.logo) + '" alt="' + escHtml(t.name) + '">'
+    + '<img src="' + escHtml(t.logo) + '" alt="' + escHtml(t.name) + '">'
     + '</div>'
     + '<div class="tool-info">'
-    +   '<div class="tool-name">' + escHtml(t.name) + '</div>'
-    +   '<div class="tool-sub">' + escHtml(t.sub) + '</div>'
+    + '<div class="tool-name">' + escHtml(t.name) + '</div>'
+    + '<div class="tool-sub">' + escHtml(t.sub) + '</div>'
     + '</div></a>';
 }
 
 function renderTools() {
   var c = document.getElementById('toolsContainer');
   if (!c) return;
-  return fetch('data/tools.json').then(function(r){return r.json();}).then(function(d) {
+  return fetch('data/tools.json').then(function (r) { return r.json(); }).then(function (d) {
     var html = '';
     if (d.internal && d.internal.length) {
       html += '<div class="tool-section"><div class="section-title">公司內部 AI 工具</div><div class="tool-grid">'
-        + d.internal.map(function(t){ return toolCardHtml(t, true); }).join('')
+        + d.internal.map(function (t) { return toolCardHtml(t, true); }).join('')
         + '</div></div>';
     }
     if (d.categories && d.categories.length) {
       html += '<div class="section-title" style="margin-top:16px">常用外部工具</div>';
-      d.categories.forEach(function(cat) {
+      d.categories.forEach(function (cat) {
         html += '<div class="tool-section">'
           + '<div class="tool-section-title">' + escHtml(cat.title) + '</div>'
           + '<div class="tool-grid">'
-          + cat.tools.map(function(t){ return toolCardHtml(t, false); }).join('')
+          + cat.tools.map(function (t) { return toolCardHtml(t, false); }).join('')
           + '</div></div>';
       });
     }
     c.innerHTML = html;
-  }).catch(function(e){ console.warn('renderTools failed', e); });
+  }).catch(function (e) { console.warn('renderTools failed', e); });
 }
 
 function renderToolIntro() {
   var c = document.getElementById('toolIntroContainer');
   if (!c) return;
-  return fetch('data/tool-intro.json').then(function(r){return r.json();}).then(function(items) {
-    c.innerHTML = items.map(function(it) {
+  return fetch('data/tool-intro.json').then(function (r) { return r.json(); }).then(function (items) {
+    c.innerHTML = items.map(function (it) {
       var inner = '<span class="pc-cat">' + escHtml(it.cat) + '</span>'
         + '<div class="pc-title">' + escHtml(it.title) + '</div>'
         + '<div class="pc-sub">' + escHtml(it.sub) + '</div>'
@@ -531,27 +656,27 @@ function renderToolIntro() {
       }
       return '<a href="' + escHtml(it.url) + '" target="_blank" class="prompt-compact-card" style="text-decoration:none">' + inner + '</a>';
     }).join('');
-  }).catch(function(e){ console.warn('renderToolIntro failed', e); });
+  }).catch(function (e) { console.warn('renderToolIntro failed', e); });
 }
 
 function renderPromptSites() {
   var c = document.getElementById('promptSitesContainer');
   if (!c) return;
-  return fetch('data/prompt-sites.json').then(function(r){return r.json();}).then(function(sections) {
-    c.innerHTML = sections.map(function(sec, idx) {
+  return fetch('data/prompt-sites.json').then(function (r) { return r.json(); }).then(function (sections) {
+    c.innerHTML = sections.map(function (sec, idx) {
       var topMargin = idx === 0 ? '16px' : '32px';
       return '<div class="tool-section-title" style="margin-top:' + topMargin + ';padding-left:12px;border-left:4px solid ' + sec.barColor + '">'
         + escHtml(sec.title) + '</div>'
         + '<div class="prompt-sites-grid" style="margin-top:14px">'
-        + sec.sites.map(function(s) {
-            return '<a href="' + escHtml(s.url) + '" target="_blank" class="prompt-site-card">'
-              + '<div class="site-icon" style="background:' + escHtml(s.iconBg) + '">' + escHtml(s.icon) + '</div>'
-              + '<div class="site-info"><div class="site-name">' + escHtml(s.name) + '</div><div class="site-desc">' + escHtml(s.desc) + '</div></div>'
-              + '</a>';
-          }).join('')
+        + sec.sites.map(function (s) {
+          return '<a href="' + escHtml(s.url) + '" target="_blank" class="prompt-site-card">'
+            + '<div class="site-icon" style="background:' + escHtml(s.iconBg) + '">' + escHtml(s.icon) + '</div>'
+            + '<div class="site-info"><div class="site-name">' + escHtml(s.name) + '</div><div class="site-desc">' + escHtml(s.desc) + '</div></div>'
+            + '</a>';
+        }).join('')
         + '</div>';
     }).join('');
-  }).catch(function(e){ console.warn('renderPromptSites failed', e); });
+  }).catch(function (e) { console.warn('renderPromptSites failed', e); });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -560,41 +685,41 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTools();
   renderToolIntro();
   renderPromptSites();
-  
+
   // 搜尋邏輯
   // 使用全局 searchIndex
   function loadSearchIndex() {
-    return new Promise(function(r) {
-      if(searchIndex && searchIndex.length > 0) { r(searchIndex); return; }
-      fetch('tvbs-ai-newsletter/search-index.json').then(function(x) { return x.json(); }).then(function(d) {
+    return new Promise(function (r) {
+      if (searchIndex && searchIndex.length > 0) { r(searchIndex); return; }
+      fetch('tvbs-ai-newsletter/search-index.json').then(function (x) { return x.json(); }).then(function (d) {
         searchIndex = d; r(d);
-      }).catch(function() { searchIndex = []; r([]); });
+      }).catch(function () { searchIndex = []; r([]); });
     });
   }
   function doSearch(q) {
-    if(!searchIndex || !q) return [];
+    if (!searchIndex || !q) return [];
     var k = q.toLowerCase().trim();
-    return searchIndex.filter(function(it) {
+    return searchIndex.filter(function (it) {
       return (it.title || '').toLowerCase().indexOf(k) >= 0 || (it.content || '').toLowerCase().indexOf(k) >= 0;
     }); // 已移除 .slice(0, 20)
   }
   function esc(s) {
-    return String(s || '').replace(/[&<>"']/g, function(m) {
+    return String(s || '').replace(/[&<>"']/g, function (m) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[m];
     });
   }
   function hl(t, q) {
-    var s = esc(t); if(!q) return s;
+    var s = esc(t); if (!q) return s;
     var qq = esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return s.replace(new RegExp(qq, 'gi'), function(m) {
+    return s.replace(new RegExp(qq, 'gi'), function (m) {
       return '<mark style="background:rgba(94,245,255,0.3);color:var(--accent);padding:0 2px">' + m + '</mark>';
     });
   }
   function renderSR(res, q) {
-    var b = document.getElementById('searchResults'); if(!b) return;
-    if(!q) { b.classList.remove('open'); return; }
-    if(res.length === 0) { b.innerHTML = '<div class="search-no-result">找不到相關內容</div>'; b.classList.add('open'); return; }
-    b.innerHTML = res.map(function(r) {
+    var b = document.getElementById('searchResults'); if (!b) return;
+    if (!q) { b.classList.remove('open'); return; }
+    if (res.length === 0) { b.innerHTML = '<div class="search-no-result">找不到相關內容</div>'; b.classList.add('open'); return; }
+    b.innerHTML = res.map(function (r) {
       var m = (r.url || '').match(/(\d{3})\.html/);
       var no = m ? m[1] : '';
       var u = 'https://ainews.tvbs.ai' + (r.url.indexOf('/') === 0 ? r.url : '/' + r.url);
@@ -603,15 +728,15 @@ document.addEventListener('DOMContentLoaded', () => {
     b.classList.add('open');
   }
   var si = document.getElementById('searchInput');
-  if(si) {
+  if (si) {
     var dt;
-    si.addEventListener('input', function(e) {
+    si.addEventListener('input', function (e) {
       clearTimeout(dt); var q = e.target.value;
-      dt = setTimeout(function() { loadSearchIndex().then(function() { renderSR(doSearch(q), q); }); }, 150);
+      dt = setTimeout(function () { loadSearchIndex().then(function () { renderSR(doSearch(q), q); }); }, 150);
     });
-    si.addEventListener('focus', function(e) {
-      loadSearchIndex().then(function() { if(e.target.value) renderSR(doSearch(e.target.value), e.target.value); });
+    si.addEventListener('focus', function (e) {
+      loadSearchIndex().then(function () { if (e.target.value) renderSR(doSearch(e.target.value), e.target.value); });
     });
-    document.addEventListener('click', function(e) { if(!e.target.closest('.search-box')) { var b = document.getElementById('searchResults'); if(b) b.classList.remove('open'); } });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.search-box')) { var b = document.getElementById('searchResults'); if (b) b.classList.remove('open'); } });
   }
 });
