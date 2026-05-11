@@ -166,23 +166,24 @@
   },
   {
     "title": "本期重點摘要",
-    "content": "AI 影片生成新戰局 Luma AI Dream Machine 免費開放。蘋果 WWDC 大會登場，發表 Apple Intelligence。OpenAI 宣布與微軟擴大合作。工具推薦 LINE AI 實測體驗。AIWIZE Tips 自動化掌握 YouTube 最新影片精華。AIWIZE 更新 Autopilot 新增 Code Interpreter 與 Character AI 工具。",
+    "content": "Google I/O 2025 重大更新：Veo 3、Gemini 2.5 Pro 深度思考、AI 搜尋模式等。Anthropic 推出 Claude 4 系列，號稱全球最強編碼與寫作能力提升。工具推薦：NotebookLM App 正式登場，手機也能用 AI 整理筆記、語音摘要。AIWIZE Tips：運用 Autopilot 自動化流程，快速掌握 YouTube 頻道最新影片重點。AIWIZE 更新：ChatGPT 與 Claude 模型版本升級。",
     "url": "/issues/005.html#section-jump-0"
   },
   {
-    "title": "AI 影片生成新戰局！Luma AI「Dream Machine」免費開放 引爆社群",
-    "content": "AI 新創公司 Luma AI 推出全新影片生成模型「Dream Machine」，開放免費試用，使用者只需輸入文字或上傳圖片，即可快速生成 5 秒高品質、每秒 120 幀的流暢影片，強調能理解物理世界互動與運鏡指令。",
-    "url": "/issues/005.html#section-jump-0"
+    "title": "Google 影音生成模型 Veo 3 轟動全球！I/O 大會亮點懶人包",
+    "content": "Google 日前舉行 2025 年 I/O 開發者大會，發表多項 AI 重大更新：Veo 3 影片生成（可同步配音）、Imagen 4 圖像、Flow 平台、Lyria 2 音樂、Gemini 2.5 Pro 深度思考模式、AI 搜尋模式、SynthID 浮水印技術、Android XR 智慧眼鏡與 AI Ultra 訂閱方案等。",
+    "fullContent": "<p class=\"first-paragraph\">Google 日前舉行 2025 年 I/O 開發者大會，宣布在各類 AI 應用方面的許多重大更新，包括內容創作、圖像生成、音樂創作、影像編輯等，硬體設備上也有所發展。</p><h4>一、Gemini 2.5 Pro 深度思考模型正式登場</h4><p>Google 正式發表了搭配「<strong>深度思考 (Deep Think)</strong>」模式的語言模型 Gemini 2.5 Pro，主打進階思維與複雜推論能力，同時也推出 Gemini 2.5 Flash 升級版，相較前代效率更高，編碼、多模態、上下文處理能力也有所提升。</p><h4>二、多項生成式內容工具上線</h4><ul><li><strong>Veo 3：</strong>具備聲音輸出的 AI 影片生成工具，能同步生成影像與聲音，自動新增音效、背景音樂和對話。</li><li><strong>Imagen 4：</strong>新一代影像生成模型，可產生更高解析度、具風格引導的圖像。</li><li><strong>Flow 平台：</strong>結合 Veo、Imagen 與 Gemini 的 AI 影像創作平台，讓使用者透過自然語言描述生成電影級短片。</li><li><strong>Lyria 2：</strong>最新的音樂生成模型，提供高保真、更專業的音樂創作服務。</li></ul><h4>三、SynthID 浮水印技術擴展</h4><p>Google 宣布協助辨識 AI 生成內容的「<strong>SynthID</strong>」隱形浮水印技術擴展，目前已應用在超過 100 億件圖像、音訊與文字等內容上，未來 Veo 3、Imagen 4 與 Lyria 2 所生成的內容也都將嵌入水印。同時推出「<strong>SynthID Detector</strong>」網站，讓民眾可以上傳影音、圖片或文件協助判斷該內容是否帶有 SynthID 浮水印。</p><h4>四、Gemini Live 全新視覺互動功能上線</h4><p>Gemini 正式支援「<strong>即時鏡頭畫面</strong>」與「<strong>螢幕分享</strong>」功能，使用者可以透過手機鏡頭即時辨識實景畫面，或透過分享手機及電腦螢幕讓 Gemini 協助處理設定操作、編輯表格、翻譯文件等任務。</p><h4>五、「AI 模式」強化搜尋體驗</h4><p>Google 搜尋進一步強化 AI 功能，推出「<strong>AI 模式 (AI Mode)</strong>」，搭配 Gemini 2.5 模型，強化 AI 摘要、支援 Deep Research 深度研究，更導入「Project Mariner」AI 代理人技術，能執行更複雜的任務如購票、訂位及填寫表格。同時推出全新 AI 購物體驗，運用 AI 智慧選購商品、個人化虛擬試穿。目前 AI 模式已先在美國上線。</p><h4>六、推出 AI Ultra 頂級訂閱方案</h4><p>Google 推出全新 <strong>AI Ultra</strong> 訂閱方案，讓用戶能使用最新的 AI 功能，月費 249.99 美元 (約新台幣 7550 元)。</p><h4>七、Android XR 智慧眼鏡亮相</h4><p>Google 將 Gemini 技術與擴增實境平台「<strong>Android XR</strong>」整合，並展示了搭載此系統的智慧眼鏡概念機，內建攝影機、麥克風、喇叭，除了能拍照、傳訊息，更結合 Gemini AI 助理應用，可協助即時翻譯、路線導航、辨識現場畫面等。首款與三星合作開發的頭戴裝置「Project Moohan」預計今年上市。</p>",
+    "url": "/issues/005.html#section-jump-0",
+    "img": "https://i.meee.com.tw/5cesJDY.png",
+    "imgCaption": "Google 在 2025 年 I/O 開發者大會上發表許多重大更新。(圖／翻攝自 Google 官方部落格)"
   },
   {
-    "title": "蘋果 WWDC 大會登場！Apple Intelligence 整合 Siri 帶來全新 AI 體驗",
-    "content": "蘋果在 WWDC 開發者大會上，正式發表個人化 AI 系統「Apple Intelligence」，將深度整合至 iPhone、iPad 與 Mac 最新作業系統中。新版 Siri 將更自然、更懂你，並具備跨 App 執行指令的能力。同時也宣布與 OpenAI 合作，將 ChatGPT-4o 整合至系統中。",
-    "url": "/issues/005.html#section-jump-1"
-  },
-  {
-    "title": "OpenAI 宣布與微軟擴大合作 共同打造新世代 AI 超級電腦",
-    "content": "OpenAI 與微軟宣布擴大合作關係，將共同打造一台名為「Stargate」的 AI 超級電腦，預計耗資千億美元，為未來更強大的 AI 模型提供運算基礎。Stargate 將分五階段建置，目標在 2028 年啟用。",
-    "url": "/issues/005.html#section-jump-2"
+    "title": "Claude 4 系列登場！號稱全球最強編碼模型 寫作能力也提升",
+    "content": "人工智慧新創公司 Anthropic 推出最新大型語言模型 Claude 4 系列，包括旗艦級 Claude Opus 4 與中階版 Claude Sonnet 4。Opus 4 號稱全球最佳編碼模型，SWE-bench 達 72.5%，能長時間穩定執行複雜任務。寫作能力大幅提升，可獨立完成文章創作。",
+    "fullContent": "<p class=\"first-paragraph\">人工智慧新創公司 Anthropic 日前推出最新大型語言模型「<strong>Claude 4</strong>」系列，包括旗艦級的 <strong>Claude Opus 4</strong> 與中階版 <strong>Claude Sonnet 4</strong>，兩者均為混合模型，能提供快速回應及延伸思考兩種模式，具備高度自動化能力，Anthropic 更稱 Opus 4 為「<strong>全球最佳編碼模型</strong>」。</p><p>Anthropic 指出，Opus 4 在用於評估真實軟體問題表現的基準測試 SWE-bench 中取得 72.5% 高分，遠高於 OpenAI 旗下語言模型 o3 的 69.1%、GPT 4.1 的 54.6%，以及 Google 旗下 Gemini 2.5 Pro 的 63.2%，<strong>能長時間穩定執行複雜任務，展現極高的程式理解與問題修正能力</strong>；Sonnet 4 則兼具高推理能力及效能，適合更廣泛的日常開發與知識工作場景，在 SWE-bench 測試中也取得了 72.7% 的成績。</p><p>Anthropic 官方也說明，<strong>Opus 4 與 Sonnet 4 的寫作能力也大幅提升，從以往輔助思考，進化成可獨立完成文章創作</strong>。而相較早期的 Claude 模型通常僅能維持一到兩小時的連貫性，日本電商樂天 (Rakuten) 已成功測試在一項複雜任務中，Opus 4 能獨立運行近 7 小時，並保持穩定性能。此外，Opus 4 甚至能在玩寶可夢時，創建一份「導航指南」來記錄關鍵攻略資訊。</p><p>目前這兩款模型已經在 Anthropic API、Amazon Bedrock 及 Google Cloud Vertex AI 上架，Opus 4 定價為每百萬 tokens 輸入 15 美元、輸出 75 美元；Sonnet 4 為輸入 3 美元、輸出 15 美元，而 Sonnet 4 有開放給免費用戶使用。</p>",
+    "url": "/issues/005.html#section-jump-1",
+    "img": "https://i.meee.com.tw/UoZnzOP.png",
+    "imgCaption": "大型語言模型 Claude Opus 4 與 Claude Sonnet 4 正式登場。(圖／翻攝自 Anthropic 官網)"
   },
   {
     "title": "🛠️ AI 工具推薦：LINE AI 好用嗎？實測體驗分享來了！",
@@ -218,7 +219,7 @@
     "title": "OpenAI 釋出最強模型 o3-pro！能力評測壓 Gemini、Claude 價格大調降",
     "content": "OpenAI 正式發表升級版推理模型 o3-pro，在科學研究、程式設計、教育、數據分析與寫作等應用表現更佳。在 AIME 2024 數學能力測驗中，得分超越 Google Gemini 2.5 Pro。o3 也宣布大降價。",
     "url": "/issues/006.html#section-jump-2",
-    "img": "https://downloads.intercomcdn.com/i/o/dgkjq2bp/1564910952/40ace2dda267c1707dfaeeef3ece/image.png?expires=1749729600&signature=1487488a0e376cf852bea2074f73db21d0a821d1c6af9352683e4055f5048806&req=dSUhEsB%2FnYhaW%2FMW3nq%2BgQwvBOdsn%2Bys5kA5ScUvYDHOaD603QUEbas9O14d%0ACXoipkMUuSYY3vqh1LsjQkg9cjo%3D%0A",
+    "img": "https://i.meee.com.tw/IoZ7pi5.png",
     "fullContent": "<div class=\"news-columns\">\r\n                    <div class=\"column\">\r\n                        <p class=\"first-paragraph\">OpenAI 昨 (11 日) 正式發表升級版推理模型 <strong>o3-pro</strong>，官方說明，這款模型在科學研究、程式設計、教育、數據分析與寫作等應用表現，皆比同系列的 o3 佳，<strong>回答一致性、清晰度、準確性與遵循指令等層面的表現也更加穩定</strong>，優於 o1-pro 與 o3。</p>\r\n                        <p>　根據 OpenAI 多項內部測試結果，o3-pro 在 AIME 2024 數學能力測驗中，得分超越 Google Gemini 2.5 Pro；在測試博士級科學知識的 <strong>GPQA Diamond</strong> 測試中，也贏過 Anthropic 的 Claude 4 Opus。</p>\r\n                        <p>　雖然 OpenAI 表示，o3-pro 的回應速度略慢，暫不支援圖像生成及 Canvas 協作的功能，但推理能力仍保有水準，也延續了高階模型的工具整合性能，包括：<strong>可使用 Python 做資料分析、支援圖像推理與理解、能存取網路進行即時搜尋、分析文件與表格及運用「記憶功能」客製化回覆</strong>。</p>\r\n                    </div>\r\n                    <div class=\"column\">\r\n                        <p>　目前 o3-pro 已開放給 ChatGPT Pro 和 Team 用戶，企業與教育版本預計於下週釋出，也整合進 OpenAI API 中。其價格每百萬個輸入 token (約 75 萬個字) 20 美元、輸出 token 80 美元，約只有 o1-pro 的 87%。</p>\r\n                        <p>　此外，隨着 o3-pro 的上線，OpenAI 執行長也宣佈 o3 大降價，從先前每百萬輸入 token 10 美元、輸出 token 40 美元，降至 2 美元與 8 美元，價格調降幅度高達 80%。</p>"
   },
   {
@@ -332,17 +333,26 @@
   {
     "title": "全新AI代理模式 ChatGPT agent 登場！不再只是聊天 更直接替你完成任務",
     "content": "OpenAI 日前宣布推出 AI 代理人功能「ChatGPT agent」，進化為能獨立完成複雜工作的智能助理。它融合了 Operator 的網頁互動、Deep Research 的資訊整合與 ChatGPT 的智慧對話能力，能自主使用虛擬瀏覽器、API、文件編輯器等工具完成任務。",
-    "url": "/issues/009.html#section-jump-0"
+    "fullContent": "<p class=\"first-paragraph\">OpenAI 日前宣布推出 AI 代理人功能「ChatGPT agent」，顛覆傳統 ChatGPT 的使用方式，使其從純粹回答問題的對話工具，進化為能獨立完成複雜工作的智能助理。</p><p>ChatGPT agent 融合了 OpenAI 過去推出的三個代理人的能力，包括 <strong>Operator 的網頁互動技術、Deep Research 的資訊整合專長，以及 ChatGPT 的智慧對話特性</strong>，讓他能在虛擬電腦環境中自如切換分析與行動能力，從頭到尾獨立處理好複雜的工作流程。</p><p>使用者只需提出要求，ChatGPT agent 便會靈活選用適合的工具，包括虛擬瀏覽器、API 連接器、終端機和文件編輯器等，比如要求 ChatGPT agent 幫你看行事曆，準備客戶會議資料；根據主題籌劃並採買一餐的食材；或進行競爭對手分析，協助統整資料並產出摘要報告等。</p><p>目前這項功能已陸續向 ChatGPT Plus、Pro 及 Team 方案的用戶開放，可以從工具選單中啟用，也將擴大給企業與教育端。OpenAI 指出，未來會持續擴充 agent 的功能，預計加入更進階的簡報生成、定時任務安排，以及更多網站與應用程式的整合。</p>",
+    "url": "/issues/009.html#section-jump-0",
+    "img": "https://i.meee.com.tw/dRZNO37.png",
+    "imgCaption": "OpenAI 推出全新代理人功能 ChatGPT agent。(圖／翻攝自 OpenAI 官網)"
   },
   {
     "title": "研究稱AI讓人變笨？黃仁勳破解關鍵「越用越聰明」",
     "content": "針對麻省理工學院（MIT）研究，輝達（NVIDIA）創辦人黃仁勳表示，他天天用 AI，反而變得更聰明。關鍵在於透過提問讓 AI 教導自己，並比較不同 AI 模型的回應來進行批判性思考，這有助於訓練思維。",
-    "url": "/issues/009.html#section-jump-1"
+    "fullContent": "<p class=\"first-paragraph\">麻省理工學院（MIT）近期研究指出，人類若過度依賴使用如 ChatGPT 等大型語言模型從事生產行為（如寫文章），可能大腦活躍度下降，造成批判思維、學習能力長期受損。對此，輝達（NVIDIA）創辦人黃仁勳表示，雖然沒讀過那份研究，但自己天天用 AI，腦袋反而變得更清楚、思考也更敏銳。</p><p>黃仁勳在 CNN 節目《Fareed Zakaria GPS》訪談中指出，他不會只是接受 AI 給出的答案，而是會<strong>透過提問，讓 AI 教他不知道的東西，解決他還不懂的問題。</strong>他認為，能「問好問題」是種高度的認知技能，作為公司執行長，他大部分的時間都在問問題，有 90% 的指令和判斷，都藏在問題裡。</p><p>他也分享自己在使用 AI 時，<strong>會反問 AI 給出的答案是否就是最好的答案，也會用不同的 AI 模型問相同的問題，觀察並比較不同角度的回應，</strong>就像請教三位醫師再做出判斷一樣，最後得到最好的答案。</p><p>黃仁勳認為，在問 AI 問題的過程中反思，挑戰、驗證它，反而是有助於訓練思維的。建議未來做類似研究的人，可以加入多一點批判性思考。</p>",
+    "url": "/issues/009.html#section-jump-1",
+    "img": "https://i.meee.com.tw/6Nz1iNw.png",
+    "imgCaption": "黃仁勳受訪分享使用 AI 的經驗。 (圖 / 翻攝自主持人 Fareed Zakaria 臉書)"
   },
   {
     "title": "AI不會造成大量失業？OpenAI執行長曝未來職場3大發展趨勢",
     "content": "OpenAI 執行長山姆・奧特曼 (Sam Altman) 呼應黃仁勳的看法，指出未來職場人們將能做得比過去更多，期望也會提高，並依舊會被「創造」與「對他人有用」的動力驅使。他認為低估人類尋找新方向的能力是錯誤的。",
-    "url": "/issues/009.html#section-jump-2"
+    "fullContent": "<p class=\"first-paragraph\">輝達（NVIDIA）執行長黃仁勳日前在一次公開演說中指出，AI 不會造成全面失業，反而是會改變每一個人的工作。對此，OpenAI 執行長山姆・奧特曼（Sam Altman）在社群平台 X 發文呼應他的看法，認為未來工作將會非常不同。</p><p>奧特曼指出未來職場的發展趨勢，<strong>人們將能做得比過去更多，不論能力或是期望都會提高，且依舊會關心其他人及他們所做的事，並仍受到「創造」與「對他人有用」的動力驅使。</strong>他表示，「也許未來的工作在今天看來可能就像玩遊戲，但對未來的人們來說仍然非常有意義。」</p><p>奧特曼進一步指出，人類總是想要更多、做得更多，也總會找到新的自我表達方式，追求地位與創造力。低估人類尋找新方向與創造新方式的能力，一直都是錯誤的。</p><p>最後，他提出一個有趣的觀點，或許人類的金錢與機器的金錢，將是完全不同的東西，但可以確定的是，人類擁有大量的主角能量。</p>",
+    "url": "/issues/009.html#section-jump-2",
+    "img": "https://cc.tvbs.com.tw/img/upload/2025/01/08/20250108163641-c00dceed.jpg",
+    "imgCaption": "OpenAI 執行長奧特曼在社群平台 X 發文呼應黃仁勳對 AI 發展的看法。（圖／達志影像路透社）"
   },
   {
     "title": "💡指令工坊：什麼是 Prompt？",

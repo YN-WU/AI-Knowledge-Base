@@ -37,8 +37,8 @@
       <div class="nav-dropdown">
         <span class="dropdown-toggle">AI 趨勢消息 ▾</span>
         <div class="dropdown-content">
+          <button class="tab dropdown-item" data-page="news">重點趨勢</button>
           <button class="tab dropdown-item" data-page="summaries">30秒看趨勢</button>
-          <button class="tab dropdown-item" data-page="news">重點報導</button>
         </div>
       </div>
       <span class="tab-sep">|</span>
@@ -61,38 +61,20 @@
       <div class="layout-3col">
         <aside class="side">
           <div class="panel">
-            <h3><span class="dot"></span>最新重點報導</h3>
+            <h3><span class="dot"></span>最新文章</h3>
             <div class="toc-list" id="latestIssueTOC">
-              <!-- 動態載入本期目錄 -->
-            </div>
-            <div style="margin-top: 8px; display: flex; justify-content: flex-end;">
-              <a href="javascript:void(0)" onclick="switchTab('news')"
-                style="font-size: 12px; color: var(--accent); font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: all 0.2s;"
-                onmouseover="this.style.filter='brightness(1.2)'; this.style.transform='translateX(4px)'"
-                onmouseout="this.style.filter='none'; this.style.transform='none'">看更多 →</a>
+              <!-- 動態載入本期文章 -->
             </div>
           </div>
 
-          <div class="panel">
-            <h3><span class="dot"></span>最新趨勢</h3>
-            <div class="toc-list" id="latestTrendsSidebarTOC">
-              <!-- 動態載入最新趨勢標題 -->
-            </div>
-            <div style="margin-top: 8px; display: flex; justify-content: flex-end;">
-              <a href="javascript:void(0)" onclick="switchTab('summaries')"
-                style="font-size: 12px; color: var(--accent); font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: all 0.2s;"
-                onmouseover="this.style.filter='brightness(1.2)'; this.style.transform='translateX(4px)'"
-                onmouseout="this.style.filter='none'; this.style.transform='none'">看更多 →</a>
-            </div>
-          </div>
         </aside>
         <main>
           <!-- 最新一期封面卡 -->
-          <div id="latestHeroContainer"></div>
+          <div id="latestHeroContainer" style="width:100%; max-width:850px; margin:0 auto;"></div>
 
           <!-- 重點摘要區塊 -->
-          <div id="weeklySummariesSection" style="margin-top: 12px;">
-            <div class="issue-section-title" style="margin-bottom: 8px; border-left: none; padding-left: 0;">
+          <div id="weeklySummariesSection" style="margin-top: 4px; width:100%; max-width:850px; margin-left:auto; margin-right:auto;">
+            <div class="issue-section-title" style="margin-bottom: 8px; border-left: none; padding-left: 0; font-size: 20px;">
               30秒看趨勢
               <span class="issue-section-line"></span>
               <button class="issue-section-more" onclick="switchTab('summaries')">
@@ -100,7 +82,7 @@
                     style="color:#5ef5ff">›</span></span> 看更多
               </button>
             </div>
-            <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px;">
               <div class="robot-icon" style="flex-shrink: 0; padding-top: 4px;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"
                   stroke-linecap="round" stroke-linejoin="round">
@@ -115,17 +97,19 @@
                 </svg>
               </div>
               <div style="font-size: 14px; color: var(--accent); opacity: 0.85; line-height: 1.6; padding-top: 4px;">
-                用最短的文字告訴你最精華的內容，帶你快速了解近兩週AI界發生什麼事。
+                用一個段落快速告訴你，近兩週AI界發生什麼事！
               </div>
             </div>
-            <div id="weeklySummariesWrap" class="summaries-grid" style="margin-top:16px;">
+            <div id="weeklySummariesWrap" style="margin-top:4px; max-width:850px;">
               <!-- 動態載入 weekly-summaries.json -->
+            </div>
+            <div style="text-align:center; margin-top:40px;">
+              <a href="javascript:void(0)" onclick="switchTab('summaries')" class="issue-hero-btn" style="padding:10px 28px; font-size:14px; display:inline-block; text-decoration:none;">看更多趨勢 →</a>
             </div>
           </div>
 
           <!-- 前往完整電子報連結 -->
-          <div style="text-align:center;margin-top:12px;margin-bottom:20px" id="fullIssueLinkWrap">
-          </div>
+          <div id="fullIssueLinkWrap"></div>
         </main>
         <aside class="side">
           <div class="panel">
@@ -139,8 +123,7 @@
               <div class="tool-desc">多功能 AI 工具集合</div>
             </a>
           </div>
-          <a href="https://ainews.tvbs.ai/issues/hackathon2026.html" target="_blank" rel="noopener"
-            class="hackathon-card-link">
+          <div class="hackathon-card-link">
             <div class="hackathon-card">
               <div class="hack-title"><span class="hack-tag">第三屆 TVBS AI HACKATHON</span></div>
               <div class="hack-name">黑客松活動進行中</div>
@@ -167,7 +150,7 @@
                 </div>
               </div>
             </div>
-          </a>
+          </div>
         </aside>
       </div>
     </div>
@@ -177,7 +160,7 @@
   <div class="page" id="page-news">
     <div class="container">
       <div class="page-header">
-        <h2>重點報導</h2>
+        <h2>重點趨勢</h2>
         <p>精選 AI 深度專題，聚焦與媒體工作密切相關的議題。</p>
       </div>
       <div class="chips trend-filters">
@@ -202,9 +185,9 @@
     <div class="container">
       <div class="page-header">
         <h2>30秒看趨勢</h2>
-        <p>用最短的文字告訴你最精華的內容，帶你快速了解近兩週AI界發生什麼事。</p>
+        <p>用一個段落快速告訴你，近兩週AI界發生什麼事！</p>
       </div>
-      <div class="summaries-list" id="trendSummariesList" style="max-width:800px; margin:0 auto;">
+      <div class="summaries-list" id="trendSummariesList" style="max-width:850px; margin:0 auto;">
         <!-- 由 JS 動態載入重點摘要 -->
       </div>
     </div>
@@ -255,7 +238,7 @@
         <h2>AI 工具介紹</h2>
         <p>從歷期電子報精選的工具深度介紹文章，點擊閱讀詳細評測</p>
       </div>
-      <div class="prompt-list-grid" id="toolIntroContainer"></div>
+      <div class="articles three-col" id="toolIntroContainer"></div>
     </div>
   </div>
 
@@ -305,14 +288,15 @@
   <!-- 文章 Modal -->
   <div class="article-modal-mask" id="articleModal" onclick="if(event.target===this)closeArticle()">
     <div class="article-modal">
+      <button class="am-close" onclick="closeArticle()">✕</button>
       <div class="am-header">
         <div class="am-title-wrap">
+          <div class="am-breadcrumb" id="amBreadcrumb" style="display:none"></div>
           <span class="am-tag" id="amTag">標籤</span>
           <h3 class="am-title" id="amTitle">文章標題</h3>
           <div id="amHeaderDate"
             style="text-align:left; font-size:13px; color:#94a3b8; font-weight:700; margin-top:8px;"></div>
         </div>
-        <button class="am-close" onclick="closeArticle()">✕</button>
       </div>
       <div class="am-body">
         <div class="am-cover" id="amCover"></div>
