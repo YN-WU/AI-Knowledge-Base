@@ -22,7 +22,7 @@
   },
   {
     "id": "feed-deep-research",
-    "tag": "AI 代理",
+    "tag": "自主代理",
     "title": "Gemini Deep Research / Deep Research Max 發布",
     "summary": "建立在 Gemini 3.1 Pro 上的自主研究代理，支援 MCP 接入企業資料庫（FactSet、S&P Global、PitchBook 合作中）、原生 HTML 圖表輸出、協作式研究規劃。目前 Public Preview，透過 Gemini API 付費層開放。",
     "sourceUrl": "https://aistudio.google.com"
@@ -162,7 +162,7 @@
   },
   {
     "id": "feed-lobsterclaw",
-    "tag": "AI 代理",
+    "tag": "自主代理",
     "title": "Telegram LobsterClaw 一鍵建 AI Bot",
     "summary": "用戶無需程式背景，僅需取名與設定帳號即可在數秒內建立 AI Bot，將 AI 代理製作流程大眾化、社群化。",
     "sourceUrl": "https://t.me/LobsterClaw_bot"

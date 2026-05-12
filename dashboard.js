@@ -196,8 +196,8 @@ function getTag(title) {
   // 3. 應用技巧：教學、how-to、實戰、案例
   if (/教戰|教學|攻略|技巧|案例|實戰|心得|怎麼用|如何|這樣用|實測|實作/.test(t)) return '應用技巧';
 
-  // 4. AI 代理：自主執行任務的 agent
-  if (/代理|Agent|Cowork|代理人|自主|代你/.test(t)) return 'AI 代理';
+  // 4. 自主代理：自主執行任務的 agent
+  if (/代理|Agent|Cowork|代理人|自主|代你/.test(t)) return '自主代理';
 
   // 5. 模型發布：模型名 + 推出/登場 兩者並存
   // 涵蓋 LLM + 圖像 / 影片 / 音樂等 AI 模型
@@ -208,8 +208,8 @@ function getTag(title) {
   // 6. 新功能：既有產品新功能 / 新版本
   if (/更新|升級|改版|新功能|新增|擴增|大進化|再進化|加入/.test(t)) return '新功能';
 
-  // 7. AI 工具：全新工具 / 服務上線（catch-all 動詞）
-  if (/推出|發布|上線|新工具|新服務|問世/.test(t)) return 'AI 工具';
+  // 7. 新工具：全新工具 / 服務上線（catch-all 動詞）
+  if (/推出|發布|上線|新工具|新服務|問世/.test(t)) return '新工具';
 
   return '產業動態';
 }
@@ -394,7 +394,14 @@ function showArticle(data) {
   } else {
     document.querySelector('.am-body').style.paddingBottom = '40px';
   }
-  document.getElementById('articleModal').classList.add('active');
+  const modal = document.getElementById('articleModal');
+  modal.classList.add('active');
+  // 重置 modal 內各個可滾動容器到頂部（避免沿用上一篇的滾動位置）
+  modal.scrollTop = 0;
+  const modalBox = modal.querySelector('.article-modal');
+  if (modalBox) modalBox.scrollTop = 0;
+  const bodyScroll = modal.querySelector('.am-body');
+  if (bodyScroll) bodyScroll.scrollTop = 0;
 }
 
 function showArticleByTitle(title) {
@@ -433,16 +440,14 @@ function renderArchive(f) {
     const issueLabel = isSpecial ? `${it.date}` : `第 ${it.no} 期 ・ ${it.date}`;
     return `
       <div class="archive-card" onclick="window.open('https://ainews.tvbs.ai/issues/${it.no}.html','_blank')">
-        <div class="cover" style="${cv}">
-          <div class="cover-label">${coverLabel}</div>
-        </div>
+        <div class="cover" style="${cv}"></div>
         <div class="body">
           <div class="issue-num">${issueLabel}</div>
           <h4>${it.title}</h4>
           <div class="desc" style="font-size:12px;color:var(--text-light);margin-top:8px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${it.desc || ''}</div>
-          <div class="foot" style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:rgba(255,255,255,0.4)">
+          <div class="foot" style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text-light)">
             <span>${it.date}</span>
-            <span style="color:var(--accent)">閱讀 →</span>
+            <span style="color:var(--primary);font-weight:600">閱讀 →</span>
           </div>
         </div>
       </div>`;
@@ -533,7 +538,7 @@ async function initDashboardData() {
             fullContent: t.content || '',
             url: t.sourceUrl || `/tools#${t.issue}`,
             img: t.image || fallbackImg,
-            tag: t.cat || 'AI 工具',
+            tag: t.cat || '新工具',
             date: t.date || (t.issue ? `第 ${t.issue} 期` : ''),
             source: t.issue ? `TVBS AI Newsletter 第 ${t.issue} 期` : 'AI 工具介紹',
             sourceUrl: t.sourceUrl,
@@ -551,6 +556,57 @@ async function initDashboardData() {
         desc: latestArt.summary,
         img: latestArt.image
       } : (issuesData.find(it => it.no === "018") || issuesData[0]);
+
+      // Document Reader Overview: 月份 meta + 趨勢數量 + 關鍵字 chips
+      const articlesArr = articles || [];
+      const summariesArr = window.__weeklySummaries || [];
+      const overviewSource = [...articlesArr, ...summariesArr];
+
+      // 月份 meta — 從最新日期推導 "YYYY 年 M 月號"
+      const readerMetaEl = document.getElementById('readerIssueMeta');
+      if (readerMetaEl) {
+        const allDates = overviewSource.map(it => it.date).filter(Boolean)
+          .sort((a, b) => b.localeCompare(a));
+        const m = allDates[0] && allDates[0].match(/(\d{4})[\-.\/](\d{1,2})/);
+        if (m) {
+          readerMetaEl.textContent = `${m[1]} 年 ${parseInt(m[2], 10)} 月號`;
+        }
+      }
+
+      // 趨勢總數
+      const countEl = document.getElementById('readerTrendCount');
+      if (countEl) {
+        countEl.innerHTML = `<span class="reader-count-num">${overviewSource.length}</span><span class="reader-count-unit">則趨勢</span>`;
+      }
+
+      // 關鍵字 — 類型（含次數）+ 情境（純 tag），統一為 inline 文字
+      const renderInlineTags = (entries, showCount) => entries.map(([t, n]) =>
+        `<span class="reader-kw-link"><span class="kw-name">${t}</span>${showCount ? `<span class="kw-num">${n}</span>` : ''}</span>`
+      ).join('');
+
+      // 類型：item.tag 單值頻率（顯示次數）
+      const contentEl = document.getElementById('readerKwContent');
+      if (contentEl) {
+        const freq = {};
+        overviewSource.forEach(it => {
+          const t = it.tag || (typeof getTag === 'function' ? getTag(it.title) : null);
+          if (t) freq[t] = (freq[t] || 0) + 1;
+        });
+        contentEl.innerHTML = renderInlineTags(Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 6), true);
+      }
+
+      // 情境：item.tags 陣列展平，依 USECASE_TAG_ORDER 固定順序排列
+      const usecaseEl = document.getElementById('readerKwUsecase');
+      if (usecaseEl) {
+        const presentTags = new Set();
+        overviewSource.forEach(it => {
+          (it.tags || []).forEach(t => { if (t) presentTags.add(t); });
+        });
+        const ordered = sortUsecaseTags(Array.from(presentTags));
+        usecaseEl.innerHTML = ordered
+          .map(t => `<span class="reader-kw-link">${t}</span>`)
+          .join('');
+      }
 
       const heroContainer = document.getElementById('latestHeroContainer');
       // Hero Slider 候選池：articles + tool-intro 兩邊 featured: true 合併，按日期 desc 取前 5
@@ -664,29 +720,10 @@ async function initDashboardData() {
         }).join('');
         feedWrap.innerHTML = `<div class="news-feed-header"><span class="news-feed-header-label">AI 新聞快訊</span><span class="news-feed-header-line"></span><span style="font-size:11px;color:var(--text-light);white-space:nowrap">${totalCount} 則精選</span></div><div class="feed-day">${itemsHtml}</div>`;
       }
-      // 渲染重點摘要 (Homepage) — 列表格式 + 標題下方一行截斷摘要
+      // 渲染重點摘要 (Homepage) — 垂直 stacked 卡片
       const summariesWrap = document.getElementById('weeklySummariesWrap');
       if (summariesWrap && Array.isArray(window.__weeklySummaries) && window.__weeklySummaries.length > 0) {
-        summariesWrap.innerHTML = window.__weeklySummaries.map(it => {
-          const contentTag = it.tag || getTag(it.title);
-          const tags = (it.tags && it.tags.length) ? it.tags : [];
-          const tagsHtml = tags.length ? `
-                <div class="summary-tags-row">
-                  <span class="summary-tags-label">適用情境：</span>
-                  ${sortUsecaseTags(tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
-                </div>` : '';
-          return `
-            <div class="summary-list-item" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" style="padding: 12px 0; cursor:pointer; display:flex; gap:16px; align-items:center;" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
-              <div style="font-size:13px; color:#94a3b8; font-weight:700; white-space:nowrap; padding-left:12px; flex-shrink:0;">${it.date}</div>
-              <span class="feed-tag" style="flex-shrink:0;">${contentTag}</span>
-              <div style="flex:1; min-width:0;">
-                <h4 style="margin:0; color:var(--text); font-size:16px; line-height:1.5; font-weight:500;">${it.title}</h4>
-                <p style="margin:4px 0 0 0; font-size:13px; color:var(--text-light); line-height:1.5; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:600px;">${it.summary || ''}</p>${tagsHtml}
-              </div>
-              <span class="chevron-icon">›</span>
-            </div>
-          `;
-        }).join('');
+        summariesWrap.innerHTML = window.__weeklySummaries.map(it => renderSummaryItem(it, { showSummary: true })).join('');
       }
       // 渲染重點摘要 (Sidebar)
       const trendSidebarWrap = document.getElementById('latestTrendsSidebarTOC');
@@ -740,12 +777,18 @@ async function initDashboardData() {
           }
           const useCaseTags = (it.tags || []).join(',');
           const resolvedTag = it.tag || getTag(it.title);
+          const usecaseHtml = (it.tags && it.tags.length) ? `
+              <div class="summary-tags-row">
+                <span class="summary-tags-label">適用情境：</span>
+                ${sortUsecaseTags(it.tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
+              </div>` : '';
           return `
             <div class="article-card" data-content-tag="${resolvedTag}" data-usecase-tags="${useCaseTags}" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
               <div class="article-cover" style="background-image:url('${artImg}')"></div>
               <span class="tag">${resolvedTag}</span>
               <h4>${it.title}</h4>
               <div class="summary">${it.content || ''}</div>
+              ${usecaseHtml}
               <div class="article-meta">
                 <span>${metaLeft}</span>
                 <span>${metaRight}</span>
@@ -754,28 +797,10 @@ async function initDashboardData() {
           `;
         }).join('');
       }
-      // 6. 重點摘要列表 (Trend Summaries List)
+      // 6. 重點摘要列表 (Trend Summaries List) — 垂直 stacked 卡片
       const trendSummariesWrap = document.getElementById('trendSummariesList');
       if (trendSummariesWrap && Array.isArray(window.__weeklySummaries)) {
-        trendSummariesWrap.innerHTML = window.__weeklySummaries.map(it => {
-          const contentTag = it.tag || getTag(it.title);
-          const tags = (it.tags && it.tags.length) ? it.tags : [];
-          const tagsHtml = tags.length ? `
-                <div class="summary-tags-row">
-                  <span class="summary-tags-label">適用情境：</span>
-                  ${sortUsecaseTags(tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
-                </div>` : '';
-          return `
-            <div class="summary-list-item" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" style="padding: 12px 0; cursor:pointer; display:flex; gap:16px; align-items:center;" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
-              <div style="font-size:13px; color:#94a3b8; font-weight:700; white-space:nowrap; padding-left:12px; flex-shrink:0;">${it.date}</div>
-              <span class="feed-tag" style="flex-shrink:0;">${contentTag}</span>
-              <div style="flex:1; min-width:0;">
-                <h4 style="margin:0; color:var(--text); font-size:16px; line-height:1.5; font-weight:500;">${it.title}</h4>${tagsHtml}
-              </div>
-              <span class="chevron-icon">›</span>
-            </div>
-          `;
-        }).join('');
+        trendSummariesWrap.innerHTML = window.__weeklySummaries.map(it => renderSummaryItem(it, { showSummary: true })).join('');
       }
 
       // 初始化兩個分頁的雙層 filter
@@ -788,6 +813,35 @@ async function initDashboardData() {
 // 雙層 chip filter：自動掃描 data-content-tag / data-usecase-tags 產生 chips，
 // 點擊套用 AND 篩選，「全部」清除該排
 // 適用情境 tag 的顯示順序（指定排列，沒在這裡列的會排到最後）
+// 統一渲染「30 秒看趨勢」列表項目 — 垂直 stacked layout
+function renderSummaryItem(it, opts) {
+  opts = opts || {};
+  const contentTag = it.tag || (typeof getTag === 'function' ? getTag(it.title) : '');
+  const tags = (it.tags && it.tags.length) ? it.tags : [];
+  const tagsHtml = tags.length ? `
+    <div class="summary-tags-row">
+      <span class="summary-tags-label">適用情境：</span>
+      ${sortUsecaseTags(tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
+    </div>` : '';
+  const summaryHtml = opts.showSummary && it.summary
+    ? `<p class="sli-summary">${it.summary}</p>` : '';
+  const titleEnc = encodeURIComponent(it.title).replace(/'/g, "%27");
+  return `
+    <div class="summary-list-item" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" onclick="showArticleByTitle(decodeURIComponent('${titleEnc}'))">
+      <div class="sli-body">
+        <div class="sli-meta">
+          <span class="feed-tag">${contentTag}</span>
+          <span class="sli-date">${it.date || ''}</span>
+        </div>
+        <h4 class="sli-title">${it.title}</h4>
+        ${summaryHtml}
+        ${tagsHtml}
+      </div>
+      <span class="chevron-icon">›</span>
+    </div>
+  `;
+}
+
 const USECASE_TAG_ORDER = [
   '圖像生成', '影片製作', '聲音處理', '寫作協助', '翻譯',
   '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究',
@@ -971,12 +1025,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }).catch(function () { searchIndex = []; r([]); });
     });
   }
+  function getIssueNum(it) {
+    var m = (it.url || '').match(/(\d{3})\.html/);
+    return m ? parseInt(m[1], 10) : 0;
+  }
   function doSearch(q) {
     if (!searchIndex || !q) return [];
     var k = q.toLowerCase().trim();
     return searchIndex.filter(function (it) {
       return (it.title || '').toLowerCase().indexOf(k) >= 0 || (it.content || '').toLowerCase().indexOf(k) >= 0;
-    }); // 已移除 .slice(0, 20)
+    }).sort(function (a, b) {
+      var da = a.date || '';
+      var db = b.date || '';
+      // 兩者都有日期：日期 desc
+      if (da && db) return db.localeCompare(da);
+      // 只有 a 有日期：a 在前（新內容優先於舊期）
+      if (da && !db) return -1;
+      if (!da && db) return 1;
+      // 兩者都沒日期（舊期 entries）：用期號 desc
+      return getIssueNum(b) - getIssueNum(a);
+    });
+  }
+  function getSearchSourceLabel(r) {
+    // 1) 舊期電子報：URL 含 nnn.html
+    var m = (r.url || '').match(/(\d{3})\.html/);
+    if (m) return '第 ' + m[1] + ' 期';
+    // 2) 用 source 欄位轉成易讀標籤
+    var src = r.source || '';
+    if (src === 'TVBS AI 知識庫') return '重點趨勢';
+    if (src === '趨勢總覽') return '30 秒看趨勢';
+    if (src === 'AI 新聞快訊') return '新聞快訊';
+    if (src === 'AI 工具介紹' || /AI Newsletter 第/.test(src)) return 'AI 工具介紹';
+    return src || '';
   }
   function esc(s) {
     return String(s || '').replace(/[&<>"']/g, function (m) {
@@ -987,7 +1067,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var s = esc(t); if (!q) return s;
     var qq = esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     return s.replace(new RegExp(qq, 'gi'), function (m) {
-      return '<mark style="background:rgba(94,245,255,0.3);color:var(--accent);padding:0 2px">' + m + '</mark>';
+      return '<mark style="background:rgba(91,91,214,0.15);color:var(--primary);padding:0 2px;border-radius:3px">' + m + '</mark>';
     });
   }
   function renderSR(res, q) {
@@ -995,10 +1075,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!q) { b.classList.remove('open'); return; }
     if (res.length === 0) { b.innerHTML = '<div class="search-no-result">找不到相關內容</div>'; b.classList.add('open'); return; }
     b.innerHTML = res.map(function (r) {
-      var m = (r.url || '').match(/(\d{3})\.html/);
-      var no = m ? m[1] : '';
-      var u = 'https://ainews.tvbs.ai' + (r.url.indexOf('/') === 0 ? r.url : '/' + r.url);
-      return `<div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(r.title).replace(/'/g, "%27")}'))" style="text-decoration:none;cursor:pointer"><div class="search-result-item"><div class="search-result-title">${hl(r.title, q)}</div><div class="search-result-snippet">${hl((r.content || '').slice(0, 120), q)}…</div>${no ? `<div class="search-result-meta">第 ${no} 期</div>` : ''}</div></div>`;
+      var sourceLabel = getSearchSourceLabel(r);
+      var dateLabel = r.date || '';
+      return `<div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(r.title).replace(/'/g, "%27")}'))" style="text-decoration:none;cursor:pointer"><div class="search-result-item"><div class="search-result-title">${hl(r.title, q)}</div><div class="search-result-snippet">${hl((r.content || '').slice(0, 120), q)}…</div><div class="search-result-meta">${sourceLabel ? `<span class="search-result-source">${sourceLabel}</span>` : ''}${dateLabel ? `<span class="search-result-date">${dateLabel}</span>` : ''}</div></div></div>`;
     }).join('');
     b.classList.add('open');
   }

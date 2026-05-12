@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TVBS AI Knowledge Base｜AI 知識庫・每週發行電子報</title>
+<title>TVBS AI Knowledge Base｜AI 知識庫・掌握最新趨勢</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -114,7 +114,7 @@
 
   /* Chips */
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-  .chip{padding:6px 14px;border-radius:999px;background:rgba(20,35,75,0.6);border:1px solid var(--border);font-size:13px;cursor:pointer;font-family:inherit;color:var(--text)}
+  .chip{padding:6px 14px;border-radius:999px;background:rgba(91,91,214,0.08);border:1px solid var(--border);font-size:13px;cursor:pointer;font-family:inherit;color:var(--text)}
   .chip:hover{border-color:var(--accent);color:var(--accent)}
   .chip.active{background:linear-gradient(135deg,rgba(77,159,255,0.2),rgba(94,245,255,0.1));color:var(--accent);border-color:var(--accent);box-shadow:0 0 0 1px rgba(94,245,255,0.3) inset,0 0 14px rgba(94,245,255,0.3);text-shadow:0 0 8px rgba(94,245,255,0.4);font-weight:700}
 
@@ -162,7 +162,7 @@
 
   /* 模型類別切換 */
   .model-type-tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-  .model-type-tab{padding:10px 20px;background:rgba(20,35,75,0.4);border:1.5px solid var(--border-strong);color:var(--text);border-radius:999px;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;letter-spacing:0.5px;transition:all .2s}
+  .model-type-tab{padding:10px 20px;background:rgba(91,91,214,0.06);border:1.5px solid var(--border-strong);color:var(--text);border-radius:999px;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;letter-spacing:0.5px;transition:all .2s}
   .model-type-tab:hover{border-color:var(--accent);color:var(--accent)}
   .model-type-tab.active{background:linear-gradient(135deg,rgba(77,159,255,0.2),rgba(94,245,255,0.1));color:var(--accent);border-color:var(--accent);font-weight:700;box-shadow:0 0 0 1px rgba(94,245,255,0.3) inset,0 0 16px rgba(94,245,255,0.3);text-shadow:0 0 8px rgba(94,245,255,0.4)}
   .model-type-pane{display:none;animation:fadeIn .4s ease}
@@ -193,7 +193,7 @@
   .issue-section-more .chevron{background:linear-gradient(90deg,rgba(77,159,255,0.6),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;letter-spacing:-1px;margin-right:6px;font-size:12px;transition:all .2s;display:inline-block}
   .issue-section-more:hover{background:transparent;color:var(--accent);box-shadow:none;text-shadow:0 0 8px rgba(94,245,255,0.5);transform:translateX(2px)}
   .issue-section-more:hover .chevron{background:linear-gradient(90deg,var(--accent),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  .issue-block{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:18px;clip-path:var(--clip-md);transition:all .2s;cursor:pointer}
+  .issue-block{background:rgba(91,91,214,0.06);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:18px;clip-path:var(--clip-md);transition:all .2s;cursor:pointer}
   .issue-block:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.1)}
   .issue-block.tool{}
   .issue-block-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
@@ -289,7 +289,7 @@
 
   /* Prompt compact cards */
   .prompt-list-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-  .prompt-compact-card{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:16px;cursor:pointer;display:flex;flex-direction:column;gap:8px;clip-path:var(--clip-md);transition:all .2s}
+  .prompt-compact-card{background:rgba(91,91,214,0.06);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);padding:16px;cursor:pointer;display:flex;flex-direction:column;gap:8px;clip-path:var(--clip-md);transition:all .2s}
   .prompt-compact-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 0 16px rgba(94,245,255,0.2)}
   .prompt-compact-card .pc-cat{display:inline-block;padding:3px 10px;background:rgba(77,159,255,0.15);color:var(--accent);border-radius:999px;font-size:12px;font-weight:700;border:1px solid rgba(94,245,255,0.2);align-self:flex-start}
   .prompt-compact-card .pc-title{font-size:16px;font-weight:700;line-height:1.4;color:var(--text)}
@@ -317,7 +317,7 @@
 
   /* Prompt resource sites */
   .prompt-sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-  .prompt-site-card{display:flex;align-items:center;gap:12px;padding:14px;background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);text-decoration:none;color:var(--text) !important;clip-path:var(--clip-sm);transition:all .2s}
+  .prompt-site-card{display:flex;align-items:center;gap:12px;padding:14px;background:rgba(91,91,214,0.06);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);text-decoration:none;color:var(--text) !important;clip-path:var(--clip-sm);transition:all .2s}
   .prompt-site-card:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.12);box-shadow:0 0 16px rgba(94,245,255,0.2)}
   .site-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0}
   .site-info{flex:1;min-width:0}
@@ -371,7 +371,7 @@
   .learn-section{margin-bottom:32px}
   .learn-section-title{font-size:18px;font-weight:800;margin-bottom:14px;padding-left:12px;border-left:4px solid var(--primary);display:flex;align-items:center;gap:10px;color:var(--text)}
   .learn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-  .learn-card{display:flex;align-items:flex-start;gap:12px;padding:16px;background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);text-decoration:none;color:var(--text) !important;clip-path:var(--clip-sm);transition:all .2s}
+  .learn-card{display:flex;align-items:flex-start;gap:12px;padding:16px;background:rgba(91,91,214,0.06);backdrop-filter:blur(10px);border:1.5px solid var(--border-strong);text-decoration:none;color:var(--text) !important;clip-path:var(--clip-sm);transition:all .2s}
   .learn-card:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(77,159,255,0.1);box-shadow:0 0 16px rgba(94,245,255,0.2)}
   .learn-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;font-weight:700;color:white}
   .learn-info{flex:1;min-width:0}
@@ -382,7 +382,7 @@
   /* Tools grid */
   .tool-section{margin-bottom:28px}
   .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-  .tool-card-big{background:rgba(20,35,75,0.4);backdrop-filter:blur(10px);padding:16px;border:1.5px solid var(--border-strong);display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text) !important;clip-path:var(--clip-sm);transition:all .2s}
+  .tool-card-big{background:rgba(91,91,214,0.06);backdrop-filter:blur(10px);padding:16px;border:1.5px solid var(--border-strong);display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text) !important;clip-path:var(--clip-sm);transition:all .2s}
   .tool-card-big:hover{transform:translateY(-2px);border-color:var(--accent);background:rgba(77,159,255,0.12);box-shadow:0 0 16px rgba(94,245,255,0.2)}
   .tool-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white;flex-shrink:0}
   .tool-icon.logo-icon{padding:8px;overflow:hidden}
@@ -441,14 +441,14 @@
   .chat-msg{margin-bottom:14px;display:flex;gap:8px}
   .chat-msg.bot .avatar{width:32px;height:32px;border-radius:50%;background:rgba(94,245,255,0.15);border:1px solid rgba(94,245,255,0.4);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;box-shadow:0 0 8px rgba(94,245,255,0.2)}
   .chat-msg.bot .avatar svg{width:18px;height:18px;filter:drop-shadow(0 0 3px rgba(94,245,255,0.5))}
-  .chat-msg.bot .bubble{background:rgba(20,35,75,0.9);color:var(--text);padding:12px 16px;border-radius:16px 16px 16px 4px;font-size:13px;border:1px solid var(--border);max-width:80%;line-height:1.6}
+  .chat-msg.bot .bubble{background:rgba(91,91,214,0.12);color:var(--text);padding:12px 16px;border-radius:16px 16px 16px 4px;font-size:13px;border:1px solid var(--border);max-width:80%;line-height:1.6}
   .chat-msg.user{justify-content:flex-end}
   .chat-msg.user .bubble{background:linear-gradient(135deg,rgba(77,159,255,0.25),rgba(94,245,255,0.12));color:var(--accent);padding:12px 16px;border-radius:16px 16px 4px 16px;font-size:13px;max-width:80%;line-height:1.6;border:1px solid rgba(94,245,255,0.3);box-shadow:0 0 12px rgba(94,245,255,0.15)}
   .quick-suggestions{padding:0 20px 12px;display:flex;gap:6px;flex-wrap:wrap}
   .suggest-chip{padding:6px 12px;background:rgba(77,159,255,0.15);color:var(--accent);border:1px solid rgba(94,245,255,0.3);border-radius:999px;font-size:11px;cursor:pointer;font-family:inherit}
   .suggest-chip:hover{background:var(--primary);color:white}
   .chat-footer{padding:14px 16px;border-top:1px solid var(--border);display:flex;gap:8px;background:rgba(10,18,40,0.8)}
-  .chat-footer input{flex:1;padding:11px 16px;border:1.5px solid var(--border-strong);border-radius:999px;font-size:13px;outline:none;background:rgba(20,35,75,0.6);font-family:inherit;color:var(--text)}
+  .chat-footer input{flex:1;padding:11px 16px;border:1.5px solid var(--border-strong);border-radius:999px;font-size:13px;outline:none;background:rgba(91,91,214,0.08);font-family:inherit;color:var(--text)}
   .chat-footer input::placeholder{color:var(--text-light)}
   .chat-footer button{background:linear-gradient(135deg,rgba(77,159,255,0.2),rgba(94,245,255,0.1));color:var(--accent);border:1.5px solid rgba(94,245,255,0.5);padding:0 20px;border-radius:999px;cursor:pointer;font-weight:700;font-size:13px;font-family:inherit;box-shadow:0 0 12px rgba(94,245,255,0.2);transition:all .2s;text-shadow:0 0 8px rgba(94,245,255,0.4)}
   .chat-footer button:hover{border-color:var(--accent);background:linear-gradient(135deg,rgba(77,159,255,0.3),rgba(94,245,255,0.15));box-shadow:0 0 20px rgba(94,245,255,0.4)}
@@ -465,7 +465,7 @@
       <div class="brand-divider"></div>
       <div class="brand-text">
         <span class="logo">AI Knowledge Base</span>
-        <span class="brand-sub">AI 知識庫・每週發行電子報</span>
+        <span class="brand-sub">AI 知識庫・掌握最新趨勢</span>
       </div>
     </div>
     <div class="searchbar" id="searchbarWrap">
@@ -594,7 +594,7 @@
       <button class="chip" data-filter="模型發布">模型發布</button>
       <button class="chip" data-filter="圖像生成">圖像生成</button>
       <button class="chip" data-filter="影音創作">影音創作</button>
-      <button class="chip" data-filter="AI 代理">AI 代理</button>
+      <button class="chip" data-filter="自主代理">自主代理</button>
       <button class="chip" data-filter="智慧搜尋">智慧搜尋</button>
       <button class="chip" data-filter="應用技巧">應用技巧</button>
       <button class="chip" data-filter="法律規範">法律規範</button>

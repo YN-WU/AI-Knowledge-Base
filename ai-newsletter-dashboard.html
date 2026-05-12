@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TVBS AI Knowledge Base｜AI 知識庫・每週發行電子報</title>
+  <title>TVBS AI Knowledge Base｜AI 知識庫・掌握最新趨勢</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;600;800&display=swap"
     rel="stylesheet">
@@ -20,7 +20,7 @@
         <div class="brand-divider"></div>
         <div class="brand-text">
           <span class="logo">AI Knowledge Base</span>
-          <span class="brand-sub">AI 知識庫・每週發行電子報</span>
+          <span class="brand-sub">AI 知識庫・掌握最新趨勢</span>
         </div>
       </div>
       <div class="searchbar" id="searchbarWrap">
@@ -57,103 +57,106 @@
   </div>
 
   <div class="page active" id="page-home">
-    <div class="container" style="padding-top:32px">
-      <div class="layout-3col">
-        <aside class="side">
-          <div class="panel">
-            <h3><span class="dot"></span>最新文章</h3>
-            <div class="toc-list" id="latestIssueTOC">
-              <!-- 動態載入本期文章 -->
-            </div>
-          </div>
+    <article class="reader-flow">
 
-        </aside>
-        <main>
-          <!-- 最新一期封面卡 -->
-          <div id="latestHeroContainer" style="width:100%; max-width:950px; margin:0 auto;"></div>
+      <!-- Masthead：月份 + 主題 -->
+      <header class="reader-header">
+        <div class="reader-issue-meta" id="readerIssueMeta">2026 年 5 月號</div>
+        <h1 class="reader-title">最新 AI 趨勢</h1>
+      </header>
 
-          <!-- 重點摘要區塊 -->
-          <div id="weeklySummariesSection" style="margin-top: 4px; width:100%; max-width:950px; margin-left:auto; margin-right:auto;">
-            <div class="issue-section-title" style="margin-bottom: 8px; border-left: none; padding-left: 0; font-size: 20px;">
-              30秒看趨勢
-              <span class="issue-section-line"></span>
-              <button class="issue-section-more" onclick="switchTab('summaries')">
-                <span class="chevron"><span style="color:#4a6fad">›</span><span style="color:#5bb8e0">›</span><span
-                    style="color:#5ef5ff">›</span></span> 看更多
-              </button>
-            </div>
-            <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px;">
-              <div class="robot-icon" style="flex-shrink: 0; padding-top: 4px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7 8V4"></path>
-                  <path d="M17 8V4"></path>
-                  <rect width="16" height="12" x="4" y="8" rx="2"></rect>
-                  <path d="M2 14h2"></path>
-                  <path d="M20 14h2"></path>
-                  <circle cx="9" cy="13" r="1"></circle>
-                  <circle cx="15" cy="13" r="1"></circle>
-                  <path d="M10 16h4"></path>
-                </svg>
-              </div>
-              <div style="font-size: 14px; color: var(--accent); opacity: 0.85; line-height: 1.6; padding-top: 4px;">
-                用一個段落快速告訴你，近兩週AI界發生什麼事！
-              </div>
-            </div>
-            <div id="weeklySummariesWrap" style="margin-top:4px; max-width:950px;">
-              <!-- 動態載入 weekly-summaries.json -->
-            </div>
-            <div style="text-align:center; margin-top:40px;">
-              <a href="javascript:void(0)" onclick="switchTab('summaries')" class="issue-hero-btn" style="padding:10px 28px; font-size:14px; display:inline-block; text-decoration:none;">看更多趨勢 →</a>
-            </div>
+      <!-- 趨勢數字 + 關鍵字 -->
+      <section class="reader-section reader-overview">
+        <div class="reader-trend-count" id="readerTrendCount">
+          <span class="reader-count-num">—</span><span class="reader-count-unit">則趨勢</span>
+        </div>
+        <div class="reader-keywords" id="readerKeywords">
+          <div class="reader-kw-row">
+            <span class="reader-kw-axis">類型</span>
+            <div class="reader-kw-inline" id="readerKwContent"></div>
           </div>
+          <div class="reader-kw-row reader-kw-row--usecase">
+            <span class="reader-kw-axis">情境</span>
+            <div class="reader-kw-inline" id="readerKwUsecase"></div>
+          </div>
+        </div>
+      </section>
 
-          <!-- 前往完整電子報連結 -->
-          <div id="fullIssueLinkWrap"></div>
-        </main>
-        <aside class="side">
-          <div class="panel">
-            <h3><span class="dot"></span>內部 AI 工具</h3>
-            <a href="https://dashboard.aiwize.com/dashboard/chat" target="_blank" class="internal-tool">
-              <div class="tool-name">AIWIZE →</div>
-              <div class="tool-desc">公司內部智慧助理平台</div>
-            </a>
-            <a href="https://tools.tvbs.ai" target="_blank" class="internal-tool variant-2">
-              <div class="tool-name">TVBS AI Tool →</div>
-              <div class="tool-desc">多功能 AI 工具集合</div>
-            </a>
-          </div>
-          <div class="hackathon-card-link">
-            <div class="hackathon-card">
-              <div class="hack-title"><span class="hack-tag">第三屆 TVBS AI HACKATHON</span></div>
-              <div class="hack-name">黑客松活動進行中</div>
-              <div class="hack-timeline">
-                <div class="hack-step past">
-                  <div class="hack-step-date">3/10</div>
-                  <div class="hack-step-desc">報名截止</div>
-                </div>
-                <div class="hack-step past">
-                  <div class="hack-step-date">4/10</div>
-                  <div class="hack-step-desc">繳交提案 + Prototype</div>
-                </div>
-                <div class="hack-step current">
-                  <div class="hack-step-date">4/11 - 4/30</div>
-                  <div class="hack-step-desc">評審審查中（選 20 組）</div>
-                </div>
-                <div class="hack-step">
-                  <div class="hack-step-date">5/01 - 6/30</div>
-                  <div class="hack-step-desc">決賽組精緻化 + 落地</div>
-                </div>
-                <div class="hack-step">
-                  <div class="hack-step-date">7 月</div>
-                  <div class="hack-step-desc">決賽 Live Demo（1 號棚）</div>
-                </div>
-              </div>
+      <hr class="reader-divider">
+
+      <!-- Hero：當期封面 + 重點 -->
+      <section class="reader-section reader-hero-section">
+        <div id="latestHeroContainer"></div>
+      </section>
+
+      <hr class="reader-divider">
+
+      <!-- 30秒看趨勢 -->
+      <section class="reader-section" id="weeklySummariesSection">
+        <h2 class="reader-h2">30 秒看趨勢</h2>
+        <p class="reader-lead">用一個段落快速告訴你，近兩週 AI 界發生什麼事。</p>
+        <div id="weeklySummariesWrap"></div>
+        <div class="reader-section-cta">
+          <a href="javascript:void(0)" onclick="switchTab('summaries')" class="reader-link-btn">看更多趨勢 →</a>
+        </div>
+      </section>
+
+      <hr class="reader-divider">
+
+      <!-- 內部 AI 工具 -->
+      <section class="reader-section">
+        <h2 class="reader-h2">內部 AI 工具</h2>
+        <div class="reader-tools">
+          <a href="https://dashboard.aiwize.com/dashboard/chat" target="_blank" class="reader-tool-card">
+            <div class="reader-tool-info">
+              <div class="reader-tool-name">AIWIZE</div>
+              <div class="reader-tool-desc">公司內部智慧助理平台</div>
             </div>
+            <span class="reader-tool-arrow">→</span>
+          </a>
+          <a href="https://tools.tvbs.ai" target="_blank" class="reader-tool-card">
+            <div class="reader-tool-info">
+              <div class="reader-tool-name">TVBS AI Tool</div>
+              <div class="reader-tool-desc">多功能 AI 工具集合</div>
+            </div>
+            <span class="reader-tool-arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      <hr class="reader-divider">
+
+      <!-- 黑客松進度 -->
+      <section class="reader-section">
+        <h2 class="reader-h2">第三屆 TVBS AI HACKATHON</h2>
+        <p class="reader-lead">黑客松活動進行中，目前進入評審審查階段。</p>
+        <div class="reader-hack-timeline">
+          <div class="hack-step past">
+            <div class="hack-step-date">3/10</div>
+            <div class="hack-step-desc">報名截止</div>
           </div>
-        </aside>
-      </div>
-    </div>
+          <div class="hack-step past">
+            <div class="hack-step-date">4/10</div>
+            <div class="hack-step-desc">繳交提案 + Prototype</div>
+          </div>
+          <div class="hack-step current">
+            <div class="hack-step-date">4/11 - 4/30</div>
+            <div class="hack-step-desc">評審審查中<br>（選 20 組）</div>
+          </div>
+          <div class="hack-step">
+            <div class="hack-step-date">5/01 - 6/30</div>
+            <div class="hack-step-desc">決賽組精緻化 + 落地</div>
+          </div>
+          <div class="hack-step">
+            <div class="hack-step-date">7 月</div>
+            <div class="hack-step-desc">決賽 Live Demo<br>（1 號棚）</div>
+          </div>
+        </div>
+      </section>
+
+      <div id="fullIssueLinkWrap"></div>
+
+    </article>
   </div>
 
   <!-- ============ AI 趨勢消息 (最新文章) ============ -->
@@ -177,7 +180,7 @@
     <div class="container">
       <div class="page-header">
         <h2>30秒看趨勢</h2>
-        <p>用一個段落快速告訴你，近兩週AI界發生什麼事！</p>
+        <p>用一個段落快速告訴你，近兩週 AI 界發生什麼事。</p>
       </div>
       <div class="filter-rows" id="summariesFilters">
         <!-- 由 JS 動態渲染：兩排 chip filter -->
@@ -193,7 +196,7 @@
     <div class="container">
       <div class="page-header">
         <h2>PROMPT 專欄</h2>
-        <p>精選歷期 Prompt 教學、情境應用與優化技巧</p>
+        <p>精選歷期 Prompt 教學、情境應用與優化技巧。</p>
       </div>
       <div class="chips prompt-filters">
         <button class="chip active" data-filter="全部">全部</button>
@@ -219,7 +222,7 @@
     <div class="container">
       <div class="page-header">
         <h2>AI 工具資源</h2>
-        <p>一站式 AI 工具目錄，按用途快速找到你需要的</p>
+        <p>一站式 AI 工具目錄，按用途快速找到你需要的。</p>
       </div>
       <div id="toolsContainer"></div>
 
@@ -231,7 +234,7 @@
     <div class="container">
       <div class="page-header">
         <h2>AI 工具介紹</h2>
-        <p>從歷期電子報精選的工具深度介紹文章，點擊閱讀詳細評測</p>
+        <p>從歷期電子報精選的工具深度介紹文章，點擊閱讀詳細評測。</p>
       </div>
       <div class="articles three-col" id="toolIntroContainer"></div>
     </div>
@@ -241,7 +244,7 @@
     <div class="container">
       <div class="page-header">
         <h2>歷期電子報</h2>
-        <p>翻閱過往每一期精選內容，掌握 AI 趨勢發展脈絡</p>
+        <p>翻閱過往每一期精選內容，掌握 AI 趨勢發展脈絡。</p>
       </div>
       <div class="chips archive-filters" id="archiveChips">
         <button class="chip active" data-filter="all">全部</button>
