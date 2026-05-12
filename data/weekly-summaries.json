@@ -14,7 +14,7 @@
     "title": "Openai 推 Codex 大更新　能控制螢幕還有智慧記憶功能",
     "summary": "Codex 這次升級讓 AI 直接接手你的螢幕操作，它能像真人一樣移動游標點選 Mac 應用程式，解決了過去沒 API 就無法自動化的麻煩。你不僅能在內建瀏覽器裡邊看畫面邊下指令，甚至能讓它記住工作偏好並跨天接續任務。搭配新整合的 90 多款外掛，Codex 會主動從 Slack 或 Jira 抓出重點並排好優先順序，讓你徹底擺脫在不同視窗間來回切換的混亂，專注在真正的開發工作中。",
     "sourceUrl": "https://openai.com/zh-Hant/index/codex-for-almost-everything/",
-    "tag": "AI 代理",
+    "tag": "自主代理",
     "tags": ["程式設計", "自動化", "工作流整合"]
   },
   {
@@ -32,7 +32,7 @@
     "title": "xAI 推出 Custom Voices　兩分鐘打造專屬品牌音色",
     "summary": "xAI 推出 Custom Voices，用戶僅需錄音一分鐘即可在兩分鐘內生成專屬語音，並透過 Voice Library 整合至 API 進行支援中文在內的 28 種語言即時串流。 結合 Grok 4.3 推理邏輯，在語意重音與抗噪穩定度上優於 OpenAI 及 ElevenLabs，並藉由強制雙重驗證解決盜用風險與品牌辨識度不足的痛點。",
     "sourceUrl": "https://x.ai/news/grok-custom-voices",
-    "tag": "AI 工具",
+    "tag": "新工具",
     "tags": ["聲音處理"]
   },
   {
@@ -41,7 +41,7 @@
     "title": "Google 推出 Workspace Intelligence　透過 Gemini 跨應用程式自動化與客製化生成",
     "summary": "Google 推出 Workspace Intelligence 系統，將 Gemini 推論能力整合至 Chat、Gmail 與雲端硬碟，用戶僅需輸入指令，AI 即可跨應用搜集資訊、生成專業簡報並自動更新數據試算表。該功能可透過分析協作模式與過往語調，提供具備個人化風格的草稿與每日任務簡報，有效解決用戶需頻繁切換分頁搜尋零散資料，以及耗時整理初步底稿的作業困擾。",
     "sourceUrl": "https://workspace.google.com/blog/product-announcements/introducing-workspace-intelligence",
-    "tag": "AI 工具",
+    "tag": "新工具",
     "tags": ["工作流整合", "寫作協助", "整理資料"]
   },
   {
@@ -86,7 +86,7 @@
     "title": "Anthropic 推出 Claude Design　用對話就能生成軟體介面並直連匯出 Canva",
     "summary": "Anthropic Labs 推出 Claude Design，讓使用者能用對話生成軟體介面草案，並根據回饋反覆調整。輸入畫面需求後，Claude 會同時呈現多種視覺版本供挑選，再根據指示修改細節，完成後能直接匯出至 Canva。過去原型設計需要反覆畫草稿才能確認方向，現在能在一問一答之間快速出圖、節省溝通成本。",
     "sourceUrl": "https://www.anthropic.com/news/claude-for-creative-work",
-    "tag": "AI 工具",
+    "tag": "新工具",
     "tags": ["圖像生成", "簡報設計"]
   },
   {
