@@ -70,10 +70,10 @@
         </aside>
         <main>
           <!-- 最新一期封面卡 -->
-          <div id="latestHeroContainer" style="width:100%; max-width:850px; margin:0 auto;"></div>
+          <div id="latestHeroContainer" style="width:100%; max-width:950px; margin:0 auto;"></div>
 
           <!-- 重點摘要區塊 -->
-          <div id="weeklySummariesSection" style="margin-top: 4px; width:100%; max-width:850px; margin-left:auto; margin-right:auto;">
+          <div id="weeklySummariesSection" style="margin-top: 4px; width:100%; max-width:950px; margin-left:auto; margin-right:auto;">
             <div class="issue-section-title" style="margin-bottom: 8px; border-left: none; padding-left: 0; font-size: 20px;">
               30秒看趨勢
               <span class="issue-section-line"></span>
@@ -100,7 +100,7 @@
                 用一個段落快速告訴你，近兩週AI界發生什麼事！
               </div>
             </div>
-            <div id="weeklySummariesWrap" style="margin-top:4px; max-width:850px;">
+            <div id="weeklySummariesWrap" style="margin-top:4px; max-width:950px;">
               <!-- 動態載入 weekly-summaries.json -->
             </div>
             <div style="text-align:center; margin-top:40px;">
@@ -163,16 +163,8 @@
         <h2>重點趨勢</h2>
         <p>精選 AI 深度專題，聚焦與媒體工作密切相關的議題。</p>
       </div>
-      <div class="chips trend-filters">
-        <button class="chip active" data-filter="全部">全部</button>
-        <button class="chip" data-filter="模型發布">模型發布</button>
-        <button class="chip" data-filter="圖像生成">圖像生成</button>
-        <button class="chip" data-filter="影音創作">影音創作</button>
-        <button class="chip" data-filter="AI 代理">AI 代理</button>
-        <button class="chip" data-filter="智慧搜尋">智慧搜尋</button>
-        <button class="chip" data-filter="應用技巧">應用技巧</button>
-        <button class="chip" data-filter="法律規範">法律規範</button>
-        <button class="chip" data-filter="產業動態">產業動態</button>
+      <div class="filter-rows" id="trendFilters">
+        <!-- 由 JS 動態渲染：兩排 chip filter -->
       </div>
       <div class="articles three-col" id="trendGrid">
         <!-- 由 JS 動態載入最新一期文章 -->
@@ -187,7 +179,10 @@
         <h2>30秒看趨勢</h2>
         <p>用一個段落快速告訴你，近兩週AI界發生什麼事！</p>
       </div>
-      <div class="summaries-list" id="trendSummariesList" style="max-width:850px; margin:0 auto;">
+      <div class="filter-rows" id="summariesFilters">
+        <!-- 由 JS 動態渲染：兩排 chip filter -->
+      </div>
+      <div class="summaries-list" id="trendSummariesList" style="max-width:950px; margin:0 auto;">
         <!-- 由 JS 動態載入重點摘要 -->
       </div>
     </div>

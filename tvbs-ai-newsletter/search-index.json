@@ -1,6 +1,8 @@
 [
   {
     "title": "AI搜尋衝擊傳統資訊平台 「這些網站」轉型反而逆勢成長",
+    "tag": "產業動態",
+    "tags": ["觀念學習"],
     "content": "近日，AI搜尋工具如ChatGPT迅速普及，嚴重衝擊傳統平台。然而，美國多個知名網站卻在這波影響中逆勢成長，他們運用了什麼策略？開發者社群平台Stack Overflow、醫療健康資訊網站WebMD、電子報平台Substack。",
     "url": "/issues/001.html#section-jump-0",
     "img": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F525c47ab-6e38-41c8-940c-751d3f6a72a4_2104x870.png",
@@ -8,6 +10,8 @@
   },
   {
     "title": "用嘴修圖的時代來了！AI圖片編輯技術大升級",
+    "tag": "新功能",
+    "tags": ["圖像生成"],
     "content": "人工智能兩大陣營Google與OpenAI日前分別推出新的圖像生成功能，讓使用者透過自然語言，就能進行更靈活、精準的圖片修改及創作。Google Gemini推出「Image Editing」圖片編輯功能，OpenAI整合「4o Image Generation」功能至GPT-4o中。",
     "url": "/issues/001.html#section-jump-1",
     "img": "https://i.meee.com.tw/7ocyQTE.jpg",
@@ -15,6 +19,8 @@
   },
   {
     "title": "Gemini 2.5 Pro免費開放 帶來跨媒體應用新可能",
+    "tag": "模型發布",
+    "tags": ["寫作協助", "資料研究", "程式設計"],
     "content": "科技巨擘Google上月推出全新 Gemini 2.5 Pro 實驗版，相較於前一代 Gemini 2.0 Flash，此次直接釋出最高版本，並已免費開放給所有用戶。Gemini 2.5 是一款推理模型，可整合文字、圖像、音訊與影片等多種資訊形式。",
     "url": "/issues/001.html#section-jump-2",
     "img": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/final_2.5_blog_1.width-1000.format-webp.webp",
@@ -38,6 +44,8 @@
   },
   {
     "title": "Canva AI功能全面進化！表格、互動設計一站整合",
+    "tag": "新功能",
+    "tags": ["簡報設計", "圖像生成", "整理資料"],
     "content": "設計平台 Canva AI 功能全面進化，整合 Visual Suite 2.0。Google AI Studio 新增中文語音。OpenAI GPT-4.1 問世，支援百萬級 token。工具推薦 Google NotebookLM AI 筆記。AIWIZE Tips 探索 Autopilot 圖片轉影片流程，認識 Wan2.1。AIWIZE 更新。",
     "url": "/issues/002.html#section-jump-0",
     "img": "https://i.meee.com.tw/pW0ghKf.jpg",
@@ -46,6 +54,8 @@
   },
   {
     "title": "Google AI Studio Stream 說中文嘛欸通！直接看螢幕秒變語音助教",
+    "tag": "新功能",
+    "tags": ["聲音處理"],
     "content": "Google AI Studio 推出全新改版，Stream Realtime（即時串流）功能正式支援中文語音互動，並搭配螢幕畫面分享功能。Gemini 模型也能分析影片內容，協作學習更方便。",
     "url": "/issues/002.html#section-jump-1",
     "img": "https://i.meee.com.tw/jFakTAI.jpg",
@@ -53,6 +63,8 @@
   },
   {
     "title": "GPT-4.1系列模型問世！支援百萬token 性能效率大提升",
+    "tag": "模型發布",
+    "tags": ["寫作協助", "資料研究", "程式設計"],
     "content": "OpenAI 日前推出新一代 GPT‑4.1 系列模型，包括 GPT-4.1、GPT-4.1 mini 及 GPT-4.1 nano。支援高達 100 萬詞元（token）的上下文，成本較 GPT-4o 降低，性能與效率大幅提升。",
     "url": "/issues/002.html#section-jump-2",
     "img": "https://i.meee.com.tw/4lL83vD.jpg",
@@ -79,6 +91,8 @@
   },
   {
     "title": "ChatGPT 推理模型 o3 與 o4-mini 登場！首次實現「看圖思考」",
+    "tag": "模型發布",
+    "tags": ["資料研究", "程式設計", "圖像生成"],
     "content": "OpenAI o3 與 o4-mini 模型登場，具備看圖思考的視覺推理能力。全新圖像生成模型 GPT-image-1 上線。Google Veo 2 免費試用。工具推薦 Claude 3.7 Sonnet，擅長程式與資料視覺化 (SVG)。AIWIZE 更新，新增 JSON 工具與測試模擬功能。",
     "url": "/issues/003.html#section-jump-0",
     "img": "https://i.meee.com.tw/WfOYZem.jpg",
@@ -87,6 +101,8 @@
   },
   {
     "title": "AI 繪圖再進化！GPT-Image-1 模型上線 客製化設定創作更自由",
+    "tag": "模型發布",
+    "tags": ["圖像生成"],
     "content": "OpenAI 日前推出全新圖像生成模型 GPT-image-1，並同步開放 API 供開發者試用。其最大特色就是具備自訂參數的圖像調整能力，包括背景、畫質、透明度、輸出尺寸等，大幅提升創作自由度。Adobe、Figma、HeyGen、Canva 等平台已導入應用。",
     "url": "/issues/003.html#section-jump-1",
     "img": "https://i.meee.com.tw/tiO0eZ6.jpg",
@@ -94,6 +110,8 @@
   },
   {
     "title": "AI 影片技術再升級！Google Veo 2 免費生成電影級影片",
+    "tag": "模型發布",
+    "tags": ["影片製作"],
     "content": "Google 推出最新 AI 影片生成模型 Veo 2，已於 Google AI Studio 開放免費試用。能生成最長達 8 秒、解析度達 720p 的影片，並強調模擬真實的物理效果。官方建議提示詞 (prompt) 應包含主體、動作、場景、攝影機角度、光線與風格等細節。",
     "url": "/issues/003.html#section-jump-2",
     "img": "https://i.meee.com.tw/sy8FSgV.png",
@@ -118,6 +136,8 @@
   },
   {
     "title": "NotebookLM 大升級！一鍵生成中文 Podcast 摘要 對話超逼真",
+    "tag": "新功能",
+    "tags": ["聲音處理", "整理資料", "資料研究"],
     "content": "NotebookLM 重大更新，一鍵生成中文 Podcast。Google Gemini 2.5 Pro 預覽版亮相。Netflix 導入 AI 搜尋。工具推薦 Google Gemini App Live。AIWIZE Tips 打造 AI 自我反思流程。AIWIZE 更新 Playbook 上線。",
     "url": "/issues/004.html#section-jump-0",
     "img": "https://i.meee.com.tw/NNBBtan.png",
@@ -126,6 +146,8 @@
   },
   {
     "title": "Gemini 2.5 Pro 新版搶先曝光！一指令輕鬆生成互動式網頁",
+    "tag": "模型發布",
+    "tags": ["程式設計", "簡報設計"],
     "content": "Google 在 I/O 大會前搶先推出新版大型語言模型 Gemini 2.5 Pro，此模型在程式編寫與多模態 (包括圖文影音) 理解上大幅進化，特別擅長建構互動式網頁應用。根據 WebDev Arena 排行榜，Gemini 2.5 Pro 目前榮登第一，領先 GPT-4.1 及 Claude 3.7。",
     "url": "/issues/004.html#section-jump-1",
     "img": "https://i.meee.com.tw/QKeHn0W.png",
@@ -133,6 +155,8 @@
   },
   {
     "title": "Netflix 推出 AI 搜尋功能！用對話就能輕鬆找劇",
+    "tag": "新功能",
+    "tags": [],
     "content": "Netflix 近日宣布對其電視應用程式界面進行重大改版，並在 iOS 平台上引入 AI 搜尋功能，採用 OpenAI 的 ChatGPT。用戶可以透過輸入自然語言，比如「我想看輕鬆有趣的節目」等口語化的描述，以對話的方式來搜尋影片。",
     "url": "/issues/004.html#section-jump-2",
     "img": "https://i.meee.com.tw/OFFOwET.png",
@@ -140,6 +164,8 @@
   },
   {
     "title": "OpenAI 執行長： AI 已超出人類理解 籲政府謹慎監管",
+    "tag": "產業動態",
+    "tags": ["觀念學習"],
     "content": "美國參議院日前舉行 AI 聽證會，OpenAI 執行長奧特曼 (Sam Altman) 直言，AI 技術已經超越人類目前的理解。他建議政府應謹慎面對，初期採輕觸式的立場，協調一致的規則，避免過早、過度、分散且繁瑣的監管。",
     "url": "/issues/004.html#section-jump-3",
     "img": "https://cc.tvbs.com.tw/img/upload/2025/05/09/20250509172939-544be951.jpg",
@@ -171,6 +197,8 @@
   },
   {
     "title": "Google 影音生成模型 Veo 3 轟動全球！I/O 大會亮點懶人包",
+    "tag": "模型發布",
+    "tags": ["影片製作", "圖像生成", "聲音處理"],
     "content": "Google 日前舉行 2025 年 I/O 開發者大會，發表多項 AI 重大更新：Veo 3 影片生成（可同步配音）、Imagen 4 圖像、Flow 平台、Lyria 2 音樂、Gemini 2.5 Pro 深度思考模式、AI 搜尋模式、SynthID 浮水印技術、Android XR 智慧眼鏡與 AI Ultra 訂閱方案等。",
     "fullContent": "<p class=\"first-paragraph\">Google 日前舉行 2025 年 I/O 開發者大會，宣布在各類 AI 應用方面的許多重大更新，包括內容創作、圖像生成、音樂創作、影像編輯等，硬體設備上也有所發展。</p><h4>一、Gemini 2.5 Pro 深度思考模型正式登場</h4><p>Google 正式發表了搭配「<strong>深度思考 (Deep Think)</strong>」模式的語言模型 Gemini 2.5 Pro，主打進階思維與複雜推論能力，同時也推出 Gemini 2.5 Flash 升級版，相較前代效率更高，編碼、多模態、上下文處理能力也有所提升。</p><h4>二、多項生成式內容工具上線</h4><ul><li><strong>Veo 3：</strong>具備聲音輸出的 AI 影片生成工具，能同步生成影像與聲音，自動新增音效、背景音樂和對話。</li><li><strong>Imagen 4：</strong>新一代影像生成模型，可產生更高解析度、具風格引導的圖像。</li><li><strong>Flow 平台：</strong>結合 Veo、Imagen 與 Gemini 的 AI 影像創作平台，讓使用者透過自然語言描述生成電影級短片。</li><li><strong>Lyria 2：</strong>最新的音樂生成模型，提供高保真、更專業的音樂創作服務。</li></ul><h4>三、SynthID 浮水印技術擴展</h4><p>Google 宣布協助辨識 AI 生成內容的「<strong>SynthID</strong>」隱形浮水印技術擴展，目前已應用在超過 100 億件圖像、音訊與文字等內容上，未來 Veo 3、Imagen 4 與 Lyria 2 所生成的內容也都將嵌入水印。同時推出「<strong>SynthID Detector</strong>」網站，讓民眾可以上傳影音、圖片或文件協助判斷該內容是否帶有 SynthID 浮水印。</p><h4>四、Gemini Live 全新視覺互動功能上線</h4><p>Gemini 正式支援「<strong>即時鏡頭畫面</strong>」與「<strong>螢幕分享</strong>」功能，使用者可以透過手機鏡頭即時辨識實景畫面，或透過分享手機及電腦螢幕讓 Gemini 協助處理設定操作、編輯表格、翻譯文件等任務。</p><h4>五、「AI 模式」強化搜尋體驗</h4><p>Google 搜尋進一步強化 AI 功能，推出「<strong>AI 模式 (AI Mode)</strong>」，搭配 Gemini 2.5 模型，強化 AI 摘要、支援 Deep Research 深度研究，更導入「Project Mariner」AI 代理人技術，能執行更複雜的任務如購票、訂位及填寫表格。同時推出全新 AI 購物體驗，運用 AI 智慧選購商品、個人化虛擬試穿。目前 AI 模式已先在美國上線。</p><h4>六、推出 AI Ultra 頂級訂閱方案</h4><p>Google 推出全新 <strong>AI Ultra</strong> 訂閱方案，讓用戶能使用最新的 AI 功能，月費 249.99 美元 (約新台幣 7550 元)。</p><h4>七、Android XR 智慧眼鏡亮相</h4><p>Google 將 Gemini 技術與擴增實境平台「<strong>Android XR</strong>」整合，並展示了搭載此系統的智慧眼鏡概念機，內建攝影機、麥克風、喇叭，除了能拍照、傳訊息，更結合 Gemini AI 助理應用，可協助即時翻譯、路線導航、辨識現場畫面等。首款與三星合作開發的頭戴裝置「Project Moohan」預計今年上市。</p>",
     "url": "/issues/005.html#section-jump-0",
@@ -179,6 +207,8 @@
   },
   {
     "title": "Claude 4 系列登場！號稱全球最強編碼模型 寫作能力也提升",
+    "tag": "模型發布",
+    "tags": ["程式設計", "寫作協助"],
     "content": "人工智慧新創公司 Anthropic 推出最新大型語言模型 Claude 4 系列，包括旗艦級 Claude Opus 4 與中階版 Claude Sonnet 4。Opus 4 號稱全球最佳編碼模型，SWE-bench 達 72.5%，能長時間穩定執行複雜任務。寫作能力大幅提升，可獨立完成文章創作。",
     "fullContent": "<p class=\"first-paragraph\">人工智慧新創公司 Anthropic 日前推出最新大型語言模型「<strong>Claude 4</strong>」系列，包括旗艦級的 <strong>Claude Opus 4</strong> 與中階版 <strong>Claude Sonnet 4</strong>，兩者均為混合模型，能提供快速回應及延伸思考兩種模式，具備高度自動化能力，Anthropic 更稱 Opus 4 為「<strong>全球最佳編碼模型</strong>」。</p><p>Anthropic 指出，Opus 4 在用於評估真實軟體問題表現的基準測試 SWE-bench 中取得 72.5% 高分，遠高於 OpenAI 旗下語言模型 o3 的 69.1%、GPT 4.1 的 54.6%，以及 Google 旗下 Gemini 2.5 Pro 的 63.2%，<strong>能長時間穩定執行複雜任務，展現極高的程式理解與問題修正能力</strong>；Sonnet 4 則兼具高推理能力及效能，適合更廣泛的日常開發與知識工作場景，在 SWE-bench 測試中也取得了 72.7% 的成績。</p><p>Anthropic 官方也說明，<strong>Opus 4 與 Sonnet 4 的寫作能力也大幅提升，從以往輔助思考，進化成可獨立完成文章創作</strong>。而相較早期的 Claude 模型通常僅能維持一到兩小時的連貫性，日本電商樂天 (Rakuten) 已成功測試在一項複雜任務中，Opus 4 能獨立運行近 7 小時，並保持穩定性能。此外，Opus 4 甚至能在玩寶可夢時，創建一份「導航指南」來記錄關鍵攻略資訊。</p><p>目前這兩款模型已經在 Anthropic API、Amazon Bedrock 及 Google Cloud Vertex AI 上架，Opus 4 定價為每百萬 tokens 輸入 15 美元、輸出 75 美元；Sonnet 4 為輸入 3 美元、輸出 15 美元，而 Sonnet 4 有開放給免費用戶使用。</p>",
     "url": "/issues/005.html#section-jump-1",
@@ -202,6 +232,8 @@
   },
   {
     "title": "Sora 首度免費開放！微軟 Bing 全新 AI 影片生成功能上線",
+    "tag": "新功能",
+    "tags": ["影片製作"],
     "content": "微軟 Bing 整合 Sora 技術，首度免費開放 AI 影片生成。深度求索 DeepSeek-R1 模型升級。OpenAI 釋出最強模型 o3-Pro。工具推薦 NotebookLM 公開連結分享功能。AIWIZE Tips 用 Telegram 打造專屬 AI 聊天機器人。本期特輯精選科技新聞。",
     "url": "/issues/006.html#section-jump-0",
     "img": "https://i.meee.com.tw/Iet0R46.png",
@@ -210,6 +242,8 @@
   },
   {
     "title": "DeepSeek 宣布推理模型 R1 升級！稱表現近 OpenAI、Google",
+    "tag": "模型發布",
+    "tags": ["寫作協助", "程式設計", "資料研究"],
     "content": "中國大陸 AI 新創公司深度求索 (DeepSeek) 近日宣布旗下推理模型 R1 升級，針對數學、程式設計及通用邏輯等能力進行強化，整體性能已接近國際頂尖模型。新版模型出現幻覺的比率降低約 45 至 50%。",
     "url": "/issues/006.html#section-jump-1",
     "img": "https://cdn.deepseek.com/api-docs/r1_0528_benchmark_1.webp",
@@ -217,6 +251,8 @@
   },
   {
     "title": "OpenAI 釋出最強模型 o3-pro！能力評測壓 Gemini、Claude 價格大調降",
+    "tag": "模型發布",
+    "tags": ["資料研究", "程式設計", "寫作協助"],
     "content": "OpenAI 正式發表升級版推理模型 o3-pro，在科學研究、程式設計、教育、數據分析與寫作等應用表現更佳。在 AIME 2024 數學能力測驗中，得分超越 Google Gemini 2.5 Pro。o3 也宣布大降價。",
     "url": "/issues/006.html#section-jump-2",
     "img": "https://i.meee.com.tw/IoZ7pi5.png",
@@ -248,6 +284,8 @@
   },
   {
     "title": "Gemini 2.5 系列大更新！新模型 Flash-Lite 登場 Flash、Pro 穩定版也上線",
+    "tag": "模型發布",
+    "tags": ["翻譯", "整理資料", "資料研究"],
     "content": "Gemini 2.5 系列全面更新，輕量級模型 Flash-Lite 預覽登場。Google 推出 Search Live 語音互動功能。Meta 展示全新 AI 影片編輯功能。工具推薦 Gemini Canvas 互動式 AI 工作區。AIWIZE Tips 利用 Webhook 打造專屬 LINE AI 聊天機器人。本期特輯精選 Pinterest、Midjourney 等多則科技新聞。",
     "url": "/issues/007.html#section-jump-0",
     "img": "https://i.meee.com.tw/lYanXuc.webp",
@@ -256,6 +294,8 @@
   },
   {
     "title": "語音搜尋新招！Google 推 Search Live 讓你邊講邊查",
+    "tag": "新功能",
+    "tags": ["資料研究", "聲音處理"],
     "content": "Google 日前宣布旗下的 Google 搜尋 App 中推出「Search Live」語音互動功能，使用者可透過自然語言和 AI 展開連續的對話，提升多輪互動體驗。Search Live 支援背景執行，讓使用者能跨 App 持續互動。",
     "url": "/issues/007.html#section-jump-1",
     "img": "https://i.meee.com.tw/STxw2QR.webp",
@@ -263,6 +303,8 @@
   },
   {
     "title": "Meta 推全新 AI 影片編輯功能！秒換人物服裝、場景",
+    "tag": "新功能",
+    "tags": ["影片製作"],
     "content": "Meta 近日宣布推出全新 AI 影片編輯工具，用戶只需選擇預設提示，即可快速切換影片中人物的服裝、背景或整體風格。此功能未來將逐步整合進 Instagram，並基於 Meta 去年開發的 Movie Gen 技術。",
     "url": "/issues/007.html#section-jump-2",
     "img": "https://i.meee.com.tw/B3CioHK.gif",
@@ -288,6 +330,8 @@
   },
   {
     "title": "Grok 4 登場！馬斯克稱「世界上最聰明AI」 支援多代理、情感語音",
+    "tag": "模型發布",
+    "tags": ["資料研究", "程式設計", "聲音處理"],
     "content": "Grok 4 登場，支援多代理、情感語音。Meta、Anthropic AI 訓練版權訴訟，法院初判「合理使用」。前 OpenAI 主管談未來必備核心技能。工具實測 LINE AI 免費好用。特別企劃 2025 TVBS AI Hackathon 決賽入圍應用。本期特輯精選 LinkedIn、OpenAI、Meta 等科技新聞。",
     "url": "/issues/008.html#section-jump-0",
     "img": "https://i.meee.com.tw/RJ9LuKQ.png",
@@ -296,6 +340,8 @@
   },
   {
     "title": "Meta、Anthropic 拿資料訓練AI皆判不侵權 法官如何界定「合理使用」？",
+    "tag": "法律規範",
+    "tags": ["觀念學習"],
     "content": "美國法院近日分別針對兩起 AI 訓練涉侵權案件作出裁定，科技公司 Meta 與 Anthropic 皆獲得勝訴。法院認為兩家公司在訓練 AI 模型時使用受著作權保護書籍，皆屬於「合理使用 (fair use)」，不構成侵權。但判決僅限個案。",
     "url": "/issues/008.html#section-jump-1",
     "img": "https://i.meee.com.tw/VFXMKP8.jpg",
@@ -303,6 +349,8 @@
   },
   {
     "title": "AI 牽動學習革命！前 OpenAI 主管談未來核心技能 應培養這些能力",
+    "tag": "產業動態",
+    "tags": ["觀念學習"],
     "content": "曾任 OpenAI 產品副總裁、ChatGPT 產品負責人的鄧修平 (Peter Deng) 指出 AI 不只是工具，更在改變人類對學習、創造的理解。他認為未來的核心技能將是「提出正確問題的能力」，以及培養更高層次的抽象思維。",
     "url": "/issues/008.html#section-jump-2",
     "img": "https://i.meee.com.tw/bfTf43t.png",
@@ -332,6 +380,8 @@
   },
   {
     "title": "全新AI代理模式 ChatGPT agent 登場！不再只是聊天 更直接替你完成任務",
+    "tag": "AI 代理",
+    "tags": ["自動化", "工作流整合", "資料研究"],
     "content": "OpenAI 日前宣布推出 AI 代理人功能「ChatGPT agent」，進化為能獨立完成複雜工作的智能助理。它融合了 Operator 的網頁互動、Deep Research 的資訊整合與 ChatGPT 的智慧對話能力，能自主使用虛擬瀏覽器、API、文件編輯器等工具完成任務。",
     "fullContent": "<p class=\"first-paragraph\">OpenAI 日前宣布推出 AI 代理人功能「ChatGPT agent」，顛覆傳統 ChatGPT 的使用方式，使其從純粹回答問題的對話工具，進化為能獨立完成複雜工作的智能助理。</p><p>ChatGPT agent 融合了 OpenAI 過去推出的三個代理人的能力，包括 <strong>Operator 的網頁互動技術、Deep Research 的資訊整合專長，以及 ChatGPT 的智慧對話特性</strong>，讓他能在虛擬電腦環境中自如切換分析與行動能力，從頭到尾獨立處理好複雜的工作流程。</p><p>使用者只需提出要求，ChatGPT agent 便會靈活選用適合的工具，包括虛擬瀏覽器、API 連接器、終端機和文件編輯器等，比如要求 ChatGPT agent 幫你看行事曆，準備客戶會議資料；根據主題籌劃並採買一餐的食材；或進行競爭對手分析，協助統整資料並產出摘要報告等。</p><p>目前這項功能已陸續向 ChatGPT Plus、Pro 及 Team 方案的用戶開放，可以從工具選單中啟用，也將擴大給企業與教育端。OpenAI 指出，未來會持續擴充 agent 的功能，預計加入更進階的簡報生成、定時任務安排，以及更多網站與應用程式的整合。</p>",
     "url": "/issues/009.html#section-jump-0",
@@ -340,6 +390,8 @@
   },
   {
     "title": "研究稱AI讓人變笨？黃仁勳破解關鍵「越用越聰明」",
+    "tag": "產業動態",
+    "tags": ["觀念學習"],
     "content": "針對麻省理工學院（MIT）研究，輝達（NVIDIA）創辦人黃仁勳表示，他天天用 AI，反而變得更聰明。關鍵在於透過提問讓 AI 教導自己，並比較不同 AI 模型的回應來進行批判性思考，這有助於訓練思維。",
     "fullContent": "<p class=\"first-paragraph\">麻省理工學院（MIT）近期研究指出，人類若過度依賴使用如 ChatGPT 等大型語言模型從事生產行為（如寫文章），可能大腦活躍度下降，造成批判思維、學習能力長期受損。對此，輝達（NVIDIA）創辦人黃仁勳表示，雖然沒讀過那份研究，但自己天天用 AI，腦袋反而變得更清楚、思考也更敏銳。</p><p>黃仁勳在 CNN 節目《Fareed Zakaria GPS》訪談中指出，他不會只是接受 AI 給出的答案，而是會<strong>透過提問，讓 AI 教他不知道的東西，解決他還不懂的問題。</strong>他認為，能「問好問題」是種高度的認知技能，作為公司執行長，他大部分的時間都在問問題，有 90% 的指令和判斷，都藏在問題裡。</p><p>他也分享自己在使用 AI 時，<strong>會反問 AI 給出的答案是否就是最好的答案，也會用不同的 AI 模型問相同的問題，觀察並比較不同角度的回應，</strong>就像請教三位醫師再做出判斷一樣，最後得到最好的答案。</p><p>黃仁勳認為，在問 AI 問題的過程中反思，挑戰、驗證它，反而是有助於訓練思維的。建議未來做類似研究的人，可以加入多一點批判性思考。</p>",
     "url": "/issues/009.html#section-jump-1",
@@ -348,6 +400,8 @@
   },
   {
     "title": "AI不會造成大量失業？OpenAI執行長曝未來職場3大發展趨勢",
+    "tag": "產業動態",
+    "tags": ["觀念學習"],
     "content": "OpenAI 執行長山姆・奧特曼 (Sam Altman) 呼應黃仁勳的看法，指出未來職場人們將能做得比過去更多，期望也會提高，並依舊會被「創造」與「對他人有用」的動力驅使。他認為低估人類尋找新方向的能力是錯誤的。",
     "fullContent": "<p class=\"first-paragraph\">輝達（NVIDIA）執行長黃仁勳日前在一次公開演說中指出，AI 不會造成全面失業，反而是會改變每一個人的工作。對此，OpenAI 執行長山姆・奧特曼（Sam Altman）在社群平台 X 發文呼應他的看法，認為未來工作將會非常不同。</p><p>奧特曼指出未來職場的發展趨勢，<strong>人們將能做得比過去更多，不論能力或是期望都會提高，且依舊會關心其他人及他們所做的事，並仍受到「創造」與「對他人有用」的動力驅使。</strong>他表示，「也許未來的工作在今天看來可能就像玩遊戲，但對未來的人們來說仍然非常有意義。」</p><p>奧特曼進一步指出，人類總是想要更多、做得更多，也總會找到新的自我表達方式，追求地位與創造力。低估人類尋找新方向與創造新方式的能力，一直都是錯誤的。</p><p>最後，他提出一個有趣的觀點，或許人類的金錢與機器的金錢，將是完全不同的東西，但可以確定的是，人類擁有大量的主角能量。</p>",
     "url": "/issues/009.html#section-jump-2",
@@ -375,6 +429,8 @@
   },
   {
     "title": "GPT-5登場！新增性格設定、錯誤率大降 免費開放所有用戶",
+    "tag": "模型發布",
+    "tags": ["寫作協助", "資料研究", "程式設計"],
     "content": "GPT-5登場！新增性格設定、錯誤率大降，免費開放所有用戶。三大AI巨頭神仙打架！OpenAI、Anthropic、Google 同時發布新模型。AI Tools 推薦：資訊搜尋 AI 神器 Perplexity AI 實測心得。本期特輯：精選多則最新 AI 科技動態，包含 Claude、NotebookLM、Uber Eats 等。",
     "url": "/issues/010.html#section-jump-0",
     "img": "https://i.meee.com.tw/IIX9CrU.png",
@@ -383,6 +439,8 @@
   },
   {
     "title": "三大AI巨頭神仙打架！OpenAI、Anthropic、Google 同時發布新模型",
+    "tag": "模型發布",
+    "tags": ["程式設計", "資料研究"],
     "content": "Anthropic 推出 Claude Opus 4.1，提升程式碼編輯與推理能力。Google DeepMind 發表 Genie 3，可根據文字提示生成互動式 3D 虛擬環境。OpenAI 釋出開源模型 gpt-oss，提供 120b 與 20b 兩種版本，支援一般消費級硬體運行。",
     "url": "/issues/010.html#section-jump-1",
     "img": "https://i.meee.com.tw/vSaS2mT.png",
@@ -390,6 +448,8 @@
   },
   {
     "title": "資訊搜尋 AI 神器：Perplexity AI 實測心得",
+    "tag": "AI 工具",
+    "tags": ["資料研究", "整理資料"],
     "content": "Perplexity AI 是結合即時網路搜尋與大型語言模型的混合型工具，核心技術「RAG」能實時獲取最新資訊。其優勢包括即時性、可驗證性、多模型支援與多媒體整合。支援網絡、學術、社交和財經四種資料來源，採用三欄式介面設計，Pro版提供更深入的搜尋能力、專題研究空間與實驗性功能。",
     "url": "/issues/010.html#section-jump-2",
     "img": "https://i.meee.com.tw/EXSb4IE.jpeg",
@@ -408,6 +468,8 @@
   },
   {
     "title": "AI 生圖技術大突破！Gemini 2.5 Flash Image 讓角色不再變臉 亮點一次看",
+    "tag": "模型發布",
+    "tags": ["圖像生成"],
     "content": "Gemini 2.5 Flash Image 技術大突破！讓角色不再變臉，維持一致性、多圖融合、精準編輯。Google Vids 免費開放！Veo 3 升級功能，以圖生影一個指令搞定。指令工坊：Gemini 2.5 Flash Image 幫你快速搞定專業形象照，背景、髮型、服裝、姿勢一句話秒換。",
     "url": "/issues/011.html#section-jump-0",
     "img": "https://i.meee.com.tw/07b04wq.png",
@@ -416,6 +478,8 @@
   },
   {
     "title": "剪片神器 Google Vids 免費開放！Veo 3 升級功能 以圖生影一個指令搞定",
+    "tag": "新功能",
+    "tags": ["影片製作"],
     "content": "Google 在 2024 年推出 AI 影片製作應用程式 Google Vids，近日宣布將其免費開放給所有用戶使用基礎功能，不再只限於 Workspace 訂閱戶或是 Google AI 會員，另外也推出 AI 虛擬人 ( AI Avatar ) 、以圖生影等全新功能。",
     "url": "/issues/011.html#section-jump-1",
     "img": "https://i.meee.com.tw/XC7Pq4m.jpg",
@@ -423,6 +487,8 @@
   },
   {
     "title": "Gemini 2.5 Flash Image 幫你快速搞定專業形象照",
+    "tag": "應用技巧",
+    "tags": ["圖像生成"],
     "content": "Google 日前推出最新的圖像生成模型 Gemini 2.5 Flash Image，最大特色就是標榜能維持角色一致性、多圖融合，以及用自然語言精準編輯功能，不少人開始用它來生成形象照或是證件照，從姿勢改變、服裝更換到背景安排，都能快速透過 prompt 來輕鬆調整。",
     "url": "/issues/011.html#section-jump-2",
     "img": "https://i.meee.com.tw/GbeKH8K.jpg",
@@ -431,6 +497,8 @@
   },
   {
     "title": "Google Gemini AI 全面解析",
+    "tag": "AI 工具",
+    "tags": ["寫作協助", "資料研究", "簡報設計", "工作流整合"],
     "content": "Google 的 Gemini 是一款結合大型語言模型與 Google 生態系深度整合的 AI 工具，由 Google 自主開發，2025 年推出最新 2.5 Flash 與 2.5 Pro 模型。Gemini 不僅能聊天，還能生成文字、圖片、影音與簡報，同時支援 PDF 與多檔案分析。",
     "url": "/issues/011.html#section-jump-3",
     "img": "https://i.meee.com.tw/JHRXD9x.jpeg",
@@ -449,6 +517,8 @@
   },
   {
     "title": "Claude 再升級！用聊天就能生成簡報、試算表、PDF",
+    "tag": "新功能",
+    "tags": ["簡報設計", "整理資料", "寫作協助"],
     "content": "Anthropic 近日正式推出Claude 聊天機器人的檔案生成功能預覽，使用者現在不僅能編輯已上傳的 PDF、Excel、PowerPoint 等文件，還可以直接生成或轉換成相關文檔，增添文書工作處理的實用性。Claude 能根據您的指示創建實際文件，包括將數據轉化為分析、構建試算表、跨格式工作等應用情境。",
     "url": "/issues/012.html#claude-upgrade",
     "img": "https://i.meee.com.tw/JbXuv9g.png",
@@ -457,6 +527,8 @@
   },
   {
     "title": "Chrome 史上最大更新！全新 10 項 AI 功能一次看",
+    "tag": "新功能",
+    "tags": ["工作流整合", "自動化", "資料研究"],
     "content": "Google 日前宣布 Chrome 瀏覽器迎來史上最大更新，導入旗下 AI 技術 Gemini 進行全面整合，以提升用戶體驗。此次更新共有10大亮點，包括能幫助理解網頁上的資訊，提供跨多個分頁的內容整合，也將推出代理助手功能，協助用戶完成複雜的網路任務等，讓 Chrome 變得更智能、高效又安全。",
     "url": "/issues/012.html#chrome-ai-update",
     "img": "https://i.meee.com.tw/u336DhI.png",
@@ -464,6 +536,8 @@
   },
   {
     "title": "阿里重磅發布 Qwen3 系列模型！ 影像、語音辨識能力大升級",
+    "tag": "模型發布",
+    "tags": ["圖像生成", "聲音處理", "翻譯"],
     "content": "阿里巴巴旗下的阿里雲日前發布了全新的開源大型語言模型 Qwen3-Omni、高品質語音合成模型 Qwen3-TTS-Flash，以及圖像編輯模型 Qwen-Image-Edit-2509。Qwen3-Omni 為首個「原生端到端」的全模態 AI 模型，能夠接受多模態輸入，統一處理文本、圖像、音訊和影片。",
     "url": "/issues/012.html#qwen3-release",
     "img": "https://i.meee.com.tw/mDgbSb7.jpg",
@@ -472,12 +546,16 @@
   },
   {
     "title": "新手入門！指令基礎架構「角色 + 任務 + 產出」",
+    "tag": "應用技巧",
+    "tags": ["觀念學習"],
     "content": "AI 逐漸融入每個人的生活，要和它好好交流互動，有個重要的關鍵，就是學會下指令（Prompt），讓 AI 能按照你的需求，給你想要的結果。分享一個超簡單又實用的基礎架構：「角色 + 任務 + 產出」。角色是給AI戴上專業帽子，任務是清楚表達需求，產出是描述回答格式。",
     "url": "/issues/012.html#section-jump-3",
     "excludeFromTrend": true
   },
   {
     "title": "NotebookLM 2025 最大更新",
+    "tag": "新功能",
+    "tags": ["整理資料", "資料研究", "聲音處理"],
     "content": "Google NotebookLM 2025 年迎來大更新，不只是「做摘要」的工具，它已升級成完整的學習與知識管理 AI。輸入資料後，NotebookLM 可快速整理、分析、視覺化，並生成多媒體內容。新功能包括影片摘要、心智圖、語音摘要、報告生成等學習工具，支援多檔案、多格式整合。",
     "url": "/issues/012.html#section-jump-4",
     "img": "https://i.meee.com.tw/YTF1kAq.jpeg",
@@ -496,6 +574,8 @@
   },
   {
     "title": "ChatGPT 進化應用程式平台！Sora 2 影片生成革命性突破",
+    "tag": "新功能",
+    "tags": ["工作流整合", "影片製作", "程式設計", "自動化"],
     "content": "OpenAI 日前在開發者大會 OpenAI DevDay 2025 上宣布 ChatGPT 的服務邁入新生態，從簡單的 AI 聊天應用工具變身應用程式平台。推出 Apps SDK 讓開發者能直接在 ChatGPT 中建立互動性應用程式，AgentKit 讓 AI 代理從設計到部署的流程從數月縮短至數小時，Codex GA 正式全面開放，以及 Sora 2、GPT-5 Pro、GPT-Realtime-Mini 等多項模型升級。",
     "url": "/issues/013.html#section-jump-0",
     "img": "https://i.meee.com.tw/m4c0d82.png",
@@ -504,6 +584,8 @@
   },
   {
     "title": "Google 搜尋 AI 模式登台！怎麼用一次看懂",
+    "tag": "新功能",
+    "tags": ["資料研究"],
     "content": "Google 繼今年 5 月在美國推出AI搜尋功能「AI 模式」後，近日也宣布向台灣用戶開放，使用者只需提出問題，就能獲得 AI 回覆，還可以繼續追問，或是點選想看的網頁連結。不只限於文字輸入，也能透過語音或上傳照片使用。可透過三種管道開啟：google.com/ai、Google 搜尋網站、Google App。",
     "url": "/issues/013.html#section-jump-1",
     "img": "https://i.meee.com.tw/rSyzygf.jpg",
@@ -511,6 +593,8 @@
   },
   {
     "title": "AI 瀏覽器 ChatGPT Atlas 震撼登場！挑戰 Chrome 地位",
+    "tag": "AI 工具",
+    "tags": ["自動化", "資料研究", "工作流整合"],
     "content": "OpenAI 推出全新首款 AI 瀏覽器「ChatGPT Atlas」，內建 ChatGPT 功能，能在使用者瀏覽網頁時提供即時協助。透過 ChatGPT Atlas，AI 能直接幫你解讀當前頁面的內容，並根據你的需求進行下一步動作。具有記憶功能，能記錄使用者瀏覽過的網站脈絡。更突破性的功能還有 Agent 模式，讓 ChatGPT 能替你直接操作。",
     "url": "/issues/013.html#section-jump-2",
     "img": "https://i.meee.com.tw/ICtj1Dd.jpg",
@@ -519,6 +603,8 @@
   },
   {
     "title": "Grok Imagine v0.9 登場！影片生成質感大升級 免費開放使用",
+    "tag": "模型發布",
+    "tags": ["影片製作"],
     "content": "馬斯克旗下的人工智慧品牌 Grok 日前推出最新的影片生成模型 Imagine v0.9，除了圖片生成品質提高外，還支援影片同步生成語音，且在上傳圖片後，無須任何提示詞，也能自動轉換成影片。採用專為即時生成和聲音同步優化的 Aurora 引擎，在畫質、動態表現、音效與鏡頭焦距控制的效果全面升級。",
     "url": "/issues/013.html#section-jump-3",
     "img": "https://i.meee.com.tw/0JNZy6Q.png",
@@ -550,6 +636,8 @@
   },
   {
     "title": "Gemini 3 登場！代理能力大升級 從規劃到執行全包辦",
+    "tag": "模型發布",
+    "tags": ["自動化", "工作流整合", "程式設計", "資料研究"],
     "content": "Google 發表新一代模型 Gemini 3，號稱是目前最聰明的模型。此次升級不再只是單純提升模型能力，而是將搜尋、介面生成、任務代理和開發環境全面整合，讓 AI 更能夠理解、參與使用者的整個作業流程。核心亮點包括推理與語意理解能力變更強、處理多模態能力更成熟、生成式介面 (Generative UI)、Vibe Coding、Gemini Agent、Antigravity 平台、長期規劃能力與安全性升級。首發版本 Gemini 3 Pro 將導入 Google 搜尋的 AI Mode、Gemini App 及開發者工具中。",
     "url": "/issues/014.html#section-jump-0",
     "img": "https://i.meee.com.tw/0ZE0lmC.webp",
@@ -558,6 +646,8 @@
   },
   {
     "title": "Nano Banana Pro 震撼來襲！支援 4K 高畫質、圖文排版 繁中字生成正確度大升級",
+    "tag": "模型發布",
+    "tags": ["圖像生成"],
     "content": "Google 宣布推出最新 AI 圖像生成模型 Nano Banana Pro（Gemini 3 Pro Image），是以 Gemini 3 Pro 為基底打造。在 AI 圖像處理上，不管是文字呈現、影像生成精準度，還是真實感模擬，都較前一代 Nano Banana（Gemini 2.5 Flash Image）的效果大幅提升，被號稱是目前最強的生圖模型。功能亮點包括：影像品質與控制力更好，支援 2K 和 4K 高解析度；文字渲染能力再進化，繁體中文正確度大幅提升；知識應用與即時信息整合，能視覺化即時資訊；安全與標示，內建 SynthID 浮水印功能。目前已開放給所有 Gemini 用戶，需進入「工具」→「建立圖像」→切換至「思考型」即可使用。",
     "url": "/issues/014.html#section-jump-1",
     "img": "https://i.meee.com.tw/f5vIpdF.png",
@@ -570,6 +660,8 @@
   },
   {
     "title": "GPT-5.1 登場！變得更聰明、更好聊 8種語氣性格任你選",
+    "tag": "模型發布",
+    "tags": ["寫作協助", "資料研究"],
     "content": "OpenAI 日前發表最新版本模型 GPT-5.1，是針對 GPT-5 的升級版更新。不僅推理能力提升，語感變得也更自然、更聽話，在處理簡單任務上更快速，面對複雜問題則更有耐心。分為 Instant / Thinking 兩個模型：GPT‑5.1 Instant 專為提供即時回應設計，具備自適應推理能力；GPT‑5.1 Thinking 可透過長時間思考來得到更好的回答。新的語氣風格設定包含預設、友善、有效率、專業、坦率、俏皮、極客、憤世嫉俗等 8 種風格。目前已開放 Plus、Pro、Go、Business 等付費用戶使用。",
     "url": "/issues/014.html#section-jump-3",
     "img": "https://i.meee.com.tw/gGvk6dW.webp",
@@ -577,6 +669,8 @@
   },
   {
     "title": "全新 AI 行銷工具 Pomelli 亮相！品牌素材製作更快速",
+    "tag": "AI 工具",
+    "tags": ["寫作協助", "圖像生成", "簡報設計"],
     "content": "Google Labs 與 Google DeepMind 合作推出一款專為內容行銷及社群媒體經營者設計的 AI 工具「Pomelli」，它不單只是產生文案的工具，更是整合多種格式的協作平台，能自動生成品牌風格、內容素材與行銷文案，幫助中小企業輕鬆建立品牌形象。Pomelli 的核心功用在於，透過單一靈感或素材，快速發展出多樣化的行銷素材。你只需提供品牌的網站連結，Pomelli 就能針對該網站的品牌訊息、產品亮點、使用的字體、語氣、顏色或影像風格等進行分析，快速生成網站橫幅、社群貼文或廣告素材等。目前僅開放給美國、加拿大、澳洲和紐西蘭四個地區進行測試，且只支援英文。",
     "url": "/issues/014.html#section-jump-4",
     "img": "https://i.meee.com.tw/pHZbo7v.webp",
@@ -611,6 +705,8 @@
   },
   {
     "title": "GPT-5.2 登場！視覺資訊圖像處理、企業運用效率大提升",
+    "tag": "模型發布",
+    "tags": ["資料研究", "程式設計", "寫作協助"],
     "content": "OpenAI 日前推出最新語言模型 GPT-5.2，擅長支援運行流程長及複雜的任務，且視覺理解能力也有所提升，幫助專業人士提高生產效能。企業用戶每天平均可節省 40 到 60 分鐘的工作時間，更加頻繁使用的用戶每週甚至可以節省超過 10 小時。在高難度的數學測試及程式能力等多項專業與推理評測中表現創新高，長上下文推理能力顯著提升。在視覺圖像資訊處理能力上有明顯進步，對於科學圖表辨識錯誤率約減半，對於專業介面理解能力也大幅領先前代模型。",
     "url": "/issues/015.html#section-jump-0",
     "img": "https://i.meee.com.tw/QD2IGgP.jpg",
@@ -619,6 +715,8 @@
   },
   {
     "title": "影片界 Nano Banana 誕生？可靈 O1 震撼登場 實現素材精準控制",
+    "tag": "模型發布",
+    "tags": ["影片製作"],
     "content": "大陸科技公司快手日前發布全新的影像生成模型「可靈 O1」(Kling O1)，此次更新不僅讓生成影片畫質變好，還具備更強的語意及圖像理解能力，能讓使用者透過簡單白話的指令，就能精準控制影片裡的元素，被網友稱作是影片界的 Nano Banana。可靈 O1 能處理包括文字、影片、圖片等多模態的素材輸入，將所有生成和編輯任務整合於一身，不僅解決過去 AI 影片生成中角色、場景難有一致性的問題，也能透過多視角建構角色主體，確保畫面連貫性。",
     "url": "/issues/015.html#section-jump-1",
     "img": "https://i.meee.com.tw/COuNTUx.png",
@@ -626,6 +724,8 @@
   },
   {
     "title": "AI 越來越強...人類要失業了？ 黃仁勳揭掌握「這關鍵」更不被取代",
+    "tag": "產業動態",
+    "tags": ["觀念學習"],
     "content": "人工智慧不斷在進步，也引發不少上班族開始擔心自己是否會被取代、失業。對此，輝達執行長黃仁勳在《Joe Rogan Experience》Podcast 中提出一個觀點，他認為，AI 並不是工作的終結者，而是會放大人類的價值，並促使更多職位因效率提升而增加。黃仁勳指出，AI 的影響在於重新定義人類工作的「目的」，而非簡單地取代人力。當工作的核心在於解決問題、提供協助、創造意義，人類價值將在 AI 時代中更為重要；相反，若只專注於可自動化的任務，則容易被 AI 取代。",
     "url": "/issues/015.html#section-jump-2",
     "img": "https://i.meee.com.tw/sf5KdOE.png",
@@ -659,6 +759,8 @@
   },
   {
     "title": "更親民的 AI 代理人！Claude Cowork 化身工作夥伴 幫你整理資料夾、寫文件",
+    "tag": "AI 代理",
+    "tags": ["自動化", "整理資料", "工作流整合"],
     "content": "Anthropic 日前推出全新的 AI Agent（AI代理人）功能「Claude Cowork」，讓不懂程式碼的人，也能透過自然語言的指令，讓 Claude 直接幫你執行日常任務，例如操作網頁、整理電腦桌面的資料夾等。Cowork 的核心設計概念，是讓用戶在使用 Claude 處理新工作時能盡可能簡單。可授權 Claude 存取電腦中的特定資料夾，讓 AI 直接讀取、編輯或建立檔案。目前僅開放給 Claude Max 訂閱用戶在 macOS 桌面應用程式中試用。",
     "url": "/issues/016.html#section-jump-0",
     "img": "https://i.meee.com.tw/AIw3oWe.jpg",
@@ -667,6 +769,8 @@
   },
   {
     "title": "AI 能算發明人嗎？美國正式發布公告定義",
+    "tag": "法律規範",
+    "tags": ["觀念學習"],
     "content": "美國專利及商標局 (USPTO) 發布公告，明確指出 AI 的角色等同於輔助發明的「工具」，不能被視為「發明人」。強調人類的創意構思才是關鍵。局長約翰・斯奎爾斯表示，AI 僅是工具，真正構思發明的是人類發明人。",
     "url": "/issues/016.html#section-jump-1",
     "img": "https://i.meee.com.tw/InwkZRd.jpg",
@@ -674,6 +778,8 @@
   },
   {
     "title": "Google官方教戰 40 個 AI 實用情境 影像創作、旅遊規劃、職場管理全都包",
+    "tag": "應用技巧",
+    "tags": ["圖像生成", "整理資料", "工作流整合", "觀念學習"],
     "content": "Google 官方整理 40 個 Gemini 實用技巧，涵蓋深度學習與知識探索、協助旅遊規劃、影像創作、穿戴裝置與硬體輔助、提升工作及生活管理效率。包括視覺化分解、互動式模擬、NotebookLM 研究風格、Nano Banana 編輯圖片、Mixboard 自動生成簡報等。",
     "url": "/issues/016.html#section-jump-2",
     "img": "https://i.meee.com.tw/DQ9MeXU.webp",
@@ -702,13 +808,17 @@
   },
   {
     "title": "Clawdbot(Moltbot)爆紅!讓電腦直接變AI助手 免開APP就能做事",
+    "tag": "AI 代理",
+    "tags": ["自動化", "工作流整合", "整理資料"],
     "content": "最近一款新的AI代理工具Clawdbot(現已改名Moltbot)在網路上爆紅,甚至帶動蘋果Mac mini銷售一空。Moltbot是開源的AI代理工具,可直接安裝在使用者的電腦中,並串聯Claude、Gemini、GPT等大型語言模型,支援Mac、Windows和Linux系統。使用者只要透過手機上的Telegram、WhatsApp、Slack、Discord等社群通訊軟體傳送指令,就能遠端操控電腦。主要有三大特色:具備行動力、持久記憶、主動回報。",
     "url": "/issues/017.html#section-jump-0",
     "img": "https://i.meee.com.tw/MTqMQds.jpg",
     "fullContent": "<div class=\"news-columns\">\r\n                    <div class=\"column\">\r\n                        <p class=\"first-paragraph\">不是 ChatGPT、Gemini，也不是 Claude！最近一款新的 AI 代理工具 Clawdbot（先前改名\r\n                            Moltbot，現再度改名為 OpenClaw）在網路上爆紅，甚至帶動蘋果 Mac mini\r\n                            銷售一空，號稱真的能幫你在電腦上做事，只要簡單在手機輸入一段話，它就可以替你播放音樂、整理信箱、開發網站、監控股票價格、辦理登機手續等,不需親自操作電腦。</p>\r\n                        <h4 style=\"color: #6b4e9d; margin: 20px 0 10px 0; font-size: 1.15em; font-weight: bold;\">\r\n                            OpenClaw\r\n                            是什麼？</h4>\r\n                        <p>OpenClaw 是一款開源的 AI代理工具，原先名為 Clawdbot（網稱「AI龍蝦」），由資深iOS開發者彼得・史坦伯格（Peter Steinberger）與 Github\r\n                            社群共同管理，可直接安裝在使用者的電腦中，並串聯 Claude、Gemini、GPT 等大型語言模型，支援 Mac、Windows 和 Linux 系統，使用者只要透過手機上的\r\n                            Telegram、WhatsApp、Slack、Discord 等社群通訊軟體傳送指令，就能遠端操控電腦，執行預定餐廳、整理檔案、回覆電子信件等任務，讓 AI\r\n                            助理不再只是聊天工具，而是成為真正的行動代理。</p>\r\n                        <h4 style=\"color: #6b4e9d; margin: 20px 0 10px 0; font-size: 1.15em; font-weight: bold;\">\r\n                            OpenClaw\r\n                            與傳統 AI 工具有什麼差異？</h4>\r\n                        <p>傳統AI雖能回覆各種問題，卻無法直接操作檔案與軟體。OpenClaw 則突破了權限與記憶的限制，主要有三大特色：</p>\r\n                    </div>\r\n                    <div class=\"column\">\r\n                        <p><strong>1. 具備行動力</strong><br>\r\n                            傳統AI僅能生成文字，無法觸及電腦檔案；OpenClaw 運行在使用者電腦上，擁有系統權限，能直接執行指令、運行程式腳本，甚至串聯 Notion 與 Todoist\r\n                            進行跨平台任務排程。\r\n                        </p>\r\n                        <p><strong>2. 持久記憶</strong><br>\r\n                            傳統AI在關閉一般對話後，不會記得過去的記錄；OpenClaw 則會將每次互動存成檔案，隨著使用時間增加，它會越來越了解使用者的習慣與偏好。</p>\r\n                        <p><strong>3. 主動回報</strong><br>\r\n                            一般AI需要被開啟才能工作，OpenClaw 則能在背景自動運作，例如幫助主動監控天氣、股價或郵件，並傳訊息提醒使用者處理重要事項。</p>\r\n                        <h4 style=\"color: #6b4e9d; margin: 20px 0 10px 0; font-size: 1.15em; font-weight: bold;\">使用\r\n                            OpenClaw 該注意什麼？</h4>\r\n                        <p>目前 OpenClaw 採用完全免費且開源的模式，主要的使用花費在於API以及伺服器的費用。然而，由於 OpenClaw\r\n                            具備極高的電腦系統權限，因此在處理重要機密資料時，須留意資安風險問題，以免遭到外部攻擊導致資料外洩或毀損。建議沒技術知識或背景的人不要直接使用，應尋專業人士協助。</p>\r\n                    </div>\r\n                </div>"
   },
   {
-    "title": "Chrome瀏覽器AI功能大更新!整合Gemini 3 支援圖像生成、自動瀏覽",
+    "title": "Chrome瀏覽器AI功能大更新！整合Gemini 3 支援圖像生成、自動瀏覽",
+    "tag": "新功能",
+    "tags": ["工作流整合", "自動化", "圖像生成", "資料研究"],
     "content": "Google宣布為旗下瀏覽器Chrome推出一系列大更新,正式將最先進的AI模型Gemini 3整合至瀏覽器中。帶來全新的側邊面板體驗、整合圖像生成、自動瀏覽(Auto browse)等多項功能。全新側邊面板讓Gemini即時支援,整合Nano Banana圖像生成工具,深度整合Google系列服務提高處理效率。針對美國地區的AI Pro及Ultra訂閱用戶,推出Chrome自動瀏覽2功能,可代替使用者執行複雜的多步驟任務。",
     "url": "/issues/017.html#section-jump-1",
     "img": "https://i.meee.com.tw/FaWmLR2.png",
@@ -716,6 +826,8 @@
   },
   {
     "title": "Grok影音處理功能再升級!支援10秒AI影片生成 還能整理摘要",
+    "tag": "新功能",
+    "tags": ["影片製作", "整理資料"],
     "content": "馬斯克旗下AI公司xAI的AI產品Grok日前迎來重要更新,不僅正式加入10秒影片生成,也新增影片觀看及摘要功能,強化了影片生成與影片理解兩大能力。多模態創作工具Grok Imagine現在可產出10秒短影音內容,在畫面穩定度與細節呈現上明顯進步。Grok已新增觀看並摘要影片能力,能完整分析30分鐘訪談影片,並在約36秒內列出摘要與重點提取。",
     "url": "/issues/017.html#section-jump-2",
     "img": "https://i.meee.com.tw/ushrAGE.png",
@@ -738,6 +850,8 @@
   },
   {
     "title": "Nano Banana 2 登場！高品質生圖免費開放　支援文字翻譯、繁中更穩了",
+    "tag": "模型發布",
+    "tags": ["圖像生成"],
     "content": "Google 正式發表最新圖像生成模型 Nano Banana 2（Gemini 3.1 Flash Image），免費開放給所有 Gemini 用戶，API 成本砍半。四大升級：精準文字渲染支援繁體中文、更優畫質與角色一致性（單一流程維持 5 人 14 物件）、彈性圖像控制（512px 至 4K、多種長寬比）、進階動態推理與資訊圖表生成。已整合至 Google 搜尋 AI 模式、智慧鏡頭、Chrome、Google Ads。",
     "url": "/issues/018.html#section-jump-0",
     "img": "https://i.meee.com.tw/zg5kCCS.webp",
@@ -745,6 +859,8 @@
   },
   {
     "title": "Gemini 3.1 Pro 正式發布！推理能力翻倍　四大突破應用一次看",
+    "tag": "模型發布",
+    "tags": ["程式設計", "資料研究", "圖像生成"],
     "content": "Google 推出 Gemini 3.1 Pro，ARC-AGI-2 基準達 77.1%，是前代兩倍多。四大突破：SVG 向量動畫純程式碼生成、ISS 軌道即時儀表板、3D 椋鳥群飛沉浸模擬器、文學氛圍轉化為藝術網站設計。已於 Gemini App、NotebookLM、Google AI Studio、Vertex AI 等平台開放。",
     "url": "/issues/018.html#section-jump-1",
     "img": "https://i.meee.com.tw/7hzq4yP.webp",
@@ -752,6 +868,8 @@
   },
   {
     "title": "極速＋低成本！Google 釋出 Gemini 3.1 Flash-Lite　主攻海量任務處理",
+    "tag": "模型發布",
+    "tags": ["翻譯", "整理資料", "自動化"],
     "content": "Gemini 3.1 Flash-Lite 是 Gemini 3 家族中速度最快、成本最低的輕量模型，每秒輸出 363-388.8 tokens，TTFT 比前代快 2.5 倍，輸入每百萬 token 僅 0.25 美元。四大亮點：思考等級（最低/低/中/高）自由切換、128K 上下文瞬時多模態轉換、即時 UI 介面與視覺生成、SaaS AI 智能體多步驟任務處理。",
     "url": "/issues/018.html#section-jump-2",
     "img": "https://i.meee.com.tw/6Qh0pzC.webp",
@@ -759,6 +877,8 @@
   },
   {
     "title": "Claude Sonnet 4.6 登場！沒 API 也能操作電腦　支援百萬詞元處理",
+    "tag": "模型發布",
+    "tags": ["自動化", "程式設計", "資料研究", "工作流整合"],
     "content": "Anthropic 推出 Claude Sonnet 4.6，無需特殊 API 即可像人類操作滑鼠鍵盤跨軟體（Chrome、VS Code、LibreOffice）執行任務。支援 100 萬詞元上下文，OfficeQA 推理提升 15%。四大工作流：適應性思考、上下文壓縮、動態過濾、MCP 串接金融數據。API 定價維持每百萬輸入 3 美元、輸出 15 美元。",
     "url": "/issues/018.html#section-jump-3",
     "img": "https://i.meee.com.tw/oC4Bugq.png",
@@ -766,6 +886,8 @@
   },
   {
     "title": "AI 輔助功能再進化！ChatGPT Deep Research、Gemini 3 Deep Think 更新亮點一次看",
+    "tag": "新功能",
+    "tags": ["資料研究", "整理資料", "程式設計"],
     "content": "ChatGPT Deep Research 導入 GPT-5.2，新增指定精準來源、動態追蹤與干預、全螢幕檢視並支援 Markdown/Word/PDF 匯出。Gemini 3 Deep Think 在 Codeforces 取得 3455 分世界冠軍等級，糾正高能物理論文邏輯漏洞，協助優化晶體生長配方，手繪草圖轉 3D 列印模型速度提升十倍。",
     "url": "/issues/018.html#section-jump-4",
     "img": "https://i.meee.com.tw/hiWxgld.png",
@@ -773,6 +895,8 @@
   },
   {
     "title": "一人也能拍電影？陸 AI 影片生成技術大突破　Seedance 2.0 與 Vidu Q3 亮點介紹",
+    "tag": "模型發布",
+    "tags": ["影片製作", "聲音處理"],
     "content": "字節跳動 Seedance 2.0 約 60 秒生成多鏡頭帶音訊短片，支援四重模態輸入、導演思維分鏡演算法（視線匹配 92%）、數位分身、每秒 80 幀渲染。生數科技 Vidu Q3 全球首個 16 秒高清聲音影像直出，四維聲畫引擎毫秒級同步、唇形匹配 98.7%、236 項視覺參數解耦、TurboDiffusion 效率快 200 倍。",
     "url": "/issues/018.html#section-jump-5",
     "img": "https://i.meee.com.tw/6lQuDZJ.png",
@@ -780,6 +904,8 @@
   },
   {
     "title": "Gemini 加入音樂生成模型 Lyria 3　用一張圖也能生成音樂",
+    "tag": "模型發布",
+    "tags": ["聲音處理"],
     "content": "Google 為 Gemini 導入音樂生成模型 Lyria 3，支援文字或照片／影片提示，一鍵生成 30 秒含人聲歌詞的原創音樂並附專屬封面。可下載 MP3 或分享動態歌詞連結。內建 SynthID 版權浮水印。支援英語、日語、韓語、法語等 8 種語言，同步整合 YouTube Shorts Dream Track。",
     "url": "/issues/018.html#section-jump-6",
     "img": "https://i.meee.com.tw/yDnmrwQ.jpg",
@@ -799,21 +925,29 @@
   },
   {
     "title": "2026 AI 黑客松特刊",
+    "tag": "應用技巧",
+    "tags": ["觀念學習"],
     "content": "2026 TVBS AI 黑客松特刊，協助同仁從題目發想到 Prototype 製作一步步上手。涵蓋三步驟題目發想法、讓 AI 當架構師、非技術人員的 Prototype 呈現方式，以及即將推出的 TVBS 黑客松助理與 AI 工具推薦。",
     "url": "/issues/hackathon2026.html"
   },
   {
     "title": "題目哪裡來？掌握「三步驟」入魂",
+    "tag": "應用技巧",
+    "tags": ["觀念學習"],
     "content": "黑客松題目發想三步驟：第一步痛點挖掘，找出工作中最重複枯燥的事，請 AI 分析流程並找出介入點；第二步品質優化，收斂想法避免太發散，用 AI 扮演挑剔評審或資深 PM 進行題目健檢，並確保「非 AI 不可」的關鍵價值；第三步提升專業性，提案需包含情境 Context、數據來源 Data、產出 Output 三大關鍵字。",
     "url": "/issues/hackathon2026.html#section-jump-1"
   },
   {
     "title": "有想法但不知道怎麼做？讓 AI 當你的「架構師」",
+    "tag": "應用技巧",
+    "tags": ["觀念學習", "程式設計"],
     "content": "不會寫程式也能規劃開發流程，只需告訴 AI 想解決什麼問題，請它拆解出 Demo 所需的資料與第一步、第二步、第三步執行計畫。文字工作者、業務、非技術背景人員皆可透過這個方式對開發流程心裡有數。",
     "url": "/issues/hackathon2026.html#section-jump-2"
   },
   {
     "title": "什麼是 Prototype？非技術人員可以怎麼做？",
+    "tag": "應用技巧",
+    "tags": ["觀念學習", "程式設計"],
     "content": "黑客松 Prototype 原型目的是證明點子可行，不需要完美成品。非技術人員有三種方式：一、用 AI 工具做出看起來像真的操作介面；二、畫流程圖說明 AI 如何處理資料並附模擬效果圖；三、直接用 AI 工具建立可 Demo 的小工具。",
     "url": "/issues/hackathon2026.html#section-jump-3"
   }

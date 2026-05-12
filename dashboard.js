@@ -181,22 +181,35 @@ const articleData = {
 var issuesData = [];
 var searchIndex = [];
 
+// 舊期電子報文章的 fallback 分類器（對齊最新 7 個內容屬性 tag）
+// 優先序：先匹配語意最明確的（法律 / 產業 / 教學），再到模型 / 功能 / 工具
 function getTag(title) {
   if (!title) return '產業動態';
-  // 影音創作
-  if (title.includes('影片') || title.includes('影音') || title.includes('音樂') || title.includes('Veo') || title.includes('可靈') || title.includes('Sora')) return '影音創作';
-  // 圖像生成
-  if (title.includes('生圖') || title.includes('繪圖') || title.includes('圖像') || title.includes('照片')) return '圖像生成';
-  // AI 代理
-  if (title.includes('代理') || title.includes('Agent') || title.includes('助理') || title.includes('Cowork') || title.includes('Telegram') || title.includes('機器人') || title.includes('Bot') || title.includes('Codex')) return 'AI 代理';
-  // 智慧搜尋
-  if (title.includes('搜尋') || title.includes('Search') || title.includes('瀏覽器') || title.includes('Google') || title.includes('Gemini') || title.includes('Workspace') || title.includes('NotebookLM')) return '智慧搜尋';
-  // 法律規範
-  if (title.includes('法律') || title.includes('版權') || title.includes('專利') || title.includes('訴訟') || title.includes('判')) return '法律規範';
-  // 模型發布
-  if (title.includes('登場') || title.includes('發布') || title.includes('推出') || title.includes('更新') || title.includes('模型') || title.includes('GPT') || title.includes('Claude') || title.includes('DeepSeek') || title.includes('Llama') || title.includes('Grok') || title.includes('xAI')) return '模型發布';
-  // 應用技巧
-  if (title.includes('教戰') || title.includes('技巧') || title.includes('攻略') || title.includes('案例')) return '應用技巧';
+  const t = title;
+
+  // 1. 法律規範：政策、訴訟、合規
+  if (/法律|版權|專利|訴訟|判決|侵權|合規|規範/.test(t)) return '法律規範';
+
+  // 2. 產業動態：公司新聞、合作、市場、競爭、收購
+  if (/合作|收購|投資|融資|併購|裁員|市場|競爭|股價|營收|攜手|聯手/.test(t)) return '產業動態';
+
+  // 3. 應用技巧：教學、how-to、實戰、案例
+  if (/教戰|教學|攻略|技巧|案例|實戰|心得|怎麼用|如何|這樣用|實測|實作/.test(t)) return '應用技巧';
+
+  // 4. AI 代理：自主執行任務的 agent
+  if (/代理|Agent|Cowork|代理人|自主|代你/.test(t)) return 'AI 代理';
+
+  // 5. 模型發布：模型名 + 推出/登場 兩者並存
+  // 涵蓋 LLM + 圖像 / 影片 / 音樂等 AI 模型
+  const isModel = /(GPT-?\d|Claude(?:\s*\d|\s*Opus|\s*Sonnet|\s*Haiku)?|Gemini(?:\s*\d|\s*Pro|\s*Flash|\s*Ultra)?|DeepSeek|Llama|Grok\s*\d|Qwen|o[134](?:-pro|-mini)?|Mistral|Nano\s*Banana|Sora|Veo|Kling|可靈|Imagen|Midjourney|DALL[\s·-]?E|Stable\s*Diffusion|FLUX|Lyria|Suno|Seedance|Vidu|Hunyuan|混元|Wan|GLM|Yi-?\d)/i.test(t);
+  const isLaunch = /登場|問世|問市|首發|新模型|釋出|發表|亮相|突破|問鼎|現身/.test(t);
+  if (isModel && isLaunch) return '模型發布';
+
+  // 6. 新功能：既有產品新功能 / 新版本
+  if (/更新|升級|改版|新功能|新增|擴增|大進化|再進化|加入/.test(t)) return '新功能';
+
+  // 7. AI 工具：全新工具 / 服務上線（catch-all 動詞）
+  if (/推出|發布|上線|新工具|新服務|問世/.test(t)) return 'AI 工具';
 
   return '產業動態';
 }
@@ -269,6 +282,7 @@ function showArticle(data) {
   const coverEl = document.getElementById('amCover');
   const titleEl = document.getElementById('amTitle');
   const headerEl = document.querySelector('.am-header');
+  const bodyEl = document.querySelector('.am-body');
 
   if (art.source === '趨勢總覽') {
     coverEl.style.display = 'none';
@@ -279,6 +293,9 @@ function showArticle(data) {
       headerEl.style.paddingBottom = '0';
       headerEl.style.marginBottom = '0';
     }
+    if (bodyEl) {
+      bodyEl.style.paddingTop = '20px';
+    }
   } else {
     coverEl.style.display = 'block';
     coverEl.style.backgroundImage = `url('${displayImg}')`;
@@ -288,6 +305,9 @@ function showArticle(data) {
       headerEl.style.borderBottom = '';
       headerEl.style.paddingBottom = '';
       headerEl.style.marginBottom = '';
+    }
+    if (bodyEl) {
+      bodyEl.style.paddingTop = '';
     }
   }
   let bodyHtml = art.fullContent || art.content || '';
@@ -306,12 +326,26 @@ function showArticle(data) {
     isLegacyLink = true;
   }
   if (art.source === '趨勢總覽') {
+    // 適用情境 tags 行（在內文下方、日期/來源之上）
+    if (art.tags && art.tags.length > 0) {
+      bodyHtml += `<div class="summary-tags-row" style="margin-top:20px;">
+        <span class="summary-tags-label">適用情境：</span>
+        ${sortUsecaseTags(art.tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
+      </div>`;
+    }
     let sourceLinkHtml = externalUrl ? `<span style="color:var(--text-light); font-size:14px;">（<a href="${externalUrl}" target="_blank" style="color:var(--text-light); text-decoration:underline; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-light)'">資料來源</a>）</span>` : ``;
     bodyHtml += `<div style="display:flex; justify-content:space-between; align-items:center; margin-top:32px; padding-bottom:40px;">
       <span style="font-size:13px; color:var(--text-light); font-weight:700;">${displayDate}</span>
       ${sourceLinkHtml}
     </div>`;
   } else {
+    // 原生文章的適用情境行（在「閱讀原文」按鈕之前）
+    if (art.isNative && art.tags && art.tags.length > 0) {
+      bodyHtml += `<div class="summary-tags-row" style="margin-top:24px;">
+        <span class="summary-tags-label">適用情境：</span>
+        ${sortUsecaseTags(art.tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
+      </div>`;
+    }
     if (externalUrl) {
       if (isLegacyLink) {
         // 舊期電子報：簡單文字超連結（預設灰色，hover 變青色）
@@ -442,6 +476,7 @@ async function initDashboardData() {
         isNative: true,
         img: a.image,
         tag: a.tag,
+        tags: a.tags || [],
         date: a.date,
         source: 'TVBS AI 知識庫',
         sourceUrl: a.sourceUrl,
@@ -480,6 +515,7 @@ async function initDashboardData() {
           url: s.sourceUrl || `/summaries#${s.id}`,
           img: s.img || fallbackImg,
           tag: s.tag || '趨勢摘要',
+          tags: s.tags || [],
           date: s.date,
           source: '趨勢總覽',
           sourceUrl: s.sourceUrl,
@@ -633,13 +669,19 @@ async function initDashboardData() {
       if (summariesWrap && Array.isArray(window.__weeklySummaries) && window.__weeklySummaries.length > 0) {
         summariesWrap.innerHTML = window.__weeklySummaries.map(it => {
           const contentTag = it.tag || getTag(it.title);
+          const tags = (it.tags && it.tags.length) ? it.tags : [];
+          const tagsHtml = tags.length ? `
+                <div class="summary-tags-row">
+                  <span class="summary-tags-label">適用情境：</span>
+                  ${sortUsecaseTags(tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
+                </div>` : '';
           return `
-            <div class="summary-list-item" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 0; cursor:pointer; display:flex; gap:16px; align-items:center; transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.03)'" onmouseout="this.style.background='transparent'" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
+            <div class="summary-list-item" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" style="padding: 12px 0; cursor:pointer; display:flex; gap:16px; align-items:center;" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
               <div style="font-size:13px; color:#94a3b8; font-weight:700; white-space:nowrap; padding-left:12px; flex-shrink:0;">${it.date}</div>
-              <span class="feed-tag" style="font-size:10px; padding:1px 6px; background:rgba(94,245,255,0.1); color:var(--accent); border:1px solid rgba(94,245,255,0.2); flex-shrink:0;">${contentTag}</span>
+              <span class="feed-tag" style="flex-shrink:0;">${contentTag}</span>
               <div style="flex:1; min-width:0;">
                 <h4 style="margin:0; color:var(--text); font-size:16px; line-height:1.5; font-weight:500;">${it.title}</h4>
-                <p style="margin:4px 0 0 0; font-size:13px; color:var(--text-light); line-height:1.5; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${it.summary || ''}</p>
+                <p style="margin:4px 0 0 0; font-size:13px; color:var(--text-light); line-height:1.5; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:600px;">${it.summary || ''}</p>${tagsHtml}
               </div>
               <span class="chevron-icon">›</span>
             </div>
@@ -696,10 +738,12 @@ async function initDashboardData() {
             metaLeft = `第 ${iss.no} 期`;
             metaRight = iss.date || '';
           }
+          const useCaseTags = (it.tags || []).join(',');
+          const resolvedTag = it.tag || getTag(it.title);
           return `
-            <div class="article-card" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
+            <div class="article-card" data-content-tag="${resolvedTag}" data-usecase-tags="${useCaseTags}" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
               <div class="article-cover" style="background-image:url('${artImg}')"></div>
-              <span class="tag">${it.tag || getTag(it.title)}</span>
+              <span class="tag">${resolvedTag}</span>
               <h4>${it.title}</h4>
               <div class="summary">${it.content || ''}</div>
               <div class="article-meta">
@@ -715,18 +759,102 @@ async function initDashboardData() {
       if (trendSummariesWrap && Array.isArray(window.__weeklySummaries)) {
         trendSummariesWrap.innerHTML = window.__weeklySummaries.map(it => {
           const contentTag = it.tag || getTag(it.title);
+          const tags = (it.tags && it.tags.length) ? it.tags : [];
+          const tagsHtml = tags.length ? `
+                <div class="summary-tags-row">
+                  <span class="summary-tags-label">適用情境：</span>
+                  ${sortUsecaseTags(tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
+                </div>` : '';
           return `
-            <div class="summary-list-item" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 0; cursor:pointer; display:flex; gap:16px; align-items:center; transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.03)'" onmouseout="this.style.background='transparent'" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
+            <div class="summary-list-item" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" style="padding: 12px 0; cursor:pointer; display:flex; gap:16px; align-items:center;" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(it.title).replace(/'/g, "%27")}'))">
               <div style="font-size:13px; color:#94a3b8; font-weight:700; white-space:nowrap; padding-left:12px; flex-shrink:0;">${it.date}</div>
-              <span class="feed-tag" style="font-size:10px; padding:1px 6px; background:rgba(94,245,255,0.1); color:var(--accent); border:1px solid rgba(94,245,255,0.2); flex-shrink:0;">${contentTag}</span>
-              <h4 style="margin:0; color:var(--text); font-size:16px; line-height:1.5; flex:1; font-weight:500;">${it.title}</h4>
+              <span class="feed-tag" style="flex-shrink:0;">${contentTag}</span>
+              <div style="flex:1; min-width:0;">
+                <h4 style="margin:0; color:var(--text); font-size:16px; line-height:1.5; font-weight:500;">${it.title}</h4>${tagsHtml}
+              </div>
               <span class="chevron-icon">›</span>
             </div>
           `;
         }).join('');
       }
+
+      // 初始化兩個分頁的雙層 filter
+      initDualFilter('trendFilters', '#trendGrid', '.article-card');
+      initDualFilter('summariesFilters', '#trendSummariesList', '.summary-list-item');
     }
   } catch (err) { console.warn('Fetch failed', err); }
+}
+
+// 雙層 chip filter：自動掃描 data-content-tag / data-usecase-tags 產生 chips，
+// 點擊套用 AND 篩選，「全部」清除該排
+// 適用情境 tag 的顯示順序（指定排列，沒在這裡列的會排到最後）
+const USECASE_TAG_ORDER = [
+  '圖像生成', '影片製作', '聲音處理', '寫作協助', '翻譯',
+  '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究',
+  '程式設計', '訪談記錄', '觀念學習'
+];
+
+function sortUsecaseTags(tags) {
+  return (tags || []).slice().sort((a, b) => {
+    const ia = USECASE_TAG_ORDER.indexOf(a);
+    const ib = USECASE_TAG_ORDER.indexOf(b);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+}
+
+function initDualFilter(filterContainerId, gridSelector, itemSelector) {
+  const filterContainer = document.getElementById(filterContainerId);
+  const grid = document.querySelector(gridSelector);
+  if (!filterContainer || !grid) return;
+  const items = Array.from(grid.querySelectorAll(itemSelector));
+  if (items.length === 0) return;
+
+  const contentTags = new Set();
+  const usecaseTags = new Set();
+  items.forEach(item => {
+    const c = item.dataset.contentTag;
+    if (c) contentTags.add(c);
+    (item.dataset.usecaseTags || '').split(',').filter(Boolean).forEach(t => usecaseTags.add(t));
+  });
+
+  // 適用情境依預定義順序排列
+  const sortedUsecase = Array.from(usecaseTags).sort((a, b) => {
+    const ia = USECASE_TAG_ORDER.indexOf(a);
+    const ib = USECASE_TAG_ORDER.indexOf(b);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+
+  const renderRow = (label, tags, type) => {
+    const chipsHtml = ['<button class="chip active" data-filter="全部" data-type="' + type + '">全部</button>']
+      .concat(Array.from(tags).map(t => `<button class="chip" data-filter="${t}" data-type="${type}">${t}</button>`))
+      .join('');
+    return `<div class="filter-row"><span class="filter-label">${label}</span><div class="chips">${chipsHtml}</div></div>`;
+  };
+
+  filterContainer.innerHTML = renderRow('內容屬性：', contentTags, 'content')
+                            + renderRow('適用情境：', sortedUsecase, 'usecase');
+
+  const state = { content: '全部', usecase: '全部' };
+  const applyFilter = () => {
+    items.forEach(item => {
+      const ct = item.dataset.contentTag || '';
+      const ut = (item.dataset.usecaseTags || '').split(',').filter(Boolean);
+      const cMatch = state.content === '全部' || ct === state.content;
+      const uMatch = state.usecase === '全部' || ut.includes(state.usecase);
+      item.style.display = (cMatch && uMatch) ? '' : 'none';
+    });
+  };
+
+  filterContainer.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const type = chip.dataset.type;
+      const filter = chip.dataset.filter;
+      chip.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      state[type] = filter;
+      applyFilter();
+    });
+  });
 }
 
 

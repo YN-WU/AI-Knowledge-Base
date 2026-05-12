@@ -3,9 +3,10 @@
     "id": "notebooklm-audio-guide",
     "date": "2026-04-30",
     "title": "NotebookLM 新功能「Audio Guide」 讓 AI 變身 Podcast 主播幫你導讀",
-    "summary": "Google 的 AI 筆記工具 NotebookLM 推出「Audio Guide」功能，能將你上傳的長篇報告或多份文件，轉換成兩位虛擬主持人對談的「Podcast」形式。這解決了現代人沒時間看完海量文字的痛點，透過充滿情感起伏的生動語調，幫你快速抓出重點、解釋複雜概念。不管是零碎時間通勤、或是想用聽覺學習，這項功能都讓消化艱澀資訊變得像聽電台一樣輕鬆愉快。",
+    "summary": "Google 的 AI 筆記工具 NotebookLM 推出「Audio Guide」功能，能將你上傳的長篇報告或多份文件，轉換成兩位虛擬主持人對談的「Podcast」形式。這解決了現代人沒時間看完海量文字的痛點，透過充滿情感起伏的生動語調,幫你快速抓出重點、解釋複雜概念。不管是零碎時間通勤、或是想用聽覺學習，這項功能都讓消化艱澀資訊變得像聽電台一樣輕鬆愉快。",
     "sourceUrl": "https://blog.google/technology/ai/notebooklm-audio-guide-update-may-2024/",
-    "tag": "AI 工具"
+    "tag": "新功能",
+    "tags": ["整理資料", "聲音處理"]
   },
   {
     "id": "openai-codex-update",
@@ -13,7 +14,8 @@
     "title": "Openai 推 Codex 大更新　能控制螢幕還有智慧記憶功能",
     "summary": "Codex 這次升級讓 AI 直接接手你的螢幕操作，它能像真人一樣移動游標點選 Mac 應用程式，解決了過去沒 API 就無法自動化的麻煩。你不僅能在內建瀏覽器裡邊看畫面邊下指令，甚至能讓它記住工作偏好並跨天接續任務。搭配新整合的 90 多款外掛，Codex 會主動從 Slack 或 Jira 抓出重點並排好優先順序，讓你徹底擺脫在不同視窗間來回切換的混亂，專注在真正的開發工作中。",
     "sourceUrl": "https://openai.com/zh-Hant/index/codex-for-almost-everything/",
-    "tag": "模型發布"
+    "tag": "AI 代理",
+    "tags": ["程式設計", "自動化", "工作流整合"]
   },
   {
     "id": "gemini-doc-generation",
@@ -21,7 +23,8 @@
     "title": "Gemini 對話可直接生成文件檔　省下手動複製與重新排版的麻煩",
     "summary": "Gemini 現在能夠直接將對話中的點子產出為 Google 文件、試算表、簡報或 PDF 檔案，只要下達簡單指令，Gemini 就會自動把討論出來的草稿或數據，轉換成格式整齊的正式檔案，解決用戶必須在視窗間來回切換、辛苦搬運內容的痛點，讓「討論」與「產出」一氣呵成。",
     "sourceUrl": "https://workspaceupdates.googleblog.com/2026/05/google-workspace-updates-weekly-recap.html",
-    "tag": "AI 工具"
+    "tag": "新功能",
+    "tags": ["寫作協助", "簡報設計", "整理資料", "工作流整合"]
   },
   {
     "id": "xai-custom-voices",
@@ -29,7 +32,8 @@
     "title": "xAI 推出 Custom Voices　兩分鐘打造專屬品牌音色",
     "summary": "xAI 推出 Custom Voices，用戶僅需錄音一分鐘即可在兩分鐘內生成專屬語音，並透過 Voice Library 整合至 API 進行支援中文在內的 28 種語言即時串流。 結合 Grok 4.3 推理邏輯，在語意重音與抗噪穩定度上優於 OpenAI 及 ElevenLabs，並藉由強制雙重驗證解決盜用風險與品牌辨識度不足的痛點。",
     "sourceUrl": "https://x.ai/news/grok-custom-voices",
-    "tag": "AI 工具"
+    "tag": "AI 工具",
+    "tags": ["聲音處理"]
   },
   {
     "id": "google-workspace-intelligence",
@@ -37,7 +41,8 @@
     "title": "Google 推出 Workspace Intelligence　透過 Gemini 跨應用程式自動化與客製化生成",
     "summary": "Google 推出 Workspace Intelligence 系統，將 Gemini 推論能力整合至 Chat、Gmail 與雲端硬碟，用戶僅需輸入指令，AI 即可跨應用搜集資訊、生成專業簡報並自動更新數據試算表。該功能可透過分析協作模式與過往語調，提供具備個人化風格的草稿與每日任務簡報，有效解決用戶需頻繁切換分頁搜尋零散資料，以及耗時整理初步底稿的作業困擾。",
     "sourceUrl": "https://workspace.google.com/blog/product-announcements/introducing-workspace-intelligence",
-    "tag": "AI 工具"
+    "tag": "AI 工具",
+    "tags": ["工作流整合", "寫作協助", "整理資料"]
   },
   {
     "id": "claude-opus-4-7",
@@ -45,7 +50,8 @@
     "title": "Claude Opus 4.7 登場　寫程式具自檢功能、視覺能力大提升",
     "summary": "Anthropic 推出最新模型 Claude Opus 4.7 強化了開發自動化，用戶能將複雜的開發任務交由它獨立執行，並完成自我驗證。它也大幅提升了視覺辨識能力，可處理比前代清晰三倍的圖檔，即時新聞中常見的細碎報表數據或網頁截圖也能精準提取。能力在多項實測中超越 GPT-5.4 與 Gemini 3.1 Pro，在文件處理與長期記憶上優於 Opus 4.6，徹底解決了 AI 過去容易遺漏細節或轉頭就忘的困擾。",
     "sourceUrl": "https://www.anthropic.com/news/claude-opus-4-7",
-    "tag": "模型發布"
+    "tag": "模型發布",
+    "tags": ["程式設計", "資料研究", "自動化"]
   },
   {
     "id": "claude-creative-connectors",
@@ -53,7 +59,8 @@
     "title": "Claude 推創意工具串接功能　支援 Blender、Adobe 等軟體直接對話操作",
     "summary": "Anthropic 推出全新串接器（Connectors），讓 Claude 能直接與 Adobe、Blender、SketchUp 等創意軟體連動。使用者能用自然語言控制 Blender 場景、自動化 Affinity 批量修圖，或在 Adobe 生態系中調用 50 多種工具。過去在多個軟體間反覆切換、手動轉檔的繁瑣流程，現在可以直接用對話完成，省下大量重複操作的時間。",
     "sourceUrl": "https://www.anthropic.com/news/claude-for-creative-work",
-    "tag": "AI 工具"
+    "tag": "新功能",
+    "tags": ["工作流整合", "影片製作", "圖像生成"]
   },
   {
     "id": "claude-adobe-coop",
@@ -61,15 +68,17 @@
     "title": "Claude 與 Adobe 合作　Photoshop、Premiere 等 50 多款軟體可用對話操控",
     "summary": "Anthropic 新版串接器讓 Claude 能直接連動 Adobe Creative Cloud，涵蓋 Photoshop、Premiere、Express 等超過 50 款工具，使用者能用對話調用影像、影片與設計功能。過去在不同軟體間反覆切換介面、手動調整設定的流程，現在可以統一用自然語言指令完成，大幅降低操作負擔。",
     "sourceUrl": "https://www.anthropic.com/news/claude-for-creative-work",
-    "tag": "AI 工具"
+    "tag": "新功能",
+    "tags": ["影片製作", "圖像生成", "工作流整合"]
   },
   {
     "id": "claude-3d-tools",
     "date": "2026-04-28",
     "title": "Claude 整合多種 3D 工具　建模與場景調整用對話就能完成",
-    "summary": "Claude 新串接器將 3D 工具一次打通：Blender 使用者能用自然語言操控場景、除錯模型、用 Python 腳本批量調整；SketchUp 可透過對話快速生成空間與家具輪廓作為建模起點；Autodesk Fusion 訂閱戶同樣支援對話建立和修改 3D 模型。過去需要熟悉軟體複雜選單與快捷鍵才能完成的 3D 操作，現在改用對話就能上手，降低入門門檻。",
+    "summary": "Claude 新串接器將 3D 工具一次打通:Blender 使用者能用自然語言操控場景、除錯模型、用 Python 腳本批量調整；SketchUp 可透過對話快速生成空間與家具輪廓作為建模起點；Autodesk Fusion 訂閱戶同樣支援對話建立和修改 3D 模型。過去需要熟悉軟體複雜選單與快捷鍵才能完成的 3D 操作，現在改用對話就能上手，降低入門門檻。",
     "sourceUrl": "https://www.anthropic.com/news/claude-for-creative-work",
-    "tag": "AI 工具"
+    "tag": "新功能",
+    "tags": ["圖像生成", "工作流整合"]
   },
   {
     "id": "claude-design",
@@ -77,7 +86,8 @@
     "title": "Anthropic 推出 Claude Design　用對話就能生成軟體介面並直連匯出 Canva",
     "summary": "Anthropic Labs 推出 Claude Design，讓使用者能用對話生成軟體介面草案，並根據回饋反覆調整。輸入畫面需求後，Claude 會同時呈現多種視覺版本供挑選，再根據指示修改細節，完成後能直接匯出至 Canva。過去原型設計需要反覆畫草稿才能確認方向，現在能在一問一答之間快速出圖、節省溝通成本。",
     "sourceUrl": "https://www.anthropic.com/news/claude-for-creative-work",
-    "tag": "AI 工具"
+    "tag": "AI 工具",
+    "tags": ["圖像生成", "簡報設計"]
   },
   {
     "id": "telegram-ai-bot",
@@ -85,7 +95,8 @@
     "title": "Telegram 免寫程式碼也能做 AI 機器人  搭配主從架構可指派多個分身",
     "summary": "Telegram 推出免寫程式碼建構 AI 機器人的功能，使用者透過官方機器人取得金鑰，串聯第三方平台即可設定說話風格與工作內容。也新增 Managed Bots 架構讓主機器人能指派多個分身同時處理不同群組或客服問題。過去開發機器人需撰寫程式碼與維護系統，現在只需挑選選項就能快速建置，降低入門門檻。",
     "sourceUrl": "https://techiexpert.com/telegram-makes-building-ai-bots-easy-for-everyone/",
-    "tag": "AI 工具"
+    "tag": "新功能",
+    "tags": ["自動化", "工作流整合"]
   },
   {
     "id": "kling-ai-4k",
@@ -93,7 +104,8 @@
     "title": "可靈 AI 推 原生 4K 畫質功能  一鍵生成電影級別影片",
     "summary": "大陸科技公司快手旗下的大模型可靈 AI 在最新影片生成模型 Kling 3.0 中，加入 4K 產出的功能，只要一個按鈕就能直接生成 4K 高解析度影片。生成過程能精確保留參考圖的人物特徵與光影風格。過去想將作品放上大螢幕或專業放映，常需要後期繁瑣的放大處理，現在能在一開始就得到清晰細緻的成品，省去額外調整的步驟。",
     "sourceUrl": "https://www.klingai.com/release-note/release-notes/z8zeqsxwol?type=dialog",
-    "tag": "影片生成"
+    "tag": "新功能",
+    "tags": ["影片製作"]
   },
   {
     "id": "grok-4-3",
@@ -101,7 +113,8 @@
     "title": "Grok 4.3 悄悄上線　推理機制常駐且價格大砍直攻企業市場",
     "summary": "xAI 推出全新模型 Grok 4.3 Beta，將推理設為常駐狀態，確保處理長文與複雜指令時的準確率。此次更新的功能還包括能讓 AI 能控制電腦處理日常任務，自動生成簡報、文件、pdf與試算表。費用上，此模型輸入 API 每百萬字元僅 1.25 美元，比 Claude 或 GPT 系列便宜了五倍。雖然整體能力評測低於 GPT、Gemini 及 Claude 等最新主流模型，但極低的底價與能自動化代理能力，仍讓它成為高 CP 值的模型選擇。目前限最高級付費會員使用。",
     "sourceUrl": "https://docs.x.ai/developers/models/grok-4.3",
-    "tag": "模型發布"
+    "tag": "模型發布",
+    "tags": ["自動化", "工作流整合", "寫作協助"]
   },
   {
     "id": "deepseek-v4",
@@ -109,7 +122,8 @@
     "title": "DeepSeek 推出 V4 系列模型  百萬字元長文處理與極低 API 定價",
     "summary": "DeepSeek 發表 V4 系列模型，包含專攻推理與程式寫作能力的 Pro 版，以及強調運作快速且 API 價格極具優勢的 Flash 版。兩款均預設百萬字元長上下文，在數學與科學表現超越所有現有開源對手。過去處理長文件或複雜任務往往成本高昂，現在能以更低預算執行，大幅降低開發者的使用門檻。",
     "sourceUrl": "https://api-docs.deepseek.com/news/news260424",
-    "tag": "模型發布"
+    "tag": "模型發布",
+    "tags": ["程式設計", "資料研究"]
   },
   {
     "id": "google-deep-research-max",
@@ -117,6 +131,7 @@
     "title": "Google 推出 Deep Research Max 研究助手  可讀企業內部資料還能自動畫圖表",
     "summary": "Google 發布新版 Deep Research 系列，分為主打深度的 Max 版與快速版，兩者皆支援透過 MCP 連線讀取企業私有檔案，並具備自動產出圖表功能。Max 版改用 Gemini 3.1 Pro 模型，運算成本比預覽版更低。過去分析師必須手動搜集網路與內部資料才能撰寫報告，現在只需連上資料庫，系統就會自動比對資訊並生成視覺化的分析草稿。",
     "sourceUrl": "https://ai.google.com/gemini-api/docs/models/deep-research-max-preview-04-2026",
-    "tag": "AI 工具"
+    "tag": "新功能",
+    "tags": ["資料研究", "工作流整合"]
   }
 ]
