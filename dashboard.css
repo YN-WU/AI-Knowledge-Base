@@ -16,7 +16,6 @@
   /* tag colors */
   --tag-model: #3b82f6;
   --tag-feature: #10b981;
-  --tag-agent: #c026d3;
   --tag-tool: #f59e0b;
   --tag-tip: #06b6d4;
   --tag-industry: #6b7280;
@@ -3586,7 +3585,6 @@ footer {
 
 .summary-list-item[data-content-tag="模型發布"] { --tag-color: var(--tag-model) }
 .summary-list-item[data-content-tag="新功能"] { --tag-color: var(--tag-feature) }
-.summary-list-item[data-content-tag="自主代理"] { --tag-color: var(--tag-agent) }
 .summary-list-item[data-content-tag="新工具"] { --tag-color: var(--tag-tool) }
 .summary-list-item[data-content-tag="應用技巧"] { --tag-color: var(--tag-tip) }
 .summary-list-item[data-content-tag="產業動態"] { --tag-color: var(--tag-industry) }
@@ -3885,7 +3883,7 @@ footer {
   letter-spacing: 0.05em;
   color: var(--text);
   flex-shrink: 0;
-  width: 52px;
+  width: 76px;
   text-align: left;
   white-space: nowrap;
   position: relative;
@@ -3918,15 +3916,15 @@ footer {
   min-width: 0;
 }
 
-/* 情境列：inline 文字 link 風（取代 chip） */
+/* 情境列：inline 文字（無分隔符，靠 gap 分組） */
 .reader-kw-inline {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0;
+  column-gap: 14px;
+  row-gap: 6px;
   flex: 1;
   min-width: 0;
-  row-gap: 0;
   line-height: 1.4;
 }
 
@@ -3940,14 +3938,6 @@ footer {
   line-height: 1.5;
 }
 
-.reader-kw-link:not(:last-child)::after {
-  content: '·';
-  display: inline-block;
-  margin: 0 10px;
-  color: rgba(15, 23, 42, 0.25);
-  font-weight: 400;
-}
-
 /* 類型列：tag 名加大加粗深色（主資訊） */
 .reader-kw-row:not(.reader-kw-row--usecase) .reader-kw-link {
   color: var(--text);
@@ -3956,8 +3946,8 @@ footer {
   letter-spacing: -0.005em;
 }
 
-.reader-kw-row:not(.reader-kw-row--usecase) .reader-kw-link:not(:last-child)::after {
-  margin: 0 12px;
+.reader-kw-row:not(.reader-kw-row--usecase) .reader-kw-inline {
+  column-gap: 22px;
 }
 
 .reader-kw-link .kw-name {

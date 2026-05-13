@@ -211,19 +211,16 @@ function getTag(title) {
   // 3. 應用技巧：教學、how-to、實戰、案例
   if (/教戰|教學|攻略|技巧|案例|實戰|心得|怎麼用|如何|這樣用|實測|實作/.test(t)) return '應用技巧';
 
-  // 4. 自主代理：自主執行任務的 agent
-  if (/代理|Agent|Cowork|代理人|自主|代你/.test(t)) return '自主代理';
-
-  // 5. 模型發布：模型名 + 推出/登場 兩者並存
+  // 4. 模型發布：模型名 + 推出/登場 兩者並存
   // 涵蓋 LLM + 圖像 / 影片 / 音樂等 AI 模型
   const isModel = /(GPT-?\d|Claude(?:\s*\d|\s*Opus|\s*Sonnet|\s*Haiku)?|Gemini(?:\s*\d|\s*Pro|\s*Flash|\s*Ultra)?|DeepSeek|Llama|Grok\s*\d|Qwen|o[134](?:-pro|-mini)?|Mistral|Nano\s*Banana|Sora|Veo|Kling|可靈|Imagen|Midjourney|DALL[\s·-]?E|Stable\s*Diffusion|FLUX|Lyria|Suno|Seedance|Vidu|Hunyuan|混元|Wan|GLM|Yi-?\d)/i.test(t);
   const isLaunch = /登場|問世|問市|首發|新模型|釋出|發表|亮相|突破|問鼎|現身/.test(t);
   if (isModel && isLaunch) return '模型發布';
 
-  // 6. 新功能：既有產品新功能 / 新版本
+  // 5. 新功能：既有產品新功能 / 新版本
   if (/更新|升級|改版|新功能|新增|擴增|大進化|再進化|加入/.test(t)) return '新功能';
 
-  // 7. 新工具：全新工具 / 服務上線（catch-all 動詞）
+  // 6. 新工具：全新工具 / 服務上線（catch-all 動詞）
   if (/推出|發布|上線|新工具|新服務|問世/.test(t)) return '新工具';
 
   return '產業動態';
@@ -624,11 +621,12 @@ async function initDashboardData() {
       // 情境：item.tags 陣列展平，依 USECASE_TAG_ORDER 固定順序排列
       const usecaseEl = document.getElementById('readerKwUsecase');
       if (usecaseEl) {
+        // 按 USECASE_TAG_ORDER 固定順序掃描，有出現的就放，取前 6 個
         const presentTags = new Set();
         overviewSource.forEach(it => {
           (it.tags || []).forEach(t => { if (t) presentTags.add(t); });
         });
-        const ordered = sortUsecaseTags(Array.from(presentTags));
+        const ordered = USECASE_TAG_ORDER.filter(t => presentTags.has(t)).slice(0, 6);
         usecaseEl.innerHTML = ordered
           .map(t => `<span class="reader-kw-link">${t}</span>`)
           .join('');

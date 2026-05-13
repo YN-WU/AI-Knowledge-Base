@@ -17,7 +17,7 @@
     "title": "Openai 推 Codex 大更新　能控制螢幕還有智慧記憶功能",
     "summary": "Codex 這次升級讓 AI 直接接手你的螢幕操作，它能像真人一樣移動游標點選 Mac 應用程式，解決了過去沒 API 就無法自動化的麻煩。你不僅能在內建瀏覽器裡邊看畫面邊下指令，甚至能讓它記住工作偏好並跨天接續任務。搭配新整合的 90 多款外掛，Codex 會主動從 Slack 或 Jira 抓出重點並排好優先順序，讓你徹底擺脫在不同視窗間來回切換的混亂，專注在真正的開發工作中。",
     "sourceUrl": "https://openai.com/zh-Hant/index/codex-for-almost-everything/",
-    "tag": "自主代理",
+    "tag": "新功能",
     "tags": [
       "程式設計",
       "自動化",

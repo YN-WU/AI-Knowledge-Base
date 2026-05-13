@@ -380,7 +380,7 @@
   },
   {
     "title": "全新AI代理模式 ChatGPT agent 登場！不再只是聊天 更直接替你完成任務",
-    "tag": "自主代理",
+    "tag": "新功能",
     "tags": ["自動化", "工作流整合", "資料研究"],
     "content": "OpenAI 日前宣布推出 AI 代理人功能「ChatGPT agent」，進化為能獨立完成複雜工作的智能助理。它融合了 Operator 的網頁互動、Deep Research 的資訊整合與 ChatGPT 的智慧對話能力，能自主使用虛擬瀏覽器、API、文件編輯器等工具完成任務。",
     "fullContent": "<p class=\"first-paragraph\">OpenAI 日前宣布推出 AI 代理人功能「ChatGPT agent」，顛覆傳統 ChatGPT 的使用方式，使其從純粹回答問題的對話工具，進化為能獨立完成複雜工作的智能助理。</p><p>ChatGPT agent 融合了 OpenAI 過去推出的三個代理人的能力，包括 <strong>Operator 的網頁互動技術、Deep Research 的資訊整合專長，以及 ChatGPT 的智慧對話特性</strong>，讓他能在虛擬電腦環境中自如切換分析與行動能力，從頭到尾獨立處理好複雜的工作流程。</p><p>使用者只需提出要求，ChatGPT agent 便會靈活選用適合的工具，包括虛擬瀏覽器、API 連接器、終端機和文件編輯器等，比如要求 ChatGPT agent 幫你看行事曆，準備客戶會議資料；根據主題籌劃並採買一餐的食材；或進行競爭對手分析，協助統整資料並產出摘要報告等。</p><p>目前這項功能已陸續向 ChatGPT Plus、Pro 及 Team 方案的用戶開放，可以從工具選單中啟用，也將擴大給企業與教育端。OpenAI 指出，未來會持續擴充 agent 的功能，預計加入更進階的簡報生成、定時任務安排，以及更多網站與應用程式的整合。</p>",
@@ -759,7 +759,7 @@
   },
   {
     "title": "更親民的 AI 代理人！Claude Cowork 化身工作夥伴 幫你整理資料夾、寫文件",
-    "tag": "自主代理",
+    "tag": "新工具",
     "tags": ["自動化", "整理資料", "工作流整合"],
     "content": "Anthropic 日前推出全新的 AI Agent（AI代理人）功能「Claude Cowork」，讓不懂程式碼的人，也能透過自然語言的指令，讓 Claude 直接幫你執行日常任務，例如操作網頁、整理電腦桌面的資料夾等。Cowork 的核心設計概念，是讓用戶在使用 Claude 處理新工作時能盡可能簡單。可授權 Claude 存取電腦中的特定資料夾，讓 AI 直接讀取、編輯或建立檔案。目前僅開放給 Claude Max 訂閱用戶在 macOS 桌面應用程式中試用。",
     "url": "/issues/016.html#section-jump-0",
@@ -808,7 +808,7 @@
   },
   {
     "title": "Clawdbot(Moltbot)爆紅!讓電腦直接變AI助手 免開APP就能做事",
-    "tag": "自主代理",
+    "tag": "新工具",
     "tags": ["自動化", "工作流整合", "整理資料"],
     "content": "最近一款新的AI代理工具Clawdbot(現已改名Moltbot)在網路上爆紅,甚至帶動蘋果Mac mini銷售一空。Moltbot是開源的AI代理工具,可直接安裝在使用者的電腦中,並串聯Claude、Gemini、GPT等大型語言模型,支援Mac、Windows和Linux系統。使用者只要透過手機上的Telegram、WhatsApp、Slack、Discord等社群通訊軟體傳送指令,就能遠端操控電腦。主要有三大特色:具備行動力、持久記憶、主動回報。",
     "url": "/issues/017.html#section-jump-0",
