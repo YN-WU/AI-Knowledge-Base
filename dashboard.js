@@ -19,6 +19,25 @@ function switchTab(page) {
       renderArchive('all');
     }
   }
+
+  // GA4 SPA pageview（hash 路由 GA 不會自動偵測）
+  if (typeof gtag === 'function') {
+    const titleMap = {
+      home: '首頁',
+      news: '重點趨勢',
+      summaries: '30秒看趨勢',
+      prompt: 'Prompt 技巧分享',
+      'prompt-sites': 'Prompt 資源庫',
+      'tool-intro': 'AI 工具介紹',
+      tools: 'AI 工具資源',
+      archive: '歷期電子報'
+    };
+    gtag('event', 'page_view', {
+      page_path: page === 'home' ? '/' : '/#' + page,
+      page_title: 'AI Knowledge Base | ' + (titleMap[page] || page),
+      page_location: window.location.href
+    });
+  }
 }
 
 function getHashPage() {
@@ -414,6 +433,15 @@ function showArticle(data) {
   if (modalBox) modalBox.scrollTop = 0;
   const bodyScroll = modal.querySelector('.am-body');
   if (bodyScroll) bodyScroll.scrollTop = 0;
+
+  // GA4: 追蹤文章瀏覽
+  if (typeof gtag === 'function') {
+    gtag('event', 'article_view', {
+      article_title: art.title,
+      article_tag: art.tag || '',
+      article_source: art.source || ''
+    });
+  }
 }
 
 function showArticleByTitle(title) {
@@ -1047,9 +1075,25 @@ function renderPromptSites() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // URL hash → 立刻切到對應分頁（重新整理保留位置）
-  const initialPage = getHashPage();
-  if (initialPage && initialPage !== 'home') switchTab(initialPage);
+  // URL hash → 立刻切到對應分頁（重新整理保留位置）+ 觸發初次 pageview
+  const initialPage = getHashPage() || 'home';
+  switchTab(initialPage);
+
+  // GA4: 追蹤外部連結點擊（任何 <a> 連到外部網域都記）
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (!a || typeof gtag !== 'function') return;
+    const href = a.getAttribute('href') || '';
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+    let url;
+    try { url = new URL(href, location.href); } catch (err) { return; }
+    if (url.hostname === location.hostname || !url.hostname) return; // 內部連結略過
+    gtag('event', 'outbound_click', {
+      link_url: url.href,
+      link_domain: url.hostname,
+      link_text: (a.textContent || '').trim().slice(0, 100)
+    });
+  });
 
   // 監聽 back/forward 觸發的 hash 變化
   window.addEventListener('hashchange', () => {
@@ -1138,9 +1182,24 @@ document.addEventListener('DOMContentLoaded', () => {
   var si = document.getElementById('searchInput');
   if (si) {
     var dt;
+    var gaT;
     si.addEventListener('input', function (e) {
-      clearTimeout(dt); var q = e.target.value;
+      clearTimeout(dt); clearTimeout(gaT); var q = e.target.value;
+      // 渲染結果：快速（150ms）
       dt = setTimeout(function () { loadSearchIndex().then(function () { renderSR(doSearch(q), q); }); }, 150);
+      // GA 追蹤：較慢（1500ms），避免每按一鍵都送
+      if (q && q.trim().length >= 2) {
+        gaT = setTimeout(function () {
+          if (typeof gtag === 'function') {
+            loadSearchIndex().then(function () {
+              gtag('event', 'search', {
+                search_term: q.trim(),
+                result_count: doSearch(q).length
+              });
+            });
+          }
+        }, 1500);
+      }
     });
     si.addEventListener('focus', function (e) {
       loadSearchIndex().then(function () { if (e.target.value) renderSR(doSearch(e.target.value), e.target.value); });
