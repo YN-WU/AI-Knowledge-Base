@@ -239,6 +239,43 @@ TVBS Logo 用 CSS filter 著色：
 
 ---
 
+## 📊 數據分析（GA4）
+
+**Property**: `484079366`（TVBS AI Knowledge Base）
+**Measurement ID**: `G-JQ8X854JPL`
+**裝設方式**: 直接 gtag.js（非 GTM）
+
+### 追蹤的事件
+
+| 事件 | 觸發時機 | 主要參數 |
+|------|---------|---------|
+| `page_view` | 初次載入 + SPA 切分頁 | page_path, page_title, page_location |
+| `article_view` | 點開文章 modal | article_title, article_tag, article_source |
+| `search` | 搜尋停 1.5s（字數 ≥ 2）| search_term, result_count |
+| `outbound_click` | 點外部域名連結 | link_url, link_domain, link_text |
+
+### 重要設定
+
+- `send_page_view: false`：關掉 GA4 自動 pageview，全部由 `switchTab()` 手動送
+- 搜尋兩段式 debounce：150ms render（UX）+ 1500ms 才送 GA（避免每按一鍵都送）
+- 內部連結不送 outbound（用 `URL.hostname === location.hostname` 過濾）
+
+### 看資料的地方
+
+| 報表 | 用途 |
+|------|------|
+| **Realtime** (即時) | 驗證事件有送、看當下流量 |
+| **Engagement → Pages and screens** | 哪些分頁/文章最多人看 |
+| **Engagement → Events → search** | 看 `search_term` 參數 — 使用者實際搜了什麼 |
+| **Engagement → Events → article_view** | 哪些文章被點開最多次 |
+
+### 舊版 (`tvbs-ai-newsletter/issues/*.html`) 還用 GTM
+
+舊期靜態 HTML 仍透過 GTM-5FPJBLQJ 進**同一個** property（484079366），
+所以新舊版的資料統一在 GA4 一個地方看。不用動舊版。
+
+---
+
 ## 🔍 搜尋功能
 
 搜尋邏輯在 `dashboard.js` 約 1024 行的 `doSearch()`：
