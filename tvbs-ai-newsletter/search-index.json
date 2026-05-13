@@ -285,7 +285,7 @@
   {
     "title": "Gemini 2.5 系列大更新！新模型 Flash-Lite 登場 Flash、Pro 穩定版也上線",
     "tag": "模型發布",
-    "tags": ["翻譯", "整理資料", "資料研究"],
+    "tags": ["即時翻譯", "整理資料", "資料研究"],
     "content": "Gemini 2.5 系列全面更新，輕量級模型 Flash-Lite 預覽登場。Google 推出 Search Live 語音互動功能。Meta 展示全新 AI 影片編輯功能。工具推薦 Gemini Canvas 互動式 AI 工作區。AIWIZE Tips 利用 Webhook 打造專屬 LINE AI 聊天機器人。本期特輯精選 Pinterest、Midjourney 等多則科技新聞。",
     "url": "/issues/007.html#section-jump-0",
     "img": "https://i.meee.com.tw/lYanXuc.webp",
@@ -537,7 +537,7 @@
   {
     "title": "阿里重磅發布 Qwen3 系列模型！ 影像、語音辨識能力大升級",
     "tag": "模型發布",
-    "tags": ["圖像生成", "聲音處理", "翻譯"],
+    "tags": ["圖像生成", "聲音處理", "即時翻譯"],
     "content": "阿里巴巴旗下的阿里雲日前發布了全新的開源大型語言模型 Qwen3-Omni、高品質語音合成模型 Qwen3-TTS-Flash，以及圖像編輯模型 Qwen-Image-Edit-2509。Qwen3-Omni 為首個「原生端到端」的全模態 AI 模型，能夠接受多模態輸入，統一處理文本、圖像、音訊和影片。",
     "url": "/issues/012.html#qwen3-release",
     "img": "https://i.meee.com.tw/mDgbSb7.jpg",
@@ -869,7 +869,7 @@
   {
     "title": "極速＋低成本！Google 釋出 Gemini 3.1 Flash-Lite　主攻海量任務處理",
     "tag": "模型發布",
-    "tags": ["翻譯", "整理資料", "自動化"],
+    "tags": ["即時翻譯", "整理資料", "自動化"],
     "content": "Gemini 3.1 Flash-Lite 是 Gemini 3 家族中速度最快、成本最低的輕量模型，每秒輸出 363-388.8 tokens，TTFT 比前代快 2.5 倍，輸入每百萬 token 僅 0.25 美元。四大亮點：思考等級（最低/低/中/高）自由切換、128K 上下文瞬時多模態轉換、即時 UI 介面與視覺生成、SaaS AI 智能體多步驟任務處理。",
     "url": "/issues/018.html#section-jump-2",
     "img": "https://i.meee.com.tw/6Qh0pzC.webp",

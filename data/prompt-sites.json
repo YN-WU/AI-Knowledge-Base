@@ -1,6 +1,6 @@
 [
   {
-    "title": "一般 Prompt（文字・寫作・對話）",
+    "title": "一般情境（文字・寫作・對話）",
     "barColor": "var(--primary)",
     "sites": [
       {"name": "Awesome ChatGPT Prompts", "url": "https://github.com/f/awesome-chatgpt-prompts", "icon": "⭐", "iconBg": "linear-gradient(135deg,#24292e,#0d1117)", "desc": "GitHub 10 萬+ Star 超人氣範本庫"},
@@ -14,7 +14,7 @@
     ]
   },
   {
-    "title": "影音圖像生成 Prompt",
+    "title": "圖像影音生成",
     "barColor": "var(--accent)",
     "sites": [
       {"name": "PromptHero", "url": "https://prompthero.com", "icon": "PH", "iconBg": "linear-gradient(135deg,#6d7bff,#3a4bc9)", "desc": "Midjourney / SD 最大社群"},
@@ -22,7 +22,10 @@
       {"name": "Civitai", "url": "https://civitai.com", "icon": "Cv", "iconBg": "linear-gradient(135deg,#0ea5e9,#0284c7)", "desc": "Stable Diffusion 模型與 Prompt"},
       {"name": "OpenArt", "url": "https://openart.ai", "icon": "OA", "iconBg": "linear-gradient(135deg,#f59e0b,#d97706)", "desc": "AI 圖像 Prompt 書籤收藏"},
       {"name": "MidLibrary", "url": "https://www.midlibrary.io", "icon": "ML", "iconBg": "linear-gradient(135deg,#2d2d2d,#555)", "desc": "Midjourney 風格參考大全"},
-      {"name": "PromptoMANIA", "url": "https://www.promptomania.com", "icon": "Po", "iconBg": "linear-gradient(135deg,#f97316,#ea580c)", "desc": "圖像 Prompt 生成器"}
+      {"name": "PromptoMANIA", "url": "https://www.promptomania.com", "icon": "Po", "iconBg": "linear-gradient(135deg,#f97316,#ea580c)", "desc": "圖像 Prompt 生成器"},
+      {"name": "OpenNana 提示詞圖庫", "url": "https://opennana.com/awesome-prompt-gallery", "icon": "ON", "iconBg": "linear-gradient(135deg,#f43f5e,#e11d48)", "desc": "中文圖像 Prompt 圖庫"},
+      {"name": "Nano Banana 提示詞庫", "url": "https://nanobananaprompt.org/prompts/", "icon": "NB", "iconBg": "linear-gradient(135deg,#fbbf24,#f59e0b)", "desc": "Nano Banana 範本收錄"},
+      {"name": "Nano Banana Pro 提示詞庫", "url": "https://muset-ai.github.io/awesome-nano-banana-pro/", "icon": "NP", "iconBg": "linear-gradient(135deg,#f59e0b,#d97706)", "desc": "Nano Banana Pro 進階範本"}
     ]
   }
 ]

@@ -40,7 +40,6 @@ AI NEWS LETTER/
 ├── data/                            # 新版 Dashboard 的資料源
 │   ├── articles.json                #   重點趨勢的文章
 │   ├── weekly-summaries.json        #   30 秒看趨勢
-│   ├── news-feed.json               #   AI 新聞快訊
 │   ├── tool-intro.json              #   AI 工具介紹
 │   ├── tools.json                   #   AI 工具資源目錄
 │   └── prompt-sites.json            #   PROMPT 資源網站

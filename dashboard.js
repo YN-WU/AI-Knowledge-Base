@@ -1,7 +1,17 @@
+var VALID_PAGES = ['home', 'news', 'summaries', 'prompt', 'prompt-sites', 'tool-intro', 'tools', 'archive'];
+
 function switchTab(page) {
   document.querySelectorAll('.tab').forEach(function (t) { t.classList.toggle('active', t.dataset.page === page); });
   document.querySelectorAll('.page').forEach(function (p) { p.classList.toggle('active', p.id === 'page-' + page); });
   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // 同步 URL hash — 重新整理時可以回到原分頁
+  var currentHash = location.hash.slice(1);
+  if (page === 'home') {
+    if (currentHash) history.replaceState(null, '', location.pathname + location.search);
+  } else if (currentHash !== page) {
+    history.replaceState(null, '', '#' + page);
+  }
 
   // 核心修正：切換到歸檔頁時自動載入內容
   if (page === 'archive') {
@@ -9,6 +19,11 @@ function switchTab(page) {
       renderArchive('all');
     }
   }
+}
+
+function getHashPage() {
+  var h = location.hash.slice(1);
+  return VALID_PAGES.indexOf(h) >= 0 ? h : null;
 }
 document.querySelectorAll('.tab').forEach(function (t) { t.addEventListener('click', function () { switchTab(t.dataset.page); }); });
 
@@ -434,9 +449,8 @@ function renderArchive(f) {
   const g = document.getElementById('archiveGrid'); if (!g || !issuesData.length) return;
   const filtered = issuesData.filter(it => !f || f === 'all' || it.year === f);
   g.innerHTML = filtered.map(it => {
-    const cv = it.img ? `background-image:linear-gradient(0deg,rgba(10,18,40,0.5),transparent),url('${it.img}')` : 'background:linear-gradient(135deg,#4f6dff,#2d4bdb)';
+    const cv = it.img ? `background-image:url('${it.img}')` : 'background:linear-gradient(135deg,#5b5bd6,#4848b8)';
     const isSpecial = !/^\d+$/.test(it.no);
-    const coverLabel = isSpecial ? '特刊' : `VOL. ${it.no}`;
     const issueLabel = isSpecial ? `${it.date}` : `第 ${it.no} 期 ・ ${it.date}`;
     return `
       <div class="archive-card" onclick="window.open('https://ainews.tvbs.ai/issues/${it.no}.html','_blank')">
@@ -462,7 +476,6 @@ async function initDashboardData() {
       fetch('tvbs-ai-newsletter/issues-metadata.json').then(r => r.json()),
       fetch('tvbs-ai-newsletter/search-index.json').then(r => r.json()),
       fetch('data/articles.json').then(r => r.ok ? r.json() : []).catch(() => []),
-      fetch('data/news-feed.json').then(r => r.ok ? r.json() : []).catch(() => []),
       fetch('data/weekly-summaries.json').then(r => r.ok ? r.json() : []).catch(() => []),
       fetch('data/tool-intro.json').then(r => r.ok ? r.json() : []).catch(() => [])
     ]);
@@ -490,26 +503,11 @@ async function initDashboardData() {
       });
     });
 
-    // AI 新聞快訊
-    const feed = (results[3] || []).slice();  // 保留 JSON 的編輯順序（主題分類）
-    window.__newsFeed = feed;
     const fallbackImg = articles[0] ? articles[0].image : '';
-    feed.forEach(f => {
-      searchIndex.push({
-        title: f.title,
-        content: f.summary || '',
-        fullContent: `<p class="first-paragraph">${f.summary || ''}</p>`,
-        url: f.sourceUrl || `/news-feed#${f.id}`,
-        img: f.img || fallbackImg,
-        tag: f.tag,
-        date: f.date,
-        source: 'AI 新聞快訊'
-      });
-    });
 
     if (issuesData.length > 0 || articles.length > 0) {
       // Weekly Summaries
-      const summaries = (results[4] || []).slice();
+      const summaries = (results[3] || []).slice();
       summaries.sort((a, b) => new Date(b.date) - new Date(a.date));
       window.__weeklySummaries = summaries;
       summaries.forEach(s => {
@@ -529,7 +527,7 @@ async function initDashboardData() {
       });
 
       // AI 工具介紹 (含有完整內容的加入索引)
-      const toolIntros = results[5] || [];
+      const toolIntros = results[4] || [];
       toolIntros.forEach(t => {
         if (t.content || t.openInModal) {
           searchIndex.push({
@@ -562,21 +560,49 @@ async function initDashboardData() {
       const summariesArr = window.__weeklySummaries || [];
       const overviewSource = [...articlesArr, ...summariesArr];
 
-      // 月份 meta — 從最新日期推導 "YYYY 年 M 月號"
+      // 期間 meta — 從首頁所有文章 + 30秒趨勢的日期推算「最舊 ～ 最新」
       const readerMetaEl = document.getElementById('readerIssueMeta');
       if (readerMetaEl) {
         const allDates = overviewSource.map(it => it.date).filter(Boolean)
           .sort((a, b) => b.localeCompare(a));
-        const m = allDates[0] && allDates[0].match(/(\d{4})[\-.\/](\d{1,2})/);
-        if (m) {
-          readerMetaEl.textContent = `${m[1]} 年 ${parseInt(m[2], 10)} 月號`;
+        const parseDate = (d) => {
+          const m = d && d.match(/(\d{4})[\-.\/](\d{1,2})[\-.\/](\d{1,2})/);
+          return m ? {
+            y: m[1],
+            m: String(parseInt(m[2], 10)).padStart(2, '0'),
+            d: String(parseInt(m[3], 10)).padStart(2, '0')
+          } : null;
+        };
+        const oldest = parseDate(allDates[allDates.length - 1]);
+        const newest = parseDate(allDates[0]);
+        if (oldest && newest) {
+          const oldStr = `${oldest.y}.${oldest.m}.${oldest.d}`;
+          const newStr = `${newest.y}.${newest.m}.${newest.d}`;
+          if (oldStr === newStr) {
+            readerMetaEl.textContent = newStr;
+          } else {
+            const sameYear = oldest.y === newest.y;
+            const newDisplay = sameYear ? `${newest.m}.${newest.d}` : newStr;
+            readerMetaEl.textContent = `${oldStr} ～ ${newDisplay}`;
+          }
         }
       }
 
-      // 趨勢總數
+      // 趨勢總數 — 從 0 平滑滾到目標值（cubic ease-out, 800ms）
       const countEl = document.getElementById('readerTrendCount');
       if (countEl) {
-        countEl.innerHTML = `<span class="reader-count-num">${overviewSource.length}</span><span class="reader-count-unit">則趨勢</span>`;
+        countEl.innerHTML = `<span class="reader-count-num">0</span><span class="reader-count-unit">則精選</span>`;
+        const numEl = countEl.querySelector('.reader-count-num');
+        const target = overviewSource.length;
+        const duration = 800;
+        const start = performance.now();
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+        const frame = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          numEl.textContent = Math.round(target * easeOut(progress));
+          if (progress < 1) requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
       }
 
       // 關鍵字 — 類型（含次數）+ 情境（純 tag），統一為 inline 文字
@@ -584,7 +610,7 @@ async function initDashboardData() {
         `<span class="reader-kw-link"><span class="kw-name">${t}</span>${showCount ? `<span class="kw-num">${n}</span>` : ''}</span>`
       ).join('');
 
-      // 類型：item.tag 單值頻率（顯示次數）
+      // 類型：item.tag 單值頻率（顯示次數）— 列出全部，依頻率 desc 排序
       const contentEl = document.getElementById('readerKwContent');
       if (contentEl) {
         const freq = {};
@@ -592,7 +618,7 @@ async function initDashboardData() {
           const t = it.tag || (typeof getTag === 'function' ? getTag(it.title) : null);
           if (t) freq[t] = (freq[t] || 0) + 1;
         });
-        contentEl.innerHTML = renderInlineTags(Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 6), true);
+        contentEl.innerHTML = renderInlineTags(Object.entries(freq).sort((a, b) => b[1] - a[1]), true);
       }
 
       // 情境：item.tags 陣列展平，依 USECASE_TAG_ORDER 固定順序排列
@@ -706,20 +732,6 @@ async function initDashboardData() {
         tocWrap.innerHTML = articlesHtml + toolHtml + bottomMore;
       }
 
-      // 渲染 AI 新聞快訊：扁平列表（不顯示日期）
-      const feedWrap = document.getElementById('newsFeedWrap');
-      if (feedWrap && Array.isArray(window.__newsFeed)) {
-        const totalCount = window.__newsFeed.length;
-        const itemsHtml = window.__newsFeed.map(f => {
-          const tipText = (f.summary || '').replace(/"/g, '&quot;');
-          const tag = `<span class="feed-tag">${f.tag || ''}</span>`;
-          const body = `<div class="feed-body"><div class="feed-title">${f.title}</div><div class="feed-summary">${f.summary || ''}</div></div>`;
-          return f.sourceUrl
-            ? `<a class="feed-item" href="${f.sourceUrl}" target="_blank" rel="noopener" title="${tipText}">${tag}${body}</a>`
-            : `<div class="feed-item feed-item--noLink" title="${tipText}">${tag}${body}</div>`;
-        }).join('');
-        feedWrap.innerHTML = `<div class="news-feed-header"><span class="news-feed-header-label">AI 新聞快訊</span><span class="news-feed-header-line"></span><span style="font-size:11px;color:var(--text-light);white-space:nowrap">${totalCount} 則精選</span></div><div class="feed-day">${itemsHtml}</div>`;
-      }
       // 渲染重點摘要 (Homepage) — 垂直 stacked 卡片
       const summariesWrap = document.getElementById('weeklySummariesWrap');
       if (summariesWrap && Array.isArray(window.__weeklySummaries) && window.__weeklySummaries.length > 0) {
@@ -797,10 +809,10 @@ async function initDashboardData() {
           `;
         }).join('');
       }
-      // 6. 重點摘要列表 (Trend Summaries List) — 垂直 stacked 卡片
+      // 6. 重點摘要列表 (Trend Summaries List) — 緊湊橫向列表
       const trendSummariesWrap = document.getElementById('trendSummariesList');
       if (trendSummariesWrap && Array.isArray(window.__weeklySummaries)) {
-        trendSummariesWrap.innerHTML = window.__weeklySummaries.map(it => renderSummaryItem(it, { showSummary: true })).join('');
+        trendSummariesWrap.innerHTML = window.__weeklySummaries.map(it => renderSummaryItem(it, { compact: true })).join('');
       }
 
       // 初始化兩個分頁的雙層 filter
@@ -823,11 +835,29 @@ function renderSummaryItem(it, opts) {
       <span class="summary-tags-label">適用情境：</span>
       ${sortUsecaseTags(tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
     </div>` : '';
+  const titleEnc = encodeURIComponent(it.title).replace(/'/g, "%27");
+  const onclick = `onclick="showArticleByTitle(decodeURIComponent('${titleEnc}'))"`;
+
+  // 緊湊版：橫向一行（日期 + tag + 標題 + 箭頭），tags 在標題下方
+  if (opts.compact) {
+    return `
+      <div class="summary-list-item summary-list-item--compact" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" ${onclick}>
+        <span class="sli-date">${it.date || ''}</span>
+        <span class="feed-tag">${contentTag}</span>
+        <div class="sli-compact-body">
+          <h4 class="sli-title">${it.title}</h4>
+          ${tagsHtml}
+        </div>
+        <span class="chevron-icon">›</span>
+      </div>
+    `;
+  }
+
+  // Stacked 卡片版（首頁用）
   const summaryHtml = opts.showSummary && it.summary
     ? `<p class="sli-summary">${it.summary}</p>` : '';
-  const titleEnc = encodeURIComponent(it.title).replace(/'/g, "%27");
   return `
-    <div class="summary-list-item" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" onclick="showArticleByTitle(decodeURIComponent('${titleEnc}'))">
+    <div class="summary-list-item" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" ${onclick}>
       <div class="sli-body">
         <div class="sli-meta">
           <span class="feed-tag">${contentTag}</span>
@@ -843,7 +873,7 @@ function renderSummaryItem(it, opts) {
 }
 
 const USECASE_TAG_ORDER = [
-  '圖像生成', '影片製作', '聲音處理', '寫作協助', '翻譯',
+  '圖像生成', '影片製作', '聲音處理', '寫作協助', '即時翻譯',
   '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究',
   '程式設計', '訪談記錄', '觀念學習'
 ];
@@ -991,15 +1021,25 @@ function renderToolIntro() {
 function renderPromptSites() {
   var c = document.getElementById('promptSitesContainer');
   if (!c) return;
+  // 統一紫色色系，循環 4 種透明度做細微變化
+  var PURPLE_TINTS = [
+    'rgba(91, 91, 214, 0.06)',
+    'rgba(91, 91, 214, 0.10)',
+    'rgba(91, 91, 214, 0.14)',
+    'rgba(91, 91, 214, 0.18)'
+  ];
   return fetch('data/prompt-sites.json').then(function (r) { return r.json(); }).then(function (sections) {
+    var siteCounter = 0;
     c.innerHTML = sections.map(function (sec, idx) {
-      var topMargin = idx === 0 ? '16px' : '32px';
-      return '<div class="tool-section-title" style="margin-top:' + topMargin + ';padding-left:12px;border-left:4px solid ' + sec.barColor + '">'
-        + escHtml(sec.title) + '</div>'
+      var topMargin = idx === 0 ? '16px' : '40px';
+      return '<h3 class="prompt-sites-heading" style="margin:' + topMargin + ' 0 14px">'
+        + escHtml(sec.title) + '</h3>'
         + '<div class="prompt-sites-grid" style="margin-top:14px">'
         + sec.sites.map(function (s) {
+          var bg = PURPLE_TINTS[siteCounter % PURPLE_TINTS.length];
+          siteCounter++;
           return '<a href="' + escHtml(s.url) + '" target="_blank" class="prompt-site-card">'
-            + '<div class="site-icon" style="background:' + escHtml(s.iconBg) + '">' + escHtml(s.icon) + '</div>'
+            + '<div class="site-icon" style="background:' + bg + ';color:var(--primary)">' + escHtml(s.icon) + '</div>'
             + '<div class="site-info"><div class="site-name">' + escHtml(s.name) + '</div><div class="site-desc">' + escHtml(s.desc) + '</div></div>'
             + '</a>';
         }).join('')
@@ -1009,7 +1049,23 @@ function renderPromptSites() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initDashboardData();
+  // URL hash → 立刻切到對應分頁（重新整理保留位置）
+  const initialPage = getHashPage();
+  if (initialPage && initialPage !== 'home') switchTab(initialPage);
+
+  // 監聽 back/forward 觸發的 hash 變化
+  window.addEventListener('hashchange', () => {
+    const p = getHashPage() || 'home';
+    switchTab(p);
+  });
+
+  // 資料載入完後，若停在 archive 分頁需要再 render 一次（issuesData 才有值）
+  initDashboardData().then(() => {
+    const cur = document.querySelector('.tab.active');
+    if (cur && cur.dataset.page === 'archive' && typeof renderArchive === 'function') {
+      renderArchive('all');
+    }
+  });
   renderPrompts();
   renderTools();
   renderToolIntro();

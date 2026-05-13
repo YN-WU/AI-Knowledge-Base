@@ -15,7 +15,7 @@
 
   <nav class="topnav">
     <div class="topnav-inner">
-      <div class="brand">
+      <div class="brand" onclick="switchTab('home')" role="link" tabindex="0">
         <img src="TVBS_logo_white.png" alt="TVBS" class="tvbs-logo">
         <div class="brand-divider"></div>
         <div class="brand-text">
@@ -42,7 +42,13 @@
         </div>
       </div>
       <span class="tab-sep">|</span>
-      <button class="tab" data-page="prompt">PROMPT 專欄</button>
+      <div class="nav-dropdown">
+        <span class="dropdown-toggle">Prompt 專區 ▾</span>
+        <div class="dropdown-content">
+          <button class="tab dropdown-item" data-page="prompt">Prompt 技巧分享</button>
+          <button class="tab dropdown-item" data-page="prompt-sites">Prompt 資源庫</button>
+        </div>
+      </div>
       <span class="tab-sep">|</span>
       <div class="nav-dropdown">
         <span class="dropdown-toggle">AI 工具 ▾</span>
@@ -68,7 +74,7 @@
       <!-- 趨勢數字 + 關鍵字 -->
       <section class="reader-section reader-overview">
         <div class="reader-trend-count" id="readerTrendCount">
-          <span class="reader-count-num">—</span><span class="reader-count-unit">則趨勢</span>
+          <span class="reader-count-num">—</span><span class="reader-count-unit">則精選</span>
         </div>
         <div class="reader-keywords" id="readerKeywords">
           <div class="reader-kw-row">
@@ -94,7 +100,7 @@
       <!-- 30秒看趨勢 -->
       <section class="reader-section" id="weeklySummariesSection">
         <h2 class="reader-h2">30 秒看趨勢</h2>
-        <p class="reader-lead">用一個段落快速告訴你，近兩週 AI 界發生什麼事。</p>
+        <p class="reader-lead">用一個段落快速告訴你，最近 AI 界發生什麼事。</p>
         <div id="weeklySummariesWrap"></div>
         <div class="reader-section-cta">
           <a href="javascript:void(0)" onclick="switchTab('summaries')" class="reader-link-btn">看更多趨勢 →</a>
@@ -180,7 +186,7 @@
     <div class="container">
       <div class="page-header">
         <h2>30秒看趨勢</h2>
-        <p>用一個段落快速告訴你，近兩週 AI 界發生什麼事。</p>
+        <p>用一個段落快速告訴你，最近 AI 界發生什麼事。</p>
       </div>
       <div class="filter-rows" id="summariesFilters">
         <!-- 由 JS 動態渲染：兩排 chip filter -->
@@ -191,12 +197,12 @@
     </div>
   </div>
 
-  <!-- ============ PROMPT 專欄 ============ -->
+  <!-- ============ Prompt 技巧分享 ============ -->
   <div class="page" id="page-prompt">
     <div class="container">
       <div class="page-header">
-        <h2>PROMPT 專欄</h2>
-        <p>精選歷期 Prompt 教學、情境應用與優化技巧。</p>
+        <h2>Prompt 技巧分享</h2>
+        <p>精選 Prompt 教學、情境應用與優化技巧。</p>
       </div>
       <div class="chips prompt-filters">
         <button class="chip active" data-filter="全部">全部</button>
@@ -205,14 +211,20 @@
         <button class="chip" data-filter="生圖指令">生圖指令</button>
         <button class="chip" data-filter="情境應用">情境應用</button>
         <button class="chip" data-filter="模型技巧">模型技巧</button>
-
       </div>
       <div class="prompt-list-grid" id="promptContainer">
         <!-- 由 JS 動態渲染 -->
       </div>
+    </div>
+  </div>
 
-      <div class="section-title" style="margin-top:40px">精選 Prompt 資源網站</div>
-
+  <!-- ============ Prompt 資源庫 ============ -->
+  <div class="page" id="page-prompt-sites">
+    <div class="container">
+      <div class="page-header">
+        <h2>Prompt 資源庫</h2>
+        <p>精選優質 Prompt 教學與靈感來源網站，輔助你撰寫更好的提示詞。</p>
+      </div>
       <div id="promptSitesContainer"></div>
     </div>
   </div>
@@ -222,7 +234,7 @@
     <div class="container">
       <div class="page-header">
         <h2>AI 工具資源</h2>
-        <p>一站式 AI 工具目錄，按用途快速找到你需要的。</p>
+        <p>收錄常用 AI 工具，按用途快速找到你需要的。</p>
       </div>
       <div id="toolsContainer"></div>
 
@@ -234,7 +246,7 @@
     <div class="container">
       <div class="page-header">
         <h2>AI 工具介紹</h2>
-        <p>從歷期電子報精選的工具深度介紹文章，點擊閱讀詳細評測。</p>
+        <p>精選 AI 工具介紹與評測，點擊閱讀完整介紹。</p>
       </div>
       <div class="articles three-col" id="toolIntroContainer"></div>
     </div>
