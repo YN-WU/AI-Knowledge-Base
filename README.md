@@ -83,13 +83,49 @@ python -m http.server 8000
 | 分頁 | HTML 區段 ID | 資料來源 | JS 渲染函式 |
 |------|------------|---------|------------|
 | 首頁 | `#page-home` | `articles.json` + `weekly-summaries.json` | `renderSummaryItem()` |
-| 重點趨勢 | `#page-news` | `articles.json` + 舊期 `search-index.json` | trendGrid loop |
+| 重點趨勢 | `#page-news` | `articles.json` | trendGrid loop |
 | 30 秒看趨勢 | `#page-summaries` | `weekly-summaries.json` | `renderSummaryItem()` |
-| PROMPT 專欄 | `#page-prompt` | 內嵌 JS 資料 + `prompt-sites.json` | promptContainer |
+| Prompt 技巧分享 | `#page-prompt-tips` | 內嵌 JS 資料（`promptData`） | promptContainer |
+| Prompt 資源庫 | `#page-prompt-sites` | `prompt-sites.json` | `renderPromptSites()` |
 | AI 工具介紹 | `#page-tool-intro` | `tool-intro.json` | toolIntroContainer |
 | AI 工具資源 | `#page-tools` | `tools.json` | toolsContainer |
 | 歷期電子報 | `#page-archive` | `issues-metadata.json` | `renderArchive()` |
 | 文章 Modal | `#articleModal` | 上述任一筆資料 | `showArticle()` |
+| **Outlook 產生器**（隱藏）| `#page-outlook-gen` | 上述 articles + summaries | `initOutlookGenerator()` |
+
+---
+
+## 📧 Outlook 版本產生器（隱藏頁）
+
+**入口**：`https://ainews.tvbs.ai/#outlook-gen`
+（不放在 nav，只能直接打 URL 進）
+
+### 用途
+每期發報前用這個頁面把當前 `articles.json` + `weekly-summaries.json` 內容**自動轉成 Outlook 用的 HTML**，省下手動填入 email 模板的時間。
+
+### 自動偵測
+進入頁面時自動填好：
+- **月份標題**：從最新一筆日期推算 `YYYY 年 M 月號`
+- **重點趨勢（篇）**：`window.__articles.length`（全部）
+- **30 秒趨勢（篇）**：`window.__weeklySummaries.length`（全部）
+
+本期重點分成四個篇數欄位：重點趨勢 / Prompt 技巧分享 / AI 工具介紹 / 30 秒趨勢。
+其中 Prompt 技巧分享、AI 工具介紹預設為 0，需手動填；重點趨勢與 30 秒趨勢會自動帶入。
+使用者可手動覆寫所有欄位，覆寫後不會被自動填回去。
+
+### 工作流程
+1. 編輯 `data/articles.json` + `data/weekly-summaries.json`（首頁會即時更新）
+2. 開 `#outlook-gen` → 自動產出當前 email HTML
+3. 預覽 OK 後按「複製 HTML」
+4. Outlook 開新郵件 → HTML 編輯模式 → 貼上 → 寄
+
+### 設計來源
+參考舊版手動模板 `tvbs-ai-newsletter/outlook version/018foroutlook.html`，視覺風格對齊新 dashboard 的 light theme（白底 + 紫色品牌色 + tag 色票編碼）。
+
+### 相關程式碼
+- HTML 區段：`ai-newsletter-dashboard.html` 內的 `<div id="page-outlook-gen">`
+- 樣式：`dashboard.css` 內 `/* Outlook 版本產生器 */` 區段（class 前綴 `.og-*`）
+- 邏輯：`dashboard.js` 內 `initOutlookGenerator()`、`ogBuildEmailHTML()`、`ogGenerate()` 等
 
 ---
 
@@ -104,7 +140,7 @@ python -m http.server 8000
 }
 ```
 
-### 第一層：內容屬性 `tag`（7 選 1）
+### 第一層：內容屬性 `tag`（6 選 1）
 
 | Tag | 適用 | 色票（CSS var） |
 |-----|------|-----------------|
@@ -125,9 +161,9 @@ python -m http.server 8000
 固定順序（顯示順序）：
 
 ```
-寫作協助、圖像生成、影片製作、聲音處理、簡報設計、
-訪談記錄、資料研究、程式設計、翻譯、整理資料、
-自動化、工作流整合、觀念學習
+圖像生成、影片製作、聲音處理、寫作協助、即時翻譯、
+自動化、工作流整合、整理資料、簡報設計、資料研究、
+程式設計、訪談記錄、觀念學習
 ```
 
 特殊規則：
@@ -146,7 +182,7 @@ python -m http.server 8000
 
 ```json
 {
-  "id": "019-some-id",
+  "id": "some-id",
   "title": "文章標題",
   "date": "2026-05-12",
   "image": "https://...",
@@ -162,6 +198,7 @@ python -m http.server 8000
 
 - `featured: true` 會讓它出現在首頁 hero 區的 4 張 slide 候選池
 - `content` 是完整 HTML，會在 modal 內呈現
+- **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可。外部（Outlook email）連回文章用 `#article-{id}`，dashboard 載入時會自動開對應 modal
 
 ### 新增「30 秒看趨勢」條目
 
@@ -287,7 +324,7 @@ TVBS Logo 用 CSS filter 著色：
 搜尋會打到 **同一個** `searchIndex` array，這個 array 在初始載入時集合了：
 
 1. `tvbs-ai-newsletter/search-index.json`（舊期內容）
-2. 然後 push 進新 articles / summaries / feed / tool-intros
+2. 然後 push 進新 articles / summaries / tool-intros
 
 所以搜尋會涵蓋全站內容。
 
