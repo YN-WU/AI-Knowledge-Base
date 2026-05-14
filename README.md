@@ -198,6 +198,7 @@ python -m http.server 8000
 
 - `featured: true` 會讓它出現在首頁 hero 區的 4 張 slide 候選池
 - `content` 是完整 HTML，會在 modal 內呈現
+- `image`：用自有圖床的 jsDelivr 網址（見下方「圖片素材」段落），不要用免費圖床
 - **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可。外部（Outlook email）連回文章用 `#article-{id}`，dashboard 載入時會自動開對應 modal
 
 ### 新增「30 秒看趨勢」條目
@@ -330,6 +331,27 @@ TVBS Logo 用 CSS filter 著色：
 
 ---
 
+## 🖼 圖片素材（自有圖床）
+
+文章與工具的圖片素材統一放在獨立的圖床 repo，透過 jsDelivr CDN 出圖：
+
+- **圖床 repo**：`github.com/YN-WU/ainews-images`（public）
+- **圖片路徑**：repo 的 `images/` 資料夾
+- **使用網址**：`https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/{檔名}`
+
+### 新增圖片流程
+1. 把圖片上傳到 `ainews-images` repo 的 `images/` 資料夾
+2. 在 `articles.json` / `tool-intro.json` 等的 `image` 欄位填上述 jsDelivr 網址
+
+### 注意事項
+- **不要用免費圖床**（i.meee 等）—— 會被砍圖。2026-05 已把全站約 400 條舊連結從 i.meee 等外部圖床搬到自有圖床
+- **jsDelivr 會強快取**：同路徑的圖被覆蓋後 CDN 要數小時～數天才更新 → 永遠用新檔名，不要覆蓋舊圖
+- 檔名避免空格與中文（URL 要編碼，易出錯）
+
+> 搬遷用的一次性腳本（`migrate-images.js`、`replace-image-urls.js`）與本機暫存的 `images/` 資料夾已列入 `.gitignore`，不進主專案 repo。
+
+---
+
 ## ⚠️ 常見地雷
 
 ### 1. 直接點開 HTML 看不到內容
@@ -354,7 +376,7 @@ TVBS Logo 用 CSS filter 著色：
 ### 5. `<title>` 跟 nav `brand-sub` 要同步
 
 → 修改網站標語時，主 HTML 的 `<title>` 跟 nav 的 `.brand-sub` 都要改。
-→ Archived `tvbs-ai-newsletter/ai-newsletter-dashboard.html` 也建議同步。
+→ Archived `tvbs-ai-newsletter/ai-newsletter-dashboard-blue.html`（舊版藍色主題）也建議同步。
 
 ---
 
