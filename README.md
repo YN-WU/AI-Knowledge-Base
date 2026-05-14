@@ -316,7 +316,7 @@ TVBS Logo 用 CSS filter 著色：
 
 ## 🔍 搜尋功能
 
-搜尋邏輯在 `dashboard.js` 約 1024 行的 `doSearch()`：
+搜尋邏輯在 `dashboard.js` 的 `doSearch()`：
 
 - 搜尋 title + content 欄位
 - 排序：**有日期者依日期 desc**，沒日期者（舊期）依**期號 desc**
