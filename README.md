@@ -33,7 +33,7 @@
 
 ```
 AI NEWS LETTER/
-├── ai-newsletter-dashboard.html     # ★ 主入口（新版 Dashboard）
+├── index.html                       # ★ 主入口（新版 Dashboard）
 ├── dashboard.css                    # 主樣式表（~4000 行）
 ├── dashboard.js                     # 主程式邏輯
 │
@@ -66,14 +66,14 @@ AI NEWS LETTER/
 **推薦做法**：
 
 1. VS Code 安裝擴充套件 **Live Server**（作者 Ritwick Dey）
-2. 在 `ai-newsletter-dashboard.html` 上右鍵 → `Open with Live Server`
-3. 瀏覽器自動開啟 http://127.0.0.1:5500/ai-newsletter-dashboard.html
+2. 在 `index.html` 上右鍵 → `Open with Live Server`
+3. 瀏覽器自動開啟 http://127.0.0.1:5500/
 
 或用 Python：
 
 ```bash
 python -m http.server 8000
-# 然後開 http://localhost:8000/ai-newsletter-dashboard.html
+# 然後開 http://localhost:8000/
 ```
 
 ---
