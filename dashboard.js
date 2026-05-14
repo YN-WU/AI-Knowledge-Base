@@ -1309,6 +1309,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return '<mark style="background:rgba(91,91,214,0.15);color:var(--primary);padding:0 2px;border-radius:3px">' + m + '</mark>';
     });
   }
+  // 摘要：以關鍵字命中位置為中心擷取一段，而非永遠顯示內容開頭
+  function makeSnippet(content, q, len) {
+    content = content || '';
+    var k = q ? String(q).toLowerCase().trim() : '';
+    var idx = k ? content.toLowerCase().indexOf(k) : -1;
+    var start = idx > 40 ? idx - 40 : 0;
+    return {
+      text: content.slice(start, start + len),
+      lead: start > 0 ? '…' : '',
+      tail: (start + len) < content.length ? '…' : ''
+    };
+  }
   function renderSR(res, q) {
     var b = document.getElementById('searchResults'); if (!b) return;
     if (!q) { b.classList.remove('open'); return; }
@@ -1316,7 +1328,8 @@ document.addEventListener('DOMContentLoaded', () => {
     b.innerHTML = res.map(function (r) {
       var sourceLabel = getSearchSourceLabel(r);
       var dateLabel = r.date || '';
-      return `<div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(r.title).replace(/'/g, "%27")}'))" style="text-decoration:none;cursor:pointer"><div class="search-result-item"><div class="search-result-title">${hl(r.title, q)}</div><div class="search-result-snippet">${hl((r.content || '').slice(0, 120), q)}…</div><div class="search-result-meta">${sourceLabel ? `<span class="search-result-source">${sourceLabel}</span>` : ''}${dateLabel ? `<span class="search-result-date">${dateLabel}</span>` : ''}</div></div></div>`;
+      var sn = makeSnippet(r.content, q, 120);
+      return `<div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(r.title).replace(/'/g, "%27")}'))" style="text-decoration:none;cursor:pointer"><div class="search-result-item"><div class="search-result-title">${hl(r.title, q)}</div><div class="search-result-snippet">${sn.lead}${hl(sn.text, q)}${sn.tail}</div><div class="search-result-meta">${sourceLabel ? `<span class="search-result-source">${sourceLabel}</span>` : ''}${dateLabel ? `<span class="search-result-date">${dateLabel}</span>` : ''}</div></div></div>`;
     }).join('');
     b.classList.add('open');
   }
