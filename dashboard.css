@@ -25,7 +25,8 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -736,8 +737,13 @@ main {
   line-height: 1.25;
   letter-spacing: -0.01em;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
-  margin: 12px 0 0 0;
+  margin: 6px 0 0 0;
   max-width: 95%;
+}
+
+/* 第一張 hero 的 tag 跟後三張 hero-small 一樣不撐開下方留白 */
+.hero-main .slide-tag {
+  margin-bottom: 0;
 }
 
 .hero-side {
@@ -4012,6 +4018,293 @@ footer {
   width: 100%;
 }
 
+/* 「篩選」收合按鈕：預設只顯示一顆按鈕，點開才展開 filter-panel */
+.filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: #ece9fa;    /* 淡紫色底，跟主色 primary 同色相 */
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.15s;
+  align-self: flex-start;
+}
+.filter-toggle:hover {
+  background: #ddd7f5;
+}
+.filter-toggle.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.filter-toggle-count {
+  font-size: 12px;
+  opacity: 0.8;
+}
+.filter-toggle-arrow {
+  font-size: 10px;
+  transition: transform 0.2s;
+}
+.filter-toggle.open .filter-toggle-arrow {
+  transform: rotate(180deg);
+}
+
+.filter-panel {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+.filter-panel.open {
+  display: flex;
+}
+
+/* 單層篩選 panel（Prompt 技巧分頁用）：直接列選項按鈕，不再經過 select */
+.filter-panel--list {
+  padding: 6px 0;
+  gap: 0;
+}
+.filter-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 9px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.filter-option:hover {
+  background: rgba(91, 91, 214, 0.06);
+}
+.filter-option.active {
+  background: rgba(91, 91, 214, 0.1);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* page-header 底線下方的篩選提示：只在手機版 + 有選分類時顯示，桌機完全不出現 */
+.filter-active-hint {
+  display: none;          /* 桌機完全隱藏 */
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-light);
+  margin: 10px 0 16px;
+  padding: 6px 8px 6px 12px;
+  background: rgba(91, 91, 214, 0.06);
+  border-radius: 4px;
+  line-height: 1.5;
+}
+.filter-active-hint-text {
+  flex: 1;
+  min-width: 0;
+}
+.filter-active-hint-clear {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  border-radius: 50%;
+  transition: background 0.12s, color 0.12s;
+}
+.filter-active-hint-clear:hover {
+  background: rgba(91, 91, 214, 0.15);
+  color: var(--primary);
+}
+
+/* panel 開啟時的 invisible backdrop，攔截外部點擊 → 點到就關 panel 並吞掉點擊（不會誤觸下方文章） */
+.filter-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+@media (max-width: 700px) {
+  .filter-backdrop.active { display: block; }
+}
+
+/* 桌機預設：顯示 chip 版篩選、隱藏手機版的收合按鈕/panel */
+.filter-chips-wrap { display: flex; flex-direction: column; gap: 8px; }
+.filter-mobile-wrap { display: none; }
+.page-header { position: relative; }
+.page-header > .filter-toggle,
+.page-header > .filter-panel { display: none; }
+/* 桌機預設隱藏整個 filter-toggle-wrap（chip 模式處理桌機篩選 UI） */
+.filter-toggle-wrap { display: none; }
+
+/* 手機（≤700px）：按鈕用 flex 直接跟 h2 對齊在標題右側、panel 用 absolute 浮在 page-header 下方 */
+@media (max-width: 700px) {
+  .filter-chips-wrap { display: none; }
+  /* Prompt 技巧分享的 chip 列表也隱藏，改用 h2 上的 .filter-toggle-wrap dropdown */
+  .prompt-filters { display: none; }
+  .page-header { margin-bottom: 4px; padding-bottom: 8px; }
+  /* h2 改 flex，filter-toggle-wrap 自然落在標題右側、垂直置中對齊 */
+  .page-header h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-right: 0;
+  }
+  /* wrapper 顯示成 inline-flex，position: relative 給 panel 當 absolute 參考框 */
+  .filter-toggle-wrap {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  /* 手機版按鈕本體放大，方便點 */
+  .filter-toggle {
+    padding: 8px 16px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .filter-toggle-arrow {
+    font-size: 12px;
+  }
+
+  /* panel absolute 緊貼在按鈕下方 — top: 100% 就是按鈕的正下方（wrapper 高度=按鈕高度），無中間 line-height 空隙 */
+  .filter-toggle-wrap > .filter-panel.open {
+    display: flex;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 10;
+    width: 300px;
+    overflow: visible;
+    padding: 18px 18px 18px 18px;
+    gap: 12px;
+  }
+  /* 單層 filter（Prompt）panel：寬度貼齊選項文字，但比雙層收斂一點 */
+  .filter-toggle-wrap > .filter-panel--list.open {
+    width: auto;
+    min-width: 200px;
+    padding: 10px 0;
+    gap: 0;
+  }
+  .filter-toggle-wrap > .filter-panel .filter-row { width: 100%; gap: 12px; }
+  .filter-toggle-wrap > .filter-panel .filter-label { font-size: 14px; }
+  .filter-toggle-wrap > .filter-panel .filter-select {
+    flex: 1;
+    min-width: 0;
+    font-size: 15px;
+    padding: 9px 12px;
+  }
+  .filter-toggle-wrap > .filter-panel .filter-clear {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .filter-toggle-wrap > .filter-panel .filter-clear[hidden] {
+    display: inline-flex;
+    visibility: hidden;
+  }
+  /* 單層 panel 內的選項按鈕放大 */
+  .filter-toggle-wrap > .filter-panel--list .filter-option {
+    padding: 14px 26px;
+    font-size: 17px;
+  }
+  .filter-toggle-wrap > .filter-panel.open::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    right: 30px;       /* 對齊按鈕中心位置（與按鈕內 ▾ 大致對齊） */
+    width: 13px;
+    height: 13px;
+    background: #fff;
+    border-left: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    transform: rotate(45deg);
+  }
+
+  /* 篩選提示色塊只在手機版顯示 + 字級加大 */
+  .filter-active-hint {
+    display: flex;
+    font-size: 14px;
+    padding: 8px 10px 8px 14px;
+    gap: 12px;
+  }
+  /* [hidden] 仍要壓回 none */
+  .filter-active-hint[hidden] {
+    display: none;
+  }
+  .filter-active-hint-clear {
+    width: 26px;
+    height: 26px;
+    font-size: 15px;
+  }
+
+  /* 30 秒看趨勢列表第一張卡片的 padding 也縮，整體距離更緊湊 */
+  .summary-list-item--compact { padding-top: 8px; padding-bottom: 8px; }
+  /* filter-rows 容器在手機上沒實際內容（chips 隱藏、按鈕/panel 已被搬走），歸零 margin */
+  .filter-rows { margin: 0; }
+}
+
+.filter-select {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text);
+  background: #fff;
+  cursor: pointer;
+  min-width: 100px;
+}
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.1);
+}
+
+/* ✕ 清除按鈕：只在篩選有值（不是「全部」）時顯示 */
+.filter-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  margin-left: 4px;
+  transition: all 0.15s;
+}
+.filter-clear:hover {
+  background: var(--primary);
+  color: #fff;
+}
+.filter-clear[hidden] {
+  display: none;
+}
+
 .filter-row {
   display: flex;
   align-items: center;
@@ -4257,7 +4550,7 @@ footer {
 .reader-keywords {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 18px;       /* 涵蓋類型 ↔ 熱門情境 兩列之間給足呼吸感 */
   flex: 1;
   min-width: 0;
 }
@@ -4329,12 +4622,12 @@ footer {
 
 .reader-kw-link {
   display: inline-block;
-  padding: 2px 0;
+  padding: 0;
   font-family: 'Noto Sans TC', sans-serif;
   font-size: 13px;
   font-weight: 400;
   color: var(--text-light);
-  line-height: 1.5;
+  line-height: 1.35;
 }
 
 /* 類型列：tag 名加大加粗深色（主資訊） */
@@ -4343,10 +4636,12 @@ footer {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: -0.005em;
+  line-height: 1.4;
 }
 
 .reader-kw-row:not(.reader-kw-row--usecase) .reader-kw-inline {
   column-gap: 22px;
+  row-gap: 2px;       /* 涵蓋類型 wrap 時行距收緊（原本 6px 太鬆） */
 }
 
 /* 熱門情境關鍵字：換行時行距縮小一點 */
@@ -4489,6 +4784,48 @@ footer {
 
 /* 行動版專屬視覺調整（桌機不套用）*/
 @media (max-width: 700px) {
+  /* 重點趨勢／Prompt／工具介紹的延伸閱讀（image card 版）：標題字級加大、tag 上下 padding 縮 */
+  .related-card:not(.related-card--row) .related-title,
+  .am-content .related-card:not(.related-card--row) .related-title {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .related-card:not(.related-card--row) .related-tag {
+    padding: 3px 10px;
+  }
+
+  /* 30 秒看趨勢延伸閱讀：手機版改 stacked — 日期+tag 縮成小字 inline 第一行，標題獨佔一行完整顯示 */
+  .related-card.related-card--row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    padding: 12px 14px;
+  }
+  .related-card--row .related-tag {
+    order: 1;
+    justify-self: auto;
+    margin: 0;
+    font-size: 13px;
+    padding: 3px 10px;
+  }
+  .related-card--row .related-date {
+    order: 2;
+    font-size: 13px;
+    color: var(--text-light);
+  }
+  .related-card--row .related-title,
+  .am-content .related-card--row .related-title {
+    order: 3;
+    flex: 1 1 100%;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
   /* 30秒分頁緊湊列表：箭頭靠右，收掉右邊空白 */
   .summary-list-item--compact {
     padding-right: 4px;
@@ -4507,23 +4844,48 @@ footer {
   .summary-list-item--compact .sli-date {
     order: 0;
   }
-  /* 首頁四張大圖：高度互相拉近、主圖標題縮小 */
+  /* 手機版 30 秒看趨勢分頁：tag 跟日期改成水平 flex 靠左對齊（覆寫桌機的 grid 置中 layout） */
+  .summary-list-item--compact .sli-meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+  .summary-list-item--compact .sli-meta .feed-tag {
+    justify-self: auto;
+  }
+  /* 縮短「涵蓋類型／熱門情境」底線到首張 hero 大圖之間的距離（flex gap 44px 太鬆） */
+  .reader-overview + .reader-divider + .reader-section.reader-hero-section {
+    margin-top: -22px;
+  }
+
+  /* 首頁四張大圖：每張圖區域跟第一則一樣大、標題字加大 */
   .reader-flow .hero-main {
-    min-height: 230px;
+    min-height: 240px;
   }
   .reader-flow .hero-main-content {
-    padding: 18px 24px;
+    padding: 20px 26px;
   }
   .reader-flow .hero-main-title {
-    font-size: 21px;
+    font-size: 24px;
   }
   .reader-flow .hero-side .hero-small {
-    min-height: 160px;
+    min-height: 240px;          /* 跟 hero-main 同高度，視覺上四張一樣大 */
   }
-  /* 三張小縮圖（非主圖）標題字加大、較好閱讀 */
+  .reader-flow .hero-small-content {
+    padding: 20px 26px;
+  }
+  /* 三張小縮圖（非主圖）標題字大小跟 hero-main 一致，且不截行、完整顯示 */
   .reader-flow .hero-small-title,
   .reader-flow .hero-side > .hero-small:first-child .hero-small-title {
-    font-size: 16px;
+    font-size: 24px;
+    line-height: 1.25;
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
   }
   /* 總則數搬到標題旁（JS 負責搬移），省去獨立一行 */
   .reader-title-row {

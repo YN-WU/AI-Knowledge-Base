@@ -34,7 +34,7 @@
 ```
 AI NEWS LETTER/
 ├── ai-newsletter-dashboard.html     # ★ 主入口（新版 Dashboard）
-├── dashboard.css                    # 主樣式表（~4000 行）
+├── dashboard.css                    # 主樣式表（~5500 行）
 ├── dashboard.js                     # 主程式邏輯
 │
 ├── data/                            # 新版 Dashboard 的資料源
@@ -327,6 +327,18 @@ TVBS Logo 用 CSS filter 著色：
 - 區塊垂直堆疊：Masthead → Overview band → Hero → 30秒看趨勢 → 內部工具 → 黑客松
 - 每個區塊間用細短分隔線 `<hr class="reader-divider">` 區分
 - 樣式集中在 dashboard.css 的 `/* Document Reader Mode */` 區段
+
+### Responsive 篩選 UI（桌機 chip / 手機 dropdown）
+
+重點趨勢、30秒看趨勢、Prompt 技巧分享三個分頁的分類篩選同套機制、桌機/手機兩種視覺：
+
+- **桌機**：橫排 chip 列（保留原本 UX）
+- **手機**：標題右側「分類篩選 ▾」按鈕，點開浮層 dropdown
+  - 雙層 filter（趨勢/30秒看趨勢）：兩個 `<select>` — 內容屬性 + 適用情境
+  - 單層 filter（Prompt）：直接列選項按鈕，點選即套用 + 自動收合
+  - 篩選按鈕用 wrapper 包按鈕+panel 後塞進 h2，浮層用 `position: absolute; top: 100%` 黏緊按鈕下方
+  - 有選分類時 page-header 底線下方出現「目前篩選分類：xxx」提示色塊（含一鍵清除 ✕），只在手機版顯示
+- **實作位置**：`dashboard.js` 的 `initDualFilter()` / `initSingleFilter()`、`dashboard.css` 的 `.filter-toggle-wrap` / `.filter-active-hint` 相關規則
 
 ---
 

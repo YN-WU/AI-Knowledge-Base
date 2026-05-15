@@ -5,6 +5,24 @@ function switchTab(page) {
   document.querySelectorAll('.page').forEach(function (p) { p.classList.toggle('active', p.id === 'page-' + page); });
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
+  // 切分頁時把所有篩選 state 重置（避免回到原分頁時殘留之前的篩選紀錄）
+  document.querySelectorAll('.filter-rows').forEach(function (c) {
+    if (typeof c.resetFilter === 'function') c.resetFilter();
+  });
+  // Prompt 技巧分享：透過 initSingleFilter 暴露的 resetFilter API 同步 chip + 手機版 dropdown
+  const promptFiltersEl = document.querySelector('.prompt-filters');
+  if (promptFiltersEl && typeof promptFiltersEl.resetFilter === 'function') {
+    promptFiltersEl.resetFilter();
+  } else if (typeof renderPrompts === 'function') {
+    renderPrompts('全部');
+  }
+  // 歷期 archive 維持原本 chip 切換
+  document.querySelectorAll('.archive-filters .chip').forEach(function (c) {
+    var defaultVal = c.dataset.filter === '全部' || c.dataset.filter === 'all';
+    c.classList.toggle('active', defaultVal);
+  });
+  if (typeof renderArchive === 'function') renderArchive('all');
+
   // 同步 URL hash — 重新整理時可以回到原分頁
   var currentHash = location.hash.slice(1);
   if (page === 'home') {
@@ -1076,6 +1094,8 @@ async function initDashboardData() {
       // 初始化兩個分頁的雙層 filter
       initDualFilter('trendFilters', '#trendGrid', '.article-card');
       initDualFilter('summariesFilters', '#trendSummariesList', '.summary-list-item');
+      // Prompt 技巧分享：單層 filter（手機版同樣 dropdown）
+      initSingleFilter('.prompt-filters', { label: '分類：', defaultValue: '全部', onChange: function (v) { renderPrompts(v); } });
     }
   } catch (err) { console.warn('Fetch failed', err); }
 }
@@ -1183,17 +1203,109 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
     return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
   });
 
-  const renderRow = (label, tags, type) => {
+  // 桌機：原本 chip 版（保留原本 UX）
+  const renderChipRow = (label, tags, type) => {
     const chipsHtml = ['<button class="chip active" data-filter="全部" data-type="' + type + '">全部</button>']
       .concat(Array.from(tags).map(t => `<button class="chip" data-filter="${t}" data-type="${type}">${t}</button>`))
       .join('');
     return `<div class="filter-row"><span class="filter-label">${label}</span><div class="chips">${chipsHtml}</div></div>`;
   };
+  // 手機：收合下拉版
+  const renderSelectRow = (label, tags, type) => {
+    const opts = '<option value="全部">全部</option>' +
+      Array.from(tags).map(t => `<option value="${t}">${t}</option>`).join('');
+    return `<div class="filter-row"><span class="filter-label">${label}</span><select class="filter-select" data-type="${type}">${opts}</select><button class="filter-clear" data-type="${type}" type="button" aria-label="清除" hidden>✕</button></div>`;
+  };
 
-  filterContainer.innerHTML = renderRow('內容屬性：', sortedContent, 'content')
-                            + renderRow('適用情境：', sortedUsecase, 'usecase');
+  filterContainer.innerHTML = `
+    <div class="filter-chips-wrap">
+      ${renderChipRow('內容屬性：', sortedContent, 'content')}
+      ${renderChipRow('適用情境：', sortedUsecase, 'usecase')}
+    </div>
+    <div class="filter-mobile-wrap">
+      <button class="filter-toggle" type="button">
+        <span class="filter-toggle-label">分類篩選</span>
+        <span class="filter-toggle-arrow">▾</span>
+      </button>
+      <div class="filter-panel">
+        ${renderSelectRow('內容屬性：', sortedContent, 'content')}
+        ${renderSelectRow('適用情境：', sortedUsecase, 'usecase')}
+      </div>
+    </div>
+  `;
+
+  const toggleBtn = filterContainer.querySelector('.filter-toggle');
+  const panel = filterContainer.querySelector('.filter-panel');
+  // 用 wrapper 把按鈕+panel 包起來再塞進 h2：panel 直接以按鈕父層為定位框，top:100% 就是按鈕正下方（不受 h2 line-height 影響）
+  const pageEl = filterContainer.closest('.page');
+  const pageHeader = pageEl && pageEl.querySelector('.page-header');
+  const pageH2 = pageHeader && pageHeader.querySelector('h2');
+  if (pageH2 && toggleBtn && panel) {
+    const filterWrap = document.createElement('span');
+    filterWrap.className = 'filter-toggle-wrap';
+    filterWrap.appendChild(toggleBtn);
+    filterWrap.appendChild(panel);
+    pageH2.appendChild(filterWrap);
+  }
+  // page-header 底線下方放一行篩選提示（含右側清除 ✕），有選分類才顯示
+  let hintEl = null;
+  let hintTextEl = null;
+  let hintClearEl = null;
+  if (pageHeader && pageHeader.parentNode) {
+    hintEl = document.createElement('div');
+    hintEl.className = 'filter-active-hint';
+    hintEl.hidden = true;
+    hintEl.innerHTML = '<span class="filter-active-hint-text"></span><button class="filter-active-hint-clear" type="button" aria-label="清除篩選">✕</button>';
+    pageHeader.parentNode.insertBefore(hintEl, pageHeader.nextSibling);
+    hintTextEl = hintEl.querySelector('.filter-active-hint-text');
+    hintClearEl = hintEl.querySelector('.filter-active-hint-clear');
+  }
+  const openPanel = () => {
+    panel.classList.add('open');
+    toggleBtn.classList.add('open');
+  };
+  const closePanel = () => {
+    panel.classList.remove('open');
+    toggleBtn.classList.remove('open');
+  };
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (panel.classList.contains('open')) closePanel(); else openPanel();
+    });
+  }
+  // capture-phase 在 click 抵達 target 之前判斷：panel 開著時，點 panel/toggle 外面就 close 並吞掉這次點擊，避免穿透到下方文章卡片
+  document.addEventListener('click', (e) => {
+    if (!panel.classList.contains('open')) return;
+    if (panel.contains(e.target) || toggleBtn.contains(e.target)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    closePanel();
+  }, true);
 
   const state = { content: '全部', usecase: '全部' };
+  // 同步桌機 chip active state 跟手機 select value（雙向）
+  const syncUI = () => {
+    ['content', 'usecase'].forEach(type => {
+      filterContainer.querySelectorAll(`.chip[data-type="${type}"]`).forEach(c => {
+        c.classList.toggle('active', c.dataset.filter === state[type]);
+      });
+      // select 已被搬到 page-header，要用 panel 引用查
+      const sel = panel && panel.querySelector(`.filter-select[data-type="${type}"]`);
+      if (sel) sel.value = state[type];
+      // ✕ 清除按鈕只在「不是全部」時顯示
+      const clearBtn = panel && panel.querySelector(`.filter-clear[data-type="${type}"]`);
+      if (clearBtn) clearBtn.hidden = state[type] === '全部';
+    });
+    const activeCount = (state.content !== '全部' ? 1 : 0) + (state.usecase !== '全部' ? 1 : 0);
+    if (toggleBtn) toggleBtn.classList.toggle('active', activeCount > 0);
+    // 更新 page-header 下方的篩選提示
+    const parts = [];
+    if (state.content !== '全部') parts.push(state.content);
+    if (state.usecase !== '全部') parts.push(state.usecase);
+    if (hintTextEl) hintTextEl.textContent = parts.length > 0 ? '目前篩選分類：' + parts.join('、') : '';
+    if (hintEl) hintEl.hidden = parts.length === 0;
+  };
   const applyFilter = () => {
     items.forEach(item => {
       const ct = item.dataset.contentTag || '';
@@ -1202,21 +1314,153 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
       const uMatch = state.usecase === '全部' || ut.includes(state.usecase);
       item.style.display = (cMatch && uMatch) ? '' : 'none';
     });
+    syncUI();
   };
+
+  // hint 右側 ✕：一鍵清掉兩種篩選
+  if (hintClearEl) {
+    hintClearEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      state.content = '全部';
+      state.usecase = '全部';
+      applyFilter();
+    });
+  }
 
   filterContainer.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
-      const type = chip.dataset.type;
-      const filter = chip.dataset.filter;
-      chip.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      state[type] = filter;
+      state[chip.dataset.type] = chip.dataset.filter;
       applyFilter();
     });
   });
+  // select 已被搬到 page-header，從 panel 引用上掛 change listener
+  if (panel) {
+    panel.querySelectorAll('.filter-select').forEach(sel => {
+      sel.addEventListener('change', () => {
+        state[sel.dataset.type] = sel.value;
+        applyFilter();
+      });
+    });
+    // ✕ 清除按鈕：重置該分類為「全部」
+    panel.querySelectorAll('.filter-clear').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state[btn.dataset.type] = '全部';
+        applyFilter();
+      });
+    });
+  }
+
+  // 對外公開的重置 API（給 switchTab 用）：切分頁時把篩選 state 清回「全部」
+  filterContainer.resetFilter = () => {
+    state.content = '全部';
+    state.usecase = '全部';
+    applyFilter();
+    closePanel();
+  };
+
 }
 
+// 單層 filter：給 Prompt 技巧分享這類只有一組分類的分頁用
+// 桌機保留現存 .chips chip 點擊行為（已有 click handler），這裡額外建立手機版 dropdown 並讓兩邊狀態同步
+function initSingleFilter(chipsSelector, options) {
+  const chipsEl = document.querySelector(chipsSelector);
+  if (!chipsEl) return;
+  const chips = Array.from(chipsEl.querySelectorAll('.chip'));
+  if (chips.length === 0) return;
+  const filters = chips.map(c => c.dataset.filter);
+  const defaultValue = options.defaultValue;
+  const pageEl = chipsEl.closest('.page');
+  const pageHeader = pageEl && pageEl.querySelector('.page-header');
+  const pageH2 = pageHeader && pageHeader.querySelector('h2');
+  if (!pageH2) return;
+  // page-header 底線下方放一行篩選提示（含右側清除 ✕），有選分類才顯示
+  let hintEl = null;
+  let hintTextEl = null;
+  let hintClearEl = null;
+  if (pageHeader && pageHeader.parentNode) {
+    hintEl = document.createElement('div');
+    hintEl.className = 'filter-active-hint';
+    hintEl.hidden = true;
+    hintEl.innerHTML = '<span class="filter-active-hint-text"></span><button class="filter-active-hint-clear" type="button" aria-label="清除篩選">✕</button>';
+    pageHeader.parentNode.insertBefore(hintEl, pageHeader.nextSibling);
+    hintTextEl = hintEl.querySelector('.filter-active-hint-text');
+    hintClearEl = hintEl.querySelector('.filter-active-hint-clear');
+  }
 
+  const wrap = document.createElement('span');
+  wrap.className = 'filter-toggle-wrap';
+  wrap.innerHTML = `
+    <button class="filter-toggle" type="button">
+      <span class="filter-toggle-label">分類篩選</span>
+      <span class="filter-toggle-arrow">▾</span>
+    </button>
+    <div class="filter-panel filter-panel--list">
+      ${filters.map(f => `<button class="filter-option" type="button" data-filter="${f}">${f}</button>`).join('')}
+    </div>
+  `;
+  pageH2.appendChild(wrap);
+
+  const toggleBtn = wrap.querySelector('.filter-toggle');
+  const panel = wrap.querySelector('.filter-panel');
+  const optionBtns = Array.from(wrap.querySelectorAll('.filter-option'));
+
+  const openPanel = () => { panel.classList.add('open'); toggleBtn.classList.add('open'); };
+  const closePanel = () => { panel.classList.remove('open'); toggleBtn.classList.remove('open'); };
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (panel.classList.contains('open')) closePanel(); else openPanel();
+  });
+  document.addEventListener('click', (e) => {
+    if (!panel.classList.contains('open')) return;
+    if (panel.contains(e.target) || toggleBtn.contains(e.target)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    closePanel();
+  }, true);
+
+  // 同步 UI：chip active + filter-option active + 按鈕變色 + page-header 下方提示
+  const syncUI = (value) => {
+    chips.forEach(c => c.classList.toggle('active', c.dataset.filter === value));
+    optionBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === value));
+    toggleBtn.classList.toggle('active', value !== defaultValue);
+    if (hintTextEl) hintTextEl.textContent = value !== defaultValue ? '目前篩選分類：' + value : '';
+    if (hintEl) hintEl.hidden = value === defaultValue;
+  };
+  // 套用篩選：同步 UI + 觸發 render
+  const applyFilter = (value) => {
+    syncUI(value);
+    if (typeof options.onChange === 'function') options.onChange(value);
+  };
+
+  // hint 右側 ✕：一鍵清回預設分類
+  if (hintClearEl) {
+    hintClearEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      applyFilter(defaultValue);
+    });
+  }
+
+  // 選項按鈕：點擊直接套用 + 收合 panel
+  optionBtns.forEach(b => {
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      applyFilter(b.dataset.filter);
+      closePanel();
+    });
+  });
+  // 桌機 chip click 已有現存 handler 呼叫 render，這裡只額外把 mobile UI 狀態同步
+  chips.forEach(c => {
+    c.addEventListener('click', () => syncUI(c.dataset.filter));
+  });
+
+  // 對外公開的重置 API（給 switchTab 用）
+  chipsEl.resetFilter = () => {
+    applyFilter(defaultValue);
+    closePanel();
+  };
+}
 
 // ============ Data-driven renderers (B-phase refactor) ============
 function escHtml(s) {
