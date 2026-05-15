@@ -545,15 +545,25 @@ function showArticle(data) {
     const summariesArr = Array.isArray(window.__weeklySummaries) ? window.__weeklySummaries.map(s => ({
       title: s.title, tag: s.tag || '趨勢摘要', date: s.date
     })) : [];
-    let pool;
-    if (isPromptArt) pool = promptsArr;
-    else if (isToolIntroArt) pool = [...promptsArr, ...toolsArr];
-    else if (isSummaryArt) pool = summariesArr;
-    else pool = [...articlesArr, ...promptsArr, ...toolsArr];
-    const others = pool
-      .filter(a => !window.__viewedTitles.has(a.title))
-      .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
-      .slice(0, 3);
+    // Prompt / 工具介紹 同類優先：自己類用滿才從其他類遞補；重點趨勢、30秒看趨勢維持原本邏輯
+    const filterUnviewed = arr => arr.filter(a => !window.__viewedTitles.has(a.title));
+    const byDateDesc = (a, b) => (b.date || '').localeCompare(a.date || '');
+    let candidates;
+    if (isPromptArt) {
+      const own = filterUnviewed(promptsArr).sort(byDateDesc);
+      const fallback = filterUnviewed([...toolsArr, ...articlesArr]).sort(byDateDesc);
+      candidates = [...own, ...fallback];
+    } else if (isToolIntroArt) {
+      const own = filterUnviewed(toolsArr).sort(byDateDesc);
+      const fallback = filterUnviewed([...promptsArr, ...articlesArr]).sort(byDateDesc);
+      candidates = [...own, ...fallback];
+    } else if (isSummaryArt) {
+      candidates = filterUnviewed(summariesArr).sort(byDateDesc);
+    } else {
+      // 重點趨勢（原生 + legacy）：全 3 類混合，純粹用日期排
+      candidates = filterUnviewed([...articlesArr, ...promptsArr, ...toolsArr]).sort(byDateDesc);
+    }
+    const others = candidates.slice(0, 3);
     if (others.length > 0) {
       const relatedHtml = others.map(a => {
         const titleEnc = encodeURIComponent(a.title).replace(/'/g, "%27");
