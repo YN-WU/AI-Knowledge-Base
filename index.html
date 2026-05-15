@@ -23,6 +23,7 @@
 
 <body>
 
+  <header class="site-header">
   <nav class="topnav">
     <div class="topnav-inner">
       <div class="brand" onclick="switchTab('home')" role="link" tabindex="0">
@@ -37,6 +38,9 @@
         <input type="text" id="searchInput" placeholder="搜尋歷期電子報內容…" autocomplete="off">
         <div class="search-results" id="searchResults"></div>
       </div>
+      <button class="search-toggle" id="searchToggle" aria-label="搜尋" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
     </div>
   </nav>
 
@@ -45,7 +49,7 @@
       <button class="tab active" data-page="home">首頁</button>
       <span class="tab-sep">|</span>
       <div class="nav-dropdown">
-        <span class="dropdown-toggle">AI 趨勢消息 ▾</span>
+        <span class="dropdown-toggle" role="button" tabindex="0">AI 趨勢消息 ▾</span>
         <div class="dropdown-content">
           <button class="tab dropdown-item" data-page="news">重點趨勢</button>
           <button class="tab dropdown-item" data-page="summaries">30秒看趨勢</button>
@@ -53,15 +57,15 @@
       </div>
       <span class="tab-sep">|</span>
       <div class="nav-dropdown">
-        <span class="dropdown-toggle">Prompt 專區 ▾</span>
+        <span class="dropdown-toggle" role="button" tabindex="0">Prompt 專區 ▾</span>
         <div class="dropdown-content">
-          <button class="tab dropdown-item" data-page="prompt">Prompt 技巧分享</button>
+          <button class="tab dropdown-item" data-page="prompt-tips">Prompt 技巧分享</button>
           <button class="tab dropdown-item" data-page="prompt-sites">Prompt 資源庫</button>
         </div>
       </div>
       <span class="tab-sep">|</span>
       <div class="nav-dropdown">
-        <span class="dropdown-toggle">AI 工具 ▾</span>
+        <span class="dropdown-toggle" role="button" tabindex="0">AI 工具 ▾</span>
         <div class="dropdown-content">
           <button class="tab dropdown-item" data-page="tool-intro">AI 工具介紹</button>
           <button class="tab dropdown-item" data-page="tools">AI 工具資源</button>
@@ -70,15 +74,20 @@
       <span class="tab-sep">|</span>
       <button class="tab" data-page="archive">歷期電子報</button>
     </div>
+    <button class="tabs-scroll tabs-scroll-left" id="tabsScrollLeft" aria-label="選單往左捲">‹</button>
+    <button class="tabs-scroll tabs-scroll-right" id="tabsScrollRight" aria-label="選單往右捲">›</button>
   </div>
+  </header>
 
   <div class="page active" id="page-home">
     <article class="reader-flow">
 
-      <!-- Masthead：月份 + 主題 -->
+      <!-- Masthead：月份 + 主題（手機版 JS 會把總則數搬進 .reader-title-row）-->
       <header class="reader-header">
         <div class="reader-issue-meta" id="readerIssueMeta">2026 年 5 月號</div>
-        <h1 class="reader-title">最新 AI 趨勢</h1>
+        <div class="reader-title-row">
+          <h1 class="reader-title">精選 AI 趨勢</h1>
+        </div>
       </header>
 
       <!-- 趨勢數字 + 關鍵字 -->
@@ -208,7 +217,7 @@
   </div>
 
   <!-- ============ Prompt 技巧分享 ============ -->
-  <div class="page" id="page-prompt">
+  <div class="page" id="page-prompt-tips">
     <div class="container">
       <div class="page-header">
         <h2>Prompt 技巧分享</h2>
@@ -274,6 +283,63 @@
         <button class="chip" data-filter="2025">2025 年</button>
       </div>
       <div class="archive-grid" id="archiveGrid"></div>
+    </div>
+  </div>
+
+  <!-- ============ 隱藏：Outlook 版本產生器（僅由 URL #outlook-gen 進入）============ -->
+  <div class="page" id="page-outlook-gen">
+    <div class="container">
+      <div class="page-header">
+        <h2>Outlook 版本產生器</h2>
+        <p>讀取目前 articles + weekly-summaries 自動產出最新 email HTML，僅內部使用。</p>
+      </div>
+      <div class="og-grid">
+        <aside class="og-controls">
+          <div class="og-field">
+            <label>月份標題</label>
+            <input type="text" id="ogMonthLabel" value="2026 年 5 月號" placeholder="例：2026 年 5 月號">
+          </div>
+          <div class="og-field">
+            <label>重點趨勢（篇）</label>
+            <input type="number" id="ogArticleCount" value="3" min="0" max="10">
+          </div>
+          <div class="og-field">
+            <label>Prompt 技巧分享（篇）</label>
+            <input type="number" id="ogPromptCount" value="0" min="0" max="10">
+          </div>
+          <div class="og-field">
+            <label>AI 工具介紹（篇）</label>
+            <input type="number" id="ogToolIntroCount" value="1" min="0" max="10">
+          </div>
+          <div class="og-field">
+            <label>30 秒趨勢（篇）</label>
+            <input type="number" id="ogSummaryCount" value="15" min="0" max="50">
+          </div>
+          <div class="og-actions">
+            <button class="og-btn og-btn--primary" id="ogGenerateBtn">產出</button>
+            <button class="og-btn og-btn--ghost" id="ogCopyBtn">複製 HTML</button>
+            <button class="og-btn og-btn--ghost" id="ogDownloadBtn">下載 .html</button>
+          </div>
+          <div class="og-status" id="ogStatus">尚未產出</div>
+          <div class="og-help">
+            <strong>使用流程</strong>
+            <ol>
+              <li>確認 data/articles.json + weekly-summaries.json 已是當期內容</li>
+              <li>填月份、調整數量 → 按「產出」</li>
+              <li>「複製 HTML」 → 貼進 Outlook（新郵件 → HTML 編輯模式）</li>
+              <li>或「下載 .html」 → Outlook 開檔轉寄</li>
+            </ol>
+          </div>
+        </aside>
+        <section class="og-preview">
+          <div class="og-tabs">
+            <button class="og-tab active" data-tab="preview">📧 預覽</button>
+            <button class="og-tab" data-tab="code">&lt;/&gt; HTML 程式碼</button>
+          </div>
+          <iframe class="og-iframe" id="ogPreviewFrame" srcdoc="<div style='padding:40px;text-align:center;color:#9ca3af;font-family:sans-serif'>按左側「產出」開始</div>"></iframe>
+          <textarea class="og-code" id="ogHtmlOutput" readonly placeholder="按「產出」後 HTML 會出現在這"></textarea>
+        </section>
+      </div>
     </div>
   </div>
 
