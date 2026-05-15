@@ -1752,7 +1752,7 @@ function ogGenerate() {
   const promptCount = readCount('ogPromptCount');
   const toolCount = readCount('ogToolIntroCount');
   const summaryCount = readCount('ogSummaryCount');
-  const monthLabel = document.getElementById('ogMonthLabel').value.trim() || '2026 年 X 月號';
+  const monthLabel = ogReadMonthLabel();
   const cutoffDateEl = document.getElementById('ogCutoffDate');
   const cutoffDate = cutoffDateEl ? cutoffDateEl.value.trim() : '';
 
@@ -1783,6 +1783,7 @@ function ogGenerate() {
   document.getElementById('ogHtmlOutput').value = ogCurrentHTML;
 
   status.className = 'og-status success';
+  status.classList.remove('og-hidden');
   status.textContent = `✓ 產出完成（重點趨勢 ${selA.length} 篇 + Prompt分享 ${selP.length} 篇 + 工具介紹 ${selT.length} 篇 + 30秒趨勢 ${selS.length} 篇）`;
 }
 
@@ -1808,7 +1809,7 @@ function ogDownloadHTML() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  const month = (document.getElementById('ogMonthLabel').value || 'outlook').replace(/\s+/g, '_').replace(/[年月號]/g, '');
+  const month = ogReadMonthLabel().replace(/\s+/g, '_').replace(/[年月號]/g, '');
   a.download = `${month}_outlook.html`;
   document.body.appendChild(a);
   a.click();
@@ -1823,23 +1824,16 @@ function ogDownloadHTML() {
 let ogMonthAutoFilled = false;
 let ogCountsAutoFilled = false;
 
-function ogAutoFillMonth() {
-  if (ogMonthAutoFilled) return; // 只自動帶一次，之後尊重使用者手改
-  const allDates = [
-    ...(window.__articles || []).map(a => a.date),
-    ...(window.__weeklySummaries || []).map(s => s.date)
-  ].filter(Boolean).sort((a, b) => b.localeCompare(a));
-  if (allDates[0]) {
-    const m = allDates[0].match(/(\d{4})[\-.\/](\d{1,2})/);
-    if (m) {
-      const el = document.getElementById('ogMonthLabel');
-      if (el) {
-        el.value = `${m[1]} 年 ${parseInt(m[2], 10)} 月號`;
-        ogMonthAutoFilled = true;
-      }
-    }
-  }
+function ogReadMonthLabel() {
+  // 期號改成從 ogSyncCountsFromDate 自動寫進顯示元素，這裡讀回即可
+  const el = document.getElementById('ogPeriodLabel');
+  const v = el && el.textContent.trim();
+  return (v && v !== '—') ? v : '2026 年 X 月號';
 }
+
+// 期號已改成由 ogSyncCountsFromDate 在使用者選篩選日期後自動推算並寫進顯示元素
+// 不再需要 page-load 時的 ogAutoFillMonth，保留空函式避免別處呼叫出錯
+function ogAutoFillMonth() {}
 
 function ogAutoFillCounts() {
   if (ogCountsAutoFilled) return; // 只自動帶一次
@@ -1877,6 +1871,23 @@ function ogSyncCountsFromDate() {
   setVal('ogPromptCount', countSince(prompts));
   setVal('ogToolIntroCount', countSince(tools));
   setVal('ogSummaryCount', countSince(summaries));
+
+  // 期號：從篩選後內容裡找最新一筆日期，推算年/月
+  const allFiltered = [...articles, ...prompts, ...tools, ...summaries]
+    .filter(it => (it.date || '') >= cutoff);
+  const latestDate = allFiltered.map(it => it.date).filter(Boolean).sort((a, b) => b.localeCompare(a))[0];
+  const periodEl = document.getElementById('ogPeriodLabel');
+  if (periodEl) {
+    if (latestDate) {
+      const dm = latestDate.match(/(\d{4})[\-.\/](\d{1,2})/);
+      if (dm) periodEl.textContent = `${dm[1]} 年 ${parseInt(dm[2], 10)} 月號`;
+    } else {
+      periodEl.textContent = '—';
+    }
+  }
+
+  // 顯示期號 + 4 個篇數 row（首次操作篩選日期後 reveal）
+  document.querySelectorAll('.og-field--inline').forEach(el => el.classList.remove('og-hidden'));
 }
 
 function initOutlookGenerator() {
@@ -1887,7 +1898,15 @@ function initOutlookGenerator() {
     document.getElementById('ogCopyBtn').addEventListener('click', ogCopyHTML);
     document.getElementById('ogDownloadBtn').addEventListener('click', ogDownloadHTML);
     const cutoffEl = document.getElementById('ogCutoffDate');
-    if (cutoffEl) cutoffEl.addEventListener('change', ogSyncCountsFromDate);
+    const genBtn = document.getElementById('ogGenerateBtn');
+    const toggleGenBtn = () => {
+      // 期號改成自動從篩選結果推算，所以這裡只看篩選日期是否填了
+      genBtn.disabled = !(cutoffEl && cutoffEl.value.trim());
+    };
+    if (cutoffEl) {
+      cutoffEl.addEventListener('change', () => { ogSyncCountsFromDate(); toggleGenBtn(); });
+      cutoffEl.addEventListener('input', toggleGenBtn);
+    }
     document.querySelectorAll('.og-tab').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.og-tab').forEach(b => b.classList.remove('active'));
@@ -1899,18 +1918,11 @@ function initOutlookGenerator() {
     });
   }
 
-  // 2) 資料就緒才自動偵測月份 + 產出（否則顯示等待狀態）
+  // 2) 資料就緒才自動偵測月份 + 帶入篇數 default（不自動產出，等使用者按按鈕）
   const hasData = (window.__articles && window.__articles.length) ||
     (window.__weeklySummaries && window.__weeklySummaries.length);
   if (hasData) {
     ogAutoFillMonth();
     ogAutoFillCounts();
-    ogGenerate();
-  } else {
-    const status = document.getElementById('ogStatus');
-    if (status) {
-      status.className = 'og-status';
-      status.textContent = '⌛ 等待資料載入中...';
-    }
   }
 }

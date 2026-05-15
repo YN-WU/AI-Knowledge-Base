@@ -295,30 +295,27 @@
       <div class="og-grid">
         <aside class="og-controls">
           <div class="og-field">
-            <label>月份標題</label>
-            <input type="text" id="ogMonthLabel" value="2026 年 5 月號" placeholder="例：2026 年 5 月號">
-          </div>
-          <div class="og-field">
             <label>篩選日期</label>
             <input type="date" id="ogCutoffDate" placeholder="YYYY-MM-DD">
           </div>
-          <div class="og-field og-field--inline">重點趨勢：<span id="ogArticleCount">3</span> 篇</div>
-          <div class="og-field og-field--inline">Prompt 技巧分享：<span id="ogPromptCount">0</span> 篇</div>
-          <div class="og-field og-field--inline">AI 工具介紹：<span id="ogToolIntroCount">1</span> 篇</div>
-          <div class="og-field og-field--inline">30 秒看趨勢：<span id="ogSummaryCount">15</span> 篇</div>
+          <div class="og-field og-field--inline og-hidden">期號：<span id="ogPeriodLabel">—</span></div>
+          <div class="og-field og-field--inline og-hidden">重點趨勢：<span id="ogArticleCount">3</span> 篇</div>
+          <div class="og-field og-field--inline og-hidden">Prompt 技巧分享：<span id="ogPromptCount">0</span> 篇</div>
+          <div class="og-field og-field--inline og-hidden">AI 工具介紹：<span id="ogToolIntroCount">1</span> 篇</div>
+          <div class="og-field og-field--inline og-hidden">30 秒看趨勢：<span id="ogSummaryCount">15</span> 篇</div>
           <div class="og-actions">
-            <button class="og-btn og-btn--primary" id="ogGenerateBtn">產出</button>
+            <button class="og-btn og-btn--primary" id="ogGenerateBtn" disabled>產出</button>
             <button class="og-btn og-btn--ghost" id="ogCopyBtn">複製 HTML</button>
             <button class="og-btn og-btn--ghost" id="ogDownloadBtn">下載 .html</button>
           </div>
-          <div class="og-status" id="ogStatus">尚未產出</div>
+          <div class="og-status og-hidden" id="ogStatus">尚未產出</div>
           <div class="og-help">
             <strong>使用流程</strong>
             <ol>
-              <li>確認 data/articles.json + weekly-summaries.json 已是當期內容</li>
-              <li>填月份、調整數量 → 按「產出」</li>
-              <li>「複製 HTML」 → 貼進 Outlook（新郵件 → HTML 編輯模式）</li>
-              <li>或「下載 .html」 → Outlook 開檔轉寄</li>
+              <li>選篩選日期（選上次電子報寄出後一天）</li>
+              <li>按「產出」→ 預覽出現</li>
+              <li>檢查預覽結果是否有誤</li>
+              <li>按「複製 HTML」→ 貼進 Outlook 寄送系統</li>
             </ol>
           </div>
         </aside>
