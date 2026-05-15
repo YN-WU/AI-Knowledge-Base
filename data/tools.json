@@ -63,6 +63,7 @@
     {
       "title": "開發 & 生產力",
       "tools": [
+        {"name": "Google AI Studio", "url": "https://aistudio.google.com", "logo": "./logos/google-ai-studio.webp", "iconBg": "white", "sub": "Gemini 模型測試與串接平台"},
         {"name": "Cursor", "url": "https://cursor.sh", "logo": "./logos/cursor.webp", "iconBg": "white", "sub": "AI 程式編輯器"},
         {"name": "GitHub Copilot", "url": "https://github.com/features/copilot", "logo": "https://cdn.simpleicons.org/github/white", "iconBg": "#24292e", "sub": "程式碼自動補全"},
         {"name": "Gamma", "url": "https://www.gamma.app", "logo": "https://icons.duckduckgo.com/ip3/gamma.app.ico", "iconBg": "white", "sub": "AI 簡報生成"},

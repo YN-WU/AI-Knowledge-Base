@@ -1,4 +1,4 @@
-var VALID_PAGES = ['home', 'news', 'summaries', 'prompt', 'prompt-sites', 'tool-intro', 'tools', 'archive'];
+var VALID_PAGES = ['home', 'news', 'summaries', 'prompt-tips', 'prompt-sites', 'tool-intro', 'tools', 'archive', 'outlook-gen'];
 
 function switchTab(page) {
   document.querySelectorAll('.tab').forEach(function (t) { t.classList.toggle('active', t.dataset.page === page); });
@@ -20,13 +20,18 @@ function switchTab(page) {
     }
   }
 
+  // 切到 Outlook 產生器：首次進入時 init
+  if (page === 'outlook-gen' && typeof initOutlookGenerator === 'function') {
+    initOutlookGenerator();
+  }
+
   // GA4 SPA pageview（hash 路由 GA 不會自動偵測）
   if (typeof gtag === 'function') {
     const titleMap = {
       home: '首頁',
       news: '重點趨勢',
       summaries: '30秒看趨勢',
-      prompt: 'Prompt 技巧分享',
+      'prompt-tips': 'Prompt 技巧分享',
       'prompt-sites': 'Prompt 資源庫',
       'tool-intro': 'AI 工具介紹',
       tools: 'AI 工具資源',
@@ -44,7 +49,102 @@ function getHashPage() {
   var h = location.hash.slice(1);
   return VALID_PAGES.indexOf(h) >= 0 ? h : null;
 }
-document.querySelectorAll('.tab').forEach(function (t) { t.addEventListener('click', function () { switchTab(t.dataset.page); }); });
+document.querySelectorAll('.tab').forEach(function (t) {
+  t.addEventListener('click', function () { switchTab(t.dataset.page); });
+});
+
+// 搜尋鈕：行動版點開／收起搜尋浮層
+function closeMobileSearch() {
+  var header = document.querySelector('.site-header');
+  if (header) header.classList.remove('search-open');
+  var toggle = document.getElementById('searchToggle');
+  if (toggle) toggle.setAttribute('aria-expanded', 'false');
+}
+(function () {
+  var header = document.querySelector('.site-header');
+  var searchBtn = document.getElementById('searchToggle');
+  if (!header || !searchBtn) return;
+  searchBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var willOpen = !header.classList.contains('search-open');
+    header.classList.toggle('search-open', willOpen);
+    searchBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    if (willOpen) {
+      var input = document.getElementById('searchInput');
+      if (input) input.focus();
+    }
+  });
+})();
+
+// 行動版選單：左右捲動按鈕 + 邊緣淡出狀態
+(function () {
+  var tabs = document.querySelector('.tabs');
+  var wrap = document.querySelector('.tabs-wrap');
+  if (!tabs || !wrap) return;
+  function update() {
+    var maxScroll = tabs.scrollWidth - tabs.clientWidth;
+    wrap.classList.toggle('nav-scrolled', tabs.scrollLeft > 4);
+    wrap.classList.toggle('nav-at-end', tabs.scrollLeft >= maxScroll - 4);
+  }
+  function scrollTabs(dir) {
+    var amount = Math.max(tabs.clientWidth * 0.7, 160);
+    tabs.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  }
+  var leftBtn = document.getElementById('tabsScrollLeft');
+  var rightBtn = document.getElementById('tabsScrollRight');
+  if (leftBtn) leftBtn.addEventListener('click', function () { scrollTabs(-1); });
+  if (rightBtn) rightBtn.addEventListener('click', function () { scrollTabs(1); });
+  tabs.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  window.addEventListener('load', update);
+  update();
+})();
+
+// 行動版：總則數搬到標題旁省空間；桌機維持在 overview 區塊內
+(function () {
+  var count = document.getElementById('readerTrendCount');
+  var titleRow = document.querySelector('.reader-title-row');
+  var overview = document.querySelector('.reader-overview');
+  var keywords = document.getElementById('readerKeywords');
+  if (!count || !titleRow || !overview || !keywords) return;
+  var mq = window.matchMedia('(max-width: 700px)');
+  function place(e) {
+    if (e.matches) {
+      titleRow.appendChild(count);
+    } else {
+      overview.insertBefore(count, keywords);
+    }
+  }
+  place(mq);
+  mq.addEventListener('change', place);
+})();
+
+// 下拉選單：觸控/手機用 click 展開（桌機 hover 仍可用）
+function closeNavDropdowns() {
+  document.querySelectorAll('.nav-dropdown.open').forEach(function (d) { d.classList.remove('open'); });
+}
+document.querySelectorAll('.nav-dropdown .dropdown-toggle').forEach(function (toggle) {
+  function toggleDropdown(e) {
+    e.stopPropagation();
+    var parent = toggle.closest('.nav-dropdown');
+    var wasOpen = parent.classList.contains('open');
+    closeNavDropdowns();
+    if (!wasOpen) parent.classList.add('open');
+  }
+  toggle.addEventListener('click', toggleDropdown);
+  toggle.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDropdown(e); }
+  });
+});
+// 點下拉項目 或 點選單外 → 收起下拉；點整個 header 外 → 連搜尋浮層一起收起
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.nav-dropdown') || e.target.closest('.dropdown-item')) {
+    closeNavDropdowns();
+  }
+  if (!e.target.closest('.site-header')) {
+    closeMobileSearch();
+  }
+});
 
 // 模型類別切換
 document.querySelectorAll('.model-type-tab').forEach(function (t) {
@@ -467,8 +567,26 @@ function showArticleByTitle(title) {
   }
 }
 
+// 依 id 開啟文章 modal（給 email deep-link 用）
+function showArticleById(id) {
+  if (!id) return false;
+  const item = searchIndex.find(it => it.id === id);
+  if (item) { showArticle(item); return true; }
+  return false;
+}
+
+// 從 hash 取出 article id（格式 #article-{id}）
+function getArticleHash() {
+  const h = location.hash.slice(1);
+  return h.indexOf('article-') === 0 ? h.slice('article-'.length) : null;
+}
+
 function closeArticle() {
   document.getElementById('articleModal').classList.remove('active');
+  // 若 hash 是 article-xxx，關閉時清掉（避免重新整理又跳出）
+  if (getArticleHash()) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
 }
 function renderArchive(f) {
   const g = document.getElementById('archiveGrid'); if (!g || !issuesData.length) return;
@@ -513,6 +631,7 @@ async function initDashboardData() {
     articles.forEach(a => {
       searchIndex.push({
         title: a.title,
+        id: a.id,
         content: a.summary || '',
         fullContent: a.content || '',
         url: `/article-${a.id}`,
@@ -538,6 +657,7 @@ async function initDashboardData() {
       summaries.forEach(s => {
         searchIndex.push({
           title: s.title,
+          id: s.id,
           content: s.summary || '',
           fullContent: `<p class="first-paragraph">${s.summary || ''}</p>`,
           url: s.sourceUrl || `/summaries#${s.id}`,
@@ -553,10 +673,12 @@ async function initDashboardData() {
 
       // AI 工具介紹 (含有完整內容的加入索引)
       const toolIntros = results[4] || [];
+      window.__toolIntros = toolIntros;
       toolIntros.forEach(t => {
         if (t.content || t.openInModal) {
           searchIndex.push({
             title: t.title,
+            id: t.id,
             content: t.sub || '',
             fullContent: t.content || '',
             url: t.sourceUrl || `/tools#${t.issue}`,
@@ -864,13 +986,15 @@ function renderSummaryItem(it, opts) {
   const titleEnc = encodeURIComponent(it.title).replace(/'/g, "%27");
   const onclick = `onclick="showArticleByTitle(decodeURIComponent('${titleEnc}'))"`;
 
-  // 緊湊版：橫向一行（日期 + tag + 標題 + 箭頭），tags 在標題下方
+  // 緊湊版：tag + 日期在標題上方，標題獨佔整行寬度
   if (opts.compact) {
     return `
       <div class="summary-list-item summary-list-item--compact" data-content-tag="${it.tag || ''}" data-usecase-tags="${(it.tags || []).join(',')}" ${onclick}>
-        <span class="sli-date">${it.date || ''}</span>
-        <span class="feed-tag">${contentTag}</span>
         <div class="sli-compact-body">
+          <div class="sli-meta">
+            <span class="feed-tag">${contentTag}</span>
+            <span class="sli-date">${it.date || ''}</span>
+          </div>
           <h4 class="sli-title">${it.title}</h4>
           ${tagsHtml}
         </div>
@@ -1075,9 +1199,13 @@ function renderPromptSites() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // URL hash → 立刻切到對應分頁（重新整理保留位置）+ 觸發初次 pageview
-  const initialPage = getHashPage() || 'home';
-  switchTab(initialPage);
+  // 先讀 article hash（email deep-link），有的話保持 home 預設、不動 hash，等資料載入後開 modal
+  const initialArticleId = getArticleHash();
+  if (!initialArticleId) {
+    // URL hash → 立刻切到對應分頁（重新整理保留位置）+ 觸發初次 pageview
+    const initialPage = getHashPage() || 'home';
+    switchTab(initialPage);
+  }
 
   // GA4: 追蹤外部連結點擊（任何 <a> 連到外部網域都記）
   document.addEventListener('click', (e) => {
@@ -1097,6 +1225,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 監聽 back/forward 觸發的 hash 變化
   window.addEventListener('hashchange', () => {
+    const artId = getArticleHash();
+    if (artId) {
+      showArticleById(artId);
+      return;
+    }
     const p = getHashPage() || 'home';
     switchTab(p);
   });
@@ -1106,6 +1239,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const cur = document.querySelector('.tab.active');
     if (cur && cur.dataset.page === 'archive' && typeof renderArchive === 'function') {
       renderArchive('all');
+    }
+    // Outlook 產生器：data race 處理
+    if (getHashPage() === 'outlook-gen' && typeof initOutlookGenerator === 'function') {
+      initOutlookGenerator();
+    }
+    // email deep-link：資料就緒後開對應文章 modal
+    if (initialArticleId && typeof showArticleById === 'function') {
+      showArticleById(initialArticleId);
     }
   });
   renderPrompts();
@@ -1168,6 +1309,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return '<mark style="background:rgba(91,91,214,0.15);color:var(--primary);padding:0 2px;border-radius:3px">' + m + '</mark>';
     });
   }
+  // 摘要：以關鍵字命中位置為中心擷取一段，而非永遠顯示內容開頭
+  function makeSnippet(content, q, len) {
+    content = content || '';
+    var k = q ? String(q).toLowerCase().trim() : '';
+    var idx = k ? content.toLowerCase().indexOf(k) : -1;
+    var start = idx > 40 ? idx - 40 : 0;
+    return {
+      text: content.slice(start, start + len),
+      lead: start > 0 ? '…' : '',
+      tail: (start + len) < content.length ? '…' : ''
+    };
+  }
   function renderSR(res, q) {
     var b = document.getElementById('searchResults'); if (!b) return;
     if (!q) { b.classList.remove('open'); return; }
@@ -1175,7 +1328,8 @@ document.addEventListener('DOMContentLoaded', () => {
     b.innerHTML = res.map(function (r) {
       var sourceLabel = getSearchSourceLabel(r);
       var dateLabel = r.date || '';
-      return `<div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(r.title).replace(/'/g, "%27")}'))" style="text-decoration:none;cursor:pointer"><div class="search-result-item"><div class="search-result-title">${hl(r.title, q)}</div><div class="search-result-snippet">${hl((r.content || '').slice(0, 120), q)}…</div><div class="search-result-meta">${sourceLabel ? `<span class="search-result-source">${sourceLabel}</span>` : ''}${dateLabel ? `<span class="search-result-date">${dateLabel}</span>` : ''}</div></div></div>`;
+      var sn = makeSnippet(r.content, q, 120);
+      return `<div onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(r.title).replace(/'/g, "%27")}'))" style="text-decoration:none;cursor:pointer"><div class="search-result-item"><div class="search-result-title">${hl(r.title, q)}</div><div class="search-result-snippet">${sn.lead}${hl(sn.text, q)}${sn.tail}</div><div class="search-result-meta">${sourceLabel ? `<span class="search-result-source">${sourceLabel}</span>` : ''}${dateLabel ? `<span class="search-result-date">${dateLabel}</span>` : ''}</div></div></div>`;
     }).join('');
     b.classList.add('open');
   }
@@ -1207,3 +1361,394 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', function (e) { if (!e.target.closest('.search-box')) { var b = document.getElementById('searchResults'); if (b) b.classList.remove('open'); } });
   }
 });
+
+/* =========================================================
+   Outlook 版本產生器（隱藏頁 #outlook-gen）
+   ========================================================= */
+const OG_TAG_COLORS = {
+  '模型發布': { bg: '#eff6ff', color: '#3b82f6', border: '#bfdbfe' },
+  '新工具':   { bg: '#fff7ed', color: '#f59e0b', border: '#fde68a' },
+  '新功能':   { bg: '#ecfdf5', color: '#10b981', border: '#a7f3d0' },
+  '應用技巧': { bg: '#ecfeff', color: '#06b6d4', border: '#a5f3fc' },
+  '產業動態': { bg: '#f3f4f6', color: '#6b7280', border: '#d1d5db' },
+  '法律規範': { bg: '#fef2f2', color: '#ef4444', border: '#fecaca' },
+  // 來源 label（混入本期重點時使用）
+  'AI 工具介紹':     { bg: '#f5f3ff', color: '#5b5bd6', border: '#e0e0f5' },
+  'Prompt 技巧分享': { bg: '#fdf2f8', color: '#be185d', border: '#fbcfe8' }
+};
+const OG_SITE_URL = 'https://ainews.tvbs.ai/';
+const OG_NEWS_URL = OG_SITE_URL + '#news';
+const OG_SUM_URL = OG_SITE_URL + '#summaries';
+const OG_FEEDBACK_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSfINdiIy8lfQ0bxfAha2d-rrgHggsz0XJcklILwoHqa3lFY8A/viewform?usp=pp_url&entry.1230987627=';
+
+function ogEsc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, m => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[m]));
+}
+
+function ogPillStyle(tag) {
+  const c = OG_TAG_COLORS[tag] || OG_TAG_COLORS['產業動態'];
+  return `background-color:${c.bg}; color:${c.color}; border:1px solid ${c.border};`;
+}
+
+function ogTruncate(text, max) {
+  if (!text) return '';
+  if (text.length <= max) return text;
+  return text.slice(0, max).replace(/[\s,，。、；：「」（）()]+$/, '') + '…';
+}
+
+// 從 content（HTML）取得純文字預覽，跟網站文章卡片同步
+function ogStripHtml(html) {
+  return String(html || '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function ogGetArticlePreview(article, maxChars) {
+  // 優先使用 content（網站卡片實際顯示），fallback 到 summary
+  const plain = ogStripHtml(article.content || '') || article.summary || '';
+  return ogTruncate(plain, maxChars);
+}
+
+const OG_DASHBOARD = 'https://ainews.tvbs.ai/';
+
+// 將不同資料源 normalize 成統一的「文章區塊」資料
+function ogNormalizeItem(item, kind) {
+  if (kind === 'article') {
+    return {
+      image: item.image,
+      tag: item.tag || '產業動態',
+      tags: item.tags || [],
+      title: item.title,
+      content: item.content || '',
+      summary: item.summary || '',
+      // deep-link：點 email 直接開該文章 modal
+      url: item.id ? `${OG_DASHBOARD}#article-${item.id}` : OG_NEWS_URL
+    };
+  }
+  if (kind === 'prompt') {
+    return {
+      image: item.img,
+      tag: 'Prompt 技巧分享',  // 統一來源 label
+      tags: [],
+      title: item.title,
+      content: '',
+      summary: item.sub || '',
+      // Prompt 在網站上是連到舊期 HTML（非 modal），維持外連
+      url: (item.no ? `https://ainews.tvbs.ai/issues/${item.no}.html#section-jump-${item.sj || 0}` : OG_DASHBOARD + '#prompt-tips')
+    };
+  }
+  if (kind === 'toolIntro') {
+    return {
+      image: item.image,
+      tag: 'AI 工具介紹',  // 統一來源 label
+      tags: [],
+      title: item.title,
+      content: item.content || '',
+      summary: item.sub || '',
+      // deep-link：點 email 直接開該工具介紹 modal
+      url: item.id ? `${OG_DASHBOARD}#article-${item.id}` : OG_DASHBOARD + '#tool-intro'
+    };
+  }
+  return item;
+}
+
+function ogRenderArticle(item, isLast) {
+  const tag = item.tag || '產業動態';
+  const url = item.url || OG_NEWS_URL;
+  const useTags = (typeof sortUsecaseTags === 'function' ? sortUsecaseTags(item.tags || []) : (item.tags || []));
+  const useTagsRow = useTags.length ? `
+                <tr><td style="padding:0 0 18px 0;"><p style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:13px; color:#5b5bd6; line-height:1.6;"><span style="font-weight:700;">適用情境：</span>${useTags.map(ogEsc).join('&nbsp;｜&nbsp;')}</p></td></tr>` : '';
+  const summaryPad = useTags.length ? '6' : '14';
+  const truncatedSummary = ogGetArticlePreview(item, 80);
+  const tagRow = item.hideTag ? '' : `
+                <tr><td style="padding:18px 0 8px 0;"><span style="display:inline-block; padding:4px 12px; ${ogPillStyle(tag)} border-radius:999px; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.5px;">${ogEsc(tag)}</span></td></tr>`;
+  const titleTopPad = item.hideTag ? '18' : '0';
+  return `
+          <tr>
+            <td style="padding:0 32px;">
+              <a href="${url}" style="text-decoration:none; color:inherit;" target="_blank">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr><td><img alt="${ogEsc(item.title)}" src="${ogEsc(item.image)}" width="536" style="display:block; max-width:100%; width:100%; height:auto; border-radius:12px;" /></td></tr>${tagRow}
+                <tr><td style="padding:${titleTopPad}px 0 10px 0;"><h2 style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:19px; font-weight:700; line-height:1.45; color:#0a2540;">${ogEsc(item.title)}</h2></td></tr>
+                <tr><td style="padding:0 0 ${summaryPad}px 0;"><p style="margin:0; color:#6b7280; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:15px; line-height:1.75;">${ogEsc(truncatedSummary)}</p></td></tr>${useTagsRow}
+                <tr><td align="center" style="padding:0 0 ${isLast ? '32' : '28'}px 0; text-align:center;"><span style="display:inline-block; padding:8px 18px; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:13px; font-weight:600; color:#5b5bd6; background-color:#ffffff; border:1px solid #d8d8e8; border-radius:999px;">閱讀全文 →</span></td></tr>
+              </table>
+              </a>
+            </td>
+          </tr>
+          ${isLast ? '' : `<tr><td align="center" style="padding:0 32px 28px 32px;"><table border="0" cellpadding="0" cellspacing="0"><tr><td width="80" style="border-top:1px solid #e5e7eb; font-size:1px; line-height:1px;">&nbsp;</td></tr></table></td></tr>`}`;
+}
+
+function ogRenderSummary(s, isLast) {
+  const tag = s.tag || '產業動態';
+  const useTags = (typeof sortUsecaseTags === 'function' ? sortUsecaseTags(s.tags || []) : (s.tags || []));
+  const useHtml = useTags.length
+    ? `<p style="margin:6px 0 0 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:12px; color:#5b5bd6; line-height:1.6;"><span style="font-weight:700;">適用情境：</span>${useTags.map(ogEsc).join('&nbsp;｜&nbsp;')}</p>`
+    : '';
+  // deep-link：點 email 直接開該趨勢 modal
+  const sumUrl = s.id ? `${OG_DASHBOARD}#article-${s.id}` : OG_SUM_URL;
+  return `
+          <tr>
+            <td style="padding:0 32px;">
+              <a href="${sumUrl}" style="text-decoration:none; color:inherit;" target="_blank">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%"${isLast ? '' : ' style="border-bottom:1px solid #e5e7eb;"'}>
+                  <tr>
+                    <td style="padding:14px 0;" valign="middle">
+                      <p style="margin:0 0 6px 0;"><span style="display:inline-block; padding:3px 10px; ${ogPillStyle(tag)} border-radius:999px; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.5px;">${ogEsc(tag)}</span>&nbsp;&nbsp;<span style="font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:12px; color:#9ca3af; font-weight:700;">${ogEsc(s.date || '')}</span></p>
+                      <p style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:16px; color:#0a2540; font-weight:600; line-height:1.55;">${ogEsc(s.title)}</p>
+                      ${useHtml}
+                    </td>
+                    <td valign="middle" align="right" width="24" style="font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:26px; color:#c1c5cd; padding-left:12px; line-height:1;">›</td>
+                  </tr>
+                </table>
+              </a>
+            </td>
+          </tr>`;
+}
+
+function ogBuildEmailHTML(opts) {
+  // 本期重點：重點趨勢 + Prompt + 工具介紹 全部混排，各自帶 tag，無 sub-heading
+  const benItems = [
+    ...(opts.articles || []).map(x => ogNormalizeItem(x, 'article')),
+    ...(opts.prompts || []).map(x => ogNormalizeItem(x, 'prompt')),
+    ...(opts.tools || []).map(x => ogNormalizeItem(x, 'toolIntro'))
+  ];
+  const articlesHtml = benItems
+    .map((item, i) => ogRenderArticle(item, i === benItems.length - 1))
+    .join('');
+  const summariesHtml = (opts.summaries || []).map((s, i) => ogRenderSummary(s, i === opts.summaries.length - 1)).join('');
+
+  return `<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TVBS AI Knowledge Base · ${ogEsc(opts.monthLabel)}</title>
+  <style type="text/css">
+    body { margin:0; padding:0; width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+    table, td { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+    img { border:0; height:auto; line-height:100%; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; display:block; }
+    a { text-decoration:none; }
+  </style>
+</head>
+<body style="margin:0; padding:0; background-color:#fafbfc;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#fafbfc" style="background-color:#fafbfc;">
+    <tr><td align="center" style="padding:24px 12px;">
+      <table border="0" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; width:100%; background-color:#ffffff; border:1px solid #e5e7eb; border-radius:12px;">
+
+        <tr><td style="padding:40px 32px 28px 32px;">
+          <p style="margin:0 0 14px 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:12px; font-weight:700; color:#5b5bd6; letter-spacing:1.5px;">──&nbsp;&nbsp;${ogEsc(opts.monthLabel)}</p>
+          <h1 style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:34px; font-weight:900; color:#0a2540; line-height:1.2; letter-spacing:-0.5px;">本期 AI 趨勢</h1>
+        </td></tr>
+
+        <tr><td style="padding:0 32px 32px 32px;">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#fafafe" style="background-color:#fafafe; border:1px solid #ececf9; border-radius:8px;">
+            <tr><td style="padding:12px 16px;"><p style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:12px; color:#6b7280; line-height:1.65;">💡 建議使用網頁版 Outlook 閱讀本期電子報。若排版異常請<a href="${OG_SITE_URL}" style="color:#5b5bd6; font-weight:600; text-decoration:underline;" target="_blank">前往網站版</a>。</p></td></tr>
+          </table>
+        </td></tr>
+
+        <tr><td style="padding:0 32px 18px 32px;"><h2 style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:26px; font-weight:900; color:#0a2540; letter-spacing:-0.3px; line-height:1.3;">本期重點</h2></td></tr>
+${articlesHtml}
+
+        <tr><td style="padding:8px 32px 32px 32px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td style="border-top:1px solid #e5e7eb; font-size:1px; line-height:1px;">&nbsp;</td></tr></table></td></tr>
+
+        <tr><td style="padding:0 32px 0 32px;">
+          <h2 style="margin:0 0 8px 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:26px; font-weight:900; color:#0a2540; letter-spacing:-0.3px; line-height:1.3;">30 秒看趨勢</h2>
+          <p style="margin:0 0 20px 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:14px; color:#6b7280; line-height:1.6;">用一個段落快速告訴你，最近 AI 界發生什麼事。</p>
+        </td></tr>
+${summariesHtml}
+
+        <tr><td align="center" style="padding:24px 32px 8px 32px;"><a href="${OG_SUM_URL}" style="display:inline-block; padding:10px 24px; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:14px; font-weight:600; color:#5b5bd6; background-color:#ffffff; border:1px solid #e5e7eb; border-radius:999px; text-decoration:none;" target="_blank">看更多趨勢 →</a></td></tr>
+
+        <tr><td style="padding:32px 32px 0 32px;">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#fafbfc" style="background-color:#fafbfc; border-radius:8px;">
+            <tr><td align="center" style="padding:28px 24px 4px 24px;">
+              <p style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:15px; color:#0a2540; font-weight:700;">您對本期內容滿意嗎？</p>
+              <p style="margin:6px 0 0 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:13px; color:#6b7280;">您的回饋是我們進步的動力！</p>
+            </td></tr>
+            <tr><td align="center" style="padding:16px 24px 28px 24px;">
+              <table border="0" cellpadding="0" cellspacing="0"><tr>
+                <td><a href="${OG_FEEDBACK_BASE}%F0%9F%91%8D" style="display:inline-block; padding:10px 22px; font-family:Arial,sans-serif; font-size:16px; color:#0a2540; background-color:#ffffff; border:1px solid #e5e7eb; border-radius:999px; text-decoration:none;" target="_blank">👍</a></td>
+                <td width="14">&nbsp;</td>
+                <td><a href="${OG_FEEDBACK_BASE}%F0%9F%98%90%E6%99%AE%E9%80%9A" style="display:inline-block; padding:10px 22px; font-family:Arial,sans-serif; font-size:16px; color:#0a2540; background-color:#ffffff; border:1px solid #e5e7eb; border-radius:999px; text-decoration:none;" target="_blank">😐</a></td>
+                <td width="14">&nbsp;</td>
+                <td><a href="${OG_FEEDBACK_BASE}%F0%9F%91%8E%E4%B8%8D%E6%BB%BF%E6%84%8F" style="display:inline-block; padding:10px 22px; font-family:Arial,sans-serif; font-size:16px; color:#0a2540; background-color:#ffffff; border:1px solid #e5e7eb; border-radius:999px; text-decoration:none;" target="_blank">👎</a></td>
+              </tr></table>
+            </td></tr>
+          </table>
+        </td></tr>
+
+        <tr><td align="center" style="padding:32px 32px 8px 32px;"><table border="0" cellpadding="0" cellspacing="0"><tr><td align="center" bgcolor="#5b5bd6" style="background-color:#5b5bd6; border-radius:999px;"><a href="https://ainews.tvbs.ai/" style="display:inline-block; padding:14px 32px; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:15px; font-weight:700; color:#ffffff; text-decoration:none; border-radius:999px;" target="_blank">前往網站了解更多 AI 資訊 →</a></td></tr></table></td></tr>
+
+        <tr><td style="height:32px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
+
+        <tr><td align="center" bgcolor="#f8f9fb" style="background-color:#f8f9fb; padding:24px 32px; border-radius:0 0 12px 12px; border-top:1px solid #e5e7eb;">
+          <p style="margin:0; color:#9ca3af; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:12px; line-height:1.7;">本電子報為公司內部刊物，僅供公司內部學習參考，相關資訊版權歸原作者所有。</p>
+          <p style="margin:8px 0 0 0; color:#9ca3af; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:12px; line-height:1.7;">© 2026 TVBS AI 未來科技部&nbsp;｜&nbsp;聯利媒體股份有限公司</p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+let ogCurrentHTML = '';
+let ogInited = false;
+
+function ogGenerate() {
+  const status = document.getElementById('ogStatus');
+  status.className = 'og-status';
+  status.textContent = '產出中...';
+
+  const articles = (window.__articles || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const summaries = (window.__weeklySummaries || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const prompts = (typeof promptData !== 'undefined' ? promptData : []).slice();
+  const toolIntros = (window.__toolIntros || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  if (!articles.length && !summaries.length && !prompts.length && !toolIntros.length) {
+    status.className = 'og-status error';
+    status.textContent = '✗ 資料還沒載入完，請先到首頁等資料載入再回來';
+    return;
+  }
+
+  const articleCount = parseInt(document.getElementById('ogArticleCount').value) || 0;
+  const promptCount = parseInt(document.getElementById('ogPromptCount').value) || 0;
+  const toolCount = parseInt(document.getElementById('ogToolIntroCount').value) || 0;
+  const summaryCount = parseInt(document.getElementById('ogSummaryCount').value) || 0;
+  const monthLabel = document.getElementById('ogMonthLabel').value.trim() || '2026 年 X 月號';
+
+  const selA = articles.slice(0, articleCount);
+  const selP = prompts.slice(0, promptCount);
+  const selT = toolIntros.slice(0, toolCount);
+  const selS = summaries.slice(0, summaryCount);
+
+  ogCurrentHTML = ogBuildEmailHTML({
+    monthLabel,
+    articles: selA,
+    prompts: selP,
+    tools: selT,
+    summaries: selS
+  });
+
+  document.getElementById('ogPreviewFrame').srcdoc = ogCurrentHTML;
+  document.getElementById('ogHtmlOutput').value = ogCurrentHTML;
+
+  status.className = 'og-status success';
+  status.textContent = `✓ 產出完成（重點趨勢 ${selA.length} + Prompt ${selP.length} + 工具 ${selT.length} + 趨勢 ${selS.length}）`;
+}
+
+async function ogCopyHTML() {
+  if (!ogCurrentHTML) { ogGenerate(); return; }
+  const status = document.getElementById('ogStatus');
+  try {
+    await navigator.clipboard.writeText(ogCurrentHTML);
+    status.className = 'og-status success';
+    status.textContent = '✓ HTML 已複製到剪貼簿，可貼進 Outlook';
+  } catch (err) {
+    const ta = document.getElementById('ogHtmlOutput');
+    ta.select();
+    document.execCommand('copy');
+    status.className = 'og-status success';
+    status.textContent = '✓ HTML 已複製';
+  }
+}
+
+function ogDownloadHTML() {
+  if (!ogCurrentHTML) { ogGenerate(); return; }
+  const blob = new Blob([ogCurrentHTML], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const month = (document.getElementById('ogMonthLabel').value || 'outlook').replace(/\s+/g, '_').replace(/[年月號]/g, '');
+  a.download = `${month}_outlook.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  const status = document.getElementById('ogStatus');
+  status.className = 'og-status success';
+  status.textContent = '✓ 已下載 ' + a.download;
+}
+
+let ogMonthAutoFilled = false;
+let ogCountsAutoFilled = false;
+
+function ogAutoFillMonth() {
+  if (ogMonthAutoFilled) return; // 只自動帶一次，之後尊重使用者手改
+  const allDates = [
+    ...(window.__articles || []).map(a => a.date),
+    ...(window.__weeklySummaries || []).map(s => s.date)
+  ].filter(Boolean).sort((a, b) => b.localeCompare(a));
+  if (allDates[0]) {
+    const m = allDates[0].match(/(\d{4})[\-.\/](\d{1,2})/);
+    if (m) {
+      const el = document.getElementById('ogMonthLabel');
+      if (el) {
+        el.value = `${m[1]} 年 ${parseInt(m[2], 10)} 月號`;
+        ogMonthAutoFilled = true;
+      }
+    }
+  }
+}
+
+function ogAutoFillCounts() {
+  if (ogCountsAutoFilled) return; // 只自動帶一次
+  // 只自動填 重點趨勢 + 30 秒趨勢（per-issue datasets）
+  // Prompt 跟 工具介紹是歷史累積資料，由使用者手動指定本期新增數量
+  const aLen = (window.__articles || []).length;
+  const sLen = (window.__weeklySummaries || []).length;
+  if (aLen > 0) {
+    const el = document.getElementById('ogArticleCount');
+    if (el) el.value = aLen;
+  }
+  if (sLen > 0) {
+    const el = document.getElementById('ogSummaryCount');
+    if (el) el.value = sLen;
+  }
+  if (aLen > 0 || sLen > 0) ogCountsAutoFilled = true;
+}
+
+function initOutlookGenerator() {
+  // 1) 監聽器只掛一次
+  if (!ogInited) {
+    ogInited = true;
+    document.getElementById('ogGenerateBtn').addEventListener('click', ogGenerate);
+    document.getElementById('ogCopyBtn').addEventListener('click', ogCopyHTML);
+    document.getElementById('ogDownloadBtn').addEventListener('click', ogDownloadHTML);
+    document.querySelectorAll('.og-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.og-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        document.getElementById('ogPreviewFrame').classList.toggle('hidden', tab !== 'preview');
+        document.getElementById('ogHtmlOutput').classList.toggle('active', tab === 'code');
+      });
+    });
+  }
+
+  // 2) 資料就緒才自動偵測月份 + 產出（否則顯示等待狀態）
+  const hasData = (window.__articles && window.__articles.length) ||
+    (window.__weeklySummaries && window.__weeklySummaries.length);
+  if (hasData) {
+    ogAutoFillMonth();
+    ogAutoFillCounts();
+    ogGenerate();
+  } else {
+    const status = document.getElementById('ogStatus');
+    if (status) {
+      status.className = 'og-status';
+      status.textContent = '⌛ 等待資料載入中...';
+    }
+  }
+}

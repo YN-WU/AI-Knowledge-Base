@@ -83,13 +83,49 @@ python -m http.server 8000
 | 分頁 | HTML 區段 ID | 資料來源 | JS 渲染函式 |
 |------|------------|---------|------------|
 | 首頁 | `#page-home` | `articles.json` + `weekly-summaries.json` | `renderSummaryItem()` |
-| 重點趨勢 | `#page-news` | `articles.json` + 舊期 `search-index.json` | trendGrid loop |
+| 重點趨勢 | `#page-news` | `articles.json` | trendGrid loop |
 | 30 秒看趨勢 | `#page-summaries` | `weekly-summaries.json` | `renderSummaryItem()` |
-| PROMPT 專欄 | `#page-prompt` | 內嵌 JS 資料 + `prompt-sites.json` | promptContainer |
+| Prompt 技巧分享 | `#page-prompt-tips` | 內嵌 JS 資料（`promptData`） | promptContainer |
+| Prompt 資源庫 | `#page-prompt-sites` | `prompt-sites.json` | `renderPromptSites()` |
 | AI 工具介紹 | `#page-tool-intro` | `tool-intro.json` | toolIntroContainer |
 | AI 工具資源 | `#page-tools` | `tools.json` | toolsContainer |
 | 歷期電子報 | `#page-archive` | `issues-metadata.json` | `renderArchive()` |
 | 文章 Modal | `#articleModal` | 上述任一筆資料 | `showArticle()` |
+| **Outlook 產生器**（隱藏）| `#page-outlook-gen` | 上述 articles + summaries | `initOutlookGenerator()` |
+
+---
+
+## 📧 Outlook 版本產生器（隱藏頁）
+
+**入口**：`https://ainews.tvbs.ai/#outlook-gen`
+（不放在 nav，只能直接打 URL 進）
+
+### 用途
+每期發報前用這個頁面把當前 `articles.json` + `weekly-summaries.json` 內容**自動轉成 Outlook 用的 HTML**，省下手動填入 email 模板的時間。
+
+### 自動偵測
+進入頁面時自動填好：
+- **月份標題**：從最新一筆日期推算 `YYYY 年 M 月號`
+- **重點趨勢（篇）**：`window.__articles.length`（全部）
+- **30 秒趨勢（篇）**：`window.__weeklySummaries.length`（全部）
+
+本期重點分成四個篇數欄位：重點趨勢 / Prompt 技巧分享 / AI 工具介紹 / 30 秒趨勢。
+其中 Prompt 技巧分享、AI 工具介紹預設為 0，需手動填；重點趨勢與 30 秒趨勢會自動帶入。
+使用者可手動覆寫所有欄位，覆寫後不會被自動填回去。
+
+### 工作流程
+1. 編輯 `data/articles.json` + `data/weekly-summaries.json`（首頁會即時更新）
+2. 開 `#outlook-gen` → 自動產出當前 email HTML
+3. 預覽 OK 後按「複製 HTML」
+4. Outlook 開新郵件 → HTML 編輯模式 → 貼上 → 寄
+
+### 設計來源
+參考舊版手動模板 `tvbs-ai-newsletter/outlook version/018foroutlook.html`，視覺風格對齊新 dashboard 的 light theme（白底 + 紫色品牌色 + tag 色票編碼）。
+
+### 相關程式碼
+- HTML 區段：`ai-newsletter-dashboard.html` 內的 `<div id="page-outlook-gen">`
+- 樣式：`dashboard.css` 內 `/* Outlook 版本產生器 */` 區段（class 前綴 `.og-*`）
+- 邏輯：`dashboard.js` 內 `initOutlookGenerator()`、`ogBuildEmailHTML()`、`ogGenerate()` 等
 
 ---
 
@@ -104,7 +140,7 @@ python -m http.server 8000
 }
 ```
 
-### 第一層：內容屬性 `tag`（7 選 1）
+### 第一層：內容屬性 `tag`（6 選 1）
 
 | Tag | 適用 | 色票（CSS var） |
 |-----|------|-----------------|
@@ -125,9 +161,9 @@ python -m http.server 8000
 固定順序（顯示順序）：
 
 ```
-寫作協助、圖像生成、影片製作、聲音處理、簡報設計、
-訪談記錄、資料研究、程式設計、翻譯、整理資料、
-自動化、工作流整合、觀念學習
+圖像生成、影片製作、聲音處理、寫作協助、即時翻譯、
+自動化、工作流整合、整理資料、簡報設計、資料研究、
+程式設計、訪談記錄、觀念學習
 ```
 
 特殊規則：
@@ -146,7 +182,7 @@ python -m http.server 8000
 
 ```json
 {
-  "id": "019-some-id",
+  "id": "some-id",
   "title": "文章標題",
   "date": "2026-05-12",
   "image": "https://...",
@@ -162,6 +198,8 @@ python -m http.server 8000
 
 - `featured: true` 會讓它出現在首頁 hero 區的 4 張 slide 候選池
 - `content` 是完整 HTML，會在 modal 內呈現
+- `image`：用自有圖床的 jsDelivr 網址（見下方「圖片素材」段落），不要用免費圖床
+- **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可。外部（Outlook email）連回文章用 `#article-{id}`，dashboard 載入時會自動開對應 modal
 
 ### 新增「30 秒看趨勢」條目
 
@@ -239,9 +277,46 @@ TVBS Logo 用 CSS filter 著色：
 
 ---
 
+## 📊 數據分析（GA4）
+
+**Property**: `484079366`（TVBS AI Knowledge Base）
+**Measurement ID**: `G-JQ8X854JPL`
+**裝設方式**: 直接 gtag.js（非 GTM）
+
+### 追蹤的事件
+
+| 事件 | 觸發時機 | 主要參數 |
+|------|---------|---------|
+| `page_view` | 初次載入 + SPA 切分頁 | page_path, page_title, page_location |
+| `article_view` | 點開文章 modal | article_title, article_tag, article_source |
+| `search` | 搜尋停 1.5s（字數 ≥ 2）| search_term, result_count |
+| `outbound_click` | 點外部域名連結 | link_url, link_domain, link_text |
+
+### 重要設定
+
+- `send_page_view: false`：關掉 GA4 自動 pageview，全部由 `switchTab()` 手動送
+- 搜尋兩段式 debounce：150ms render（UX）+ 1500ms 才送 GA（避免每按一鍵都送）
+- 內部連結不送 outbound（用 `URL.hostname === location.hostname` 過濾）
+
+### 看資料的地方
+
+| 報表 | 用途 |
+|------|------|
+| **Realtime** (即時) | 驗證事件有送、看當下流量 |
+| **Engagement → Pages and screens** | 哪些分頁/文章最多人看 |
+| **Engagement → Events → search** | 看 `search_term` 參數 — 使用者實際搜了什麼 |
+| **Engagement → Events → article_view** | 哪些文章被點開最多次 |
+
+### 舊版 (`tvbs-ai-newsletter/issues/*.html`) 還用 GTM
+
+舊期靜態 HTML 仍透過 GTM-5FPJBLQJ 進**同一個** property（484079366），
+所以新舊版的資料統一在 GA4 一個地方看。不用動舊版。
+
+---
+
 ## 🔍 搜尋功能
 
-搜尋邏輯在 `dashboard.js` 約 1024 行的 `doSearch()`：
+搜尋邏輯在 `dashboard.js` 的 `doSearch()`：
 
 - 搜尋 title + content 欄位
 - 排序：**有日期者依日期 desc**，沒日期者（舊期）依**期號 desc**
@@ -250,9 +325,30 @@ TVBS Logo 用 CSS filter 著色：
 搜尋會打到 **同一個** `searchIndex` array，這個 array 在初始載入時集合了：
 
 1. `tvbs-ai-newsletter/search-index.json`（舊期內容）
-2. 然後 push 進新 articles / summaries / feed / tool-intros
+2. 然後 push 進新 articles / summaries / tool-intros
 
 所以搜尋會涵蓋全站內容。
+
+---
+
+## 🖼 圖片素材（自有圖床）
+
+文章與工具的圖片素材統一放在獨立的圖床 repo，透過 jsDelivr CDN 出圖：
+
+- **圖床 repo**：`github.com/YN-WU/ainews-images`（public）
+- **圖片路徑**：repo 的 `images/` 資料夾
+- **使用網址**：`https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/{檔名}`
+
+### 新增圖片流程
+1. 把圖片上傳到 `ainews-images` repo 的 `images/` 資料夾
+2. 在 `articles.json` / `tool-intro.json` 等的 `image` 欄位填上述 jsDelivr 網址
+
+### 注意事項
+- **不要用免費圖床**（i.meee 等）—— 會被砍圖。2026-05 已把全站約 400 條舊連結從 i.meee 等外部圖床搬到自有圖床
+- **jsDelivr 會強快取**：同路徑的圖被覆蓋後 CDN 要數小時～數天才更新 → 永遠用新檔名，不要覆蓋舊圖
+- 檔名避免空格與中文（URL 要編碼，易出錯）
+
+> 搬遷用的一次性腳本（`migrate-images.js`、`replace-image-urls.js`）與本機暫存的 `images/` 資料夾已列入 `.gitignore`，不進主專案 repo。
 
 ---
 
@@ -280,7 +376,7 @@ TVBS Logo 用 CSS filter 著色：
 ### 5. `<title>` 跟 nav `brand-sub` 要同步
 
 → 修改網站標語時，主 HTML 的 `<title>` 跟 nav 的 `.brand-sub` 都要改。
-→ Archived `tvbs-ai-newsletter/ai-newsletter-dashboard.html` 也建議同步。
+→ Archived `tvbs-ai-newsletter/ai-newsletter-dashboard-blue.html`（舊版藍色主題）也建議同步。
 
 ---
 

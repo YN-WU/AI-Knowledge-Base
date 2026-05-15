@@ -38,7 +38,7 @@ const bodyContent = `        <div class="outline-box">
             <h3>Claude Sonnet 4.6 登場！沒 API 也能操作電腦 支援百萬詞元處理</h3>
             <div class="news-content">
                 <div class="news-image-top">
-                    <img src="https://i.meee.com.tw/oC4Bugq.png" alt="Claude Sonnet 4.6 登場">
+                    <img src="https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/oC4Bugq.png" alt="Claude Sonnet 4.6 登場">
                     <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
                         Claude Sonnet 4.6 登場。( 圖 / 翻攝自 Anthropic 官網 )
                     </p>
@@ -81,7 +81,7 @@ const bodyContent = `        <div class="outline-box">
             <h3>Gemini 3.1 Pro 正式發布！推理能力翻倍 四大突破應用一次看</h3>
             <div class="news-content">
                 <div class="news-image-top">
-                    <img src="https://i.meee.com.tw/7hzq4yP.webp" alt="Gemini 3.1 Pro 發布">
+                    <img src="https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/7hzq4yP.webp" alt="Gemini 3.1 Pro 發布">
                     <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
                         Gemini 3.1 Pro 發布。( 圖 / 翻攝自 Google Blog )
                     </p>
@@ -122,7 +122,7 @@ const bodyContent = `        <div class="outline-box">
             <h3>AI 輔助功能再進化！ChatGPT Deep Research 與 Google Deep Think 的差異比較</h3>
             <div class="news-content">
                 <div class="news-image-top">
-                    <img src="https://i.meee.com.tw/2QkK5x7.png" alt="Deep Research 與 Deep Think">
+                    <img src="https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/2QkK5x7.png" alt="Deep Research 與 Deep Think">
                     <p style="font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;">
                         Deep Research 與 Deep Think。( 圖 / 翻攝自 OpenAI、Google 官網 )
                     </p>
@@ -170,7 +170,7 @@ const bodyContent = `        <div class="outline-box">
             <h3>陸 AI 影片生成技術大突破：Seedance 2.0 與 Vidu Q3 強勢挑戰 Sora</h3>
             <div class="news-content">
                 <div class="news-image-top">
-                    <img src=\"https://i.meee.com.tw/hO0bIf1.png\" alt=\"Seedance 2.0 與 Vidu Q3\">
+                    <img src=\"https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/hO0bIf1.png\" alt=\"Seedance 2.0 與 Vidu Q3\">
                     <p style=\"font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;\">
                         Seedance 2.0 與 Vidu Q3。( 圖 / 取自 Seedance、Vidu 官網 )
                     </p>
@@ -202,7 +202,7 @@ const bodyContent = `        <div class="outline-box">
             <h3>Gemini 應用再擴張：加入音樂生成模型 Lyria 3　一鍵創作出完整歌曲</h3>
             <div class=\"news-content\">
                 <div class=\"news-image-top\">
-                    <img src=\"https://i.meee.com.tw/A2nI4G0.jpeg\" alt=\"Gemini Music\">
+                    <img src=\"https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/A2nI4G0.jpeg\" alt=\"Gemini Music\">
                     <p style=\"font-size: 12px; color: #888888; font-style: italic; margin: 10px 0 0 0; text-align: center;\">
                         Gemini 加入音樂生成模型 Lyria 3。( 圖 / 翻攝自 Google 官網 )
                     </p>
@@ -279,139 +279,139 @@ const bodyContent = `        <div class="outline-box">
             </div>
             <div class="roundup-grid">
                 <a href="https://www.msn.com/zh-tw/news/other/yahoo也做ai搜尋了-全新回答引擎scout整合新聞-購物與財經內容/ar-AA1V7YcF" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/vfCLuBX.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/vfCLuBX.jpg');"></div>
                     <div class="roundup-content">
                         <p>1. Yahoo也做AI搜尋了! 全新回答引擎Scout整合新聞、購物與財經內容</p>
                     </div>
                 </a>
                 <a href="https://www.bnext.com.tw/article/85510/google-ai-pro" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/tlAtuEl.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/tlAtuEl.jpg');"></div>
                     <div class="roundup-content">
                         <p>2. 台灣也能訂閱Google AI Plus了！月付260元，跟AI Pro、AI Ultra方案差在哪？</p>
                     </div>
                 </a>
                 <a href="https://www.perplexity.ai/hub/blog/finish-your-annual-plan-faster-with-perplexity" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/Bxz2KXc.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/Bxz2KXc.jpg');"></div>
                     <div class="roundup-content">
                         <p>3. Finish Your Annual Plan Faster With Perplexity</p>
                     </div>
                 </a>
                 <a href="https://www.ithome.com.tw/news/173660" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/TCN2Wj4.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/TCN2Wj4.jpg');"></div>
                     <div class="roundup-content">
                         <p>4. Chrome導入Auto Browse，AI開始接手瀏覽器操作</p>
                     </div>
                 </a>
                 <a href="https://www.gvm.com.tw/article/127376" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/KeByTwX.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/KeByTwX.jpg');"></div>
                     <div class="roundup-content">
                         <p>5. 當Claude發布Cowork，工程師、白領工作誰遭砍？</p>
                     </div>
                 </a>
                 <a href="https://www.blocktempo.com/what-is-moltbook-the-ai-community-platform/" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/imnhGvQ.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/imnhGvQ.jpg');"></div>
                     <div class="roundup-content">
                         <p>6. AI 社群平台 Moltbook 是什麼？OpenClaw 自創宗教</p>
                     </div>
                 </a>
                 <a href="https://www.incgmedia.com/spotlight/how-pixar-animators-and-ai-researchers-made-dear-upstairs-neighbors" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/W0eK65d.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/W0eK65d.jpg');"></div>
                     <div class="roundup-content">
                         <p>7. 皮克斯動畫師與 Google DeepMind 團隊共創動畫短片</p>
                     </div>
                 </a>
                 <a href="https://www.techbang.com/posts/127759-xai-grok-imagine-10s-video-audio" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/BhMtVh5.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/BhMtVh5.jpg');"></div>
                     <div class="roundup-content">
                         <p>8. xAI 正式發表 Grok Imagine 1.0：10 秒 720p 影片隨手產</p>
                     </div>
                 </a>
                 <a href="https://news.cnyes.com/news/print/6337821" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/PwRL2PC.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/PwRL2PC.jpg');"></div>
                     <div class="roundup-content">
                         <p>9. 超級盃最貴火藥味 Anthropic廣告大酸對手 OpenAI採感性訴求</p>
                     </div>
                 </a>
                 <a href="https://techcrunch.com/2026/02/06/it-just-got-easier-for-claude-to-check-in-on-your-wordpress-site/" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/BpwuI43.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/BpwuI43.jpg');"></div>
                     <div class="roundup-content">
                         <p>10. It just got easier for Claude to check in on your WordPress site</p>
                     </div>
                 </a>
                 <a href="https://autos.udn.com/autos/amp/story/7832/9341765" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/kJBpaE2.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/kJBpaE2.jpg');"></div>
                     <div class="roundup-content">
                         <p>11. CarPlay 重大升級！iOS 26.4 導入影音串流 支援 ChatGPT</p>
                     </div>
                 </a>
                 <a href="https://www.bnext.com.tw/article/90032/anthropic-claude-opus-4-6-ai-model-breakthrough-and-applications" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/On8jwco.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/On8jwco.jpg');"></div>
                     <div class="roundup-content">
                         <p>12. AI痛擊白領工作！Anthropic推出旗艦模型Opus 4.6</p>
                     </div>
                 </a>
                 <a href="https://ai.ettoday.net/amp/amp_news.php7?news_id=3116535" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/1ehHmCA.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/1ehHmCA.jpg');"></div>
                     <div class="roundup-content">
                         <p>13. 免費AI撐不下去了？OpenAI解釋ChatGPT為何開始導入廣告</p>
                     </div>
                 </a>
                 <a href="https://ai.ettoday.net/amp/amp_news.php7?news_id=3118914" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/7fvjQVv.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/7fvjQVv.jpg');"></div>
                     <div class="roundup-content">
                         <p>14. Airbnb三分之一客服改由AI處理 工程師八成已導入AI工具</p>
                     </div>
                 </a>
                 <a href="https://ai.ettoday.net/amp/amp_news.php7?news_id=3110343" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/fkuCcUH.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/fkuCcUH.jpg');"></div>
                     <div class="roundup-content">
                         <p>15. 阿里巴巴升級Qwen AI功能 一句話就能買東西</p>
                     </div>
                 </a>
                 <a href="https://www.blocktempo.com/google-gemini-3-deep-think-arc-agi-benchmark/" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/Ff0DWL8.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/Ff0DWL8.jpg');"></div>
                     <div class="roundup-content">
                         <p>16. Google Gemini 3 Deep Think 大升級：要最強</p>
                     </div>
                 </a>
                 <a href="https://www.bigmedia.com.tw/article/1771046118469" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/SqnRwnF.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/SqnRwnF.jpg');"></div>
                     <div class="roundup-content">
                         <p>17. 科技遇上愛情：矽谷菁英用AI與數據尋找真愛的新嘗試</p>
                     </div>
                 </a>
                 <a href="https://www.bbc.com/zhongwen/articles/cwy964g856go/trad.amp" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/LUywz8u.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/LUywz8u.jpg');"></div>
                     <div class="roundup-content">
                         <p>18. Seedance 2.0: 這款中國AI應用程式令好萊塢陷入恐慌</p>
                     </div>
                 </a>
                 <a href="https://www.newmobilelife.com/2026/02/20/google-gemini-3-1-pro-ai-reasoning/" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/epgKxSl.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/epgKxSl.jpg');"></div>
                     <div class="roundup-content">
                         <p>19. Gemini 3.1 Pro 登場 大幅提升 AI 邏輯推理能力</p>
                     </div>
                 </a>
                 <a href="https://mrmad.com.tw/ios-264-beta2-new-features" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/CWdbDXW.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/CWdbDXW.jpg');"></div>
                     <div class="roundup-content">
                         <p>20. iOS 26.4 Beta 2更新釋出！新版11項重點功能細節全面看</p>
                     </div>
                 </a>
                 <a href="https://news.cnyes.com/news/id/6348175" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/9EEbCU8.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/9EEbCU8.jpg');"></div>
                     <div class="roundup-content">
                         <p>21. 有鏡頭！OpenAI被曝最快一年內推出AI音箱</p>
                     </div>
                 </a>
                 <a href="https://udn.com/news/story/6809/9341597" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/4h4lBCJ.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/4h4lBCJ.jpg');"></div>
                     <div class="roundup-content">
                         <p>22. 槍手ChatGPT遭封鎖卻未通報 加拿大召見OpenAI高層</p>
                     </div>
                 </a>
                 <a href="https://blog.google/products/ads-commerce/digital-advertising-commerce-2026/" target="_blank" class="roundup-card">
-                    <div class="roundup-image" style="background-image: url('https://i.meee.com.tw/PUTWTOZ.jpg');"></div>
+                    <div class="roundup-image" style="background-image: url('https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/PUTWTOZ.jpg');"></div>
                     <div class="roundup-content">
                         <p>23. What to expect in digital advertising and commerce in 2026</p>
                     </div>

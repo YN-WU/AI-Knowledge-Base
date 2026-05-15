@@ -14,3 +14,9 @@
 # One-off scripts and scratch files
 patch.js
 scratch/
+
+# 圖床搬遷產物（圖片本體已在 ainews-images repo，本機不需進版控）
+images/
+_image-report.json
+migrate-images.js
+replace-image-urls.js
