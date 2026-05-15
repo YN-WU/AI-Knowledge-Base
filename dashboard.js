@@ -1682,7 +1682,6 @@ function ogBuildEmailHTML(opts) {
           </table>
         </td></tr>
 
-        <tr><td style="padding:0 32px 18px 32px;"><h2 style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:26px; font-weight:900; color:#0a2540; letter-spacing:-0.3px; line-height:1.3;">本期重點</h2></td></tr>
 ${articlesHtml}
 
         <tr><td style="padding:8px 32px 32px 32px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td style="border-top:1px solid #e5e7eb; font-size:1px; line-height:1px;">&nbsp;</td></tr></table></td></tr>
