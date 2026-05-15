@@ -299,25 +299,13 @@
             <input type="text" id="ogMonthLabel" value="2026 年 5 月號" placeholder="例：2026 年 5 月號">
           </div>
           <div class="og-field">
-            <label>篩選日期（填了就抓那天之後全部，不填用下方篇數）</label>
+            <label>篩選日期</label>
             <input type="date" id="ogCutoffDate" placeholder="YYYY-MM-DD">
           </div>
-          <div class="og-field">
-            <label>重點趨勢（篇）</label>
-            <input type="number" id="ogArticleCount" value="3" min="0" max="10">
-          </div>
-          <div class="og-field">
-            <label>Prompt 技巧分享（篇）</label>
-            <input type="number" id="ogPromptCount" value="0" min="0" max="10">
-          </div>
-          <div class="og-field">
-            <label>AI 工具介紹（篇）</label>
-            <input type="number" id="ogToolIntroCount" value="1" min="0" max="10">
-          </div>
-          <div class="og-field">
-            <label>30 秒趨勢（篇）</label>
-            <input type="number" id="ogSummaryCount" value="15" min="0" max="50">
-          </div>
+          <div class="og-field og-field--inline">重點趨勢：<span id="ogArticleCount">3</span> 篇</div>
+          <div class="og-field og-field--inline">Prompt 技巧分享：<span id="ogPromptCount">0</span> 篇</div>
+          <div class="og-field og-field--inline">AI 工具介紹：<span id="ogToolIntroCount">1</span> 篇</div>
+          <div class="og-field og-field--inline">30 秒看趨勢：<span id="ogSummaryCount">15</span> 篇</div>
           <div class="og-actions">
             <button class="og-btn og-btn--primary" id="ogGenerateBtn">產出</button>
             <button class="og-btn og-btn--ghost" id="ogCopyBtn">複製 HTML</button>

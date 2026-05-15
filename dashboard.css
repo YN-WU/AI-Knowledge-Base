@@ -4875,6 +4875,26 @@ footer {
   box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.1);
 }
 
+/* 篩選日期之下的四個篇數顯示，inline 排版 + 突顯數字 */
+.og-field.og-field--inline {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--text-light);
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.og-field.og-field--inline:last-of-type {
+  border-bottom: none;
+}
+.og-field.og-field--inline span {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 2px;
+}
+
 .og-actions {
   display: flex;
   flex-wrap: wrap;

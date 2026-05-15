@@ -1748,10 +1748,11 @@ function ogGenerate() {
     return;
   }
 
-  const articleCount = parseInt(document.getElementById('ogArticleCount').value) || 0;
-  const promptCount = parseInt(document.getElementById('ogPromptCount').value) || 0;
-  const toolCount = parseInt(document.getElementById('ogToolIntroCount').value) || 0;
-  const summaryCount = parseInt(document.getElementById('ogSummaryCount').value) || 0;
+  const readCount = id => parseInt(document.getElementById(id).textContent) || 0;
+  const articleCount = readCount('ogArticleCount');
+  const promptCount = readCount('ogPromptCount');
+  const toolCount = readCount('ogToolIntroCount');
+  const summaryCount = readCount('ogSummaryCount');
   const monthLabel = document.getElementById('ogMonthLabel').value.trim() || '2026 年 X 月號';
   const cutoffDateEl = document.getElementById('ogCutoffDate');
   const cutoffDate = cutoffDateEl ? cutoffDateEl.value.trim() : '';
@@ -1782,9 +1783,8 @@ function ogGenerate() {
   document.getElementById('ogPreviewFrame').srcdoc = ogCurrentHTML;
   document.getElementById('ogHtmlOutput').value = ogCurrentHTML;
 
-  const modeLabel = cutoffDate ? `日期模式：${cutoffDate} 起` : '篇數模式';
   status.className = 'og-status success';
-  status.textContent = `✓ 產出完成（${modeLabel}｜重點趨勢 ${selA.length} + Prompt ${selP.length} + 工具 ${selT.length} + 趨勢 ${selS.length}）`;
+  status.textContent = `✓ 產出完成（重點趨勢 ${selA.length} 篇 + Prompt分享 ${selP.length} 篇 + 工具介紹 ${selT.length} 篇 + 30秒趨勢 ${selS.length} 篇）`;
 }
 
 async function ogCopyHTML() {
@@ -1850,13 +1850,34 @@ function ogAutoFillCounts() {
   const sLen = (window.__weeklySummaries || []).length;
   if (aLen > 0) {
     const el = document.getElementById('ogArticleCount');
-    if (el) el.value = aLen;
+    if (el) el.textContent = aLen;
   }
   if (sLen > 0) {
     const el = document.getElementById('ogSummaryCount');
-    if (el) el.value = sLen;
+    if (el) el.textContent = sLen;
   }
   if (aLen > 0 || sLen > 0) ogCountsAutoFilled = true;
+}
+
+function ogSyncCountsFromDate() {
+  // 篩選日期改變時，把下方四個篇數欄位自動帶入「該日（含）以後的實際數量」
+  const cutoffEl = document.getElementById('ogCutoffDate');
+  if (!cutoffEl) return;
+  const cutoff = cutoffEl.value.trim();
+  if (!cutoff) return; // 沒填日期就不動，維持使用者原本手動值
+
+  const articles = window.__articles || [];
+  const prompts = window.__prompts || [];
+  const tools = (window.__toolIntros || []).filter(t => t.content || t.openInModal);
+  const summaries = window.__weeklySummaries || [];
+
+  const countSince = arr => arr.filter(it => (it.date || '') >= cutoff).length;
+
+  const setVal = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
+  setVal('ogArticleCount', countSince(articles));
+  setVal('ogPromptCount', countSince(prompts));
+  setVal('ogToolIntroCount', countSince(tools));
+  setVal('ogSummaryCount', countSince(summaries));
 }
 
 function initOutlookGenerator() {
@@ -1866,6 +1887,8 @@ function initOutlookGenerator() {
     document.getElementById('ogGenerateBtn').addEventListener('click', ogGenerate);
     document.getElementById('ogCopyBtn').addEventListener('click', ogCopyHTML);
     document.getElementById('ogDownloadBtn').addEventListener('click', ogDownloadHTML);
+    const cutoffEl = document.getElementById('ogCutoffDate');
+    if (cutoffEl) cutoffEl.addEventListener('change', ogSyncCountsFromDate);
     document.querySelectorAll('.og-tab').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.og-tab').forEach(b => b.classList.remove('active'));
