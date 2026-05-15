@@ -184,31 +184,24 @@ document.querySelectorAll('.chip').forEach(function (c) {
 });
 
 // 資料庫：Prompt 專欄數據 (含真實圖片連結)
-const promptData = [
-  { no: '017', sj: 3, cat: '基礎入門', title: '指令基礎架構：任務＋行為＋目標', sub: '新手入門必學的 Prompt 架構公式，用三元素組合出清楚的指令。', img: 'https://i.meee.com.tw/CzYn2hg.jpg' },
-  { no: '016', sj: 3, cat: '情境應用', title: 'Google 官方 10 種生活情境 Prompt', sub: 'Google 推薦的 10 種實用指令場景：客製化執行計畫、工作整理。', img: 'https://i.meee.com.tw/76YZkoN.jpg' },
-  { no: '015', sj: 3, cat: '優化技巧', title: 'Prompt Optimizer 5 步驟教學', sub: 'OpenAI 官方推出的提示詞優化器，輸入隨意指令自動改寫成標準版本。', img: 'https://i.meee.com.tw/DXaIoAR.png' },
-  { no: '014', sj: 5, cat: '優化技巧', title: '如何運用 AI 優化提示詞', sub: '三步驟教你改善 Prompt：找出問題、修改和優化、完成修改與測試。', img: 'https://i.meee.com.tw/gytRE58.jpg' },
-  { no: '013', sj: 4, cat: '生圖指令', title: 'OpenNana：300+ 生圖提示詞集', sub: '收錄 Nano Banana、GPT-4o、ChatGPT、即夢等生圖工具提示詞。', img: 'https://i.meee.com.tw/ai8D8qY.png' },
-  { no: '012', sj: 3, cat: '基礎入門', title: '「角色＋任務＋產出」三段式架構', sub: '與 AI 溝通的輕鬆入門公式，先設定角色、再講任務、最後規定產出格式。', img: 'https://i.meee.com.tw/EnrANiw.png' },
-  { no: '011', sj: 2, cat: '生圖指令', title: 'Gemini 2.5 Flash Image 生專業形象照', sub: '用 Gemini 最新生圖模型快速生成形象照、證件照。分享多組 Prompt 樣板。', img: 'https://i.meee.com.tw/GbeKH8K.jpg' },
-  { no: '010', sj: 2, cat: '模型技巧', title: 'GPT-5 提示詞使用方法重點整理', sub: 'GPT-5 推出後，Prompt 的寫法有什麼不同？官方建議與實戰心得整理。', img: 'https://i.meee.com.tw/VdWb0Dw.png' },
-  { no: '009', sj: 3, cat: '基礎入門', title: '什麼是 Prompt？用買飲料的例子告訴你', sub: '指令工坊開篇：從日常場景解釋 Prompt 核心概念，輕鬆抓到重點。', img: 'https://i.meee.com.tw/PwhTSEZ.png' }
-];
-
+// Prompt 技巧分享：資料從 data/prompt-tips.json 載入（initDashboardData 中），這裡只負責渲染
 function renderPrompts(filter = '全部') {
   const container = document.getElementById('promptContainer');
   if (!container) return;
-  const filtered = promptData.filter(it => filter === '全部' || it.cat === filter);
-  container.innerHTML = filtered.map(it => `
-    <a href="https://ainews.tvbs.ai/issues/${it.no}.html#section-jump-${it.sj}" target="_blank" class="prompt-compact-card">
-      <div class="pc-cover" style="background-image:url('${it.img}')"></div>
-      <span class="pc-cat">${it.cat}</span>
+  const prompts = (window.__prompts || []).slice();
+  const filtered = prompts.filter(it => filter === '全部' || it.tag === filter);
+  container.innerHTML = filtered.map(it => {
+    const titleEnc = encodeURIComponent(it.title).replace(/'/g, "%27");
+    return `
+    <a href="javascript:void(0)" onclick="showArticleByTitle(decodeURIComponent('${titleEnc}'))" class="prompt-compact-card">
+      <div class="pc-cover" style="background-image:url('${it.image || ''}')"></div>
+      <span class="pc-cat">${it.tag || ''}</span>
       <div class="pc-title">${it.title}</div>
-      <div class="pc-sub">${it.sub}</div>
-      <div class="pc-footer"><span class="pc-issue">收錄於第 ${parseInt(it.no)} 期</span><span>閱讀原文 →</span></div>
+      <div class="pc-sub">${(function(){ const src = (it.content || '').replace(/<div[^>]*>\s*<img[^>]*>[\s\S]*?<\/div>/gi, ''); return (typeof ogStripHtml === 'function' ? ogStripHtml(src) : '') || it.summary || ''; })()}</div>
+      <div class="pc-footer"><span class="pc-issue">${it.date || ''}</span></div>
     </a>
-  `).join('');
+  `;
+  }).join('');
 }
 
 var slideIdx = 0, slideTotal = 0;
@@ -386,6 +379,10 @@ function showArticle(data) {
       crumbParent = 'AI 工具';
       crumbCategory = 'AI 工具介紹';
       crumbPage = 'tool-intro';
+    } else if (art.source === 'Prompt 技巧分享') {
+      crumbParent = 'Prompt 專區';
+      crumbCategory = 'Prompt 技巧分享';
+      crumbPage = 'prompt-tips';
     }
     if (crumbCategory) {
       breadcrumbEl.innerHTML = `${crumbParent}<span class="crumb-sep">&gt;</span><span class="crumb-link" onclick="closeArticle();switchTab('${crumbPage}')">${crumbCategory}</span>`;
@@ -400,14 +397,10 @@ function showArticle(data) {
 
   const headerDateEl = document.getElementById('amHeaderDate');
   if (headerDateEl) {
-    if (art.source === '趨勢總覽') {
-      headerDateEl.style.display = 'none';
-    } else {
-      headerDateEl.textContent = displayDate;
-      headerDateEl.style.display = displayDate ? 'block' : 'none';
-      headerDateEl.style.textAlign = 'left';
-      headerDateEl.style.marginTop = '8px';
-    }
+    headerDateEl.textContent = displayDate;
+    headerDateEl.style.display = displayDate ? 'block' : 'none';
+    headerDateEl.style.textAlign = 'left';
+    headerDateEl.style.marginTop = '8px';
   }
 
   const coverEl = document.getElementById('amCover');
@@ -427,6 +420,19 @@ function showArticle(data) {
     if (bodyEl) {
       bodyEl.style.paddingTop = '20px';
     }
+  } else if (art.source === 'Prompt 技巧分享') {
+    // 封面圖已包在 content 內（含圖說），不再使用上方裁切型 .am-cover
+    coverEl.style.display = 'none';
+    titleEl.style.fontSize = '';
+    titleEl.style.lineHeight = '';
+    if (headerEl) {
+      headerEl.style.borderBottom = '';
+      headerEl.style.paddingBottom = '';
+      headerEl.style.marginBottom = '';
+    }
+    if (bodyEl) {
+      bodyEl.style.paddingTop = '';
+    }
   } else {
     coverEl.style.display = 'block';
     coverEl.style.backgroundImage = `url('${displayImg}')`;
@@ -445,66 +451,137 @@ function showArticle(data) {
   if (art.imgCaption) {
     bodyHtml = `<p style="font-size:12px;color:var(--text-light);margin-top:-24px;margin-bottom:24px;text-align:center">${art.imgCaption}</p>` + bodyHtml;
   }
+  // 抽出 fullContent 結尾的 link-group（內嵌來源按鈕），稍後放在「適用情境」之後渲染，避免按鈕在情境列上方
+  // 文章可能有多個 link-group（例如同期合報的雙產品比較），只抽「最後一個且位於結尾」的那個
+  let trailingLinkGroup = '';
+  {
+    const lgOpenRe = /<div[^>]*class=["'][^"']*\blink-group\b[^"']*["'][^>]*>/gi;
+    let lastOpen = null, m;
+    while ((m = lgOpenRe.exec(bodyHtml)) !== null) {
+      lastOpen = { idx: m.index, len: m[0].length };
+    }
+    if (lastOpen) {
+      let depth = 1, p = lastOpen.idx + lastOpen.len;
+      while (depth > 0 && p < bodyHtml.length) {
+        const o = bodyHtml.indexOf('<div', p);
+        const c = bodyHtml.indexOf('</div>', p);
+        if (c < 0) break;
+        if (o >= 0 && o < c) { depth++; p = o + 4; }
+        else { depth--; p = c + 6; }
+      }
+      // 只在 link-group 真的位於文章結尾時才抽（後面只剩 wrapper 收尾標籤跟空白），中段的 link-group 維持原位
+      if (depth === 0 && /^(\s|<\/(?:div|section|article)>)*$/.test(bodyHtml.slice(p))) {
+        trailingLinkGroup = bodyHtml.slice(lastOpen.idx, p);
+        // 從中間摳掉這段 link-group，保留外層 wrapper 的開合對稱
+        bodyHtml = bodyHtml.slice(0, lastOpen.idx).replace(/\s+$/, '') + bodyHtml.slice(p);
+      }
+    }
+  }
 
-  // 推導外連結：優先用 sourceUrl，其次從 art.url 推導舊版電子報網址
+  // 推導外連結：sourceUrl 為主，舊期電子報文章一律加上「閱讀電子報原始文章」備援連結
   let externalUrl = art.sourceUrl;
   let externalLabel = art.sourceLabel || '原文連結 →';
   let isLegacyLink = false;
-  if (!externalUrl && art.url && /\/issues\/[^/#]+\.html/.test(art.url)) {
+  let legacyFallbackUrl = null;
+  if (art.url && /\/issues\/[^/#]+\.html/.test(art.url)) {
     const path = art.url.startsWith('/') ? art.url : '/' + art.url;
-    externalUrl = 'https://ainews.tvbs.ai' + path;
-    externalLabel = '閱讀電子報原始文章';
+    legacyFallbackUrl = 'https://ainews.tvbs.ai' + path;
     isLegacyLink = true;
   }
+  // 若 fullContent 已內嵌 news-link 按鈕，sourceUrl 與其重複；以內嵌版為主
+  const hasInlineSourceLink = /class=["'][^"']*news-link/.test(art.fullContent || '');
+  if (hasInlineSourceLink) externalUrl = null;
   if (art.source === '趨勢總覽') {
-    // 適用情境 tags 行（在內文下方、日期/來源之上）
-    if (art.tags && art.tags.length > 0) {
-      bodyHtml += `<div class="summary-tags-row" style="margin-top:20px;">
-        <span class="summary-tags-label">適用情境：</span>
-        ${sortUsecaseTags(art.tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
-      </div>`;
+    // 適用情境 + 資料來源 並列同一行（日期已在 title 下方顯示，不再重複）
+    const sourceLinkHtml = externalUrl ? `<span style="margin-left:auto; color:var(--text-light); font-size:12px;">（<a href="${externalUrl}" target="_blank" style="color:var(--text-light); text-decoration:underline; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-light)'">資料來源</a>）</span>` : ``;
+    const tagsInline = (art.tags && art.tags.length > 0)
+      ? `<span class="summary-tags-label">適用情境：</span>${sortUsecaseTags(art.tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}`
+      : '';
+    if (tagsInline || sourceLinkHtml) {
+      bodyHtml += `<div class="summary-tags-row" style="margin-top:20px;">${tagsInline}${sourceLinkHtml}</div>`;
     }
-    let sourceLinkHtml = externalUrl ? `<span style="color:var(--text-light); font-size:14px;">（<a href="${externalUrl}" target="_blank" style="color:var(--text-light); text-decoration:underline; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-light)'">資料來源</a>）</span>` : ``;
-    bodyHtml += `<div style="display:flex; justify-content:space-between; align-items:center; margin-top:32px; padding-bottom:40px;">
-      <span style="font-size:13px; color:var(--text-light); font-weight:700;">${displayDate}</span>
-      ${sourceLinkHtml}
-    </div>`;
   } else {
-    // 原生文章的適用情境行（在「閱讀原文」按鈕之前）
-    if (art.isNative && art.tags && art.tags.length > 0) {
+    // 適用情境行（原生 + 舊期重點趨勢都顯示，在「閱讀原文」按鈕之前）
+    if ((art.isNative || isLegacyLink) && art.tags && art.tags.length > 0) {
       bodyHtml += `<div class="summary-tags-row" style="margin-top:24px;">
         <span class="summary-tags-label">適用情境：</span>
         ${sortUsecaseTags(art.tags).map(t => `<span class="usecase-tag">${t}</span>`).join('')}
       </div>`;
     }
+    // 從 fullContent 抽出來的內嵌 link-group（接在適用情境之後）
+    if (trailingLinkGroup) {
+      bodyHtml += trailingLinkGroup;
+    }
+    // 原生文章：有框框的按鈕（sourceUrl 來自 articles.json，無內嵌 news-link）
     if (externalUrl) {
-      if (isLegacyLink) {
-        // 舊期電子報：簡單文字超連結（預設灰色，hover 變青色）
-        bodyHtml += `<p style="margin-top:32px;text-align:center"><a href="${externalUrl}" target="_blank" class="legacy-source-link">${externalLabel}</a></p>`;
-      } else {
-        // 原生文章（含日期標記）：使用有框框的按鈕樣式（無上方裝飾線）
-        bodyHtml += `<p style="margin-top:32px;text-align:center"><a href="${externalUrl}" target="_blank" class="issue-hero-btn" style="padding:9px 18px; font-size:14px; display:inline-block; text-decoration:none;">${externalLabel}</a></p>`;
-      }
+      bodyHtml += `<p style="margin-top:32px;text-align:center"><a href="${externalUrl}" target="_blank" class="issue-hero-btn" style="padding:9px 18px; font-size:14px; display:inline-block; text-decoration:none;">${externalLabel}</a></p>`;
+    }
+    // 舊期電子報文章：永遠保留「閱讀電子報原始文章」備援連結（即使已有 sourceUrl 或內嵌 news-link）
+    if (legacyFallbackUrl) {
+      bodyHtml += `<p style="margin-top:32px;text-align:center"><a href="${legacyFallbackUrl}" target="_blank" class="legacy-source-link">閱讀電子報原始文章</a></p>`;
     }
   }
-  // 延伸閱讀：原生文章（articles.json）+ 舊期電子報文章都顯示，取最新 3 篇排除自己
-  if ((art.isNative || isLegacyLink) && Array.isArray(window.__articles)) {
-    const others = window.__articles.filter(a => a.title !== art.title).slice(0, 3);
+  // 延伸閱讀：依文章類型決定推薦池
+  //   重點趨勢（原生/legacy）→ 全部三類
+  //   Prompt 技巧 → 只推 Prompt
+  //   AI 工具介紹 → Prompt + 工具
+  //   30 秒看趨勢 → 只推 30 秒看趨勢（無封面圖，以文字卡呈現）
+  // 本次瀏覽看過的文章不再重複出現（刷新頁面重置）
+  window.__viewedTitles = window.__viewedTitles || new Set();
+  window.__viewedTitles.add(art.title);
+  const isPromptArt = art.source === 'Prompt 技巧分享' || art.kind === 'prompt';
+  const isToolIntroArt = art.kind === 'tool-intro';
+  const isSummaryArt = art.source === '趨勢總覽' || art.kind === 'summary';
+  if (art.isNative || isLegacyLink || isPromptArt || isToolIntroArt || isSummaryArt) {
+    const articlesArr = Array.isArray(window.__articles) ? window.__articles : [];
+    const promptsArr = Array.isArray(window.__prompts) ? window.__prompts.map(p => ({
+      title: p.title, image: p.image, tag: p.tag || 'Prompt', date: p.date
+    })) : [];
+    const toolsArr = Array.isArray(window.__toolIntros) ? window.__toolIntros
+      .filter(t => t.content || t.openInModal)
+      .map(t => ({
+        title: t.title, image: t.image, tag: t.tag || 'AI 工具介紹', date: t.date
+      })) : [];
+    const summariesArr = Array.isArray(window.__weeklySummaries) ? window.__weeklySummaries.map(s => ({
+      title: s.title, tag: s.tag || '趨勢摘要', date: s.date
+    })) : [];
+    let pool;
+    if (isPromptArt) pool = promptsArr;
+    else if (isToolIntroArt) pool = [...promptsArr, ...toolsArr];
+    else if (isSummaryArt) pool = summariesArr;
+    else pool = [...articlesArr, ...promptsArr, ...toolsArr];
+    const others = pool
+      .filter(a => !window.__viewedTitles.has(a.title))
+      .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+      .slice(0, 3);
     if (others.length > 0) {
-      const relatedHtml = others.map(a => `
-        <div class="related-card" onclick="event.stopPropagation();showArticleByTitle(decodeURIComponent('${encodeURIComponent(a.title).replace(/'/g, "%27")}'))">
-          <div class="related-cover" style="background-image:url('${a.image}')"></div>
-          <div class="related-info">
-            <span class="related-tag">${a.tag || ''}</span>
-            <h5 class="related-title">${a.title}</h5>
-            <span class="related-date">${a.date || ''}</span>
-          </div>
-        </div>
-      `).join('');
+      const relatedHtml = others.map(a => {
+        const titleEnc = encodeURIComponent(a.title).replace(/'/g, "%27");
+        const onclick = `event.stopPropagation();showArticleByTitle(decodeURIComponent('${titleEnc}'))`;
+        if (isSummaryArt) {
+          // 30 秒看趨勢：橫排單欄列表，依序顯示日期 → 分類 → 標題
+          return `
+            <div class="related-card related-card--row" onclick="${onclick}">
+              <span class="related-date">${a.date || ''}</span>
+              <span class="related-tag">${a.tag || ''}</span>
+              <h5 class="related-title">${a.title}</h5>
+            </div>`;
+        }
+        return `
+          <div class="related-card" onclick="${onclick}">
+            <div class="related-cover" style="background-image:url('${a.image}')"></div>
+            <div class="related-info">
+              <span class="related-tag">${a.tag || ''}</span>
+              <h5 class="related-title">${a.title}</h5>
+              <span class="related-date">${a.date || ''}</span>
+            </div>
+          </div>`;
+      }).join('');
+      const gridClass = isSummaryArt ? 'related-grid related-grid--list' : 'related-grid';
       bodyHtml += `
         <div class="related-articles">
           <h4 class="related-heading">延伸閱讀</h4>
-          <div class="related-grid">${relatedHtml}</div>
+          <div class="${gridClass}">${relatedHtml}</div>
         </div>`;
     }
   }
@@ -520,11 +597,7 @@ function showArticle(data) {
   }
   const footerEl = document.querySelector('.am-footer');
   if (footerEl) footerEl.style.display = 'none';
-  if (art.source === '趨勢總覽') {
-    document.querySelector('.am-body').style.paddingBottom = '0';
-  } else {
-    document.querySelector('.am-body').style.paddingBottom = '40px';
-  }
+  document.querySelector('.am-body').style.paddingBottom = '40px';
   const modal = document.getElementById('articleModal');
   modal.classList.add('active');
   // 重置 modal 內各個可滾動容器到頂部（避免沿用上一篇的滾動位置）
@@ -618,9 +691,10 @@ async function initDashboardData() {
     const results = await Promise.all([
       fetch('tvbs-ai-newsletter/issues-metadata.json').then(r => r.json()),
       fetch('tvbs-ai-newsletter/search-index.json').then(r => r.json()),
-      fetch('data/articles.json').then(r => r.ok ? r.json() : []).catch(() => []),
-      fetch('data/weekly-summaries.json').then(r => r.ok ? r.json() : []).catch(() => []),
-      fetch('data/tool-intro.json').then(r => r.ok ? r.json() : []).catch(() => [])
+      fetch('data/articles.json').then(r => r.ok ? r.json() : { items: [] }).then(d => d.items || []).catch(() => []),
+      fetch('data/weekly-summaries.json').then(r => r.ok ? r.json() : { items: [] }).then(d => d.items || []).catch(() => []),
+      fetch('data/tool-intro.json').then(r => r.ok ? r.json() : { items: [] }).then(d => d.items || []).catch(() => []),
+      fetch('data/prompt-tips.json').then(r => r.ok ? r.json() : { items: [] }).then(d => d.items || []).catch(() => [])
     ]);
     issuesData = results[0] || [];
     searchIndex = results[1] || [];
@@ -667,7 +741,8 @@ async function initDashboardData() {
           date: s.date,
           source: '趨勢總覽',
           sourceUrl: s.sourceUrl,
-          sourceLabel: '資料來源 →'
+          sourceLabel: '資料來源 →',
+          kind: 'summary'
         });
       });
 
@@ -683,14 +758,37 @@ async function initDashboardData() {
             fullContent: t.content || '',
             url: t.sourceUrl || `/tools#${t.issue}`,
             img: t.image || fallbackImg,
-            tag: t.cat || '新工具',
+            tag: t.tag || '新工具',
             date: t.date || (t.issue ? `第 ${t.issue} 期` : ''),
             source: t.issue ? `TVBS AI Newsletter 第 ${t.issue} 期` : 'AI 工具介紹',
             sourceUrl: t.sourceUrl,
             sourceLabel: t.sourceLabel,
-            imgCaption: t.imageCaption
+            imgCaption: t.imageCaption,
+            kind: 'tool-intro'
           });
         }
+      });
+
+      // Prompt 技巧分享：跟 articles 一樣走 modal
+      const prompts = (results[5] || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      window.__prompts = prompts;
+      prompts.forEach(p => {
+        searchIndex.push({
+          title: p.title,
+          id: p.id,
+          content: p.summary || '',
+          fullContent: p.content || '',
+          url: `/article-${p.id}`,
+          img: p.image,
+          tag: p.tag || 'Prompt',
+          tags: p.tags || [],
+          date: p.date,
+          source: 'Prompt 技巧分享',
+          sourceUrl: p.sourceUrl,
+          sourceLabel: p.sourceLabel,
+          imgCaption: p.imageCaption,
+          kind: 'prompt'
+        });
       });
       // 用最新文章的 metadata 當 home 的 'issue' 代理
       const latestArt = articles[0];
@@ -883,7 +981,9 @@ async function initDashboardData() {
       // 渲染重點摘要 (Homepage) — 垂直 stacked 卡片
       const summariesWrap = document.getElementById('weeklySummariesWrap');
       if (summariesWrap && Array.isArray(window.__weeklySummaries) && window.__weeklySummaries.length > 0) {
-        summariesWrap.innerHTML = window.__weeklySummaries.map(it => renderSummaryItem(it, { showSummary: true })).join('');
+        const limit = HOME_WEEKLY_SUMMARIES_LIMIT;
+        const list = limit ? window.__weeklySummaries.slice(0, limit) : window.__weeklySummaries;
+        summariesWrap.innerHTML = list.map(it => renderSummaryItem(it, { showSummary: true })).join('');
       }
       // 渲染重點摘要 (Sidebar)
       const trendSidebarWrap = document.getElementById('latestTrendsSidebarTOC');
@@ -1028,6 +1128,14 @@ const USECASE_TAG_ORDER = [
   '程式設計', '訪談記錄', '觀念學習'
 ];
 
+const CONTENT_TAG_ORDER = [
+  '模型發布', '新工具', '新功能', '應用技巧', '產業動態', '法律規範'
+];
+
+// 首頁「30 秒看趨勢」顯示篇數上限。null = 不限制（全部顯示），數字 = 顯示最新 N 篇。
+// 未來想限制時，改成數字即可（例如 HOME_WEEKLY_SUMMARIES_LIMIT = 8）。
+const HOME_WEEKLY_SUMMARIES_LIMIT = null;
+
 function sortUsecaseTags(tags) {
   return (tags || []).slice().sort((a, b) => {
     const ia = USECASE_TAG_ORDER.indexOf(a);
@@ -1058,6 +1166,13 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
     return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
   });
 
+  // 內容屬性依預定義順序排列
+  const sortedContent = Array.from(contentTags).sort((a, b) => {
+    const ia = CONTENT_TAG_ORDER.indexOf(a);
+    const ib = CONTENT_TAG_ORDER.indexOf(b);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+
   const renderRow = (label, tags, type) => {
     const chipsHtml = ['<button class="chip active" data-filter="全部" data-type="' + type + '">全部</button>']
       .concat(Array.from(tags).map(t => `<button class="chip" data-filter="${t}" data-type="${type}">${t}</button>`))
@@ -1065,7 +1180,7 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
     return `<div class="filter-row"><span class="filter-label">${label}</span><div class="chips">${chipsHtml}</div></div>`;
   };
 
-  filterContainer.innerHTML = renderRow('內容屬性：', contentTags, 'content')
+  filterContainer.innerHTML = renderRow('內容屬性：', sortedContent, 'content')
                             + renderRow('適用情境：', sortedUsecase, 'usecase');
 
   const state = { content: '全部', usecase: '全部' };
@@ -1139,7 +1254,8 @@ function renderTools() {
 function renderToolIntro() {
   var c = document.getElementById('toolIntroContainer');
   if (!c) return;
-  return fetch('data/tool-intro.json').then(function (r) { return r.json(); }).then(function (items) {
+  return fetch('data/tool-intro.json').then(function (r) { return r.json(); }).then(function (d) {
+    var items = (d && d.items) || [];
     // 有 date 的依日期由新到舊排在前面；其餘維持原 JSON 順序（舊期）
     items = items.slice().sort(function (a, b) {
       if (a.date && b.date) return b.date.localeCompare(a.date);
@@ -1155,7 +1271,7 @@ function renderToolIntro() {
         : (it.issue ? '第 ' + Number(it.issue) + ' 期' : '');
       var metaRight = it.openInModal ? '閱讀詳情 →' : '閱讀原文 →';
       var inner = '<div class="article-cover" style="background-image:url(\'' + escHtml(img) + '\')"></div>'
-        + '<span class="tag">' + escHtml(it.cat) + '</span>'
+        + '<span class="tag">' + escHtml(it.tag) + '</span>'
         + '<h4>' + escHtml(it.title) + '</h4>'
         + '<div class="summary">' + escHtml(it.sub) + '</div>'
         + '<div class="article-meta"><span>' + metaLeft + '</span><span>' + metaRight + '</span></div>';
@@ -1248,8 +1364,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (initialArticleId && typeof showArticleById === 'function') {
       showArticleById(initialArticleId);
     }
+    // Prompt 技巧分享資料從 data/prompt-tips.json 載入，需等 initDashboardData 完成
+    renderPrompts();
   });
-  renderPrompts();
   renderTools();
   renderToolIntro();
   renderPromptSites();
@@ -1369,7 +1486,7 @@ const OG_TAG_COLORS = {
   '模型發布': { bg: '#eff6ff', color: '#3b82f6', border: '#bfdbfe' },
   '新工具':   { bg: '#fff7ed', color: '#f59e0b', border: '#fde68a' },
   '新功能':   { bg: '#ecfdf5', color: '#10b981', border: '#a7f3d0' },
-  '應用技巧': { bg: '#ecfeff', color: '#06b6d4', border: '#a5f3fc' },
+  '應用技巧': { bg: '#fdf4ff', color: '#c026d3', border: '#f5d0fe' },
   '產業動態': { bg: '#f3f4f6', color: '#6b7280', border: '#d1d5db' },
   '法律規範': { bg: '#fef2f2', color: '#ef4444', border: '#fecaca' },
   // 來源 label（混入本期重點時使用）
@@ -1612,7 +1729,7 @@ function ogGenerate() {
 
   const articles = (window.__articles || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   const summaries = (window.__weeklySummaries || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-  const prompts = (typeof promptData !== 'undefined' ? promptData : []).slice();
+  const prompts = (window.__prompts || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   const toolIntros = (window.__toolIntros || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
   if (!articles.length && !summaries.length && !prompts.length && !toolIntros.length) {
@@ -1626,11 +1743,23 @@ function ogGenerate() {
   const toolCount = parseInt(document.getElementById('ogToolIntroCount').value) || 0;
   const summaryCount = parseInt(document.getElementById('ogSummaryCount').value) || 0;
   const monthLabel = document.getElementById('ogMonthLabel').value.trim() || '2026 年 X 月號';
+  const cutoffDateEl = document.getElementById('ogCutoffDate');
+  const cutoffDate = cutoffDateEl ? cutoffDateEl.value.trim() : '';
 
-  const selA = articles.slice(0, articleCount);
-  const selP = prompts.slice(0, promptCount);
-  const selT = toolIntros.slice(0, toolCount);
-  const selS = summaries.slice(0, summaryCount);
+  let selA, selP, selT, selS;
+  if (cutoffDate) {
+    // 日期模式：抓 cutoff 當天（含）以後的全部內容，忽略下面的篇數設定
+    selA = articles.filter(a => (a.date || '') >= cutoffDate);
+    selP = prompts.filter(p => (p.date || '') >= cutoffDate);
+    selT = toolIntros.filter(t => (t.date || '') >= cutoffDate);
+    selS = summaries.filter(s => (s.date || '') >= cutoffDate);
+  } else {
+    // 篇數模式：每區段取最新 N 篇
+    selA = articles.slice(0, articleCount);
+    selP = prompts.slice(0, promptCount);
+    selT = toolIntros.slice(0, toolCount);
+    selS = summaries.slice(0, summaryCount);
+  }
 
   ogCurrentHTML = ogBuildEmailHTML({
     monthLabel,
@@ -1643,8 +1772,9 @@ function ogGenerate() {
   document.getElementById('ogPreviewFrame').srcdoc = ogCurrentHTML;
   document.getElementById('ogHtmlOutput').value = ogCurrentHTML;
 
+  const modeLabel = cutoffDate ? `日期模式：${cutoffDate} 起` : '篇數模式';
   status.className = 'og-status success';
-  status.textContent = `✓ 產出完成（重點趨勢 ${selA.length} + Prompt ${selP.length} + 工具 ${selT.length} + 趨勢 ${selS.length}）`;
+  status.textContent = `✓ 產出完成（${modeLabel}｜重點趨勢 ${selA.length} + Prompt ${selP.length} + 工具 ${selT.length} + 趨勢 ${selS.length}）`;
 }
 
 async function ogCopyHTML() {

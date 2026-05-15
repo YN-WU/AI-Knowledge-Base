@@ -221,15 +221,14 @@
     <div class="container">
       <div class="page-header">
         <h2>Prompt 技巧分享</h2>
-        <p>精選 Prompt 教學、情境應用與優化技巧。</p>
+        <p>精選 Prompt 教學、情境應用與進階優化。</p>
       </div>
       <div class="chips prompt-filters">
         <button class="chip active" data-filter="全部">全部</button>
         <button class="chip" data-filter="基礎入門">基礎入門</button>
-        <button class="chip" data-filter="優化技巧">優化技巧</button>
-        <button class="chip" data-filter="生圖指令">生圖指令</button>
         <button class="chip" data-filter="情境應用">情境應用</button>
-        <button class="chip" data-filter="模型技巧">模型技巧</button>
+        <button class="chip" data-filter="進階優化">進階優化</button>
+        <button class="chip" data-filter="生圖指令">生圖指令</button>
       </div>
       <div class="prompt-list-grid" id="promptContainer">
         <!-- 由 JS 動態渲染 -->
@@ -298,6 +297,10 @@
           <div class="og-field">
             <label>月份標題</label>
             <input type="text" id="ogMonthLabel" value="2026 年 5 月號" placeholder="例：2026 年 5 月號">
+          </div>
+          <div class="og-field">
+            <label>篩選日期（填了就抓那天之後全部，不填用下方篇數）</label>
+            <input type="date" id="ogCutoffDate" placeholder="YYYY-MM-DD">
           </div>
           <div class="og-field">
             <label>重點趨勢（篇）</label>

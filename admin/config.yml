@@ -1,0 +1,152 @@
+# Sveltia CMS 設定 — TVBS AI Knowledge Base 內容後台
+# 登入方式：GitHub Personal Access Token（PAT）
+# 入口網址：https://ainews.tvbs.ai/admin/
+
+backend:
+  name: github
+  repo: YN-WU/AI-Knowledge-Base
+  branch: main
+  # Sveltia CMS 支援直接用 PAT 登入，不需要 OAuth server
+
+# 本機開發用：搭配 `npx @sveltia/cms-proxy-server` 可直接編輯本機檔案，不用 PAT
+local_backend: true
+
+# 後台右上「View Site」按鈕的連結
+site_url: https://ainews.tvbs.ai/
+display_url: https://ainews.tvbs.ai/
+
+# 圖片管理：本專案的圖片放在另一個 repo（ainews-images）透過 jsDelivr 提供
+# 所以這裡不開 CMS 內建的媒體管理（避免誤導使用者把圖傳到錯的地方）
+media_folder: ""
+public_folder: ""
+
+# 後台預覽窗用不到（前台網站本身就是預覽）
+show_preview_links: false
+
+collections:
+
+  # ============================================
+  # 1. 重點趨勢（data/articles.json）
+  # ============================================
+  - name: articles
+    label: 重點趨勢
+    label_singular: 文章
+    files:
+      - file: data/articles.json
+        name: list
+        label: 重點趨勢文章
+        format: json
+        fields:
+          - name: items
+            label: 文章
+            label_singular: 文章
+            widget: list
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.date}} · {{fields.title}}"
+            fields:
+              - { name: id, label: 'ID(純小寫 slug,全站唯一)', widget: string, hint: '例:gpt-image-2、hermes-agent。Outlook email 用 #article-{id} 連回網站' }
+              - { name: title, label: 標題, widget: string }
+              - { name: date, label: 日期, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false, picker_utc: false }
+              - { name: tag, label: '分類 (6 選 1)', widget: select, options: ['模型發布', '新工具', '新功能', '應用技巧', '產業動態', '法律規範'] }
+              - { name: tags, label: '適用情境 (13 選 1-4 個)', widget: select, multiple: true, min: 1, max: 4, options: ['圖像生成', '影片製作', '聲音處理', '寫作協助', '即時翻譯', '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究', '程式設計', '訪談記錄', '觀念學習'] }
+              - { name: summary, label: 摘要 (列表會顯示這段), widget: text }
+              - { name: image, label: 封面圖網址, widget: string, hint: '貼 jsDelivr 網址,例:https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/xxx.png' }
+              - { name: imageCaption, label: 圖片說明, widget: string, required: false, hint: '封面圖下方以斜體小字顯示' }
+              - { name: content, label: '內文(HTML)', widget: text, hint: '用 HTML 標籤(<p>、<h4>、<ul>、<strong>...)。第一段請用 <p class="first-paragraph">' }
+              - { name: sourceUrl, label: 來源網址, widget: string, required: false }
+              - { name: sourceLabel, label: 來源連結文字, widget: string, required: false, hint: '例:官方介紹 →' }
+              - { name: featured, label: 首頁 hero 候選, widget: boolean, default: false, hint: '勾選後會出現在首頁四張大圖的候選池' }
+
+  # ============================================
+  # 2. 30 秒看趨勢(data/weekly-summaries.json)
+  # ============================================
+  - name: summaries
+    label: 30 秒看趨勢
+    label_singular: 趨勢
+    files:
+      - file: data/weekly-summaries.json
+        name: list
+        label: 30 秒看趨勢列表
+        format: json
+        fields:
+          - name: items
+            label: 趨勢
+            label_singular: 趨勢
+            widget: list
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.date}} · {{fields.title}}"
+            fields:
+              - { name: id, label: 'ID(純小寫 slug,全站唯一)', widget: string, hint: '例:notebooklm-audio-guide、gemini-doc-generation' }
+              - { name: title, label: 標題, widget: string }
+              - { name: date, label: 日期, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false, picker_utc: false }
+              - { name: tag, label: '分類 (6 選 1)', widget: select, options: ['模型發布', '新工具', '新功能', '應用技巧', '產業動態', '法律規範'] }
+              - { name: tags, label: '適用情境 (13 選 1-4 個)', widget: select, multiple: true, min: 1, max: 4, options: ['圖像生成', '影片製作', '聲音處理', '寫作協助', '即時翻譯', '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究', '程式設計', '訪談記錄', '觀念學習'] }
+              - { name: summary, label: 摘要 (一個段落), widget: text }
+              - { name: sourceUrl, label: 來源網址, widget: string, required: false }
+
+  # ============================================
+  # 3. Prompt 技巧分享(data/prompt-tips.json)
+  # ============================================
+  - name: prompt-tips
+    label: Prompt 技巧分享
+    label_singular: 技巧文章
+    files:
+      - file: data/prompt-tips.json
+        name: list
+        label: Prompt 技巧分享列表
+        format: json
+        fields:
+          - name: items
+            label: 文章
+            label_singular: 文章
+            widget: list
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.date}} · {{fields.title}}"
+            fields:
+              - { name: id, label: 'ID(純小寫 slug,全站唯一)', widget: string, hint: '例:prompt-basic-structure' }
+              - { name: title, label: 標題, widget: string }
+              - { name: date, label: 日期, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false, picker_utc: false }
+              - { name: tag, label: '分類 (4 選 1)', widget: select, options: ['基礎入門', '情境應用', '進階優化', '生圖指令'] }
+              - { name: summary, label: 摘要 (一句話), widget: text }
+              - { name: image, label: 封面圖網址, widget: string, hint: '貼 jsDelivr 網址' }
+              - { name: imageCaption, label: 圖片說明, widget: string, required: false, hint: '封面圖下方以斜體小字顯示' }
+              - { name: content, label: '內文(HTML)', widget: text, hint: '用 HTML 標籤。可用 class：<div class="prompt-cover"> 封面圖+圖說 / <div class="prompt-quote"> Prompt 範例引用 / <div class="callout-warn"> 黃色提醒 / <div class="callout-tip"> 灰色小提示 / <div class="prep-box"> 使用前準備 / <div class="scenario-card"> 編號情境卡片 / <div class="step-card"> 步驟卡片 / <div class="article-list-box"> 條列灰底框' }
+              - { name: sourceUrl, label: 來源網址, widget: string, required: false, hint: '選填。留空可在 content 內嵌 <div class="link-group"><a class="news-link">...→</a></div> 排版按鈕' }
+              - { name: sourceLabel, label: 來源連結文字, widget: string, required: false, hint: '搭配 sourceUrl 使用，例:官方介紹 →' }
+
+  # ============================================
+  # 4. AI 工具介紹(data/tool-intro.json)
+  # ============================================
+  - name: tool-intros
+    label: AI 工具介紹
+    label_singular: 工具
+    files:
+      - file: data/tool-intro.json
+        name: list
+        label: AI 工具介紹列表
+        format: json
+        fields:
+          - name: items
+            label: 工具
+            label_singular: 工具
+            widget: list
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.date}} · {{fields.title}}"
+            fields:
+              - { name: id, label: 'ID(純小寫 slug,全站唯一)', widget: string, hint: '例:typeless、antigravity、notebooklm-2025' }
+              - { name: title, label: 標題, widget: string }
+              - { name: date, label: 日期, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false, picker_utc: false }
+              - { name: tag, label: '分類 (12 選 1)', widget: select, options: ['應用技巧', '代理操作', '影片生成', '筆記知識', '設計創作', '簡報設計', '對話助理', '搜尋研究', '影音處理', '工具教學', '多模態', '寫程式'] }
+              - { name: summary, label: 摘要 (一句話), widget: text }
+              - { name: sub, label: '副標題 (卡片下方顯示)', widget: text, required: false }
+              - { name: image, label: 封面圖網址, widget: string, hint: '貼 jsDelivr 網址' }
+              - { name: imageCaption, label: 圖片說明, widget: string, required: false, hint: '封面圖下方以斜體小字顯示' }
+              - { name: content, label: '內文(HTML,選填)', widget: text, required: false, hint: '填了內文,並勾下方「點擊開 modal」,點擊工具卡時會顯示完整內文' }
+              - { name: sourceUrl, label: 來源網址, widget: string, required: false }
+              - { name: sourceLabel, label: 來源連結文字, widget: string, required: false }
+              - { name: openInModal, label: '點擊時開 modal 顯示完整內文', widget: boolean, default: false }
+              - { name: featured, label: 首頁 hero 候選, widget: boolean, default: false }
