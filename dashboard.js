@@ -1917,7 +1917,7 @@ function ogBuildEmailHTML(opts) {
 
         <tr><td style="padding:40px 32px 28px 32px;">
           <p style="margin:0 0 14px 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:12px; font-weight:700; color:#5b5bd6; letter-spacing:1.5px;">──&nbsp;&nbsp;${ogEsc(opts.monthLabel)}</p>
-          <h1 style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:34px; font-weight:900; color:#0a2540; line-height:1.2; letter-spacing:-0.5px;">本期 AI 趨勢</h1>
+          <h1 style="margin:0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:34px; font-weight:900; color:#0a2540; line-height:1.2; letter-spacing:-0.5px;">精選 AI 趨勢</h1>
         </td></tr>
 
         <tr><td style="padding:0 32px 32px 32px;">
