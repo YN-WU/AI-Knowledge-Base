@@ -737,7 +737,7 @@ main {
   line-height: 1.25;
   letter-spacing: -0.01em;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
-  margin: 6px 0 0 0;
+  margin: 14px 0 0 0;
   max-width: 95%;
 }
 
@@ -4869,6 +4869,7 @@ footer {
   }
   .reader-flow .hero-main-title {
     font-size: 24px;
+    margin-top: 6px;       /* 手機版保留貼緊 tag 的緊湊感 */
   }
   .reader-flow .hero-side .hero-small {
     min-height: 240px;          /* 跟 hero-main 同高度，視覺上四張一樣大 */
