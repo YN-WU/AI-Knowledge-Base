@@ -2110,6 +2110,7 @@ main {
   width: 100%;
   max-height: 85vh;
   overflow-y: auto;
+  overscroll-behavior: contain;     /* 同 article modal：滾到底時不傳到背後分頁 */
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.18);
   transform: scale(0.92) translateY(20px);
   transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -2263,6 +2264,7 @@ main {
   max-width: 860px;
   max-height: 85vh;
   overflow-y: auto;
+  overscroll-behavior: contain;     /* 滾到底/頂時不要把滾動傳到背後分頁（scroll chaining） */
   border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.18);
