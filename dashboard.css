@@ -3740,7 +3740,7 @@ footer {
   color: var(--text-light);
 }
 
-/* 30 秒看趨勢延伸閱讀：單欄列表（每行：日期 → 分類 → 標題） */
+/* 10 秒看趨勢延伸閱讀：單欄列表（每行：日期 → 分類 → 標題） */
 .related-grid.related-grid--list {
   grid-template-columns: 1fr;
   gap: 8px;
@@ -3920,7 +3920,7 @@ footer {
   overflow: hidden;
 }
 
-/* 緊湊版：橫向 list（30秒看趨勢 dedicated page）*/
+/* 緊湊版：橫向 list（10 秒看趨勢 dedicated page）*/
 .summary-list-item--compact {
   grid-template-columns: 1fr auto;
   column-gap: 14px;
@@ -4259,7 +4259,7 @@ footer {
     font-size: 15px;
   }
 
-  /* 30 秒看趨勢列表第一張卡片的 padding 也縮，整體距離更緊湊 */
+  /* 10 秒看趨勢列表第一張卡片的 padding 也縮，整體距離更緊湊 */
   .summary-list-item--compact { padding-top: 8px; padding-bottom: 8px; }
   /* filter-rows 容器在手機上沒實際內容（chips 隱藏、按鈕/panel 已被搬走），歸零 margin */
   .filter-rows { margin: 0; }
@@ -4796,7 +4796,7 @@ footer {
     padding: 3px 10px;
   }
 
-  /* 30 秒看趨勢延伸閱讀：手機版改 stacked — 日期+tag 縮成小字 inline 第一行，標題獨佔一行完整顯示 */
+  /* 10 秒看趨勢延伸閱讀：手機版改 stacked — 日期+tag 縮成小字 inline 第一行，標題獨佔一行完整顯示 */
   .related-card.related-card--row {
     display: flex;
     flex-wrap: wrap;
@@ -4828,14 +4828,14 @@ footer {
     line-height: 1.5;
   }
 
-  /* 30秒分頁緊湊列表：箭頭靠右，收掉右邊空白 */
+  /* 10秒分頁緊湊列表：箭頭靠右，收掉右邊空白 */
   .summary-list-item--compact {
     padding-right: 4px;
   }
   .summary-list-item--compact .chevron-icon {
     padding-right: 0;
   }
-  /* 30秒分頁：tag + 日期 + 適用情境 改回堆疊在標題上方、靠左對齊 */
+  /* 10秒分頁：tag + 日期 + 適用情境 改回堆疊在標題上方、靠左對齊 */
   .summary-list-item--compact .sli-compact-body {
     display: flex;
     flex-direction: column;
@@ -4846,7 +4846,7 @@ footer {
   .summary-list-item--compact .sli-date {
     order: 0;
   }
-  /* 手機版 30 秒看趨勢分頁：tag 跟日期改成水平 flex 靠左對齊（覆寫桌機的 grid 置中 layout） */
+  /* 手機版 10 秒看趨勢分頁：tag 跟日期改成水平 flex 靠左對齊（覆寫桌機的 grid 置中 layout） */
   .summary-list-item--compact .sli-meta {
     display: flex;
     flex-direction: row;
@@ -4986,7 +4986,7 @@ footer {
   padding-top: 12px;
 }
 
-/* --- 30秒看趨勢 list inside reader --- */
+/* --- 10 秒看趨勢 list inside reader --- */
 .reader-flow #weeklySummariesWrap {
   display: flex;
   flex-direction: column;

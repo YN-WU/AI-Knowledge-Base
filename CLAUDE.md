@@ -10,7 +10,7 @@ TVBS AI 電子報延伸的知識庫網站，部署於 Netlify（https://ainews.t
 - `ai-newsletter-dashboard.html` + `dashboard.js` + `dashboard.css` — 主站 SPA dashboard
 - `data/*.json` — 內容資料來源
   - `data/articles.json` — 重點趨勢（原生長文）
-  - `data/weekly-summaries.json` — 30 秒看趨勢
+  - `data/weekly-summaries.json` — 10 秒看趨勢
   - `data/prompt-tips.json` — Prompt 技巧分享
   - `data/tool-intro.json` — AI 工具介紹
 - `admin/` — Sveltia CMS 後台（編輯 data/*.json 不用碰程式碼）
@@ -27,9 +27,9 @@ TVBS AI 電子報延伸的知識庫網站，部署於 Netlify（https://ainews.t
 2. `admin/config.yml` 對應 collection 的 select options
 3. `ai-newsletter-dashboard.html` 對應分頁的篩選 chip buttons
 
-### 1. 30秒看趨勢 + 重點趨勢（雙層 tag）
+### 1. 10 秒看趨勢 + 重點趨勢（雙層 tag）
 
-`data/weekly-summaries.json`（30秒看趨勢）與 `data/articles.json`（重點趨勢）共用同一套雙層分類。
+`data/weekly-summaries.json`（10 秒看趨勢）與 `data/articles.json`（重點趨勢）共用同一套雙層分類。
 
 **第一層：內容屬性 `tag`（單一字串）**
 
@@ -94,13 +94,13 @@ TVBS AI 電子報延伸的知識庫網站，部署於 Netlify（https://ainews.t
 
 `data/tool-intro.json` 用單層 `tag`（2026-05 從 `cat` rename 為 `tag` 統一欄位命名），分類全部對應「工具用途/應用情境」，目前選項：應用技巧 / 代理操作 / 影片生成 / 筆記知識 / 設計創作 / 簡報設計 / 對話助理 / 搜尋研究 / 影音處理 / 工具教學 / 多模態 / 寫程式。
 
-**命名歷史**：原本有「新工具」tag 過於籠統（只描述「這是新的」、沒說用途），2026-05 已移除並 rename 為「代理操作」— 對應 AI agent 類工具（Antigravity、Claude Computer Use、Operator 等）。整套分類本質是「這個工具能幫你做什麼」，跟 30秒看趨勢/重點趨勢的新聞型 tag（描述新聞類型）設計目的不同。
+**命名歷史**：原本有「新工具」tag 過於籠統（只描述「這是新的」、沒說用途），2026-05 已移除並 rename 為「代理操作」— 對應 AI agent 類工具（Antigravity、Claude Computer Use、Operator 等）。整套分類本質是「這個工具能幫你做什麼」，跟 10 秒看趨勢/重點趨勢的新聞型 tag（描述新聞類型）設計目的不同。
 
 ---
 
 ## 舊文資料治理政策
 
-跨所有 collection（重點趨勢/30秒看趨勢/Prompt 技巧分享/AI 工具介紹）的內容資料治理原則：
+跨所有 collection（重點趨勢/10 秒看趨勢/Prompt 技巧分享/AI 工具介紹）的內容資料治理原則：
 
 **舊文章維持原狀**，包含但不限於：
 - 缺少 `id` 欄位（例：tool-intro.json 21 篇中有 20 篇沒 id，2026-05 確認不補）

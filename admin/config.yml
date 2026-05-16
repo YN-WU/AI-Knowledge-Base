@@ -59,15 +59,15 @@ collections:
               - { name: featured, label: 首頁 hero 候選, widget: boolean, default: false, hint: '勾選後會出現在首頁四張大圖的候選池' }
 
   # ============================================
-  # 2. 30 秒看趨勢(data/weekly-summaries.json)
+  # 2. 10 秒看趨勢(data/weekly-summaries.json)
   # ============================================
   - name: summaries
-    label: 30 秒看趨勢
+    label: 10 秒看趨勢
     label_singular: 趨勢
     files:
       - file: data/weekly-summaries.json
         name: list
-        label: 30 秒看趨勢列表
+        label: 10 秒看趨勢列表
         format: json
         fields:
           - name: items

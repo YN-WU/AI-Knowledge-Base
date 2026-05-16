@@ -39,7 +39,7 @@ AI NEWS LETTER/
 │
 ├── data/                            # 新版 Dashboard 的資料源
 │   ├── articles.json                #   重點趨勢的文章
-│   ├── weekly-summaries.json        #   30 秒看趨勢
+│   ├── weekly-summaries.json        #   10 秒看趨勢
 │   ├── tool-intro.json              #   AI 工具介紹
 │   ├── tools.json                   #   AI 工具資源目錄
 │   └── prompt-sites.json            #   PROMPT 資源網站
@@ -84,7 +84,7 @@ python -m http.server 8000
 |------|------------|---------|------------|
 | 首頁 | `#page-home` | `articles.json` + `weekly-summaries.json` | `renderSummaryItem()` |
 | 重點趨勢 | `#page-news` | `articles.json` | trendGrid loop |
-| 30 秒看趨勢 | `#page-summaries` | `weekly-summaries.json` | `renderSummaryItem()` |
+| 10 秒看趨勢 | `#page-summaries` | `weekly-summaries.json` | `renderSummaryItem()` |
 | Prompt 技巧分享 | `#page-prompt-tips` | `prompt-tips.json` | `renderPrompts()` |
 | Prompt 資源庫 | `#page-prompt-sites` | `prompt-sites.json` | `renderPromptSites()` |
 | AI 工具介紹 | `#page-tool-intro` | `tool-intro.json` | toolIntroContainer |
@@ -113,7 +113,7 @@ python -m http.server 8000
 
 ### 渲染邏輯
 
-按了篩選日期就會抓「該日（含）以後」的所有內容（重點趨勢 + Prompt + AI 工具介紹 + 30 秒看趨勢）餵進 Outlook 模板，**沒有篇數上限**、篩出來幾筆就放幾筆。原本的「篇數模式」已移除 — 流程簡化成「日期決定一切」。
+按了篩選日期就會抓「該日（含）以後」的所有內容（重點趨勢 + Prompt + AI 工具介紹 + 10 秒看趨勢）餵進 Outlook 模板，**沒有篇數上限**、篩出來幾筆就放幾筆。原本的「篇數模式」已移除 — 流程簡化成「日期決定一切」。
 
 ### 工作流程
 
@@ -136,7 +136,7 @@ python -m http.server 8000
 
 站內 4 種內容類型用不同結構的 tag，詳細規範與命名歷史見專案根目錄的 [CLAUDE.md](CLAUDE.md)（Claude Code 對話會自動載入）。重點摘要：
 
-### 重點趨勢 + 30 秒看趨勢（雙層 tag）
+### 重點趨勢 + 10 秒看趨勢（雙層 tag）
 
 每筆條目都有兩個欄位：
 
@@ -190,7 +190,7 @@ python -m http.server 8000
 | 重點趨勢（原生 + legacy） | 重點趨勢 + Prompt + AI 工具介紹 全 3 類混合，純粹依日期 desc 排 |
 | Prompt 技巧分享 | **Prompt 優先**：先放未看過的 Prompt（依日期），用完才從 工具介紹 + 重點趨勢 依日期遞補 |
 | AI 工具介紹 | **工具優先**：先放未看過的 工具（依日期），用完才從 Prompt + 重點趨勢 依日期遞補 |
-| 30 秒看趨勢 | 只從 30 秒看趨勢 池抓（橫排單欄列表，無縮圖） |
+| 10 秒看趨勢 | 只從 10 秒看趨勢 池抓（橫排單欄列表，無縮圖） |
 
 **去重機制**：本次瀏覽看過的文章（`window.__viewedTitles` Set）不再出現在後續延伸閱讀，瀏覽器刷新後重置。
 
@@ -229,7 +229,7 @@ python -m http.server 8000
 - `image`：用自有圖床的 jsDelivr 網址（見下方「圖片素材」段落），不要用免費圖床
 - **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可。外部（Outlook email）連回文章用 `#article-{id}`，dashboard 載入時會自動開對應 modal
 
-### 新增「30 秒看趨勢」條目
+### 新增「10 秒看趨勢」條目
 
 編輯 `data/weekly-summaries.json`：
 
@@ -324,17 +324,17 @@ TVBS Logo 用 CSS filter 著色：
 首頁採 Substack / Medium / Notion 風的 **單欄置中閱讀版型**：
 
 - 最大寬度 760px、置中
-- 區塊垂直堆疊：Masthead → Overview band → Hero → 30秒看趨勢 → 內部工具 → 黑客松
+- 區塊垂直堆疊：Masthead → Overview band → Hero → 10 秒看趨勢 → 內部工具 → 黑客松
 - 每個區塊間用細短分隔線 `<hr class="reader-divider">` 區分
 - 樣式集中在 dashboard.css 的 `/* Document Reader Mode */` 區段
 
 ### Responsive 篩選 UI（桌機 chip / 手機 dropdown）
 
-重點趨勢、30秒看趨勢、Prompt 技巧分享三個分頁的分類篩選同套機制、桌機/手機兩種視覺：
+重點趨勢、10 秒看趨勢、Prompt 技巧分享三個分頁的分類篩選同套機制、桌機/手機兩種視覺：
 
 - **桌機**：橫排 chip 列（保留原本 UX）
 - **手機**：標題右側「分類篩選 ▾」按鈕，點開浮層 dropdown
-  - 雙層 filter（趨勢/30秒看趨勢）：兩個 `<select>` — 內容屬性 + 適用情境
+  - 雙層 filter（趨勢/10 秒看趨勢）：兩個 `<select>` — 內容屬性 + 適用情境
   - 單層 filter（Prompt）：直接列選項按鈕，點選即套用 + 自動收合
   - 篩選按鈕用 wrapper 包按鈕+panel 後塞進 h2，浮層用 `position: absolute; top: 100%` 黏緊按鈕下方
   - 有選分類時 page-header 底線下方出現「目前篩選分類：xxx」提示色塊（含一鍵清除 ✕），只在手機版顯示
@@ -451,13 +451,19 @@ TVBS Logo 用 CSS filter 著色：
 
 → `dashboard.js` 內舊版的 `promptData` 陣列已移除。新增/編輯走 JSON 檔（或 CMS）。
 
-### 8. 首頁「30 秒看趨勢」顯示篇數開關
+### 8. 首頁「10 秒看趨勢」顯示篇數開關
 
 → `dashboard.js` 頂部有常數 `HOME_WEEKLY_SUMMARIES_LIMIT`。`null` = 不限制（目前狀態）、改成數字（如 `8`）就會只顯示最新 N 篇。發完電子報想清空首頁時可以暫時改成小數字。
 
 ### 9. CLAUDE.md 是 tag 體系的 source of truth
 
 → 任何 tag 規則調整要先更 [CLAUDE.md](CLAUDE.md)（會被 Claude Code 對話自動載入），README 跟 admin/config.yml 跟著對齊。
+
+### 10. 分頁名稱「30 秒看趨勢」已 rename 為「10 秒看趨勢」（2026-05）
+
+→ 全站 8 個檔（HTML/CSS/JS/CMS/README/CLAUDE/Outlook 模板）所有 UI 字串、註解、文件已同步。
+→ 資料檔仍叫 `weekly-summaries.json`（JSON 檔名沒改，內部 page id 仍為 `summaries`）。
+→ 跟「30 秒原創音樂」「30 秒影片」等「真實時間單位」的文案無關，那些保留原樣。
 
 ---
 

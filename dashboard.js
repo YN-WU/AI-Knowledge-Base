@@ -48,7 +48,7 @@ function switchTab(page) {
     const titleMap = {
       home: '首頁',
       news: '重點趨勢',
-      summaries: '30秒看趨勢',
+      summaries: '10 秒看趨勢',
       'prompt-tips': 'Prompt 技巧分享',
       'prompt-sites': 'Prompt 資源庫',
       'tool-intro': 'AI 工具介紹',
@@ -391,7 +391,7 @@ function showArticle(data) {
       crumbPage = 'news';
     } else if (art.source === '趨勢總覽') {
       crumbParent = 'AI 趨勢消息';
-      crumbCategory = '30秒看趨勢';
+      crumbCategory = '10 秒看趨勢';
       crumbPage = 'summaries';
     } else if (art.source === 'AI 工具介紹') {
       crumbParent = 'AI 工具';
@@ -543,7 +543,7 @@ function showArticle(data) {
   //   重點趨勢（原生/legacy）→ 全部三類
   //   Prompt 技巧 → 只推 Prompt
   //   AI 工具介紹 → Prompt + 工具
-  //   30 秒看趨勢 → 只推 30 秒看趨勢（無封面圖，以文字卡呈現）
+  //   10 秒看趨勢 → 只推 10 秒看趨勢（無封面圖，以文字卡呈現）
   // 本次瀏覽看過的文章不再重複出現（刷新頁面重置）
   window.__viewedTitles = window.__viewedTitles || new Set();
   window.__viewedTitles.add(art.title);
@@ -563,7 +563,7 @@ function showArticle(data) {
     const summariesArr = Array.isArray(window.__weeklySummaries) ? window.__weeklySummaries.map(s => ({
       title: s.title, tag: s.tag || '趨勢摘要', date: s.date
     })) : [];
-    // Prompt / 工具介紹 同類優先：自己類用滿才從其他類遞補；重點趨勢、30秒看趨勢維持原本邏輯
+    // Prompt / 工具介紹 同類優先：自己類用滿才從其他類遞補；重點趨勢、10 秒看趨勢維持原本邏輯
     const filterUnviewed = arr => arr.filter(a => !window.__viewedTitles.has(a.title));
     const byDateDesc = (a, b) => (b.date || '').localeCompare(a.date || '');
     let candidates;
@@ -587,7 +587,7 @@ function showArticle(data) {
         const titleEnc = encodeURIComponent(a.title).replace(/'/g, "%27");
         const onclick = `event.stopPropagation();showArticleByTitle(decodeURIComponent('${titleEnc}'))`;
         if (isSummaryArt) {
-          // 30 秒看趨勢：橫排單欄列表，依序顯示日期 → 分類 → 標題
+          // 10 秒看趨勢：橫排單欄列表，依序顯示日期 → 分類 → 標題
           return `
             <div class="related-card related-card--row" onclick="${onclick}">
               <span class="related-date">${a.date || ''}</span>
@@ -833,7 +833,7 @@ async function initDashboardData() {
       const summariesArr = window.__weeklySummaries || [];
       const overviewSource = [...articlesArr, ...summariesArr];
 
-      // 期間 meta — 從首頁所有文章 + 30秒趨勢的日期推算「最舊 ～ 最新」
+      // 期間 meta — 從首頁所有文章 + 10秒趨勢的日期推算「最舊 ～ 最新」
       const readerMetaEl = document.getElementById('readerIssueMeta');
       if (readerMetaEl) {
         const allDates = overviewSource.map(it => it.date).filter(Boolean)
@@ -1103,7 +1103,7 @@ async function initDashboardData() {
 // 雙層 chip filter：自動掃描 data-content-tag / data-usecase-tags 產生 chips，
 // 點擊套用 AND 篩選，「全部」清除該排
 // 適用情境 tag 的顯示順序（指定排列，沒在這裡列的會排到最後）
-// 統一渲染「30 秒看趨勢」列表項目 — 垂直 stacked layout
+// 統一渲染「10 秒看趨勢」列表項目 — 垂直 stacked layout
 function renderSummaryItem(it, opts) {
   opts = opts || {};
   const contentTag = it.tag || (typeof getTag === 'function' ? getTag(it.title) : '');
@@ -1162,7 +1162,7 @@ const CONTENT_TAG_ORDER = [
   '模型發布', '新工具', '新功能', '應用技巧', '產業動態', '法律規範'
 ];
 
-// 首頁「30 秒看趨勢」顯示篇數上限。null = 不限制（全部顯示），數字 = 顯示最新 N 篇。
+// 首頁「10 秒看趨勢」顯示篇數上限。null = 不限制（全部顯示），數字 = 顯示最新 N 篇。
 // 未來想限制時，改成數字即可（例如 HOME_WEEKLY_SUMMARIES_LIMIT = 8）。
 const HOME_WEEKLY_SUMMARIES_LIMIT = null;
 
@@ -1663,7 +1663,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2) 用 source 欄位轉成易讀標籤
     var src = r.source || '';
     if (src === 'TVBS AI 知識庫') return '重點趨勢';
-    if (src === '趨勢總覽') return '30 秒看趨勢';
+    if (src === '趨勢總覽') return '10 秒看趨勢';
     if (src === 'AI 新聞快訊') return '新聞快訊';
     if (src === 'AI 工具介紹' || /AI Newsletter 第/.test(src)) return 'AI 工具介紹';
     return src || '';
@@ -1886,7 +1886,7 @@ function ogRenderSummary(s, isLast) {
 }
 
 function ogBuildEmailHTML(opts) {
-  // 本期重點：重點趨勢 + Prompt + 工具介紹 全部混排，各自帶 tag，無 sub-heading
+  // 本期重點：重點趨勢 + Prompt + AI 工具介紹 全部混排，各自帶 tag，無 sub-heading
   const benItems = [
     ...(opts.articles || []).map(x => ogNormalizeItem(x, 'article')),
     ...(opts.prompts || []).map(x => ogNormalizeItem(x, 'prompt')),
@@ -1931,7 +1931,7 @@ ${articlesHtml}
         <tr><td style="padding:8px 32px 32px 32px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td style="border-top:1px solid #e5e7eb; font-size:1px; line-height:1px;">&nbsp;</td></tr></table></td></tr>
 
         <tr><td style="padding:0 32px 0 32px;">
-          <h2 style="margin:0 0 8px 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:26px; font-weight:900; color:#0a2540; letter-spacing:-0.3px; line-height:1.3;">30 秒看趨勢</h2>
+          <h2 style="margin:0 0 8px 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:26px; font-weight:900; color:#0a2540; letter-spacing:-0.3px; line-height:1.3;">10 秒看趨勢</h2>
           <p style="margin:0 0 20px 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:14px; color:#6b7280; line-height:1.6;">用一個段落快速告訴你，最近 AI 界發生什麼事。</p>
         </td></tr>
 ${summariesHtml}
@@ -2028,7 +2028,7 @@ function ogGenerate() {
 
   status.className = 'og-status success';
   status.classList.remove('og-hidden');
-  status.textContent = `✓ 產出完成（重點趨勢 ${selA.length} 篇 + Prompt分享 ${selP.length} 篇 + 工具介紹 ${selT.length} 篇 + 30秒趨勢 ${selS.length} 篇）`;
+  status.textContent = `✓ 產出完成（重點趨勢 ${selA.length} 篇 + Prompt技巧分享 ${selP.length} 篇 + AI 工具介紹 ${selT.length} 篇 + 10 秒看趨勢 ${selS.length} 篇）`;
 }
 
 async function ogCopyHTML() {
@@ -2081,7 +2081,7 @@ function ogAutoFillMonth() {}
 
 function ogAutoFillCounts() {
   if (ogCountsAutoFilled) return; // 只自動帶一次
-  // 只自動填 重點趨勢 + 30 秒趨勢（per-issue datasets）
+  // 只自動填 重點趨勢 + 10 秒趨勢（per-issue datasets）
   // Prompt 跟 工具介紹是歷史累積資料，由使用者手動指定本期新增數量
   const aLen = (window.__articles || []).length;
   const sLen = (window.__weeklySummaries || []).length;
