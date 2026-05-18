@@ -1210,11 +1210,12 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
       .join('');
     return `<div class="filter-row"><span class="filter-label">${label}</span><div class="chips">${chipsHtml}</div></div>`;
   };
-  // 手機：收合下拉版
-  const renderSelectRow = (label, tags, type) => {
-    const opts = '<option value="全部">全部</option>' +
-      Array.from(tags).map(t => `<option value="${t}">${t}</option>`).join('');
-    return `<div class="filter-row"><span class="filter-label">${label}</span><select class="filter-select" data-type="${type}">${opts}</select><button class="filter-clear" data-type="${type}" type="button" aria-label="清除" hidden>✕</button></div>`;
+  // 手機 panel：跟桌機同樣 chip 概念，但每顆 chip 觸控區更大、active 顯著
+  const renderMobileChipRow = (label, tags, type) => {
+    const chipsHtml = ['<button class="filter-option-chip active" type="button" data-filter="全部" data-type="' + type + '">全部</button>']
+      .concat(Array.from(tags).map(t => `<button class="filter-option-chip" type="button" data-filter="${t}" data-type="${type}">${t}</button>`))
+      .join('');
+    return `<div class="filter-row filter-row--stack"><span class="filter-label">${label}</span><div class="filter-option-chips">${chipsHtml}</div></div>`;
   };
 
   filterContainer.innerHTML = `
@@ -1228,24 +1229,27 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
         <span class="filter-toggle-arrow">▾</span>
       </button>
       <div class="filter-panel">
-        ${renderSelectRow('內容屬性：', sortedContent, 'content')}
-        ${renderSelectRow('適用情境：', sortedUsecase, 'usecase')}
+        ${renderMobileChipRow('內容屬性', sortedContent, 'content')}
+        ${renderMobileChipRow('適用情境', sortedUsecase, 'usecase')}
       </div>
     </div>
   `;
 
   const toggleBtn = filterContainer.querySelector('.filter-toggle');
   const panel = filterContainer.querySelector('.filter-panel');
-  // 用 wrapper 把按鈕+panel 包起來再塞進 h2：panel 直接以按鈕父層為定位框，top:100% 就是按鈕正下方（不受 h2 line-height 影響）
+  // 按鈕進 h2 wrapper；panel 直接接到 body，徹底脫離 .page（有 transform 動畫）的 containing block / stacking context
   const pageEl = filterContainer.closest('.page');
   const pageHeader = pageEl && pageEl.querySelector('.page-header');
   const pageH2 = pageHeader && pageHeader.querySelector('h2');
-  if (pageH2 && toggleBtn && panel) {
+  if (pageH2 && toggleBtn) {
     const filterWrap = document.createElement('span');
     filterWrap.className = 'filter-toggle-wrap';
     filterWrap.appendChild(toggleBtn);
-    filterWrap.appendChild(panel);
     pageH2.appendChild(filterWrap);
+  }
+  if (panel) {
+    panel.classList.add('filter-panel--floating');
+    document.body.appendChild(panel);
   }
   // page-header 底線下方放一行篩選提示（含右側清除 ✕），有選分類才顯示
   let hintEl = null;
@@ -1260,7 +1264,15 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
     hintTextEl = hintEl.querySelector('.filter-active-hint-text');
     hintClearEl = hintEl.querySelector('.filter-active-hint-clear');
   }
+  // 開 panel 時即時用 button rect 算 fixed 座標 — 脫離 h2/wrapper/page 任何 stacking context 干擾
+  const positionPanel = () => {
+    if (!toggleBtn || !panel) return;
+    const rect = toggleBtn.getBoundingClientRect();
+    panel.style.top = (rect.bottom + 6) + 'px';
+    panel.style.right = (window.innerWidth - rect.right) + 'px';
+  };
   const openPanel = () => {
+    positionPanel();
     panel.classList.add('open');
     toggleBtn.classList.add('open');
   };
@@ -1274,6 +1286,9 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
       if (panel.classList.contains('open')) closePanel(); else openPanel();
     });
   }
+  // panel 開著時若視窗大小改變或滾動，重新定位（避免 fixed 不跟著動）
+  window.addEventListener('resize', () => { if (panel.classList.contains('open')) positionPanel(); });
+  window.addEventListener('scroll', () => { if (panel.classList.contains('open')) positionPanel(); }, { passive: true });
   // capture-phase 在 click 抵達 target 之前判斷：panel 開著時，點 panel/toggle 外面就 close 並吞掉這次點擊，避免穿透到下方文章卡片
   document.addEventListener('click', (e) => {
     if (!panel.classList.contains('open')) return;
@@ -1290,12 +1305,12 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
       filterContainer.querySelectorAll(`.chip[data-type="${type}"]`).forEach(c => {
         c.classList.toggle('active', c.dataset.filter === state[type]);
       });
-      // select 已被搬到 page-header，要用 panel 引用查
-      const sel = panel && panel.querySelector(`.filter-select[data-type="${type}"]`);
-      if (sel) sel.value = state[type];
-      // ✕ 清除按鈕只在「不是全部」時顯示
-      const clearBtn = panel && panel.querySelector(`.filter-clear[data-type="${type}"]`);
-      if (clearBtn) clearBtn.hidden = state[type] === '全部';
+      // 手機 panel 的 option chip active 也要同步
+      if (panel) {
+        panel.querySelectorAll(`.filter-option-chip[data-type="${type}"]`).forEach(c => {
+          c.classList.toggle('active', c.dataset.filter === state[type]);
+        });
+      }
     });
     const activeCount = (state.content !== '全部' ? 1 : 0) + (state.usecase !== '全部' ? 1 : 0);
     if (toggleBtn) toggleBtn.classList.toggle('active', activeCount > 0);
@@ -1333,19 +1348,12 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
       applyFilter();
     });
   });
-  // select 已被搬到 page-header，從 panel 引用上掛 change listener
+  // 手機 panel 的 chip click：跟桌機 chip 同樣邏輯
   if (panel) {
-    panel.querySelectorAll('.filter-select').forEach(sel => {
-      sel.addEventListener('change', () => {
-        state[sel.dataset.type] = sel.value;
-        applyFilter();
-      });
-    });
-    // ✕ 清除按鈕：重置該分類為「全部」
-    panel.querySelectorAll('.filter-clear').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    panel.querySelectorAll('.filter-option-chip').forEach(chip => {
+      chip.addEventListener('click', (e) => {
         e.stopPropagation();
-        state[btn.dataset.type] = '全部';
+        state[chip.dataset.type] = chip.dataset.filter;
         applyFilter();
       });
     });
@@ -1404,14 +1412,27 @@ function initSingleFilter(chipsSelector, options) {
   const toggleBtn = wrap.querySelector('.filter-toggle');
   const panel = wrap.querySelector('.filter-panel');
   const optionBtns = Array.from(wrap.querySelectorAll('.filter-option'));
+  // panel 搬到 body 脫離 .page transform/stacking 干擾
+  if (panel) {
+    panel.classList.add('filter-panel--floating');
+    document.body.appendChild(panel);
+  }
 
-  const openPanel = () => { panel.classList.add('open'); toggleBtn.classList.add('open'); };
+  const positionPanel = () => {
+    if (!toggleBtn || !panel) return;
+    const rect = toggleBtn.getBoundingClientRect();
+    panel.style.top = (rect.bottom + 6) + 'px';
+    panel.style.right = (window.innerWidth - rect.right) + 'px';
+  };
+  const openPanel = () => { positionPanel(); panel.classList.add('open'); toggleBtn.classList.add('open'); };
   const closePanel = () => { panel.classList.remove('open'); toggleBtn.classList.remove('open'); };
 
   toggleBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (panel.classList.contains('open')) closePanel(); else openPanel();
   });
+  window.addEventListener('resize', () => { if (panel.classList.contains('open')) positionPanel(); });
+  window.addEventListener('scroll', () => { if (panel.classList.contains('open')) positionPanel(); }, { passive: true });
   document.addEventListener('click', (e) => {
     if (!panel.classList.contains('open')) return;
     if (panel.contains(e.target) || toggleBtn.contains(e.target)) return;
