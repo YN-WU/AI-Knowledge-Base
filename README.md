@@ -334,11 +334,12 @@ TVBS Logo 用 CSS filter 著色：
 
 - **桌機**：橫排 chip 列（保留原本 UX）
 - **手機**：標題右側「分類篩選 ▾」按鈕，點開浮層 dropdown
-  - 雙層 filter（趨勢/10 秒看趨勢）：兩個 `<select>` — 內容屬性 + 適用情境
-  - 單層 filter（Prompt）：直接列選項按鈕，點選即套用 + 自動收合
-  - 篩選按鈕用 wrapper 包按鈕+panel 後塞進 h2，浮層用 `position: absolute; top: 100%` 黏緊按鈕下方
+  - 雙層 filter（趨勢/10 秒看趨勢）：兩列 chip-style 選項（內容屬性 + 適用情境），點 chip 直接套用、active = 紫底白字。原本是 native `<select>`，2026-05 換成 chip 是為了統一桌機/手機視覺＋觸控更友善
+  - 單層 filter（Prompt）：直列選項按鈕，點選即套用 + 自動收合
+  - **panel 直接掛在 `document.body`** 下（不是 h2 wrapper 裡）— 用 `position: fixed` + JS `getBoundingClientRect()` 動態算座標。原因：`.page` 帶 `animation: fadeIn` 的 transform keyframe 會讓行動瀏覽器保留 layer 提升，導致 fixed 子元素被「困住」、變透明或 hit-testing 失效，必須脫離整條 ancestor chain 才穩定
+  - 按鈕本身仍在 `.filter-toggle-wrap` 包進 h2，跟標題對齊；panel 用 `.filter-panel--floating` class 識別並走 mobile 樣式
   - 有選分類時 page-header 底線下方出現「目前篩選分類：xxx」提示色塊（含一鍵清除 ✕），只在手機版顯示
-- **實作位置**：`dashboard.js` 的 `initDualFilter()` / `initSingleFilter()`、`dashboard.css` 的 `.filter-toggle-wrap` / `.filter-active-hint` 相關規則
+- **實作位置**：`dashboard.js` 的 `initDualFilter()` / `initSingleFilter()`、`dashboard.css` 的 `.filter-panel--floating` / `.filter-active-hint` 相關規則
 
 ---
 
