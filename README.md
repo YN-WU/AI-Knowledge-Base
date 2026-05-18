@@ -324,9 +324,10 @@ TVBS Logo 用 CSS filter 著色：
 首頁採 Substack / Medium / Notion 風的 **單欄置中閱讀版型**：
 
 - 最大寬度 760px、置中
-- 區塊垂直堆疊：Masthead → Overview band → Hero → 10 秒看趨勢 → 內部工具 → 黑客松
+- 區塊垂直堆疊：Masthead → Hero → 10 秒看趨勢 → 內部工具 → 黑客松
 - 每個區塊間用細短分隔線 `<hr class="reader-divider">` 區分
 - 樣式集中在 dashboard.css 的 `/* Document Reader Mode */` 區段
+- **2026-05 移除 Overview band**（原本顯示「31 則精選 + 涵蓋類型/熱門情境 tag 列」），原因：stat 資訊對讀者沒實際價值、又佔據首頁黃金位置擋住真正內容。masthead 後直接接 hero 大圖，magazine-style 節奏
 
 ### Responsive 篩選 UI（桌機 chip / 手機 dropdown）
 
@@ -339,7 +340,8 @@ TVBS Logo 用 CSS filter 著色：
   - **panel 直接掛在 `document.body`** 下（不是 h2 wrapper 裡）— 用 `position: fixed` + JS `getBoundingClientRect()` 動態算座標。原因：`.page` 帶 `animation: fadeIn` 的 transform keyframe 會讓行動瀏覽器保留 layer 提升，導致 fixed 子元素被「困住」、變透明或 hit-testing 失效，必須脫離整條 ancestor chain 才穩定
   - 按鈕本身仍在 `.filter-toggle-wrap` 包進 h2，跟標題對齊；panel 用 `.filter-panel--floating` class 識別並走 mobile 樣式
   - 有選分類時 page-header 底線下方出現「目前篩選分類：xxx」提示色塊（含一鍵清除 ✕），只在手機版顯示
-- **實作位置**：`dashboard.js` 的 `initDualFilter()` / `initSingleFilter()`、`dashboard.css` 的 `.filter-panel--floating` / `.filter-active-hint` 相關規則
+  - **panel 開啟瞬間凍結在當下位置**（不會跟著頁面滾動），且**自動鎖背景 body 滾動**（用 `position: fixed + top: -scrollY` 的 iOS-safe 做法，關閉時還原 scrollY）。內容超過 viewport 高度時 panel 內部捲動，`max-height` 由 JS 即時算
+- **實作位置**：`dashboard.js` 的 `initDualFilter()` / `initSingleFilter()` / `lockBodyScroll()` / `unlockBodyScroll()`、`dashboard.css` 的 `.filter-panel--floating` / `.filter-active-hint` 相關規則
 
 ---
 

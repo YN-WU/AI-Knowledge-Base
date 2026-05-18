@@ -861,53 +861,6 @@ async function initDashboardData() {
         }
       }
 
-      // 趨勢總數 — 從 0 平滑滾到目標值（cubic ease-out, 800ms）
-      const countEl = document.getElementById('readerTrendCount');
-      if (countEl) {
-        countEl.innerHTML = `<span class="reader-count-num">0</span><span class="reader-count-unit">則精選</span>`;
-        const numEl = countEl.querySelector('.reader-count-num');
-        const target = overviewSource.length;
-        const duration = 800;
-        const start = performance.now();
-        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-        const frame = (now) => {
-          const progress = Math.min((now - start) / duration, 1);
-          numEl.textContent = Math.round(target * easeOut(progress));
-          if (progress < 1) requestAnimationFrame(frame);
-        };
-        requestAnimationFrame(frame);
-      }
-
-      // 關鍵字 — 類型（含次數）+ 情境（純 tag），統一為 inline 文字
-      const renderInlineTags = (entries, showCount) => entries.map(([t, n]) =>
-        `<span class="reader-kw-link"><span class="kw-name">${t}</span>${showCount ? `<span class="kw-num">${n}</span>` : ''}</span>`
-      ).join('');
-
-      // 類型：item.tag 單值頻率（顯示次數）— 列出全部，依頻率 desc 排序
-      const contentEl = document.getElementById('readerKwContent');
-      if (contentEl) {
-        const freq = {};
-        overviewSource.forEach(it => {
-          const t = it.tag || (typeof getTag === 'function' ? getTag(it.title) : null);
-          if (t) freq[t] = (freq[t] || 0) + 1;
-        });
-        contentEl.innerHTML = renderInlineTags(Object.entries(freq).sort((a, b) => b[1] - a[1]), true);
-      }
-
-      // 情境：item.tags 陣列展平，依 USECASE_TAG_ORDER 固定順序排列
-      const usecaseEl = document.getElementById('readerKwUsecase');
-      if (usecaseEl) {
-        // 按 USECASE_TAG_ORDER 固定順序掃描，有出現的就放，取前 6 個
-        const presentTags = new Set();
-        overviewSource.forEach(it => {
-          (it.tags || []).forEach(t => { if (t) presentTags.add(t); });
-        });
-        const ordered = USECASE_TAG_ORDER.filter(t => presentTags.has(t)).slice(0, 6);
-        usecaseEl.innerHTML = ordered
-          .map(t => `<span class="reader-kw-link">${t}</span>`)
-          .join('');
-      }
-
       const heroContainer = document.getElementById('latestHeroContainer');
       // Hero Slider 候選池：articles + tool-intro 兩邊 featured: true 合併，按日期 desc 取前 5
       const articleSlides = articles.filter(a => a.featured).map(a => ({
@@ -1174,6 +1127,27 @@ function sortUsecaseTags(tags) {
   });
 }
 
+// 鎖/解鎖背景 body 滾動（panel 開啟時用）— iOS-safe：用 position:fixed 鎖位置，關閉時還原 scrollY
+function lockBodyScroll() {
+  if (document.body.dataset.scrollLocked != null) return;
+  const scrollY = window.scrollY;
+  document.body.dataset.scrollLocked = String(scrollY);
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+}
+function unlockBodyScroll() {
+  if (document.body.dataset.scrollLocked == null) return;
+  const scrollY = parseInt(document.body.dataset.scrollLocked, 10) || 0;
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  delete document.body.dataset.scrollLocked;
+  window.scrollTo(0, scrollY);
+}
+
 function initDualFilter(filterContainerId, gridSelector, itemSelector) {
   const filterContainer = document.getElementById(filterContainerId);
   const grid = document.querySelector(gridSelector);
@@ -1264,21 +1238,25 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
     hintTextEl = hintEl.querySelector('.filter-active-hint-text');
     hintClearEl = hintEl.querySelector('.filter-active-hint-clear');
   }
-  // 開 panel 時即時用 button rect 算 fixed 座標 — 脫離 h2/wrapper/page 任何 stacking context 干擾
+  // 開 panel 時用 button rect 算 fixed 座標 + 動態 max-height（剩餘 viewport 高度），脫離 h2/wrapper/page 任何 stacking context 干擾
   const positionPanel = () => {
     if (!toggleBtn || !panel) return;
     const rect = toggleBtn.getBoundingClientRect();
-    panel.style.top = (rect.bottom + 6) + 'px';
+    const top = rect.bottom + 6;
+    panel.style.top = top + 'px';
     panel.style.right = (window.innerWidth - rect.right) + 'px';
+    panel.style.maxHeight = (window.innerHeight - top - 16) + 'px';
   };
   const openPanel = () => {
     positionPanel();
     panel.classList.add('open');
     toggleBtn.classList.add('open');
+    lockBodyScroll();
   };
   const closePanel = () => {
     panel.classList.remove('open');
     toggleBtn.classList.remove('open');
+    unlockBodyScroll();
   };
   if (toggleBtn) {
     toggleBtn.addEventListener('click', (e) => {
@@ -1286,9 +1264,8 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
       if (panel.classList.contains('open')) closePanel(); else openPanel();
     });
   }
-  // panel 開著時若視窗大小改變或滾動，重新定位（避免 fixed 不跟著動）
+  // 視窗 resize 時才重新定位（保留橫直切換／鍵盤彈出之類的場景）；滾動時不動，panel 凍結在當下位置
   window.addEventListener('resize', () => { if (panel.classList.contains('open')) positionPanel(); });
-  window.addEventListener('scroll', () => { if (panel.classList.contains('open')) positionPanel(); }, { passive: true });
   // capture-phase 在 click 抵達 target 之前判斷：panel 開著時，點 panel/toggle 外面就 close 並吞掉這次點擊，避免穿透到下方文章卡片
   document.addEventListener('click', (e) => {
     if (!panel.classList.contains('open')) return;
@@ -1421,18 +1398,19 @@ function initSingleFilter(chipsSelector, options) {
   const positionPanel = () => {
     if (!toggleBtn || !panel) return;
     const rect = toggleBtn.getBoundingClientRect();
-    panel.style.top = (rect.bottom + 6) + 'px';
+    const top = rect.bottom + 6;
+    panel.style.top = top + 'px';
     panel.style.right = (window.innerWidth - rect.right) + 'px';
+    panel.style.maxHeight = (window.innerHeight - top - 16) + 'px';
   };
-  const openPanel = () => { positionPanel(); panel.classList.add('open'); toggleBtn.classList.add('open'); };
-  const closePanel = () => { panel.classList.remove('open'); toggleBtn.classList.remove('open'); };
+  const openPanel = () => { positionPanel(); panel.classList.add('open'); toggleBtn.classList.add('open'); lockBodyScroll(); };
+  const closePanel = () => { panel.classList.remove('open'); toggleBtn.classList.remove('open'); unlockBodyScroll(); };
 
   toggleBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (panel.classList.contains('open')) closePanel(); else openPanel();
   });
   window.addEventListener('resize', () => { if (panel.classList.contains('open')) positionPanel(); });
-  window.addEventListener('scroll', () => { if (panel.classList.contains('open')) positionPanel(); }, { passive: true });
   document.addEventListener('click', (e) => {
     if (!panel.classList.contains('open')) return;
     if (panel.contains(e.target) || toggleBtn.contains(e.target)) return;
