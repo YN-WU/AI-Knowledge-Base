@@ -52,7 +52,7 @@
         <span class="dropdown-toggle" role="button" tabindex="0">AI 趨勢消息 ▾</span>
         <div class="dropdown-content">
           <button class="tab dropdown-item" data-page="news">重點趨勢</button>
-          <button class="tab dropdown-item" data-page="summaries">30秒看趨勢</button>
+          <button class="tab dropdown-item" data-page="summaries">10 秒看趨勢</button>
         </div>
       </div>
       <span class="tab-sep">|</span>
@@ -116,9 +116,9 @@
 
       <hr class="reader-divider">
 
-      <!-- 30秒看趨勢 -->
+      <!-- 10 秒看趨勢 -->
       <section class="reader-section" id="weeklySummariesSection">
-        <h2 class="reader-h2">30 秒看趨勢</h2>
+        <h2 class="reader-h2">10 秒看趨勢</h2>
         <p class="reader-lead">用一個段落快速告訴你，最近 AI 界發生什麼事。</p>
         <div id="weeklySummariesWrap"></div>
         <div class="reader-section-cta">
@@ -204,7 +204,7 @@
   <div class="page" id="page-summaries">
     <div class="container">
       <div class="page-header">
-        <h2>30秒看趨勢</h2>
+        <h2>10 秒看趨勢</h2>
         <p>用一個段落快速告訴你，最近 AI 界發生什麼事。</p>
       </div>
       <div class="filter-rows" id="summariesFilters">
@@ -221,15 +221,14 @@
     <div class="container">
       <div class="page-header">
         <h2>Prompt 技巧分享</h2>
-        <p>精選 Prompt 教學、情境應用與優化技巧。</p>
+        <p>精選 Prompt 教學、情境應用與進階優化。</p>
       </div>
       <div class="chips prompt-filters">
         <button class="chip active" data-filter="全部">全部</button>
         <button class="chip" data-filter="基礎入門">基礎入門</button>
-        <button class="chip" data-filter="優化技巧">優化技巧</button>
-        <button class="chip" data-filter="生圖指令">生圖指令</button>
         <button class="chip" data-filter="情境應用">情境應用</button>
-        <button class="chip" data-filter="模型技巧">模型技巧</button>
+        <button class="chip" data-filter="進階優化">進階優化</button>
+        <button class="chip" data-filter="生圖指令">生圖指令</button>
       </div>
       <div class="prompt-list-grid" id="promptContainer">
         <!-- 由 JS 動態渲染 -->
@@ -275,7 +274,7 @@
     <div class="container">
       <div class="page-header">
         <h2>歷期電子報</h2>
-        <p>翻閱過往每一期精選內容，掌握 AI 趨勢發展脈絡。</p>
+        <p>收錄2026年4月以前每一期電子報的內容，掌握 AI 趨勢發展脈絡。</p>
       </div>
       <div class="chips archive-filters" id="archiveChips">
         <button class="chip active" data-filter="all">全部</button>
@@ -291,43 +290,32 @@
     <div class="container">
       <div class="page-header">
         <h2>Outlook 版本產生器</h2>
-        <p>讀取目前 articles + weekly-summaries 自動產出最新 email HTML，僅內部使用。</p>
+        <p>選一個篩選日期，自動把那天之後新增的文章打包成 Outlook 用 HTML。僅內部使用。</p>
       </div>
       <div class="og-grid">
         <aside class="og-controls">
           <div class="og-field">
-            <label>月份標題</label>
-            <input type="text" id="ogMonthLabel" value="2026 年 5 月號" placeholder="例：2026 年 5 月號">
+            <label>篩選日期</label>
+            <input type="date" id="ogCutoffDate" placeholder="YYYY-MM-DD">
           </div>
-          <div class="og-field">
-            <label>重點趨勢（篇）</label>
-            <input type="number" id="ogArticleCount" value="3" min="0" max="10">
-          </div>
-          <div class="og-field">
-            <label>Prompt 技巧分享（篇）</label>
-            <input type="number" id="ogPromptCount" value="0" min="0" max="10">
-          </div>
-          <div class="og-field">
-            <label>AI 工具介紹（篇）</label>
-            <input type="number" id="ogToolIntroCount" value="1" min="0" max="10">
-          </div>
-          <div class="og-field">
-            <label>30 秒趨勢（篇）</label>
-            <input type="number" id="ogSummaryCount" value="15" min="0" max="50">
-          </div>
+          <div class="og-field og-field--inline og-hidden">期號：<span id="ogPeriodLabel">—</span></div>
+          <div class="og-field og-field--inline og-hidden">重點趨勢：<span id="ogArticleCount">3</span> 篇</div>
+          <div class="og-field og-field--inline og-hidden">Prompt 技巧分享：<span id="ogPromptCount">0</span> 篇</div>
+          <div class="og-field og-field--inline og-hidden">AI 工具介紹：<span id="ogToolIntroCount">1</span> 篇</div>
+          <div class="og-field og-field--inline og-hidden">10 秒看趨勢：<span id="ogSummaryCount">15</span> 篇</div>
           <div class="og-actions">
-            <button class="og-btn og-btn--primary" id="ogGenerateBtn">產出</button>
+            <button class="og-btn og-btn--primary" id="ogGenerateBtn" disabled>產出</button>
             <button class="og-btn og-btn--ghost" id="ogCopyBtn">複製 HTML</button>
             <button class="og-btn og-btn--ghost" id="ogDownloadBtn">下載 .html</button>
           </div>
-          <div class="og-status" id="ogStatus">尚未產出</div>
+          <div class="og-status og-hidden" id="ogStatus">尚未產出</div>
           <div class="og-help">
             <strong>使用流程</strong>
             <ol>
-              <li>確認 data/articles.json + weekly-summaries.json 已是當期內容</li>
-              <li>填月份、調整數量 → 按「產出」</li>
-              <li>「複製 HTML」 → 貼進 Outlook（新郵件 → HTML 編輯模式）</li>
-              <li>或「下載 .html」 → Outlook 開檔轉寄</li>
+              <li>選篩選日期（選上次電子報寄出後一天）</li>
+              <li>按「產出」→ 預覽出現</li>
+              <li>檢查預覽結果是否有誤</li>
+              <li>按「複製 HTML」→ 貼進 Outlook 寄送系統</li>
             </ol>
           </div>
         </aside>

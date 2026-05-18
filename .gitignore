@@ -20,3 +20,5 @@ images/
 _image-report.json
 migrate-images.js
 replace-image-urls.js
+migrate-prompts.js
+augment-search-index.js

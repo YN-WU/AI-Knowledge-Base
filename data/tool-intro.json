@@ -1,177 +1,179 @@
-[
-  {
-    "id": "typeless",
-    "cat": "應用技巧",
-    "title": "Typeless：AI 語音聽寫工具，跨應用即時轉文字",
-    "summary": "AI 語音聽寫工具 Typeless 能將語音即時轉成文字，自動移除贅字並適應不同語氣。支援 100+ 語言、跨應用使用，本機處理不上雲。",
-    "sub": "AI 語音聽寫工具 Typeless 能將語音即時轉成文字，自動移除贅字。支援 100+ 語言、跨應用使用，本機處理不上雲。",
-    "date": "2026-04-29",
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/6d1e807f-4a78-4bdc-93e6-13dc09b6187a_740x389.jpg",
-    "imageCaption": "Typeless 為跨平台 AI 語音聽寫工具。（圖 / 翻攝自 Typeless 官網）",
-    "sourceUrl": "https://www.typeless.com",
-    "sourceLabel": "Typeless 官方網站 →",
-    "openInModal": true,
-    "content": "<p class=\"first-paragraph\">Typeless 是一款 AI 語音聽寫工具，能將語音即時轉換為文字，並依據輸入的應用程式自動調整語氣與格式。可在 Mac、Windows、iOS、Android 上使用，支援任何文字輸入框（郵件、文件、即時通訊、瀏覽器等）。</p><h4>主要功能</h4><ul><li><strong>即時語音轉文字</strong>：自動移除「嗯」、「然後」等贅字與重複，產出可直接使用的文稿。</li><li><strong>跨應用情境調整</strong>：在郵件中產出較正式語氣，在筆記應用中保留口語感。</li><li><strong>多語言支援</strong>：支援 100+ 種語言，可同時處理中英夾雜的語句。</li><li><strong>個人字典</strong>：可自訂專業術語、人名、品牌詞，避免重複校對。</li><li><strong>語音指令編輯</strong>：可用語音直接修改已寫的文字（例如「把上一句改成⋯」）。</li><li><strong>隱私設計</strong>：歷史紀錄保存於本機，宣稱零雲端資料保留，符合 HIPAA 與 GDPR。</li></ul><h4>支援平台</h4><p>macOS、Windows、iOS、Android。</p><h4>價格方案（USD）</h4><div style=\"overflow-x:auto;margin:10px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13px\"><thead><tr style=\"background:rgba(91,91,214,0.06);border-bottom:1.5px solid var(--accent)\"><th style=\"padding:8px 10px;text-align:left\">方案</th><th style=\"padding:8px 10px;text-align:left\">價格</th><th style=\"padding:8px 10px;text-align:left\">字數限制</th><th style=\"padding:8px 10px;text-align:left\">主要差異</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:8px 10px\"><strong>Free</strong></td><td style=\"padding:8px 10px\">$0</td><td style=\"padding:8px 10px\">每週 8,000 字</td><td style=\"padding:8px 10px\">完整核心功能</td></tr><tr><td style=\"padding:8px 10px\"><strong>Pro</strong></td><td style=\"padding:8px 10px\">$12 /月（年繳）<br>或 $30 /月（月繳）</td><td style=\"padding:8px 10px\">不限</td><td style=\"padding:8px 10px\">團隊管理、優先支援、新功能優先試用</td></tr></tbody></table></div><p style=\"font-size:13px;color:var(--text-light)\">註：新帳號可享 30 天 Pro 試用，到期後自動轉為 Free 方案。</p>",
-    "featured": true
-  },
-  {
-    "cat": "新工具",
-    "title": "Antigravity：自然語言操作電腦的 AI 工具",
-    "sub": "第 018 期 AI 工具推薦：透過自然語言指令操作桌面、檔案、瀏覽器，讓 AI 真正成為你的工作助理。",
-    "issue": 18,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/wqEbBCT.png",
-    "url": "https://ainews.tvbs.ai/issues/018.html#section-jump-7"
-  },
-  {
-    "cat": "影片生成",
-    "title": "Flow AI 實戰教學（Veo 3.1）",
-    "sub": "Google 旗下 AI 影音實驗室，搭載最新 Veo 3.1 模型。定位偏向「電影分鏡與鏡頭語言模擬」，在畫質、運鏡、配音、環境音自然度都極高水準。",
-    "issue": 17,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/5JzsOUB.webp",
-    "url": "https://ainews.tvbs.ai/issues/017.html#section-jump-4"
-  },
-  {
-    "cat": "筆記知識",
-    "title": "Gemini x NotebookLM 整合",
-    "sub": "Google 兩大 AI 工具深度整合，視覺化輸出、互動對話功能加倍；一站完成知識輸入、整理、呈現的全流程。",
-    "issue": 16,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/AIw3oWe.jpg",
-    "url": "https://ainews.tvbs.ai/issues/016.html#section-jump-4"
-  },
-  {
-    "cat": "設計創作",
-    "title": "2025 設計圈黑馬：Lovart 使用全攻略",
-    "sub": "全球首款專業級 AI 設計代理人，將繁瑣設計流程簡化為「對話」與「畫布」兩步驟。零設計背景也能做出專業 Logo、海報、宣傳短片。",
-    "issue": 15,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/clNJacR.jpg",
-    "url": "https://ainews.tvbs.ai/issues/015.html#section-jump-4"
-  },
-  {
-    "cat": "簡報設計",
-    "title": "Gamma：AI 驅動簡報與內容製作平台",
-    "sub": "重新定義簡報製作體驗，結合生成式 AI 與互動式內容設計，極短時間內完成兼具專業外觀與視覺吸引力的簡報、報告、文件。",
-    "issue": 13,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/EI8y9Q9.png",
-    "url": "https://ainews.tvbs.ai/issues/013.html#section-jump-5"
-  },
-  {
-    "cat": "筆記知識",
-    "title": "NotebookLM 2025 最大更新",
-    "sub": "不只是摘要工具，升級為完整的學習與知識管理 AI。可快速整理、分析、視覺化內容並生成多媒體，是研究與學習的絕佳夥伴。",
-    "issue": 12,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/YTF1kAq.jpeg",
-    "url": "https://ainews.tvbs.ai/issues/012.html#section-jump-4"
-  },
-  {
-    "cat": "對話助理",
-    "title": "Google Gemini AI 全面解析",
-    "sub": "從基礎版本到 Pro 的完整功能介紹，涵蓋對話、多模態、工作整合、Gemini App 應用情境，適合初接觸 Gemini 的使用者。",
-    "issue": 11,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/JHRXD9x.jpeg",
-    "url": "https://ainews.tvbs.ai/issues/011.html#section-jump-3"
-  },
-  {
-    "cat": "搜尋研究",
-    "title": "資訊搜尋 AI 神器：Perplexity",
-    "sub": "結合搜尋引擎與 AI 的新一代資訊工具，回答附原始來源連結，適合查核專題資料、追蹤國外新聞或冷門主題。",
-    "issue": 10,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/EXSb4IE.jpeg",
-    "url": "https://ainews.tvbs.ai/issues/010.html#section-jump-3"
-  },
-  {
-    "cat": "影音處理",
-    "title": "Google AI Studio 秒產字幕檔",
-    "sub": "Google 整合的 AI 多工平台，上傳影片後能快速產出字幕檔，還可進一步編輯與翻譯，大幅簡化影片後製工作流程。",
-    "issue": 9,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/4M287Wq.jpeg",
-    "url": "https://ainews.tvbs.ai/issues/009.html#section-jump-4"
-  },
-  {
-    "cat": "工具教學",
-    "title": "三步驟打造 LINE AI 聊天機器人",
-    "sub": "AIWIZE Autopilot 搭配 Webhook 串接 LINE 與 ChatGPT，打造能翻譯、摘要、寫文案的私人 AI 助理。",
-    "issue": 7,
-    "image": "https://img.youtube.com/vi/huHFwh7UgOw/hqdefault.jpg",
-    "url": "https://ainews.tvbs.ai/issues/007.html#section-jump-3"
-  },
-  {
-    "cat": "工具教學",
-    "title": "三步驟打造 Telegram AI 聊天機器人",
-    "sub": "用 AIWIZE Autopilot 自動化流程串接 Telegram 與 ChatGPT，打造 24 小時在線、能處理多種任務的私人 AI 助理。",
-    "issue": 6,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/Zc3z1kj.png",
-    "url": "https://ainews.tvbs.ai/issues/006.html#section-jump-3"
-  },
-  {
-    "cat": "工具教學",
-    "title": "YouTube 最新影片自動摘要",
-    "sub": "用 AIWIZE Autopilot 結合 RSS 與 Gemini 模型，自動抓取指定頻道新影片並產出摘要，輕鬆跟上你想追蹤的 YouTuber 動態。",
-    "issue": 5,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/KjUiLNT.jpg",
-    "url": "https://ainews.tvbs.ai/issues/005.html#section-jump-2"
-  },
-  {
-    "cat": "多模態",
-    "title": "Gemini App 推出 Live 螢幕共享功能",
-    "sub": "不只是打字問 AI，還能直接用手機相機拍照讓 AI 看，或分享手機螢幕讓 AI 即時分析畫面內容，多模態互動大幅升級。",
-    "issue": 4,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/jFakTAI.jpg",
-    "url": "https://ainews.tvbs.ai/issues/004.html#section-jump-4"
-  },
-  {
-    "cat": "工具教學",
-    "title": "打造 AI 自我反思的自動化流程",
-    "sub": "用 AIWIZE Autopilot 建立「AI 自我反思」的工作流程，示範如何把部落格文章高效改寫成影片腳本。",
-    "issue": 4,
-    "image": "https://img.youtube.com/vi/YLTauzuxDjA/hqdefault.jpg",
-    "url": "https://ainews.tvbs.ai/issues/004.html#section-jump-4"
-  },
-  {
-    "cat": "寫程式",
-    "title": "Claude 3.7 Sonnet：寫程式與資訊視覺化強援",
-    "sub": "Anthropic 推出的混合推理模型，成為許多專業用戶首選。免費開放所有用戶使用（有每日訊息上限），寫程式與視覺化任務表現突出。",
-    "issue": 3,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/88lNa88.jpeg",
-    "url": "https://ainews.tvbs.ai/issues/003.html#section-jump-3"
-  },
-  {
-    "cat": "工具教學",
-    "title": "用 Claude 3.7 Sonnet 點亮你的數據",
-    "sub": "想把枯燥的文字資料變成清晰易懂的視覺圖表？在 AIWIZE 平台直接呼叫 Claude 3.7 Sonnet 的 SVG 超能力，一鍵搞定。",
-    "issue": 3,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/XkjyMEm.png",
-    "url": "https://ainews.tvbs.ai/issues/003.html#section-jump-3"
-  },
-  {
-    "cat": "筆記知識",
-    "title": "NotebookLM：免費超強 AI 筆記工具",
-    "sub": "Google I/O 2023 推出的實驗產品，支援文字、音訊、YouTube 影片分析，可自動將內容轉換成 Podcast 形式，摘要分析一次到位。",
-    "issue": 2,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/JOHHcod.png",
-    "url": "https://ainews.tvbs.ai/issues/002.html#section-jump-3"
-  },
-  {
-    "cat": "工具教學",
-    "title": "圖片轉影片，直存 Google Drive",
-    "sub": "用 AIWIZE 自動化流程搭配 Wan2.1 模型，將靜態圖片變身吸睛影片，成品自動存進 Google Drive，社群素材製作再省時。",
-    "issue": 2,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/2xhVh7u.jpg",
-    "url": "https://ainews.tvbs.ai/issues/002.html#section-jump-3"
-  },
-  {
-    "cat": "搜尋研究",
-    "title": "Grok 3 DeepSearch 功能",
-    "sub": "xAI 推出的深度搜尋功能，能快速搜尋、分析、過濾並總結資訊，提供精準答案。目前完全免費使用，並附各家 Deep Research 特色比較。",
-    "issue": 1,
-    "image": "https://helios-i.mashable.com/imagery/articles/00eB57ubJTXHUMWRoyfzTiT/images-1.fill.size_2000x1142.v1739877295.png",
-    "url": "https://ainews.tvbs.ai/issues/001.html#section-jump-3"
-  },
-  {
-    "cat": "工具教學",
-    "title": "快速指令，效率翻倍！",
-    "sub": "厭倦了重複輸入相同的 Prompt？AIWIZE 的快速指令功能一次解決，收錄常用指令範本、可自訂快捷鍵，省下重複打字的時間。",
-    "issue": 1,
-    "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/apaHenA.gif",
-    "url": "https://ainews.tvbs.ai/issues/001.html#section-jump-3"
-  }
-]
+{
+  "items": [
+    {
+      "id": "typeless",
+      "tag": "應用技巧",
+      "title": "Typeless：AI 語音聽寫工具，跨應用即時轉文字",
+      "summary": "AI 語音聽寫工具 Typeless 能將語音即時轉成文字，自動移除贅字並適應不同語氣。支援 100+ 語言、跨應用使用，本機處理不上雲。",
+      "sub": "AI 語音聽寫工具 Typeless 能將語音即時轉成文字，自動移除贅字。支援 100+ 語言、跨應用使用，本機處理不上雲。",
+      "date": "2026-04-29",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/6d1e807f-4a78-4bdc-93e6-13dc09b6187a_740x389.jpg",
+      "imageCaption": "Typeless 為跨平台 AI 語音聽寫工具。（圖 / 翻攝自 Typeless 官網）",
+      "sourceUrl": "https://www.typeless.com",
+      "sourceLabel": "Typeless 官方網站 →",
+      "openInModal": true,
+      "content": "<p class=\"first-paragraph\">Typeless 是一款 AI 語音聽寫工具，能將語音即時轉換為文字，並依據輸入的應用程式自動調整語氣與格式。可在 Mac、Windows、iOS、Android 上使用，支援任何文字輸入框（郵件、文件、即時通訊、瀏覽器等）。</p><h4>主要功能</h4><ul><li><strong>即時語音轉文字</strong>：自動移除「嗯」、「然後」等贅字與重複，產出可直接使用的文稿。</li><li><strong>跨應用情境調整</strong>：在郵件中產出較正式語氣，在筆記應用中保留口語感。</li><li><strong>多語言支援</strong>：支援 100+ 種語言，可同時處理中英夾雜的語句。</li><li><strong>個人字典</strong>：可自訂專業術語、人名、品牌詞，避免重複校對。</li><li><strong>語音指令編輯</strong>：可用語音直接修改已寫的文字（例如「把上一句改成⋯」）。</li><li><strong>隱私設計</strong>：歷史紀錄保存於本機，宣稱零雲端資料保留，符合 HIPAA 與 GDPR。</li></ul><h4>支援平台</h4><p>macOS、Windows、iOS、Android。</p><h4>價格方案（USD）</h4><div style=\"overflow-x:auto;margin:10px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13px\"><thead><tr style=\"background:rgba(91,91,214,0.06);border-bottom:1.5px solid var(--accent)\"><th style=\"padding:8px 10px;text-align:left\">方案</th><th style=\"padding:8px 10px;text-align:left\">價格</th><th style=\"padding:8px 10px;text-align:left\">字數限制</th><th style=\"padding:8px 10px;text-align:left\">主要差異</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:8px 10px\"><strong>Free</strong></td><td style=\"padding:8px 10px\">$0</td><td style=\"padding:8px 10px\">每週 8,000 字</td><td style=\"padding:8px 10px\">完整核心功能</td></tr><tr><td style=\"padding:8px 10px\"><strong>Pro</strong></td><td style=\"padding:8px 10px\">$12 /月（年繳）<br>或 $30 /月（月繳）</td><td style=\"padding:8px 10px\">不限</td><td style=\"padding:8px 10px\">團隊管理、優先支援、新功能優先試用</td></tr></tbody></table></div><p style=\"font-size:13px;color:var(--text-light)\">註：新帳號可享 30 天 Pro 試用，到期後自動轉為 Free 方案。</p>",
+      "featured": true
+    },
+    {
+      "tag": "代理操作",
+      "title": "Antigravity：自然語言操作電腦的 AI 工具",
+      "sub": "第 018 期 AI 工具推薦：透過自然語言指令操作桌面、檔案、瀏覽器，讓 AI 真正成為你的工作助理。",
+      "issue": 18,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/wqEbBCT.png",
+      "url": "https://ainews.tvbs.ai/issues/018.html#section-jump-7"
+    },
+    {
+      "tag": "影片生成",
+      "title": "Flow AI 實戰教學（Veo 3.1）",
+      "sub": "Google 旗下 AI 影音實驗室，搭載最新 Veo 3.1 模型。定位偏向「電影分鏡與鏡頭語言模擬」，在畫質、運鏡、配音、環境音自然度都極高水準。",
+      "issue": 17,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/5JzsOUB.webp",
+      "url": "https://ainews.tvbs.ai/issues/017.html#section-jump-4"
+    },
+    {
+      "tag": "筆記知識",
+      "title": "Gemini x NotebookLM 整合",
+      "sub": "Google 兩大 AI 工具深度整合，視覺化輸出、互動對話功能加倍；一站完成知識輸入、整理、呈現的全流程。",
+      "issue": 16,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/AIw3oWe.jpg",
+      "url": "https://ainews.tvbs.ai/issues/016.html#section-jump-4"
+    },
+    {
+      "tag": "設計創作",
+      "title": "2025 設計圈黑馬：Lovart 使用全攻略",
+      "sub": "全球首款專業級 AI 設計代理人，將繁瑣設計流程簡化為「對話」與「畫布」兩步驟。零設計背景也能做出專業 Logo、海報、宣傳短片。",
+      "issue": 15,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/clNJacR.jpg",
+      "url": "https://ainews.tvbs.ai/issues/015.html#section-jump-4"
+    },
+    {
+      "tag": "簡報設計",
+      "title": "Gamma：AI 驅動簡報與內容製作平台",
+      "sub": "重新定義簡報製作體驗，結合生成式 AI 與互動式內容設計，極短時間內完成兼具專業外觀與視覺吸引力的簡報、報告、文件。",
+      "issue": 13,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/EI8y9Q9.png",
+      "url": "https://ainews.tvbs.ai/issues/013.html#section-jump-5"
+    },
+    {
+      "tag": "筆記知識",
+      "title": "NotebookLM 2025 最大更新",
+      "sub": "不只是摘要工具，升級為完整的學習與知識管理 AI。可快速整理、分析、視覺化內容並生成多媒體，是研究與學習的絕佳夥伴。",
+      "issue": 12,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/YTF1kAq.jpeg",
+      "url": "https://ainews.tvbs.ai/issues/012.html#section-jump-4"
+    },
+    {
+      "tag": "對話助理",
+      "title": "Google Gemini AI 全面解析",
+      "sub": "從基礎版本到 Pro 的完整功能介紹，涵蓋對話、多模態、工作整合、Gemini App 應用情境，適合初接觸 Gemini 的使用者。",
+      "issue": 11,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/JHRXD9x.jpeg",
+      "url": "https://ainews.tvbs.ai/issues/011.html#section-jump-3"
+    },
+    {
+      "tag": "搜尋研究",
+      "title": "資訊搜尋 AI 神器：Perplexity",
+      "sub": "結合搜尋引擎與 AI 的新一代資訊工具，回答附原始來源連結，適合查核專題資料、追蹤國外新聞或冷門主題。",
+      "issue": 10,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/EXSb4IE.jpeg",
+      "url": "https://ainews.tvbs.ai/issues/010.html#section-jump-3"
+    },
+    {
+      "tag": "影音處理",
+      "title": "Google AI Studio 秒產字幕檔",
+      "sub": "Google 整合的 AI 多工平台，上傳影片後能快速產出字幕檔，還可進一步編輯與翻譯，大幅簡化影片後製工作流程。",
+      "issue": 9,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/4M287Wq.jpeg",
+      "url": "https://ainews.tvbs.ai/issues/009.html#section-jump-4"
+    },
+    {
+      "tag": "工具教學",
+      "title": "三步驟打造 LINE AI 聊天機器人",
+      "sub": "AIWIZE Autopilot 搭配 Webhook 串接 LINE 與 ChatGPT，打造能翻譯、摘要、寫文案的私人 AI 助理。",
+      "issue": 7,
+      "image": "https://img.youtube.com/vi/huHFwh7UgOw/hqdefault.jpg",
+      "url": "https://ainews.tvbs.ai/issues/007.html#section-jump-3"
+    },
+    {
+      "tag": "工具教學",
+      "title": "三步驟打造 Telegram AI 聊天機器人",
+      "sub": "用 AIWIZE Autopilot 自動化流程串接 Telegram 與 ChatGPT，打造 24 小時在線、能處理多種任務的私人 AI 助理。",
+      "issue": 6,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/Zc3z1kj.png",
+      "url": "https://ainews.tvbs.ai/issues/006.html#section-jump-3"
+    },
+    {
+      "tag": "工具教學",
+      "title": "YouTube 最新影片自動摘要",
+      "sub": "用 AIWIZE Autopilot 結合 RSS 與 Gemini 模型，自動抓取指定頻道新影片並產出摘要，輕鬆跟上你想追蹤的 YouTuber 動態。",
+      "issue": 5,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/KjUiLNT.jpg",
+      "url": "https://ainews.tvbs.ai/issues/005.html#section-jump-2"
+    },
+    {
+      "tag": "多模態",
+      "title": "Gemini App 推出 Live 螢幕共享功能",
+      "sub": "不只是打字問 AI，還能直接用手機相機拍照讓 AI 看，或分享手機螢幕讓 AI 即時分析畫面內容，多模態互動大幅升級。",
+      "issue": 4,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/jFakTAI.jpg",
+      "url": "https://ainews.tvbs.ai/issues/004.html#section-jump-4"
+    },
+    {
+      "tag": "工具教學",
+      "title": "打造 AI 自我反思的自動化流程",
+      "sub": "用 AIWIZE Autopilot 建立「AI 自我反思」的工作流程，示範如何把部落格文章高效改寫成影片腳本。",
+      "issue": 4,
+      "image": "https://img.youtube.com/vi/YLTauzuxDjA/hqdefault.jpg",
+      "url": "https://ainews.tvbs.ai/issues/004.html#section-jump-4"
+    },
+    {
+      "tag": "寫程式",
+      "title": "Claude 3.7 Sonnet：寫程式與資訊視覺化強援",
+      "sub": "Anthropic 推出的混合推理模型，成為許多專業用戶首選。免費開放所有用戶使用（有每日訊息上限），寫程式與視覺化任務表現突出。",
+      "issue": 3,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/88lNa88.jpeg",
+      "url": "https://ainews.tvbs.ai/issues/003.html#section-jump-3"
+    },
+    {
+      "tag": "工具教學",
+      "title": "用 Claude 3.7 Sonnet 點亮你的數據",
+      "sub": "想把枯燥的文字資料變成清晰易懂的視覺圖表？在 AIWIZE 平台直接呼叫 Claude 3.7 Sonnet 的 SVG 超能力，一鍵搞定。",
+      "issue": 3,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/XkjyMEm.png",
+      "url": "https://ainews.tvbs.ai/issues/003.html#section-jump-3"
+    },
+    {
+      "tag": "筆記知識",
+      "title": "NotebookLM：免費超強 AI 筆記工具",
+      "sub": "Google I/O 2023 推出的實驗產品，支援文字、音訊、YouTube 影片分析，可自動將內容轉換成 Podcast 形式，摘要分析一次到位。",
+      "issue": 2,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/JOHHcod.png",
+      "url": "https://ainews.tvbs.ai/issues/002.html#section-jump-3"
+    },
+    {
+      "tag": "工具教學",
+      "title": "圖片轉影片，直存 Google Drive",
+      "sub": "用 AIWIZE 自動化流程搭配 Wan2.1 模型，將靜態圖片變身吸睛影片，成品自動存進 Google Drive，社群素材製作再省時。",
+      "issue": 2,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/2xhVh7u.jpg",
+      "url": "https://ainews.tvbs.ai/issues/002.html#section-jump-3"
+    },
+    {
+      "tag": "搜尋研究",
+      "title": "Grok 3 DeepSearch 功能",
+      "sub": "xAI 推出的深度搜尋功能，能快速搜尋、分析、過濾並總結資訊，提供精準答案。目前完全免費使用，並附各家 Deep Research 特色比較。",
+      "issue": 1,
+      "image": "https://helios-i.mashable.com/imagery/articles/00eB57ubJTXHUMWRoyfzTiT/images-1.fill.size_2000x1142.v1739877295.png",
+      "url": "https://ainews.tvbs.ai/issues/001.html#section-jump-3"
+    },
+    {
+      "tag": "工具教學",
+      "title": "快速指令，效率翻倍！",
+      "sub": "厭倦了重複輸入相同的 Prompt？AIWIZE 的快速指令功能一次解決，收錄常用指令範本、可自訂快捷鍵，省下重複打字的時間。",
+      "issue": 1,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/apaHenA.gif",
+      "url": "https://ainews.tvbs.ai/issues/001.html#section-jump-3"
+    }
+  ]
+}
