@@ -1,9 +1,22 @@
 {
   "items": [
     {
+      "id": "claude-legal-industry",
+      "date": "2026-05-12",
+      "title": "Claude 進軍企業法律市場　串接多個專業流程及判例資料庫",
+      "summary": "Anthropic 推出面向法律產業的 Claude 新工具，讓 Claude 不只回答法律問題，而是能直接連到律師和法務每天使用的系統。這次新增 20 多個 MCP（Model Context Protocol，模型情境協議）連接器，可串接合約管理、文件庫、併購資料室、電子證據開示、法律研究與判例資料庫等平台，像 Docusign、Box、iManage、Relativity、Thomson Reuters、Harvey 都在其中。Claude 也新增 12 個法律領域外掛，涵蓋商務合約、併購、勞動、隱私、產品法務、AI 治理、智慧財產與訴訟等工作，可依照團隊規範、風險標準與寫作風格產出內容。Claude 正從「法律助理聊天機器人」變成可嵌入法務流程的 AI 工作平台，協助整理文件、比對條款、追蹤截止日與準備法律草稿。",
+      "sourceUrl": "https://claude.com/blog/claude-for-the-legal-industry",
+      "tag": "新功能",
+      "tags": [
+        "工作流整合",
+        "整理資料",
+        "資料研究"
+      ]
+    },
+    {
       "id": "notion-developer-platform",
       "date": "2026-05-15",
-      "title": "Notion 推出開發者平台　從筆記工具變身 AI 工作中樞",
+      "title": "Notion 推出開發者平台　從筆記工具變身 AI 工作大本營",
       "summary": "Notion 不再只是寫筆記的地方了，它正式推出開發者平台，讓整個工作區變成可以部署和運行 AI 代理人（AI Agent）的平台。核心功能「Workers」能讓開發者把自訂程式直接部署在 Notion 的雲端環境裡，不用自己架伺服器就能同步 CRM、客服系統等外部資料，也能替 AI 代理打造專屬工具；目前公測中，商業與企業方案可用，八月前免費。另一個亮點是「External Agents」，像 Claude Code、Cursor、Codex 這些外部 AI 代理可以直接以成員身分進入 Notion 工作區，跟團隊對話、接任務，自家開發的代理也能透過 API 接入（目前開放候補）。",
       "sourceUrl": "https://www.notion.com/blog/introducing-developer-platform",
       "tag": "新功能",
@@ -42,7 +55,7 @@
       "id": "ai-cell-architecture-studio",
       "date": "2026-05-10",
       "title": "AI 讓知識變互動教材更容易　他用 GPT + Gemini 接力做出 3D 細胞工作室",
-      "summary": "軟體工程師 Dilum Sanjaya 在 GitHub 公開分享一個 3D 細胞結構工作室專案「Cell Architecture Studio」，他<strong>先用 GPT Images 2.0 做出素材圖片及 UI 設計，再用 Gemini 3.1 Pro 產出程式碼製作完成</strong>，<strong>把原本平面的細胞圖，變成可旋轉、可點選的 3D 畫面</strong>，讓使用者能用互動的方式自由操控查看不同細胞與生物的結構，也能切換不同細胞模型、查看細節說明與筆記。 <strong>AI 讓內容團隊或老師可以更快把知識變成可互動、可探索甚至是立體的畫面</strong>，製作互動課程、物品展示或教育工具原型的門檻逐漸降低。<img src=\"https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/cell-architecture-studio-demo.gif\" style=\"max-width:100%;border-radius:8px;margin:14px 0;display:block;\">",
+      "summary": "一名網友公開分享他用 AI 做出來的 3D 細胞結構工作室專案「Cell Architecture Studio」，他<strong>先用 GPT Images 2.0 做出素材圖片及 UI 設計，再用 Gemini 3.1 Pro 產出程式碼製作完成</strong>，<strong>把原本平面的細胞圖，變成可旋轉、可點選的 3D 畫面</strong>，讓使用者能用互動的方式自由操控查看不同細胞與生物的結構，也能切換不同細胞模型、查看細節說明與筆記。 <strong>AI 讓內容團隊或老師可以更快把知識變成可互動、可探索甚至是立體的畫面</strong>，製作互動課程、物品展示或教育工具原型的門檻逐漸降低。<img src=\"https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/cell-architecture-studio-demo.gif\" style=\"max-width:100%;border-radius:8px;margin:14px 0;display:block;\">",
       "sourceUrl": "https://github.com/cclank/cell-architecture-studio",
       "tag": "應用技巧",
       "tags": [

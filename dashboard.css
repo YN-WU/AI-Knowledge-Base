@@ -4188,48 +4188,80 @@ footer {
     font-size: 12px;
   }
 
-  /* panel absolute 緊貼在按鈕下方 — top: 100% 就是按鈕的正下方（wrapper 高度=按鈕高度），無中間 line-height 空隙 */
-  .filter-toggle-wrap > .filter-panel.open {
+  /* panel 由 JS 搬到 body、用 position: fixed + getBoundingClientRect 動態定位，徹底脫離祖先 stacking 干擾 */
+  .filter-panel--floating.open {
     display: flex;
-    position: absolute;
-    top: calc(100% + 6px);
-    right: 0;
-    z-index: 10;
+    position: fixed;
+    z-index: 9999;
     width: 300px;
+    max-width: calc(100vw - 32px);
     overflow: visible;
-    padding: 18px 18px 18px 18px;
+    padding: 18px;
     gap: 12px;
+    background: #fff;
   }
   /* 單層 filter（Prompt）panel：寬度貼齊選項文字，但比雙層收斂一點 */
-  .filter-toggle-wrap > .filter-panel--list.open {
+  .filter-panel--floating.filter-panel--list.open {
     width: auto;
     min-width: 200px;
     padding: 10px 0;
     gap: 0;
   }
-  .filter-toggle-wrap > .filter-panel .filter-row { width: 100%; gap: 12px; }
-  .filter-toggle-wrap > .filter-panel .filter-label { font-size: 14px; }
-  .filter-toggle-wrap > .filter-panel .filter-select {
-    flex: 1;
-    min-width: 0;
-    font-size: 15px;
-    padding: 9px 12px;
+  .filter-panel--floating .filter-row { width: 100%; gap: 12px; }
+  /* 雙層 filter row：label 上、chip 列下，直向堆疊 */
+  .filter-panel--floating .filter-row--stack {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
-  .filter-toggle-wrap > .filter-panel .filter-clear {
-    width: 28px;
-    height: 28px;
+  .filter-panel--floating .filter-label {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 700;
+  }
+  /* 雙層 panel 的 chip 列：橫向 wrap，每顆 chip 觸控區 ≥ 38px、active 紫底白字 */
+  .filter-panel--floating .filter-option-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+  }
+  .filter-panel--floating .filter-option-chip {
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--text);
+    font-family: inherit;
     font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    -webkit-tap-highlight-color: transparent;   /* 關掉 iOS 預設 tap 灰底 */
   }
-  .filter-toggle-wrap > .filter-panel .filter-clear[hidden] {
-    display: inline-flex;
-    visibility: hidden;
+  .filter-panel--floating .filter-option-chip.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
   }
-  /* 單層 panel 內的選項按鈕放大 */
-  .filter-toggle-wrap > .filter-panel--list .filter-option {
-    padding: 14px 26px;
+  .filter-panel--floating .filter-option-chip:active {
+    background: rgba(91, 91, 214, 0.15);
+  }
+  .filter-panel--floating .filter-option-chip.active:active {
+    background: var(--primary-dark);
+  }
+  /* 單層 panel 內的選項按鈕：高度 ≥ 52px 觸控更安全、選項間加細線分隔讓點擊區界線清楚 */
+  .filter-panel--floating.filter-panel--list .filter-option {
+    padding: 16px 26px;
     font-size: 17px;
   }
-  .filter-toggle-wrap > .filter-panel.open::before {
+  .filter-panel--floating.filter-panel--list .filter-option + .filter-option {
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
+  }
+  .filter-panel--floating.filter-panel--list .filter-option:active {
+    background: rgba(91, 91, 214, 0.18);
+  }
+  .filter-panel--floating.open::before {
     content: '';
     position: absolute;
     top: -7px;
@@ -4254,9 +4286,9 @@ footer {
     display: none;
   }
   .filter-active-hint-clear {
-    width: 26px;
-    height: 26px;
-    font-size: 15px;
+    width: 32px;       /* hint ✕ 觸控區也拉到 32×32 */
+    height: 32px;
+    font-size: 16px;
   }
 
   /* 10 秒看趨勢列表第一張卡片的 padding 也縮，整體距離更緊湊 */
