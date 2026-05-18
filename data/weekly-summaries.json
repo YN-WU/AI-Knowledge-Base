@@ -1,6 +1,19 @@
 {
   "items": [
     {
+      "id": "notion-developer-platform",
+      "date": "2026-05-15",
+      "title": "Notion 推出開發者平台　從筆記工具變身 AI 工作中樞",
+      "summary": "Notion 不再只是寫筆記的地方了，它正式推出開發者平台，讓整個工作區變成可以部署和運行 AI 代理人（AI Agent）的平台。核心功能「Workers」能讓開發者把自訂程式直接部署在 Notion 的雲端環境裡，不用自己架伺服器就能同步 CRM、客服系統等外部資料，也能替 AI 代理打造專屬工具；目前公測中，商業與企業方案可用，八月前免費。另一個亮點是「External Agents」，像 Claude Code、Cursor、Codex 這些外部 AI 代理可以直接以成員身分進入 Notion 工作區，跟團隊對話、接任務，自家開發的代理也能透過 API 接入（目前開放候補）。",
+      "sourceUrl": "https://www.notion.com/blog/introducing-developer-platform",
+      "tag": "新功能",
+      "tags": [
+        "程式設計",
+        "工作流整合",
+        "自動化"
+      ]
+    },
+    {
       "id": "figure-ai-helix-02-warehouse",
       "date": "2026-05-18",
       "title": "挑戰人類物流工作　Figure AI 機器人自主理貨超過 100 小時",
