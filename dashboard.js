@@ -697,7 +697,7 @@ function renderArchive(f) {
     const isSpecial = !/^\d+$/.test(it.no);
     const issueLabel = isSpecial ? `${it.date}` : `第 ${it.no} 期 ・ ${it.date}`;
     return `
-      <div class="archive-card" onclick="window.open('https://ainews.tvbs.ai/issues/${it.no}.html','_blank')">
+      <div class="archive-card" onclick="window.open('tvbs-ai-newsletter/issues/${it.no}.html','_blank')">
         <div class="cover" style="${cv}"></div>
         <div class="body">
           <div class="issue-num">${issueLabel}</div>
@@ -1812,7 +1812,7 @@ function ogNormalizeItem(item, kind) {
       content: '',
       summary: item.sub || '',
       // Prompt 在網站上是連到舊期 HTML（非 modal），維持外連
-      url: (item.no ? `https://ainews.tvbs.ai/issues/${item.no}.html#section-jump-${item.sj || 0}` : OG_DASHBOARD + '#prompt-tips')
+      url: (item.no ? `https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/${item.no}.html#section-jump-${item.sj || 0}` : OG_DASHBOARD + '#prompt-tips')
     };
   }
   if (kind === 'toolIntro') {
