@@ -200,9 +200,9 @@ python -m http.server 8000
 
 ## ➕ 新增內容指南
 
-> 💡 **推薦做法**：直接用後台 CMS 編輯（不用碰程式碼）
-> 入口：`https://ainews.tvbs.ai/admin/`,操作手冊見 [`admin/README.md`](admin/README.md)
-> 下面 JSON 編輯說明是給開發者參考用,日常操作走 CMS 即可。
+> ⚠️ **CMS 後台目前尚未設計完成 — 屬於「先建好骨架備用」狀態**
+> `admin/` 資料夾的 Sveltia CMS 整合（config.yml + 入口 HTML）已就位，本機可用 `npx decap-server` + `npx serve .` 跑起來，但**正式上線的工作流程、權限分配、PAT 管理規範等都還沒拍板定案**，現階段**所有新增/編輯內容仍走「直接編輯 JSON 檔 + git push」**。
+> CMS 完工前請以下面 JSON 編輯說明為準；CMS 細節可參考 [`admin/README.md`](admin/README.md) 但僅供參考，不代表已是正式流程。
 
 ### 新增「重點趨勢」文章
 
