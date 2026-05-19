@@ -227,7 +227,13 @@ python -m http.server 8000
 - `featured: true` 會讓它出現在首頁 hero 區的 4 張 slide 候選池
 - `content` 是完整 HTML，會在 modal 內呈現
 - `image`：用自有圖床的 jsDelivr 網址（見下方「圖片素材」段落），不要用免費圖床
-- **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可。外部（Outlook email）連回文章用 `#article-{id}`，dashboard 載入時會自動開對應 modal
+- **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可
+- **Outlook deep-link URL prefix**（每個資料源獨立 prefix，方便辨識來源）：
+  - `articles.json` → `https://ainews.tvbs.ai/#article-{id}`
+  - `weekly-summaries.json` → `https://ainews.tvbs.ai/#summary-{id}`
+  - `tool-intro.json` → `https://ainews.tvbs.ai/#tool-{id}`
+  - `prompt-tips.json` → `https://ainews.tvbs.ai/#prompt-{id}`（保留位、目前 Outlook 走舊期 HTML deep link）
+  - 四個 prefix 都會被 `getArticleHash()` 識別並開啟對應 modal；舊 email 用 `#article-{id}` 仍可正常運作（向後相容）
 
 ### 新增「10 秒看趨勢」條目
 

@@ -676,10 +676,17 @@ function showArticleById(id) {
   return false;
 }
 
-// 從 hash 取出 article id（格式 #article-{id}）
+// 從 hash 取出 deep-link id（4 個 prefix 對應 4 種資料來源）
+// #article-* → articles.json / #summary-* → weekly-summaries.json
+// #tool-*    → tool-intro.json / #prompt-*  → prompt-tips.json
+// id 在四個資料源全站共用同一命名空間，prefix 只用於語意分類 + 舊 email 相容
 function getArticleHash() {
   const h = location.hash.slice(1);
-  return h.indexOf('article-') === 0 ? h.slice('article-'.length) : null;
+  const prefixes = ['article-', 'summary-', 'tool-', 'prompt-'];
+  for (const p of prefixes) {
+    if (h.indexOf(p) === 0) return h.slice(p.length);
+  }
+  return null;
 }
 
 function closeArticle() {
@@ -1799,7 +1806,7 @@ function ogNormalizeItem(item, kind) {
       title: item.title,
       content: item.content || '',
       summary: item.summary || '',
-      // deep-link：點 email 直接開該文章 modal
+      // deep-link：articles.json 用 #article-{id}
       url: item.id ? `${OG_DASHBOARD}#article-${item.id}` : OG_NEWS_URL
     };
   }
@@ -1823,8 +1830,8 @@ function ogNormalizeItem(item, kind) {
       title: item.title,
       content: item.content || '',
       summary: item.sub || '',
-      // deep-link：點 email 直接開該工具介紹 modal
-      url: item.id ? `${OG_DASHBOARD}#article-${item.id}` : OG_DASHBOARD + '#tool-intro'
+      // deep-link：tool-intro.json 用 #tool-{id}
+      url: item.id ? `${OG_DASHBOARD}#tool-${item.id}` : OG_DASHBOARD + '#tool-intro'
     };
   }
   return item;
@@ -1863,8 +1870,8 @@ function ogRenderSummary(s, isLast) {
   const useHtml = useTags.length
     ? `<p style="margin:6px 0 0 0; font-family:'Microsoft JhengHei',Arial,sans-serif; font-size:12px; color:#5b5bd6; line-height:1.6;"><span style="font-weight:700;">適用情境：</span>${useTags.map(ogEsc).join('&nbsp;｜&nbsp;')}</p>`
     : '';
-  // deep-link：點 email 直接開該趨勢 modal
-  const sumUrl = s.id ? `${OG_DASHBOARD}#article-${s.id}` : OG_SUM_URL;
+  // deep-link：weekly-summaries.json 用 #summary-{id}
+  const sumUrl = s.id ? `${OG_DASHBOARD}#summary-${s.id}` : OG_SUM_URL;
   return `
           <tr>
             <td style="padding:0 32px;">
