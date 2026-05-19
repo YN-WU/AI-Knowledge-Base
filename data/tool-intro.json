@@ -48,6 +48,14 @@
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/015.html#section-jump-4"
     },
     {
+      "tag": "行銷工具",
+      "title": "Pomelli：Google AI 行銷素材生成平台",
+      "sub": "Google Labs + DeepMind 合作打造，給品牌一個網址就能自動分析調性、產出社群貼文、廣告素材、網站橫幅，中小企業快速建立品牌形象的好幫手（目前限美加澳紐、僅支援英文）。",
+      "issue": 14,
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/pHZbo7v.webp",
+      "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/014.html#section-jump-4"
+    },
+    {
       "tag": "簡報設計",
       "title": "Gamma：AI 驅動簡報與內容製作平台",
       "sub": "重新定義簡報製作體驗，結合生成式 AI 與互動式內容設計，極短時間內完成兼具專業外觀與視覺吸引力的簡報、報告、文件。",
@@ -88,25 +96,33 @@
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/009.html#section-jump-4"
     },
     {
-      "tag": "工具教學",
-      "title": "三步驟打造 LINE AI 聊天機器人",
-      "sub": "AIWIZE Autopilot 搭配 Webhook 串接 LINE 與 ChatGPT，打造能翻譯、摘要、寫文案的私人 AI 助理。",
+      "tag": "對話助理",
+      "title": "LINE 內建 AI 助理：免下載 App 的隨身 AI",
+      "sub": "LINE Yahoo 推出 LINE AI 功能，整合 GPT-4.1 + DALL·E 3，能聊天、生圖、翻譯、摘要 YouTube 影片、簡易寫程式。台灣需透過官網體驗，目前完全免費。",
+      "issue": 8,
+      "image": "https://i.meee.com.tw/y9H7jBW.jpeg",
+      "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/008.html#section-jump-3"
+    },
+    {
+      "tag": "創作工作區",
+      "title": "Google Gemini Canvas 免費開放使用！全新互動式工作區上線",
+      "sub": "Google 推出 Gemini Canvas 整合文字、程式碼、互動內容的 AI 工作區，可寫修文章、生成預覽程式、做互動網頁與測驗、資料視覺化，免費版即全功能開放。",
       "issue": 7,
-      "image": "https://img.youtube.com/vi/huHFwh7UgOw/hqdefault.jpg",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/l4tMdCA.jpeg",
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/007.html#section-jump-3"
     },
     {
-      "tag": "工具教學",
-      "title": "三步驟打造 Telegram AI 聊天機器人",
-      "sub": "用 AIWIZE Autopilot 自動化流程串接 Telegram 與 ChatGPT，打造 24 小時在線、能處理多種任務的私人 AI 助理。",
+      "tag": "筆記知識",
+      "title": "知識共享再進化！NotebookLM 開放「公開連結」分享筆記",
+      "sub": "Google 為 NotebookLM 推出「公開連結」分享功能：拿到連結的人能查看筆記、跟 AI 對話、聽語音總覽、看 FAQ／簡報文件，但無法修改原始資料。",
       "issue": 6,
-      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/Zc3z1kj.png",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/PrRHTWA.gif",
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/006.html#section-jump-3"
     },
     {
-      "tag": "工具教學",
-      "title": "YouTube 最新影片自動摘要",
-      "sub": "用 AIWIZE Autopilot 結合 RSS 與 Gemini 模型，自動抓取指定頻道新影片並產出摘要，輕鬆跟上你想追蹤的 YouTuber 動態。",
+      "tag": "筆記知識",
+      "title": "最強 AI 筆記工具手機也能用了！Google NotebookLM App 正式登場",
+      "sub": "NotebookLM 推出 iOS / Android App，PDF、網頁、YouTube 影片、純文字都能整理成摘要，還能用中文語音朗讀，走到哪聽到哪。所有核心功能完整開放、免費下載。",
       "issue": 5,
       "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/KjUiLNT.jpg",
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/005.html#section-jump-2"
@@ -120,27 +136,11 @@
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/004.html#section-jump-4"
     },
     {
-      "tag": "工具教學",
-      "title": "打造 AI 自我反思的自動化流程",
-      "sub": "用 AIWIZE Autopilot 建立「AI 自我反思」的工作流程，示範如何把部落格文章高效改寫成影片腳本。",
-      "issue": 4,
-      "image": "https://img.youtube.com/vi/YLTauzuxDjA/hqdefault.jpg",
-      "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/004.html#section-jump-4"
-    },
-    {
       "tag": "寫程式",
       "title": "Claude 3.7 Sonnet：寫程式與資訊視覺化強援",
       "sub": "Anthropic 推出的混合推理模型，成為許多專業用戶首選。免費開放所有用戶使用（有每日訊息上限），寫程式與視覺化任務表現突出。",
       "issue": 3,
       "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/88lNa88.jpeg",
-      "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/003.html#section-jump-3"
-    },
-    {
-      "tag": "工具教學",
-      "title": "用 Claude 3.7 Sonnet 點亮你的數據",
-      "sub": "想把枯燥的文字資料變成清晰易懂的視覺圖表？在 AIWIZE 平台直接呼叫 Claude 3.7 Sonnet 的 SVG 超能力，一鍵搞定。",
-      "issue": 3,
-      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/XkjyMEm.png",
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/003.html#section-jump-3"
     },
     {
@@ -152,27 +152,11 @@
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/002.html#section-jump-3"
     },
     {
-      "tag": "工具教學",
-      "title": "圖片轉影片，直存 Google Drive",
-      "sub": "用 AIWIZE 自動化流程搭配 Wan2.1 模型，將靜態圖片變身吸睛影片，成品自動存進 Google Drive，社群素材製作再省時。",
-      "issue": 2,
-      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/2xhVh7u.jpg",
-      "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/002.html#section-jump-3"
-    },
-    {
       "tag": "搜尋研究",
       "title": "Grok 3 DeepSearch 功能",
       "sub": "xAI 推出的深度搜尋功能，能快速搜尋、分析、過濾並總結資訊，提供精準答案。目前完全免費使用，並附各家 Deep Research 特色比較。",
       "issue": 1,
       "image": "https://helios-i.mashable.com/imagery/articles/00eB57ubJTXHUMWRoyfzTiT/images-1.fill.size_2000x1142.v1739877295.png",
-      "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/001.html#section-jump-3"
-    },
-    {
-      "tag": "工具教學",
-      "title": "快速指令，效率翻倍！",
-      "sub": "厭倦了重複輸入相同的 Prompt？AIWIZE 的快速指令功能一次解決，收錄常用指令範本、可自訂快捷鍵，省下重複打字的時間。",
-      "issue": 1,
-      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/apaHenA.gif",
       "url": "https://ainews.tvbs.ai/tvbs-ai-newsletter/issues/001.html#section-jump-3"
     }
   ]
