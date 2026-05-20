@@ -136,6 +136,14 @@ a {
   letter-spacing: 1px
 }
 
+/* 手機版副標字級拉大：從 11px → 13px，跟整體字級比例更協調 */
+@media (max-width: 700px) {
+  .brand-sub {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+}
+
 .logo {
   font-weight: 900;
   font-size: 22px;
@@ -5549,11 +5557,12 @@ footer {
     white-space: nowrap;
   }
 
-  /* 選單項目間距收窄，集中排列；子項不要撐滿寬度 */
+  /* 選單項目：手機版字級從 14 拉到 15.5px，跟整體設計（hero 24px、卡標 16px）視覺比例一致 */
   .tabs > .tab,
   .dropdown-item {
     width: auto;
-    padding: 12px 9px;
+    padding: 13px 11px;
+    font-size: 15.5px;
     text-align: center;
   }
 
