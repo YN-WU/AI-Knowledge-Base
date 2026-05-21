@@ -216,7 +216,6 @@ python -m http.server 8000
   "image": "https://...",
   "tag": "新工具",
   "tags": ["程式設計", "自動化"],
-  "summary": "一句話摘要，列表會顯示這段。",
   "content": "<p class=\"first-paragraph\">完整 HTML 內文...</p>",
   "sourceUrl": "https://外部來源連結",
   "sourceLabel": "官方介紹 →",
@@ -224,16 +223,18 @@ python -m http.server 8000
 }
 ```
 
-- `featured: true` 會讓它出現在首頁 hero 區的 4 張 slide 候選池
+- **`summary` 欄位已於 2026-05 從重點趨勢移除**：原本卡片/搜尋會顯示摘要，現已拿掉（`dashboard.js` 用 `a.summary || ''` 容錯，缺欄位不會壞）。新增文章不用再填 summary。（10 秒看趨勢的 `weekly-summaries.json` 仍保留 summary）
+- `featured: true` 會讓它進首頁 hero 候選池。**hero 版型為「雜誌式 1+2+4」**：所有 `featured` 文章（articles + tool-intro 合併）依日期 desc 全部呈現 —— 第 1 張大主圖、接著中排 2 張、再下排其餘（桌機下排 3 欄）。不再像舊版只取前 4 張，增減 featured 版面會自動長/縮
 - `content` 是完整 HTML，會在 modal 內呈現
 - `image`：用自有圖床的 jsDelivr 網址（見下方「圖片素材」段落），不要用免費圖床
 - **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可
-- **Outlook deep-link URL prefix**（每個資料源獨立 prefix，方便辨識來源）：
+- **Deep-link URL prefix**（每個資料源獨立 prefix，方便辨識來源）：
   - `articles.json` → `https://ainews.tvbs.ai/#article-{id}`
   - `weekly-summaries.json` → `https://ainews.tvbs.ai/#summary-{id}`
   - `tool-intro.json` → `https://ainews.tvbs.ai/#tool-{id}`
   - `prompt-tips.json` → `https://ainews.tvbs.ai/#prompt-{id}`（保留位、目前 Outlook 走舊期 HTML deep link）
   - 四個 prefix 都會被 `getArticleHash()` 識別並開啟對應 modal；舊 email 用 `#article-{id}` 仍可正常運作（向後相容）
+  - **2026-05 起，網頁版點開任何文章 modal 也會即時把網址更新成對應的 `#prefix-{id}`**（`showArticle()` 用 `history.replaceState` 寫入、`closeArticle()` 關閉時清掉），所以站內開啟的文章可直接複製網址分享／加書籤、重整會自動開回同一篇。只有具 `id` 的原生資料會設 hash；舊期/無 id 文章維持原網址
 
 ### 新增「10 秒看趨勢」條目
 
@@ -329,8 +330,9 @@ TVBS Logo 用 CSS filter 著色：
 
 首頁採 Substack / Medium / Notion 風的 **單欄置中閱讀版型**：
 
-- 最大寬度 760px、置中
+- **首頁最大寬度 1040px**（`#page-home .reader-flow` 覆寫），文章閱讀頁仍維持 760px 好讀行寬
 - 區塊垂直堆疊：Masthead → Hero → 10 秒看趨勢 → 內部工具 → 黑客松
+- **Hero「雜誌式 1+2+4」**：主圖滿版置頂 + 中排 2 張 + 下排其餘（桌機 3 欄）；手機版單欄堆疊、每張等高。樣式在 `dashboard.css` 的 `.hero-grid` / `.hero-side` / `.hero-bottom`（含 `.reader-flow` 覆寫與 `@media (max-width: 700px)` 手機區塊）
 - 每個區塊間用細短分隔線 `<hr class="reader-divider">` 區分
 - 樣式集中在 dashboard.css 的 `/* Document Reader Mode */` 區段
 - **2026-05 移除 Overview band**（原本顯示「31 則精選 + 涵蓋類型/熱門情境 tag 列」），原因：stat 資訊對讀者沒實際價值、又佔據首頁黃金位置擋住真正內容。masthead 後直接接 hero 大圖，magazine-style 節奏
@@ -473,6 +475,12 @@ TVBS Logo 用 CSS filter 著色：
 → 全站 8 個檔（HTML/CSS/JS/CMS/README/CLAUDE/Outlook 模板）所有 UI 字串、註解、文件已同步。
 → 資料檔仍叫 `weekly-summaries.json`（JSON 檔名沒改，內部 page id 仍為 `summaries`）。
 → 跟「30 秒原創音樂」「30 秒影片」等「真實時間單位」的文案無關，那些保留原樣。
+
+### 11. 改完 dashboard.css / dashboard.js 要更新 index.html 的 `?v=` 版本號
+
+→ `index.html` 用 `dashboard.css?v=YYYY-MM-DD` 與 `dashboard.js?v=YYYY-MM-DD` 做 cache-busting（兩處：頂部 `<link>` 跟底部 `<script>`）。
+→ 瀏覽器（尤其手機）會用「含 query 的完整網址」硬快取，**不更新版本號的話改了 CSS/JS 也看不到效果**（一般 reload 不會繞過）。
+→ 改 `dashboard.css`/`dashboard.js` 後，把兩處 `?v=` 一起改成當天日期（同一天多次改可加後綴 `-b`、`-c`…）。`data/*.json` 沒有 cache-busting，改資料要靠 hard refresh（Ctrl+Shift+R）。
 
 ---
 

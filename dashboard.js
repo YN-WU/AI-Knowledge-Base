@@ -635,6 +635,19 @@ function showArticle(data) {
   const bodyScroll = modal.querySelector('.am-body');
   if (bodyScroll) bodyScroll.scrollTop = 0;
 
+  // 同步網址 hash，讓開啟的文章可被分享／書籤（依資料源選對應 prefix）
+  // 只有具 id 的原生資料才設；舊期/無 id 文章維持原網址。用 replaceState 不觸發 hashchange、避免迴圈
+  if (art.id) {
+    let prefix = 'article-';
+    if (art.kind === 'summary') prefix = 'summary-';
+    else if (art.kind === 'tool-intro') prefix = 'tool-';
+    else if (art.kind === 'prompt') prefix = 'prompt-';
+    const newHash = '#' + prefix + art.id;
+    if (location.hash !== newHash) {
+      history.replaceState(null, '', location.pathname + location.search + newHash);
+    }
+  }
+
   // GA4: 追蹤文章瀏覽
   if (typeof gtag === 'function') {
     gtag('event', 'article_view', {
@@ -869,7 +882,8 @@ async function initDashboardData() {
       }
 
       const heroContainer = document.getElementById('latestHeroContainer');
-      // Hero Slider 候選池：articles + tool-intro 兩邊 featured: true 合併，按日期 desc 取前 5
+      // 首頁大圖候選池：articles + tool-intro 兩邊 featured: true 合併，按日期 desc 全部呈現
+      // 版型：雜誌式 1+2+4 —— 1 張主圖 + 右上 2 張疊卡 + 下方一排其餘小卡
       const articleSlides = articles.filter(a => a.featured).map(a => ({
         image: a.image, tag: a.tag || getTag(a.title), title: a.title, summary: a.summary || '', date: a.date || '', type: 'article'
       }));
@@ -877,19 +891,19 @@ async function initDashboardData() {
         image: t.image, tag: 'AI 工具介紹', title: t.title, summary: t.summary || t.sub || '', date: t.date || '', type: 'tool'
       }));
       const featuredSlides = [...articleSlides, ...toolSlides]
-        .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
-        .slice(0, 4);
+        .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
       if (heroContainer) {
         if (featuredSlides.length >= 1) {
-          const [main, ...others] = featuredSlides;
-          const sideCards = others.slice(0, 3).map(a => `
+          const [main, ...rest] = featuredSlides;
+          const smallCard = a => `
             <div class="hero-small" style="background-image:linear-gradient(180deg,rgba(10,18,40,0.1),rgba(10,18,40,0.85)),url('${a.image}')" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(a.title).replace(/'/g, "%27")}'))">
               <div class="hero-small-content">
                 <span class="slide-tag${a.type === 'tool' ? ' slide-tag--tool' : ''}">${a.tag}</span>
                 <h3 class="hero-small-title">${a.title}</h3>
               </div>
-            </div>
-          `).join('');
+            </div>`;
+          const sideCards = rest.slice(0, 2).map(smallCard).join('');
+          const bottomCards = rest.slice(2).map(smallCard).join('');
           heroContainer.innerHTML = `
             <div class="hero-grid">
               <div class="hero-main" style="background-image:linear-gradient(180deg,rgba(10,18,40,0.05) 0%,rgba(10,18,40,0.3) 50%,rgba(10,18,40,0.9) 100%),url('${main.image}')" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(main.title).replace(/'/g, "%27")}'))">
@@ -901,7 +915,8 @@ async function initDashboardData() {
               <div class="hero-side">
                 ${sideCards}
               </div>
-            </div>`;
+            </div>
+            ${bottomCards ? `<div class="hero-bottom">${bottomCards}</div>` : ''}`;
         } else {
           // 舊版：單張封面卡（沒原生內容時 fallback）
           heroContainer.innerHTML = `<div onclick="switchTab('news')" style="text-decoration:none; cursor:pointer">
