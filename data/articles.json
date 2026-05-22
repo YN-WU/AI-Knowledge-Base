@@ -1,6 +1,54 @@
 {
   "items": [
     {
+      "id": "google-io-2026",
+      "date": "2026-05-20",
+      "tag": "產業動態",
+      "tags": [
+        "觀念學習"
+      ],
+      "title": "Google I/O 2026 懶人包　AI 代理全面深入搜尋、創作與工作流程",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/google%20io%202026.webp",
+      "imageCaption": "Google I/O 大會有多項新發表。( 圖 / 翻攝自 Google 部落格)",
+      "sourceUrl": "https://blog.google/innovation-and-ai/sundar-pichai-io-2026/#momentum",
+      "sourceLabel": "Google I/O 2026 主題演講 →",
+      "content": "<p class=\"first-paragraph\">Google I/O 2026 大會 20 日登場，執行長 Sundar Pichai 表示，AI 已進入使用者期待「看見日常產品價值」的階段，今年重點是把 Gemini、AI 代理與基礎設施整合進搜尋、文件、影音創作、開發工具與企業服務，正式進入「代理式 Gemini 時代」。以下帶你快速看過主要發表哪些內容：</p><h4>新模型 Gemini 3.5 Flash 登場　能力堪比旗艦但速度快 4 倍</h4><p>Google 在 I/O 2026 發表 Gemini 3.5 Flash，主打接近旗艦模型的能力表現，同時保留 Flash 系列的低延遲與高效率，已可透過 Google Antigravity、Gemini API、Google AI Studio 與 Android Studio 使用。它特別適合長時間、多步驟的 AI 代理任務，例如開發應用、維護程式碼、處理財務文件，也能生成更豐富的互動式網頁介面與圖像。價格方面，Google 強調部分任務成本可低於其他前沿模型一半以上。</p><p style=\"font-size:14px\">→ <a href=\"#article-gemini-3-5-flash\" style=\"color:var(--accent);text-decoration:underline\">看 Gemini 3.5 Flash 更完整介紹</a></p><h4>新模型 Gemini Omni 發表　用對話方式生成與編輯影片</h4><p>Google 推出新模型 Gemini Omni，第一階段主打影片生成與編輯，能把圖片、文字、影片或語音參考整合成一致的輸出，並強化物理理解、角色一致性與敘事能力。首個版本 Omni Flash 將進入 Gemini app、Google Flow、YouTube Shorts Remix 與 YouTube Create，讓一般使用者用對話方式改背景、套用電影感鏡頭、把自己放進短影音，創作者則能用它延伸真實素材與批次修改作品。所有 Omni 生成影片都會加入 SynthID 隱形浮水印，方便日後驗證來源。</p><p style=\"font-size:14px\">→ <a href=\"#article-gemini-omni\" style=\"color:var(--accent);text-decoration:underline\">看 Gemini Omni 更完整介紹</a></p><h4>Google Flow 新增 AI 代理　創作流程可多步驟規劃</h4><p>Google Flow 原本是 AI 創作工具，現在新增 AI 代理功能讓 Flow 從一次只能處理一個 prompt，進化成能處理多步驟創作任務的代理。它可以在早期幫忙腦力激盪、討論角色對白、提出劇情建議，也能在專案後期一次產生多個版本、批次修改素材，甚至把完成的資產整理成集合並自動命名。使用者也能用自然語言建立自訂創意工具，例如影像編輯器、影片尺寸調整器、自訂 shader、手繪動畫工具或文字疊加效果，不需要寫程式，就能用「vibe coding」方式打造符合自己創作流程的工具。</p><h4>全新工具 Google Pics 推出　圖片元素可逐一精準編輯</h4><p>全新推出的 AI 圖片創作與編輯工具，基於最新 Nano Banana 模型打造。與一般圖片生成不同，Pics 會把畫面中每個元素當作可獨立操作的物件，讓使用者能精準新增、替換或修飾特定細節，適合需要細緻控制的設計與修圖場景。</p><h4>YouTube 新增 Ask YouTube　用對話方式搜尋並導覽影片</h4><p>Google 推出 Ask YouTube，主打用對話方式重新整理 YouTube 搜尋體驗。使用者可以提出更複雜的需求，例如想找教孩子騎腳踏車的技巧，系統會從 YouTube 長影片與 Shorts 中整理出相關內容，並生成互動式、結構化回答。這讓 YouTube 搜尋不只是列出影片，而是更像先幫你整理方向的影音導覽。這項功能本月起先在美國、英文桌面搜尋中向部分使用者實驗推出。</p><h4>Gmail、Docs、Keep 進化　辦公工具開始聽懂任務</h4><p>Google Workspace 的 AI 更新集中在信箱、文件與筆記。AI Inbox 會在 Gmail 中凸顯重要待辦、產生個人化回覆草稿，並把相關 Google Doc、Sheet 或 Slide 連結放到任務旁；今年夏天 Pro 與 Ultra 用戶還能用 Gmail Live 直接對信箱提問。Docs Live 讓使用者用語音建立與修改文件，必要時可在授權後參考 Gmail、Drive、Chat 與網路資料；Keep 則能把口語腦力激盪整理成筆記與清單。這些功能讓 Workspace 更像可對話的工作助理。</p><h4>Antigravity 2.0 升級　從開發工具變成 AI 代理管理平台</h4><p>Google 的 AI 開發平台從寫程式環境升級為代理管理中心，搭配 Gemini 3.5 Flash 主打更快開發週期與更低營運成本。主要更新包括：Google Cloud 客戶可透過 Gemini Enterprise Agent Platform 存取 Antigravity，資料與代理程式預設在客戶自有雲端環境中運行；全新桌面應用 Antigravity 2.0 可讓開發者在集中工作空間協調多個代理並行處理任務；Antigravity CLI 則提供輕量終端機介面，方便快速建立與部署代理。</p><h4>Google 搜尋首度導入 AI 代理　可追蹤資訊並生成迷你 App</h4><p>Google 把傳統搜尋框改成可支援文字、圖片、檔案、影片與 Chrome 分頁等多模態輸入。使用者可建立資訊代理 24 小時背景監看網路與即時資訊，主動發送摘要與通知；代理預訂功能也擴大到在地服務，可代為致電商家。搜尋也導入代理式寫程式能力，可依問題即時生成互動圖表、模擬動畫等客製介面，長期任務還能建立可回訪的迷你 App。生成式 UI 今年夏天免費開放，資訊代理與迷你 App 先向 Google AI 訂閱者推出。</p><p style=\"font-size:14px\">→ <a href=\"https://blog.google/intl/zh-tw/products/search-io-2026/#powerful-ai\" target=\"_blank\" style=\"color:var(--accent);text-decoration:underline\">看 Google AI 搜尋功能完整介紹</a></p><h4>Gemini app 變個人助理　Spark 與 Daily Brief 接手日常</h4><p>Google 在 Gemini app 中推出 Gemini Spark 與 Daily Brief。Spark 是 24 小時個人 AI 代理，可在使用者指示下於手機或筆電背景處理任務，未來可收發簡訊或 email、建立子代理，甚至在設定預算與商家後協助付款；目前先給可信測試者使用。Daily Brief 則會在夜間整理信箱、行事曆與任務，隔天提供個人化摘要與下一步建議，適合希望每天快速掌握重點的人。Google 強調重大操作前會請使用者確認。</p><h4>全新工具組 Gemini for Science 推出　加速科學研究流程</h4><p>全新推出的科學研究 AI 工具組合，包含假說生成、運算發現與文獻整理三項 Google Labs 實驗工具，以及整合 30 多個生命科學資料庫的 Science Skills 技能套件，目標是把原本需要數小時的研究流程縮短到數分鐘。</p><h4>SynthID 驗證擴大到搜尋與 Chrome　新增 Content Credentials</h4><p>Google 的隱形浮水印技術推出三年來，已標記超過千億張圖片與影片。這次新增 Content Credentials 驗證，可辨識內容來源是 AI 還是相機；驗證功能將擴展到搜尋與 Chrome，OpenAI、Kakao、ElevenLabs 也宣布採用 SynthID。</p><h4>智慧眼鏡公布產品時程　音訊眼鏡今年秋天率先推出</h4><p>Google 說明 Android XR 的下一個重要里程碑是智慧眼鏡，將分成音訊眼鏡及顯示型眼鏡。音訊眼鏡會在耳邊提供語音協助，顯示型眼鏡則能在需要時把資訊呈現在眼前。首批音訊眼鏡將與 Gentle Monster、Warby Parker 和 Samsung 合作，預計今年秋天推出，並支援 Android 與 iOS 裝置。</p><div class=\"link-group\"><a href=\"https://blog.google/intl/zh-tw/products/cloud/2026-google-io-google-cloud-highlights/\" target=\"_blank\" class=\"news-link\">I/O 2026 官方介紹全文 →</a><a href=\"https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-collection/\" target=\"_blank\" class=\"news-link\">更多 I/O 2026 相關官方文章 →</a></div>",
+      "featured": true
+    },
+    {
+      "id": "gemini-omni",
+      "date": "2026-05-20",
+      "tag": "模型發布",
+      "tags": [
+        "影片製作"
+      ],
+      "title": "Gemini Omni 登場！主打任何素材都能生成影片　用聊天就能一路編輯",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/GeminiOmni.webp",
+      "imageCaption": "GeminiOmni 登場。 ( 圖 / 翻攝自 Google 部落格)",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/",
+      "sourceLabel": "Gemini Omni 官方介紹 →",
+      "content": "<p class=\"first-paragraph\">Google 日前在 I/O 大會上發表新一代生成模型 Gemini Omni，主打把 Gemini 的推理能力帶進影片生成與編輯，首先推出的版本是 Gemini Omni Flash。不同於過去偏向單一輸入、單次生成的工具，Omni 可以結合圖片、音訊、影片與文字作為參考，先從高品質影片輸出開始，未來也會支援圖片與音訊等更多輸出形式。</p><h4>用自然語言剪影片　每次修改都能接續前一步</h4><p>Gemini Omni 的核心特色，是讓使用者直接用對話方式編輯影片。使用者可以用文字指令改變場景、動作、風格、角度或細節，而且每一次修改都會延續前一次結果，不必重新從零開始。Google 強調，Omni 會盡量維持角色一致性、場景脈絡與物理合理性，例如把雕塑變成泡泡、讓鏡子像液體一樣產生波紋，或讓人物手臂變成反光鏡面材質。</p><h4>從真實影片重新想像　把拍不到的畫面做出來</h4><p>Omni 也能把使用者已有的影片變成創作起點。使用者可以要求它改變影片中的動作、加入新角色或物件，甚至把原本真實拍攝的片段轉成完全不同的視覺世界。這讓影片編輯不再只是在既有素材上修剪或調色，而是能把「原本拍不到」的想像畫面，直接疊加到現有影片脈絡中，適合短影音創作、概念提案與視覺實驗。</p><h4>結合世界知識　不只做得像，也要說得通</h4><p>Google 強調，Gemini Omni 不只是生成看起來逼真的畫面，也會運用 Gemini 對現實世界的知識來判斷「接下來應該發生什麼」。它強化了對重力、動能、流體等物理概念的理解，因此能產生更合理的運動與場景變化。對創作者來說，這代表 Omni 不只適合做漂亮畫面，也能用來製作解釋型影片，例如以黏土動畫說明蛋白質摺疊，或用更直覺的方式把複雜概念視覺化。</p><h4>圖片、影片、聲音都能當參考　多素材變成同一支影片</h4><p>Gemini Omni 支援把不同類型素材合併成單一輸出。使用者可以提供角色圖片、場景草圖、影片動態、音樂節奏或文字描述，讓 Omni 統整成風格一致的影片。例如用一張圖片指定科幻場景、用一段影片指定光效變化，再搭配音訊節拍生成完整片段。音訊參考一開始會先支援語音，Google 表示之後會逐步加入更多音訊輸入類型。</p><h4>個人數位分身上線　可生成像自己也像自己聲音的影片</h4><p>Omni 也支援 Avatars 功能，讓使用者建立自己的數位分身，生成看起來和聽起來都像自己的影片。Google 特別提到，這項能力涉及使用者安全與內容濫用風險，因此目前先以「自己的聲音與分身」作為起點；至於更進一步修改影片中的音訊與語音，Google 仍在測試，並評估如何以負責任的方式提供給使用者。</p><h4>SynthID 標記來源　生成影片可在 Google 服務中驗證</h4><p>所有透過 Gemini Omni 生成的影片，都會加入 Google 的 SynthID 隱形數位浮水印。使用者之後可以透過 Gemini app、Gemini in Chrome 與 Google Search 驗證影片是否由 Gemini Omni 生成。這項設計的重點，是讓 AI 影片創作變得更容易使用的同時，也保留內容來源與透明度，降低觀眾難以分辨生成內容的問題。</p><h4>哪裡可以用 Gemini Omni Flash？</h4><p>Google 目前推出的是 Omni 家族第一個模型 Gemini Omni Flash，已向全球 Google AI Plus、Pro 與 Ultra 訂閱者開放，可在 Gemini app 與 Google Flow 中使用。同時，Gemini Omni Flash 也會從本週起在 YouTube Shorts 與 YouTube Create App 向使用者免費推出。Google 表示，未來幾週也會透過 API 開放給開發者與企業客戶使用。</p>",
+      "featured": true
+    },
+    {
+      "id": "gemini-3-5-flash",
+      "date": "2026-05-20",
+      "tag": "模型發布",
+      "tags": [
+        "程式設計",
+        "自動化",
+        "工作流整合",
+        "圖像生成"
+      ],
+      "title": "Google 發布 Gemini 3.5 Flash！速度快 4 倍、成本更省　能力堪比旗艦模型",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/gemini-3-5_blog-header.webp",
+      "imageCaption": "Gemini 3.5 Flash 登場。 ( 圖 / 翻攝自 Google 部落格)",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+      "sourceLabel": "Gemini 3.5 官方介紹 →",
+      "content": "<p class=\"first-paragraph\">Google 日前在 I/O 大會上發表新一代模型家族 Gemini 3.5，主打讓高階 AI 不只會回答，也能執行更複雜、時間更長的 AI 代理工作流程。第一個推出的版本是 Gemini 3.5 Flash，在代理任務與寫程式表現上有明顯提升，適合處理需要規劃、執行、反覆修正的長流程任務。</p><h4>Gemini 3.5 Flash 上線　速度接近 Flash、能力挑戰旗艦模型</h4><p>Google 表示，Gemini 3.5 Flash 在多項代理與程式任務基準測試中，表現已可接近大型旗艦模型，同時維持 Flash 系列主打的高速度。它在 Terminal-Bench 2.1、GDPval-AA、MCP Atlas 等測試中超越 Gemini 3.1 Pro，也在 CharXiv Reasoning 多模態理解測試中取得 84.2% 成績。Google 也指出，若以每秒輸出 token 來看，3.5 Flash 比其他同級高階模型快 4 倍，強調使用者不必再在品質與延遲之間二選一。</p><h4>長流程代理任務　從數天工作縮短到更短時間</h4><p>Gemini 3.5 Flash 的重點應用，是處理長時間、多步驟的 AI 代理任務。Google 舉例，過去可能需要開發者花數天、稽核人員花數週完成的工作，現在可由 3.5 Flash 協助在更短時間內完成。Google 表示，在這類長流程 AI 代理任務中，3.5 Flash 往往能以不到其他頂尖模型一半的成本完成。它能用於開發新應用、維護程式碼庫、準備財務文件等工作，並可在監督下執行多步驟流程與寫程式任務。這代表 Flash 不只是更快的聊天模型，而是被設計成能實際接手流程的 AI 代理核心。</p><h4>互動式 UI 與圖像生成　可做更豐富的網頁介面</h4><p>延續 Gemini 3 的多模態基礎，Gemini 3.5 Flash 也強化了互動式網頁介面與圖像生成能力。Google 展示它可在 AI Studio 中，為研究論文建立互動動畫與視覺化內容。這代表 3.5 Flash 不只用於文字或程式碼，也能把複雜資訊整理成更容易理解的視覺介面，適合研究展示、資料說明與互動式應用原型。</p><h4>企業實際導入　金融與資料團隊用來拆解複雜流程</h4><p>Google 表示，Gemini 3.5 Flash 的代理能力已開始在開發者與企業場景中產生實際影響。Google 在開發 3.5 系列時，與產業夥伴合作了解工作流程中最耗時、最複雜的部分，應用案例包含銀行與金融科技公司自動化原本需要數週的流程，以及資料科學團隊在複雜資料環境中挖掘洞察。Google 也提到 Shopify 正使用平行子代理分析長時間、大規模的複雜資料，以提升全球商家成長預測的準確度。</p><h4>強化 Google 搜尋　代理處理資訊、生成式介面更動態</h4><p>Gemini 3.5 Flash 也被用於強化 Google 搜尋的 AI 代理能力。Google 表示，搜尋將推出可 24 小時替使用者工作的資訊型 AI 代理，並帶來更動態的生成式介面體驗，例如由搜尋即時建立互動式視覺內容，幫助使用者理解複雜概念。這讓搜尋不只是回答問題，而是能依照問題生成更合適的呈現方式，並在背景持續追蹤資訊。</p><h4>哪裡可以用 Gemini 3.5 Flash？</h4><p>Gemini 3.5 Flash 目前已正式開放使用。一般使用者可透過 Gemini app 與 Google 搜尋 AI Mode 使用；開發者可在 Google Antigravity、Google AI Studio 的 Gemini API，以及 Android Studio 中使用；企業則可透過 Gemini Enterprise Agent Platform 與 Gemini Enterprise 導入。Google 表示，這是 Gemini 3.5 系列的第一步，接下來還會推出 Gemini 3.5 Pro。</p>",
+      "featured": true
+    },
+    {
       "id": "gpt-image-2",
       "date": "2026-04-30",
       "tag": "模型發布",
@@ -9,7 +57,6 @@
         "簡報設計"
       ],
       "title": "從「好看」到「精確」 GPT Image 2.0 有多強？跟 Nano Banana 差在哪？",
-      "summary": "GPT Image 2.0 模型具備三語文字渲染高準確率、資訊圖表構圖推理及物件鎖定技術，並與 Nano Banana 2 針對精品視覺與量產效率的不同定位進行比較。",
       "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/NCXsIiZ.png",
       "imageCaption": "GPT Image 2.0 登場。 ( 圖 / 翻攝自 OpenAI 官網 )",
       "sourceUrl": "https://openai.com/zh-Hant/index/introducing-chatgpt-images-2-0/#textmode",
@@ -28,7 +75,6 @@
         "資料研究"
       ],
       "title": "GPT-5.5 登場！AI 開始會自己做事 亮點及應用場景一次懂",
-      "summary": "GPT-5.5 從對話工具轉型為跨工具自主任務代理，新增電腦操作、自主編程、結構性研究整合及文件自動化處理能力，並大幅提升 Token 運用效率。",
       "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/xeDXBPO.jpg",
       "imageCaption": "GPT 5.5 登場。 ( 圖 / 翻攝自 OpenAI 官網 )",
       "sourceUrl": "https://openai.com/zh-Hant/index/introducing-gpt-5-5/",
@@ -46,7 +92,6 @@
         "整理資料"
       ],
       "title": "會自我進化的 AI 助理！Hermes Agent 爆紅 內建學習機制越用越聰明",
-      "summary": "開源自進化助理 Hermes Agent，採用三層記憶系統與五步學習迴圈將經驗轉化為技能檔，支援多達 14 個通訊平台整合及本地部署。",
       "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/fiWEEEB.jpg",
       "imageCaption": "Hermes Agent 起始介面。（圖 / 翻攝自 Hermes Agent）",
       "sourceUrl": "https://github.com/nousresearch/hermes-agent",
