@@ -4,7 +4,7 @@
 
 ## 專案概覽
 
-TVBS AI 電子報延伸的知識庫網站，部署於 Netlify（https://ainews.tvbs.ai/）。
+TVBS AI 電子報延伸的知識庫網站，正式環境 https://ainews.tvbs.ai/。
 
 **主要系統**
 - `ai-newsletter-dashboard.html` + `dashboard.js` + `dashboard.css` — 主站 SPA dashboard
@@ -16,7 +16,12 @@ TVBS AI 電子報延伸的知識庫網站，部署於 Netlify（https://ainews.t
 - `admin/` — Sveltia CMS 後台（編輯 data/*.json 不用碰程式碼）
 - `tvbs-ai-newsletter/` — 舊版電子報 HTML 系統（issues/001-018），有獨立 CLAUDE.md，於該目錄內開對話時請參考
 
-**部署**：git push 至 main → Netlify 自動部署。
+**部署**
+- 正式環境：Zeabur，從 `release` 分支自動部署 → https://ainews.tvbs.ai/
+- 分支策略：feature → PR 到 `main`（整合 + 預覽）→ 累積後再從 `main` 開 PR 到 `release`（promote）才會上 production
+- `main` push 不會直接上正式，必須 promote 到 `release` 才會觸發 Zeabur 部署
+- promote commit 訊息慣例：`release: promote PR #N (...)` 或 `release: promote PR #N + #M (...)`（merge commit 形式）
+- 判斷某 PR 有沒有上 production，不是看是否 merge 到 main，是看是否進到 `release`
 
 ---
 
