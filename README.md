@@ -103,24 +103,65 @@ python -m http.server 8000
 ### 用途
 每期發報前用這個頁面把當前 `articles.json` + `weekly-summaries.json` 內容**自動轉成 Outlook 用的 HTML**，省下手動填入 email 模板的時間。
 
-### 控制項（單一輸入：篩選日期）
+### 控制項（單一輸入：篩選日期 + 可勾選清單）
 
-- **篩選日期**：唯一需要使用者操作的欄位。原生 `<input type="date">`，選了之後下方期號 + 4 個分類篇數一起出現
-- **期號（自動）**：從「篩選後內容裡最新一筆文章日期」推算「YYYY 年 M 月號」，純顯示不可編輯
-- **4 個篇數顯示**：inline 格式「重點趨勢：3 篇」，唯讀，數字即時等於「篩選日期（含）以後實際筆數」
-- **產出按鈕**：篩選日期空著時 disabled，選了之後才亮起來
+- **篩選日期**：選了之後 (1) 自動推算期號 (2) 跳出可勾選清單（4 分類分組）
+- **期號**：原本是唯讀 span，2026-05 改成 `<input>` **可手動編輯**（自動推算的值會帶入，可覆寫成「2026 年 5 月特別號」之類）
+- **可勾選清單** `#ogSelector`（2026-05 新增）：每分類有自己的卡片
+  - 預設把日期 ≥ cutoff 的全部勾選；可隨時取消勾選排除文章
+  - 每分類有「全選 / 全不選」迷你按鈕
+  - 頂部顯示「目前選 N 篇」總計
+  - 「**↓ 顯示更早 5 篇**」按鈕：把該分類的下 5 篇較舊內容拉進清單（**預設不勾**，手動挑要哪幾篇加入本期）
+  - **10 秒看趨勢預設上限 5 篇**：`OG_DEFAULT_CAP = { summaries: 5 }`。若 cutoff 內有 ≥6 篇，預設只顯示+勾最新 5 篇，其餘藏在「顯示更早」後面（其他分類無上限）
+- **產出按鈕**：篩選日期空著時 disabled；按下後 ogClearDirty
+- **複製 HTML / 下載 .html** 按鈕（左欄 + 右上 mini 各一組）
 - **產出狀態 status**：按了「產出」之後才出現綠色完成訊息
+
+### 防呆機制（產出後又改了編輯區）
+
+`ogDirty` flag 追蹤「按過產出後是否又動過編輯區」，避免使用者誤把舊預覽複製出去：
+
+- **觸發 dirty**：實際勾/取消、全選/全不選、改期號 input、改篩選日期
+- **不觸發 dirty**：「顯示更早」只是展開更舊項目（預設未勾、選中集合沒變）
+- **dirty 視覺**：
+  - 產出按鈕文字 → 「↻ 重新產出」（左欄 + 右上 mini 同步）
+  - 狀態列改黃底「⚠ 內容已變動，預覽為舊版，請重新按產出更新」
+  - 預覽區頂部出現 `#ogDirtyBar` 黃條警示
+- **複製/下載攔截**：dirty 時按「複製 HTML / 下載 .html」會跳 `confirm()` 對話框，按取消就不執行
+- **複製成功反饋**：複製按鈕字直接變「✓ 已複製」+ 綠底 1.2 秒（取代 toast，省定位問題；按鈕寬度第一次按下時自動鎖定避免縮窄）
+
+### 右上鏡像按鈕
+
+在「📧 預覽 / </> HTML 程式碼」tabs 列右側鏡像放一組「產出 / 複製 HTML」mini 按鈕（共用 `.og-generate-btn` / `.og-copy-btn` class），避免捲長預覽要回左欄。toggleGenBtn / dirty UI / copy handler 都用 `querySelectorAll` 同步兩邊。
+
+### 產出的 Outlook HTML 防護（`<head>` 內）
+
+`ogBuildEmailHTML()` 產出的 email 已加上跨客戶端防護：
+
+- `<meta name="x-apple-disable-message-reformatting">` — 防 iPhone Mail.app 字體自動放大
+- `<meta name="color-scheme" content="light">` + `supported-color-schemes` — 防 Android/iOS Outlook 黑暗模式自動反色
+- `[data-ogsc] body/table/td` 強制白底深色字（Outlook 黑暗模式 wrapper）
+- `<!--[if mso]>` 條件式區塊 — Outlook Windows 桌機專用：
+  - `<o:PixelsPerInch>96</o:PixelsPerInch>` 防高 DPI 圖縮成 75%
+  - `mso-line-height-rule:exactly !important` 行高鎖死
+  - `font-family:'Microsoft JhengHei','微軟正黑體',Arial !important` 中文字鎖正黑體
+
+### 已知踩雷與修正
+
+- **`<img>` 的 `height="auto"` HTML 屬性是無效的**（auto 是 CSS 值不是 HTML 屬性值），會讓 Android Outlook 第一次開信圖還沒載前不保留高度 → 文字擠上來 → 載完又跳回。現行 `<img>` 只用 `width="536"` HTML 屬性 + `style="height:auto"` CSS，這個 bug 已修。
+- **Prompt 圖片破圖**：早期 `ogNormalizeItem(item, 'prompt')` 寫 `image: item.img`，但 `window.__prompts` 是 prompt-tips.json 的 raw data、欄位叫 `image`。現已改 `item.image || item.img` 兼容兩種欄位名。
 
 ### 渲染邏輯
 
-按了篩選日期就會抓「該日（含）以後」的所有內容（重點趨勢 + Prompt + AI 工具介紹 + 10 秒看趨勢）餵進 Outlook 模板，**沒有篇數上限**、篩出來幾筆就放幾筆。原本的「篇數模式」已移除 — 流程簡化成「日期決定一切」。
+`ogGenerate()` **只看勾選狀態**，不再用日期重新過濾：每分類用 `ogGetSelected(cat)` 從 `#ogSelector` 收集所有勾選的 checkbox 對應到 `ogPool[cat]` 的 item，再餵進 `ogBuildEmailHTML()`。沒有勾選清單時（極端情況）才 fallback 用日期過濾。
 
 ### 工作流程
 
-1. 選篩選日期（選上次電子報寄出後一天）
-2. 按「產出」 → 預覽出現
-3. 檢查預覽結果是否有誤
-4. 按「複製 HTML」 → 貼進 Outlook 寄送系統
+1. 選篩選日期（選上次電子報寄出後一天）→ 清單跳出，預設全勾（10 秒看趨勢最多 5 篇）
+2. 取消不要的文章；要加更舊的點「顯示更早 5 篇」再勾起來
+3. 按「產出」→ 預覽出現
+4. 檢查預覽結果是否有誤；若又改了任何設定 → 按鈕變「↻ 重新產出」+ 黃條警示，按一下重新生成
+5. 按「複製 HTML」→ 按鈕變「✓ 已複製」綠底；貼進 Outlook 寄送系統
 
 ### 設計來源
 參考舊版手動模板 `tvbs-ai-newsletter/outlook version/018foroutlook.html`，視覺風格對齊新 dashboard 的 light theme（白底 + 紫色品牌色 + tag 色票編碼）。

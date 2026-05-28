@@ -1827,14 +1827,16 @@ function ogNormalizeItem(item, kind) {
   }
   if (kind === 'prompt') {
     return {
-      image: item.img,
+      // window.__prompts 是 prompt-tips.json 的 raw 資料、欄位叫 image；
+      // 早期經由 searchIndex 進來的版本則用 img——兩個都吃，避免破圖
+      image: item.image || item.img,
       tag: 'Prompt 技巧分享',  // 統一來源 label
       tags: [],
       title: item.title,
       content: '',
-      summary: item.sub || '',
-      // Prompt 在網站上是連到舊期 HTML（非 modal），維持外連
-      url: (item.no ? `tvbs-ai-newsletter/issues/${item.no}.html#section-jump-${item.sj || 0}` : OG_DASHBOARD + '#prompt-tips')
+      summary: item.sub || item.summary || '',
+      // Prompt deep-link 用 #prompt-{id}（getArticleHash 認得）
+      url: item.id ? `${OG_DASHBOARD}#prompt-${item.id}` : (item.no ? `tvbs-ai-newsletter/issues/${item.no}.html#section-jump-${item.sj || 0}` : OG_DASHBOARD + '#prompt-tips')
     };
   }
   if (kind === 'toolIntro') {
@@ -1923,14 +1925,37 @@ function ogBuildEmailHTML(opts) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- iOS Mail.app 防字體自動放大/縮放 -->
+  <meta name="x-apple-disable-message-reformatting" />
+  <!-- Android Outlook / iOS Outlook 黑暗模式不自動反色：強制走 light mode 配色 -->
+  <meta name="color-scheme" content="light" />
+  <meta name="supported-color-schemes" content="light" />
   <title>TVBS AI Knowledge Base · ${ogEsc(opts.monthLabel)}</title>
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings xmlns:o="urn:schemas-microsoft-com:office:office">
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      <o:AllowPNG/>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <style type="text/css">
+    /* Outlook Windows 桌機（Word engine）：確保中文字體、line-height 不被引擎調整 */
+    table, td, div, p, a, span, h1, h2 { font-family:'Microsoft JhengHei','微軟正黑體',Arial,sans-serif !important; mso-line-height-rule:exactly !important; }
+    table { border-collapse:collapse !important; }
+    p, div { margin:0 !important; mso-margin-top-alt:0 !important; mso-margin-bottom-alt:0 !important; }
+  </style>
+  <![endif]-->
   <style type="text/css">
     body { margin:0; padding:0; width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
     table, td { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
     img { border:0; height:auto; line-height:100%; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; display:block; }
     a { text-decoration:none; }
+    /* 黑暗模式（Outlook / Gmail iOS）裡某些客戶端仍會反色，加 [data-ogsc] 鉤子防呆 */
+    [data-ogsc] body, [data-ogsc] table, [data-ogsc] td { background-color:#fafbfc !important; color:#0a2540 !important; }
   </style>
 </head>
+<!-- 提示客戶端：本信只支援 light 模式（部分 Gmail/Outlook 會看這個屬性） -->
+<!-- body 的 background-color/color 已 inline，避免被 dark mode 全域反色 -->
 <body style="margin:0; padding:0; background-color:#fafbfc;">
   <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#fafbfc" style="background-color:#fafbfc;">
     <tr><td align="center" style="padding:24px 12px;">
@@ -2012,28 +2037,28 @@ function ogGenerate() {
     return;
   }
 
-  const readCount = id => parseInt(document.getElementById(id).textContent) || 0;
-  const articleCount = readCount('ogArticleCount');
-  const promptCount = readCount('ogPromptCount');
-  const toolCount = readCount('ogToolIntroCount');
-  const summaryCount = readCount('ogSummaryCount');
   const monthLabel = ogReadMonthLabel();
+
+  // 從 #ogSelector 的勾選狀態讀取最終要產出的項目（A 方案：可勾選清單）
+  // 沒有勾選清單（例如直接呼叫 ogGenerate）時 fallback 用日期過濾整池
   const cutoffDateEl = document.getElementById('ogCutoffDate');
   const cutoffDate = cutoffDateEl ? cutoffDateEl.value.trim() : '';
+  const sel = document.getElementById('ogSelector');
+  const hasSelector = sel && !sel.classList.contains('og-hidden');
 
   let selA, selP, selT, selS;
-  if (cutoffDate) {
-    // 日期模式：抓 cutoff 當天（含）以後的全部內容，忽略下面的篇數設定
+  if (hasSelector) {
+    selA = ogGetSelected('articles');
+    selP = ogGetSelected('prompts');
+    selT = ogGetSelected('tools');
+    selS = ogGetSelected('summaries');
+  } else if (cutoffDate) {
     selA = articles.filter(a => (a.date || '') >= cutoffDate);
     selP = prompts.filter(p => (p.date || '') >= cutoffDate);
     selT = toolIntros.filter(t => (t.date || '') >= cutoffDate);
     selS = summaries.filter(s => (s.date || '') >= cutoffDate);
   } else {
-    // 篇數模式：每區段取最新 N 篇
-    selA = articles.slice(0, articleCount);
-    selP = prompts.slice(0, promptCount);
-    selT = toolIntros.slice(0, toolCount);
-    selS = summaries.slice(0, summaryCount);
+    selA = []; selP = []; selT = []; selS = [];
   }
 
   ogCurrentHTML = ogBuildEmailHTML({
@@ -2049,11 +2074,13 @@ function ogGenerate() {
 
   status.className = 'og-status success';
   status.classList.remove('og-hidden');
-  status.textContent = `✓ 產出完成（重點趨勢 ${selA.length} 篇 + Prompt技巧分享 ${selP.length} 篇 + AI 工具介紹 ${selT.length} 篇 + 10 秒看趨勢 ${selS.length} 篇）`;
+  status.textContent = '✓ 產出完成';
+  ogClearDirty();
 }
 
 async function ogCopyHTML() {
   if (!ogCurrentHTML) { ogGenerate(); return; }
+  if (ogDirty && !confirm('⚠ 預覽的 HTML 不是最新狀態（你改過設定但還沒重新產出），確定要複製舊版嗎？')) return;
   const status = document.getElementById('ogStatus');
   try {
     await navigator.clipboard.writeText(ogCurrentHTML);
@@ -2066,10 +2093,12 @@ async function ogCopyHTML() {
     status.className = 'og-status success';
     status.textContent = '✓ HTML 已複製';
   }
+  ogFlashCopyButtons('✓ 已複製');
 }
 
 function ogDownloadHTML() {
   if (!ogCurrentHTML) { ogGenerate(); return; }
+  if (ogDirty && !confirm('⚠ 預覽的 HTML 不是最新狀態（你改過設定但還沒重新產出），確定要下載舊版嗎？')) return;
   const blob = new Blob([ogCurrentHTML], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -2090,9 +2119,9 @@ let ogMonthAutoFilled = false;
 let ogCountsAutoFilled = false;
 
 function ogReadMonthLabel() {
-  // 期號改成從 ogSyncCountsFromDate 自動寫進顯示元素，這裡讀回即可
+  // 期號為 <input>，自動推算寫進 .value、使用者可手動覆寫
   const el = document.getElementById('ogPeriodLabel');
-  const v = el && el.textContent.trim();
+  const v = el && (el.value || '').trim();
   return (v && v !== '—') ? v : '2026 年 X 月號';
 }
 
@@ -2100,73 +2129,204 @@ function ogReadMonthLabel() {
 // 不再需要 page-load 時的 ogAutoFillMonth，保留空函式避免別處呼叫出錯
 function ogAutoFillMonth() {}
 
-function ogAutoFillCounts() {
-  if (ogCountsAutoFilled) return; // 只自動帶一次
-  // 只自動填 重點趨勢 + 10 秒趨勢（per-issue datasets）
-  // Prompt 跟 工具介紹是歷史累積資料，由使用者手動指定本期新增數量
-  const aLen = (window.__articles || []).length;
-  const sLen = (window.__weeklySummaries || []).length;
-  if (aLen > 0) {
-    const el = document.getElementById('ogArticleCount');
-    if (el) el.textContent = aLen;
+// 舊「篇數模式」的 page-load 預填已被「可勾選清單」取代；保留空函式避免別處呼叫出錯
+function ogAutoFillCounts() {}
+
+// === A 方案：可勾選清單 ===
+// ogPool / ogVisible 為 module-level state，由 ogBuildSelector 初始化
+const ogPool = { articles: [], summaries: [], prompts: [], tools: [] };
+const ogVisible = { articles: 0, summaries: 0, prompts: 0, tools: 0 };
+
+// === 防呆：產出後若編輯區再變動，標記 dirty 提醒重新產出 ===
+let ogDirty = false;
+function ogMarkDirty() {
+  if (!ogCurrentHTML) return; // 還沒產出過就不需要警示
+  if (ogDirty) return;
+  ogDirty = true;
+  ogUpdateDirtyUI();
+}
+function ogClearDirty() {
+  if (!ogDirty) return;
+  ogDirty = false;
+  ogUpdateDirtyUI();
+}
+function ogUpdateDirtyUI() {
+  document.querySelectorAll('.og-generate-btn').forEach(btn => {
+    btn.classList.toggle('og-btn--dirty', ogDirty);
+    btn.textContent = ogDirty ? '↻ 重新產出' : '產出';
+  });
+  const status = document.getElementById('ogStatus');
+  if (status && ogDirty) {
+    status.className = 'og-status dirty';
+    status.classList.remove('og-hidden');
+    status.textContent = '⚠ 內容已變動，預覽為舊版，請重新按「產出」更新';
   }
-  if (sLen > 0) {
-    const el = document.getElementById('ogSummaryCount');
-    if (el) el.textContent = sLen;
+  const bar = document.getElementById('ogDirtyBar');
+  if (bar) bar.classList.toggle('og-hidden', !ogDirty);
+}
+
+// 複製成功反饋：把「複製 HTML」按鈕的字直接換成「✓ 已複製」+ 綠底
+// 1.2 秒後復原。左欄與右上兩顆 .og-copy-btn 一起改，避免位置/定位問題
+function ogFlashCopyButtons(msg, ms) {
+  const btns = document.querySelectorAll('.og-copy-btn');
+  if (!btns.length) return;
+  clearTimeout(ogFlashCopyButtons._timer);
+  btns.forEach(b => {
+    if (!b.dataset.origText) b.dataset.origText = b.textContent;
+    // 第一次 flash 時把當下「複製 HTML」原寬度鎖成 min-width，
+    // 之後文字變「✓ 已複製」較短不會讓按鈕縮窄
+    if (!b.style.minWidth) b.style.minWidth = b.offsetWidth + 'px';
+    b.textContent = msg;
+    b.classList.add('og-btn--success');
+  });
+  ogFlashCopyButtons._timer = setTimeout(() => {
+    btns.forEach(b => {
+      b.textContent = b.dataset.origText || '複製 HTML';
+      b.classList.remove('og-btn--success');
+    });
+  }, ms || 1200);
+}
+
+function ogPoolFor(cat) {
+  let arr;
+  if (cat === 'articles') arr = (window.__articles || []).slice();
+  else if (cat === 'summaries') arr = (window.__weeklySummaries || []).slice();
+  else if (cat === 'prompts') arr = (window.__prompts || []).slice();
+  else if (cat === 'tools') arr = ((window.__toolIntros || []).filter(t => t.content || t.openInModal)).slice();
+  else return [];
+  return arr.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+}
+
+function ogRenderCatItem(cat, item, idx, checked) {
+  const li = document.createElement('li');
+  li.className = 'og-cat-item';
+  li.innerHTML =
+    '<label>' +
+      '<input type="checkbox" data-cat="' + cat + '" data-idx="' + idx + '"' + (checked ? ' checked' : '') + '>' +
+      '<span class="og-cat-date">' + (item.date || '—') + '</span>' +
+      '<span class="og-cat-title-text">' + ogEsc(item.title || '(無標題)') + '</span>' +
+    '</label>';
+  return li;
+}
+
+// 各分類「預設顯示上限」：10 秒看趨勢量大、超過 5 篇預設只顯示 5；其他分類無上限
+const OG_DEFAULT_CAP = { summaries: 5 };
+
+function ogBuildSelector(cutoff) {
+  const sel = document.getElementById('ogSelector');
+  if (!sel) return;
+  sel.classList.remove('og-hidden');
+  ['articles', 'summaries', 'prompts', 'tools'].forEach(cat => {
+    const pool = ogPoolFor(cat);
+    ogPool[cat] = pool;
+    const filteredCount = cutoff ? pool.filter(it => (it.date || '') >= cutoff).length : pool.length;
+    const cap = OG_DEFAULT_CAP[cat];
+    const initialVisible = cap ? Math.min(filteredCount, cap) : filteredCount;
+    ogVisible[cat] = initialVisible;
+    const catEl = sel.querySelector('.og-cat[data-cat="' + cat + '"]');
+    const listEl = catEl.querySelector('.og-cat-list');
+    listEl.innerHTML = '';
+    pool.slice(0, initialVisible).forEach((item, i) => {
+      listEl.appendChild(ogRenderCatItem(cat, item, i, true));
+    });
+    const moreBtn = catEl.querySelector('.og-cat-more');
+    if (moreBtn) moreBtn.style.display = (initialVisible < pool.length) ? '' : 'none';
+  });
+  ogUpdateCounts();
+}
+
+function ogShowMore(cat, n) {
+  n = n || 5;
+  const pool = ogPool[cat] || [];
+  const start = ogVisible[cat];
+  const end = Math.min(start + n, pool.length);
+  if (end <= start) return;
+  const sel = document.getElementById('ogSelector');
+  const listEl = sel.querySelector('.og-cat[data-cat="' + cat + '"] .og-cat-list');
+  for (let i = start; i < end; i++) {
+    listEl.appendChild(ogRenderCatItem(cat, pool[i], i, false));
   }
-  if (aLen > 0 || sLen > 0) ogCountsAutoFilled = true;
+  ogVisible[cat] = end;
+  const moreBtn = sel.querySelector('.og-cat[data-cat="' + cat + '"] .og-cat-more');
+  if (moreBtn && end >= pool.length) moreBtn.style.display = 'none';
+  ogUpdateCounts();
+  // 注意：「顯示更早」只是把更舊的項目秀出來（預設未勾），選中集合沒變、預覽不算過時，故不標 dirty。
+  // 若使用者接著真的勾起新出現的項目，會走 checkbox change handler 才標 dirty。
+}
+
+function ogUpdateCounts() {
+  const sel = document.getElementById('ogSelector');
+  if (!sel) return;
+  let total = 0;
+  ['articles', 'summaries', 'prompts', 'tools'].forEach(cat => {
+    const catEl = sel.querySelector('.og-cat[data-cat="' + cat + '"]');
+    if (!catEl) return;
+    total += catEl.querySelectorAll('input[type="checkbox"]:checked').length;
+  });
+  const totalEl = document.getElementById('ogTotalSelected');
+  if (totalEl) totalEl.textContent = total;
+}
+
+function ogAllOrNone(cat, value) {
+  const sel = document.getElementById('ogSelector');
+  if (!sel) return;
+  sel.querySelectorAll('.og-cat[data-cat="' + cat + '"] input[type="checkbox"]').forEach(cb => {
+    cb.checked = value;
+  });
+  ogUpdateCounts();
+  ogMarkDirty();
+}
+
+function ogGetSelected(cat) {
+  const sel = document.getElementById('ogSelector');
+  const pool = ogPool[cat] || [];
+  if (!sel) return [];
+  const checked = sel.querySelectorAll('.og-cat[data-cat="' + cat + '"] input[type="checkbox"]:checked');
+  return Array.from(checked).map(cb => pool[parseInt(cb.dataset.idx, 10)]).filter(Boolean);
 }
 
 function ogSyncCountsFromDate() {
-  // 篩選日期改變時，把下方四個篇數欄位自動帶入「該日（含）以後的實際數量」
+  // 篩選日期改變時：(1) 用 cutoff 重建勾選清單（>= cutoff 預設勾、其餘藏在「顯示更早」後面）
+  //                (2) 從同一份候選裡推算期號
   const cutoffEl = document.getElementById('ogCutoffDate');
   if (!cutoffEl) return;
   const cutoff = cutoffEl.value.trim();
-  if (!cutoff) return; // 沒填日期就不動，維持使用者原本手動值
+  if (!cutoff) return;
 
-  const articles = window.__articles || [];
-  const prompts = window.__prompts || [];
-  const tools = (window.__toolIntros || []).filter(t => t.content || t.openInModal);
-  const summaries = window.__weeklySummaries || [];
+  ogBuildSelector(cutoff);
 
-  const countSince = arr => arr.filter(it => (it.date || '') >= cutoff).length;
-
-  const setVal = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n; };
-  setVal('ogArticleCount', countSince(articles));
-  setVal('ogPromptCount', countSince(prompts));
-  setVal('ogToolIntroCount', countSince(tools));
-  setVal('ogSummaryCount', countSince(summaries));
-
-  // 期號：從篩選後內容裡找最新一筆日期，推算年/月
-  const allFiltered = [...articles, ...prompts, ...tools, ...summaries]
-    .filter(it => (it.date || '') >= cutoff);
-  const latestDate = allFiltered.map(it => it.date).filter(Boolean).sort((a, b) => b.localeCompare(a))[0];
+  // 期號：從 >= cutoff 的所有資料裡找最新一筆日期，推算年/月
+  const all = ['articles', 'summaries', 'prompts', 'tools']
+    .flatMap(cat => ogPool[cat].filter(it => (it.date || '') >= cutoff));
+  const latestDate = all.map(it => it.date).filter(Boolean).sort((a, b) => b.localeCompare(a))[0];
   const periodEl = document.getElementById('ogPeriodLabel');
   if (periodEl) {
     if (latestDate) {
       const dm = latestDate.match(/(\d{4})[\-.\/](\d{1,2})/);
-      if (dm) periodEl.textContent = `${dm[1]} 年 ${parseInt(dm[2], 10)} 月號`;
+      if (dm) periodEl.value = `${dm[1]} 年 ${parseInt(dm[2], 10)} 月號`;
     } else {
-      periodEl.textContent = '—';
+      periodEl.value = '—';
     }
   }
-
-  // 顯示期號 + 4 個篇數 row（首次操作篩選日期後 reveal）
   document.querySelectorAll('.og-field--inline').forEach(el => el.classList.remove('og-hidden'));
+  // 篩選日期改變 = 重建清單 = 編輯區變動，若已產出過就標 dirty
+  ogMarkDirty();
 }
 
 function initOutlookGenerator() {
   // 1) 監聽器只掛一次
   if (!ogInited) {
     ogInited = true;
-    document.getElementById('ogGenerateBtn').addEventListener('click', ogGenerate);
-    document.getElementById('ogCopyBtn').addEventListener('click', ogCopyHTML);
+    // 左欄與右上 mini 兩組按鈕共用 handler（依 class 抓而非單一 id）
+    document.querySelectorAll('.og-generate-btn').forEach(b => b.addEventListener('click', ogGenerate));
+    document.querySelectorAll('.og-copy-btn').forEach(b => b.addEventListener('click', ogCopyHTML));
     document.getElementById('ogDownloadBtn').addEventListener('click', ogDownloadHTML);
     const cutoffEl = document.getElementById('ogCutoffDate');
-    const genBtn = document.getElementById('ogGenerateBtn');
+    const genBtns = document.querySelectorAll('.og-generate-btn');
     const toggleGenBtn = () => {
       // 期號改成自動從篩選結果推算，所以這裡只看篩選日期是否填了
-      genBtn.disabled = !(cutoffEl && cutoffEl.value.trim());
+      const dis = !(cutoffEl && cutoffEl.value.trim());
+      genBtns.forEach(b => b.disabled = dis);
     };
     if (cutoffEl) {
       cutoffEl.addEventListener('change', () => { ogSyncCountsFromDate(); toggleGenBtn(); });
@@ -2181,6 +2341,31 @@ function initOutlookGenerator() {
         document.getElementById('ogHtmlOutput').classList.toggle('active', tab === 'code');
       });
     });
+
+    // #ogSelector 事件代理：checkbox 變更更新計數+標 dirty、mini 全選/全不選、顯示更早
+    const selEl = document.getElementById('ogSelector');
+    if (selEl) {
+      selEl.addEventListener('change', e => {
+        if (e.target && e.target.matches('input[type="checkbox"]')) {
+          ogUpdateCounts();
+          ogMarkDirty();
+        }
+      });
+      selEl.addEventListener('click', e => {
+        const t = e.target;
+        if (!t) return;
+        if (t.matches('.og-cat-more')) {
+          const catEl = t.closest('.og-cat');
+          if (catEl) ogShowMore(catEl.dataset.cat, 5);
+        } else if (t.matches('.og-cat-mini')) {
+          const catEl = t.closest('.og-cat');
+          if (catEl) ogAllOrNone(catEl.dataset.cat, t.dataset.action === 'all');
+        }
+      });
+    }
+    // 期號 input 編輯 = 標 dirty
+    const periodEl = document.getElementById('ogPeriodLabel');
+    if (periodEl) periodEl.addEventListener('input', ogMarkDirty);
   }
 
   // 2) 資料就緒才自動偵測月份 + 帶入篇數 default（不自動產出，等使用者按按鈕）
