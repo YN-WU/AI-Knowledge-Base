@@ -18,7 +18,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;600;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="dashboard.css?v=2026-05-22m">
+  <link rel="stylesheet" href="dashboard.css?v=2026-05-28b">
 </head>
 
 <body>
@@ -159,8 +159,8 @@
             <div class="hack-step-desc">決賽組精緻化 + 落地</div>
           </div>
           <div class="hack-step">
-            <div class="hack-step-date">7 月</div>
-            <div class="hack-step-desc">決賽 Live Demo<br>（1 號棚）</div>
+            <div class="hack-step-date" style="color:#9ca3af">7/21<br><span class="hack-step-time">14:00~18:00</span></div>
+            <div class="hack-step-desc">決賽 Live Demo<br>（ 本棟 1 號棚）</div>
           </div>
         </div>
       </section>
@@ -284,14 +284,49 @@
             <label>篩選日期</label>
             <input type="date" id="ogCutoffDate" placeholder="YYYY-MM-DD">
           </div>
-          <div class="og-field og-field--inline og-hidden">期號：<span id="ogPeriodLabel">—</span></div>
-          <div class="og-field og-field--inline og-hidden">重點趨勢：<span id="ogArticleCount">3</span> 篇</div>
-          <div class="og-field og-field--inline og-hidden">Prompt 技巧分享：<span id="ogPromptCount">0</span> 篇</div>
-          <div class="og-field og-field--inline og-hidden">AI 工具介紹：<span id="ogToolIntroCount">1</span> 篇</div>
-          <div class="og-field og-field--inline og-hidden">10 秒看趨勢：<span id="ogSummaryCount">15</span> 篇</div>
+          <div class="og-field og-field--inline og-hidden">期號：<input type="text" id="ogPeriodLabel" class="og-period-input" value="—" placeholder="例：2026 年 5 月號"></div>
+          <div class="og-selector og-hidden" id="ogSelector">
+            <div class="og-selector-head">目前選 <strong id="ogTotalSelected">0</strong> 篇（可勾/取消，要加更舊的點各區下方「顯示更早」）</div>
+            <div class="og-cat" data-cat="articles">
+              <div class="og-cat-head">
+                <span class="og-cat-title">重點趨勢</span>
+                <button type="button" class="og-cat-mini" data-action="all">全選</button>
+                <button type="button" class="og-cat-mini" data-action="none">全不選</button>
+              </div>
+              <ul class="og-cat-list"></ul>
+              <button type="button" class="og-cat-more">↓ 顯示更早 5 篇</button>
+            </div>
+            <div class="og-cat" data-cat="summaries">
+              <div class="og-cat-head">
+                <span class="og-cat-title">10 秒看趨勢</span>
+                <button type="button" class="og-cat-mini" data-action="all">全選</button>
+                <button type="button" class="og-cat-mini" data-action="none">全不選</button>
+              </div>
+              <ul class="og-cat-list"></ul>
+              <button type="button" class="og-cat-more">↓ 顯示更早 5 篇</button>
+            </div>
+            <div class="og-cat" data-cat="prompts">
+              <div class="og-cat-head">
+                <span class="og-cat-title">Prompt 技巧分享</span>
+                <button type="button" class="og-cat-mini" data-action="all">全選</button>
+                <button type="button" class="og-cat-mini" data-action="none">全不選</button>
+              </div>
+              <ul class="og-cat-list"></ul>
+              <button type="button" class="og-cat-more">↓ 顯示更早 5 篇</button>
+            </div>
+            <div class="og-cat" data-cat="tools">
+              <div class="og-cat-head">
+                <span class="og-cat-title">AI 工具介紹</span>
+                <button type="button" class="og-cat-mini" data-action="all">全選</button>
+                <button type="button" class="og-cat-mini" data-action="none">全不選</button>
+              </div>
+              <ul class="og-cat-list"></ul>
+              <button type="button" class="og-cat-more">↓ 顯示更早 5 篇</button>
+            </div>
+          </div>
           <div class="og-actions">
-            <button class="og-btn og-btn--primary" id="ogGenerateBtn" disabled>產出</button>
-            <button class="og-btn og-btn--ghost" id="ogCopyBtn">複製 HTML</button>
+            <button class="og-btn og-btn--primary og-generate-btn" id="ogGenerateBtn" disabled>產出</button>
+            <button class="og-btn og-btn--ghost og-copy-btn" id="ogCopyBtn">複製 HTML</button>
             <button class="og-btn og-btn--ghost" id="ogDownloadBtn">下載 .html</button>
           </div>
           <div class="og-status og-hidden" id="ogStatus">尚未產出</div>
@@ -309,7 +344,12 @@
           <div class="og-tabs">
             <button class="og-tab active" data-tab="preview">📧 預覽</button>
             <button class="og-tab" data-tab="code">&lt;/&gt; HTML 程式碼</button>
+            <div class="og-tab-actions">
+              <button type="button" class="og-btn og-btn--primary og-btn--mini og-generate-btn" disabled>產出</button>
+              <button type="button" class="og-btn og-btn--ghost og-btn--mini og-copy-btn">複製 HTML</button>
+            </div>
           </div>
+          <div id="ogDirtyBar" class="og-dirty-bar og-hidden">⚠ 內容已變動，目前預覽為舊版本，請按「↻ 重新產出」更新</div>
           <iframe class="og-iframe" id="ogPreviewFrame"
             srcdoc="<div style='padding:40px;text-align:center;color:#9ca3af;font-family:sans-serif'>按左側「產出」開始</div>"></iframe>
           <textarea class="og-code" id="ogHtmlOutput" readonly placeholder="按「產出」後 HTML 會出現在這"></textarea>
@@ -344,7 +384,7 @@
   </div>
 
 
-  <script src="dashboard.js?v=2026-05-22m"></script>
+  <script src="dashboard.js?v=2026-05-28b"></script>
 
   <!-- 文章 Modal -->
   <div class="article-modal-mask" id="articleModal" onclick="if(event.target===this)closeArticle()">
