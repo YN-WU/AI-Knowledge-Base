@@ -184,7 +184,7 @@ python -m http.server 8000
 ```json
 {
   "tag": "新工具",
-  "tags": ["程式設計", "工作流整合"]
+  "tags": ["程式開發", "工作流整合"]
 }
 ```
 
@@ -199,18 +199,21 @@ python -m http.server 8000
 | 產業動態 | 公司新聞、市場 | `--tag-industry` 灰 |
 | 法律規範 | 政策、訴訟、合規 | `--tag-legal` 紅 |
 
-**第二層：適用情境 `tags`（13 選 1-4 個）**
+**第二層：適用情境 `tags`（14 選,有相關就加,不限上限;2026-06 拿掉原本「1-4 個」上限）**
 
 ```
 圖像生成、影片製作、聲音處理、寫作協助、即時翻譯、
 自動化、工作流整合、整理資料、簡報設計、資料研究、
-程式設計、訪談記錄、觀念學習
+程式開發、訪談記錄、個人化、觀念學習
 ```
 
-特殊規則：
+特殊規則(完整版見 [CLAUDE.md](CLAUDE.md))：
 - 「觀念學習」專給「不能直接用、但讀者該知道」的資訊型文章
-- 「法律規範」只當第一層 `tag`，不放進 `tags`
-- **tags 嚴格對應原文明寫的應用場景，不要從產品類型推斷**（例：即時語音模型 ≠ 即時翻譯 + 訪談記錄；只在原文有提才放）
+- 「個人化」(2026-06 新增):AI 記住偏好/累積對話脈絡/客製化(ChatGPT Memory、個人 AI 代理等)
+- 「程式開發」(2026-06 從「程式設計」rename):涵蓋寫程式 + 跑 local model + devops + 開發工具
+- 「法律規範」只當第一層 `tag`,不放進 `tags`
+- **三個不該推斷的陷阱**:產品類型總稱(語音模型 ≠ 聲音處理)、產品屬性(AI 代理 ≠ 自動化)、**Delivery channel**(GitHub/Ollama 開源 ≠ 程式開發,那只是發布位置不是 work scenario)
+- **灰色地帶**:若文章「單獨點名某項能力」作為賣點(如「首次具備原生音訊輸入」),那項能力 tag 可放——區別於「整個產品就叫某類型」的總稱
 
 ### Prompt 技巧分享（單層 tag，4 選 1）
 
@@ -256,7 +259,7 @@ python -m http.server 8000
   "date": "2026-05-12",
   "image": "https://...",
   "tag": "新工具",
-  "tags": ["程式設計", "自動化"],
+  "tags": ["程式開發", "自動化"],
   "content": "<p class=\"first-paragraph\">完整 HTML 內文...</p>",
   "sourceUrl": "https://外部來源連結",
   "sourceLabel": "官方介紹 →",
@@ -265,7 +268,7 @@ python -m http.server 8000
 ```
 
 - **`summary` 欄位已於 2026-05 從重點趨勢移除**：原本卡片/搜尋會顯示摘要，現已拿掉（`dashboard.js` 用 `a.summary || ''` 容錯，缺欄位不會壞）。新增文章不用再填 summary。（10 秒看趨勢的 `weekly-summaries.json` 仍保留 summary）
-- `featured: true` 會讓它進首頁 hero 候選池。**hero 版型為「雜誌式 1+2+4」**：所有 `featured` 文章（articles + tool-intro 合併）依日期 desc 全部呈現 —— 第 1 張大主圖、接著中排 2 張、再下排其餘（桌機下排 3 欄）。不再像舊版只取前 4 張，增減 featured 版面會自動長/縮
+- **`featured` 欄位現為保留欄位**（2026-06 起 hero 不再看它）：原本 hero 用 `featured: true` 篩,但每加新 article/tool/prompt 都要手動勾、太煩。**現在 hero 自動從 articles + tool-intro + prompt-tips 三池撈,依日期 desc 取最新 `HOME_HERO_LIMIT` 篇**(零維護)。`featured` 欄位保留供未來「強制 override 必上首頁」用
 - `content` 是完整 HTML，會在 modal 內呈現
 - `image`：用自有圖床的 jsDelivr 網址（見下方「圖片素材」段落），不要用免費圖床
 - **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可
@@ -287,7 +290,7 @@ python -m http.server 8000
   "title": "標題",
   "date": "2026-05-10",
   "tag": "模型發布",
-  "tags": ["程式設計"],
+  "tags": ["程式開發"],
   "summary": "簡短描述。支援 <strong>HTML 標籤</strong>(粗體會在文章 modal 內顯示、卡片預覽會自動 normalize)。也可內嵌 <img> 加圖,例如 <img src=\"...\" style=\"max-width:100%;border-radius:8px\">",
   "sourceUrl": "https://..."
 }
@@ -317,7 +320,7 @@ python -m http.server 8000
 
 ### 新增「AI 工具介紹」條目
 
-編輯 `data/tool-intro.json`：欄位 `tag` 為單層分類（2026-05 從 `cat` rename）、`openInModal: true` 才會點擊開內文 modal、`featured: true` 進首頁 hero 候選。
+編輯 `data/tool-intro.json`：欄位 `tag` 為單層分類（2026-05 從 `cat` rename）、`openInModal: true` 才會點擊開內文 modal、`featured` 為保留欄位（2026-06 起首頁 hero 改以「三池依日期 desc」自動選,不再看 featured）。
 
 ### 新增新一期電子報（歷史 archive）
 
@@ -371,9 +374,10 @@ TVBS Logo 用 CSS filter 著色：
 
 首頁採 Substack / Medium / Notion 風的 **單欄置中閱讀版型**：
 
-- **首頁最大寬度 1040px**（`#page-home .reader-flow` 覆寫），文章閱讀頁仍維持 760px 好讀行寬
+- **首頁中間區塊最大寬度 880px**（`#page-home .reader-flow` 覆寫；2026-06 從 1040 縮窄到 880），文章閱讀頁仍維持 760px 好讀行寬
 - 區塊垂直堆疊：Masthead → Hero → 10 秒看趨勢 → 內部工具 → 黑客松
-- **Hero「雜誌式 1+2+4」**：主圖滿版置頂 + 中排 2 張 + 下排其餘（桌機 3 欄）；手機版單欄堆疊、每張等高。樣式在 `dashboard.css` 的 `.hero-grid` / `.hero-side` / `.hero-bottom`（含 `.reader-flow` 覆寫與 `@media (max-width: 700px)` 手機區塊）
+- **Hero「雜誌式」**：依 `HOME_HERO_LIMIT`（預設 3）從 **articles + tool-intro + prompt-tips 三池**(2026-06 起不再用 featured 篩) 取最新 N 篇—— 3 = 1 大主圖 + 中排 2、6 = 1+2+3、依此類推；手機版單欄堆疊、每張等高。**選好之後再依「article > prompt > tool」優先順序重排**(article 永遠在主圖位、prompt 中、tool 後)。樣式在 `dashboard.css` 的 `.hero-grid` / `.hero-side` / `.hero-bottom`（含 `.reader-flow` 覆寫與 `@media (max-width: 700px)` 手機區塊）
+- **Masthead 上方日期** `#readerIssueMeta`：自動連動「首頁實際呈現的內容」—— hero 取最新 `HOME_HERO_LIMIT` 篇 + 10 秒看趨勢取首頁版上限，從這個子集的最舊~最新日期推算「YYYY.MM.DD ～ MM.DD」
 - 每個區塊間用細短分隔線 `<hr class="reader-divider">` 區分
 - 樣式集中在 dashboard.css 的 `/* Document Reader Mode */` 區段
 - **2026-05 移除 Overview band**（原本顯示「31 則精選 + 涵蓋類型/熱門情境 tag 列」），原因：stat 資訊對讀者沒實際價值、又佔據首頁黃金位置擋住真正內容。masthead 後直接接 hero 大圖，magazine-style 節奏
@@ -503,9 +507,14 @@ TVBS Logo 用 CSS filter 著色：
 
 → `dashboard.js` 內舊版的 `promptData` 陣列已移除。新增/編輯走 JSON 檔（或 CMS）。
 
-### 8. 首頁「10 秒看趨勢」顯示篇數開關
+### 8. 首頁顯示篇數開關
 
-→ `dashboard.js` 頂部有常數 `HOME_WEEKLY_SUMMARIES_LIMIT`。`null` = 不限制（目前狀態）、改成數字（如 `8`）就會只顯示最新 N 篇。發完電子報想清空首頁時可以暫時改成小數字。
+`dashboard.js` 頂部兩個常數一起控制首頁的「呈現量」：
+
+- **`HOME_WEEKLY_SUMMARIES_LIMIT`** — 首頁「10 秒看趨勢」顯示篇數（目前 `5`，`null` = 不限制）
+- **`HOME_HERO_LIMIT`** — 首頁 hero 大圖總篇數（目前 `3` = 1 主圖 + 中排 2；`6` = 1+2+3）。**hero 池為 articles + tool + prompt 三池**(不再用 featured 篩,2026-06 起改成「日期 desc 自動選」+「article > prompt > tool 重排」)
+
+兩個都會自動連動 masthead 上方的日期範圍（範圍只算「實際呈現在首頁的子集」）。發完電子報想清空首頁時可以暫時調小。
 
 ### 9. CLAUDE.md 是 tag 體系的 source of truth
 
@@ -522,6 +531,18 @@ TVBS Logo 用 CSS filter 著色：
 → `index.html` 用 `dashboard.css?v=YYYY-MM-DD` 與 `dashboard.js?v=YYYY-MM-DD` 做 cache-busting（兩處：頂部 `<link>` 跟底部 `<script>`）。
 → 瀏覽器（尤其手機）會用「含 query 的完整網址」硬快取，**不更新版本號的話改了 CSS/JS 也看不到效果**（一般 reload 不會繞過）。
 → 改 `dashboard.css`/`dashboard.js` 後，把兩處 `?v=` 一起改成當天日期（同一天多次改可加後綴 `-b`、`-c`…）。`data/*.json` 沒有 cache-busting，改資料要靠 hard refresh（Ctrl+Shift+R）。
+
+### 12. tag「程式設計」已 rename 為「程式開發」（2026-06）
+
+→ 原「程式設計」只涵蓋「寫程式」這個動作，新名稱「程式開發」涵蓋更廣的開發者場景（跑 local model、devops、開發環境配置、開發者工具導入等），更通用。
+→ 已同步全站：`data/articles.json`、`data/weekly-summaries.json`、`admin/config.yml`、`dashboard.js` 的 `sortUsecaseTags`、CLAUDE.md、本檔。
+→ 不動：`tvbs-ai-newsletter/search-index.json`（內文文字描述，不是 tag）與 `Outlook 版本/` 歷史檔（已寄電子報，依舊文章維持原狀規則）。
+
+### 13. tag 規則細化：「產品總稱」vs「文章單獨點名能力」（2026-06）
+
+→ 原本警示「即時語音模型 不自動 = 即時翻譯/訪談記錄」針對的是「整個產品就叫某某類型」這種總稱。
+→ 但若文章**內文裡單獨點名某項能力**作為賣點/解鎖點（例如「首次讓中型模型具備原生音訊輸入功能」），那項能力對應的 tag **可以放**。
+→ 細節與正反例見 [CLAUDE.md](CLAUDE.md) 的「產品總稱 vs 文章單獨點名的能力判斷準則」段。
 
 ---
 

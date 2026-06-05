@@ -895,7 +895,8 @@ main {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.slide-tag--tool {
+.slide-tag--tool,
+.slide-tag--prompt {
   background: #f3e8ff;
   color: #7c3aed;
 }
@@ -3687,6 +3688,8 @@ footer {
   font-size: 17px !important;
   color: var(--text) !important;
   margin: 0 0 16px 0 !important;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
   font-weight: 700;
 }
 
@@ -4443,9 +4446,9 @@ footer {
   gap: 56px;
 }
 
-/* 首頁區塊加寬（桌機）：hero 與導讀不要太擠；文章閱讀頁維持 760px 不動 */
+/* 首頁中間區塊寬度（桌機）：比文章閱讀頁的 760px 寬，但不到 1040 那麼擠版面；文章閱讀頁維持 760px 不動 */
 #page-home .reader-flow {
-  max-width: 1040px;
+  max-width: 880px;
 }
 
 @media (max-width: 820px) {

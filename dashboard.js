@@ -849,11 +849,21 @@ async function initDashboardData() {
       } : (issuesData.find(it => it.no === "018") || issuesData[0]);
 
       // Document Reader Overview: 月份 meta + 趨勢數量 + 關鍵字 chips
-      const articlesArr = articles || [];
-      const summariesArr = window.__weeklySummaries || [];
-      const overviewSource = [...articlesArr, ...summariesArr];
+      // 對齊「首頁實際呈現的內容」：hero 最新 HOME_HERO_LIMIT 篇（articles + tool + prompt 三邊全撈、依日期 desc）+ 10秒看趨勢首頁版上限
+      // 過濾條件跟 featuredSlides 一致，確保算出的日期範圍跟首頁實際顯示的卡片對得上
+      const heroSubsetForMeta = [
+        ...articles.filter(a => a.image),
+        ...(toolIntros || []).filter(t => t.image && (t.content || t.openInModal)),
+        ...((window.__prompts || []).filter(p => p.image))
+      ].sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+       .slice(0, HOME_HERO_LIMIT);
+      const summariesAll = window.__weeklySummaries || [];
+      const summarySubsetForMeta = HOME_WEEKLY_SUMMARIES_LIMIT
+        ? summariesAll.slice(0, HOME_WEEKLY_SUMMARIES_LIMIT)
+        : summariesAll;
+      const overviewSource = [...heroSubsetForMeta, ...summarySubsetForMeta];
 
-      // 期間 meta — 從首頁所有文章 + 10秒趨勢的日期推算「最舊 ～ 最新」
+      // 期間 meta — 從首頁實際呈現的文章 + 10秒趨勢的日期推算「最舊 ～ 最新」
       const readerMetaEl = document.getElementById('readerIssueMeta');
       if (readerMetaEl) {
         const allDates = overviewSource.map(it => it.date).filter(Boolean)
@@ -882,23 +892,36 @@ async function initDashboardData() {
       }
 
       const heroContainer = document.getElementById('latestHeroContainer');
-      // 首頁大圖候選池：articles + tool-intro 兩邊 featured: true 合併，按日期 desc 全部呈現
-      // 版型：雜誌式 1+2+4 —— 1 張主圖 + 右上 2 張疊卡 + 下方一排其餘小卡
-      const articleSlides = articles.filter(a => a.featured).map(a => ({
+      // 首頁大圖候選池：直接從 articles + tool-intro + prompt-tips 三邊全部撈，按日期 desc 取最新 N 篇
+      // 不用 featured flag、零維護：新增任何分類的文章只要日期夠新就會自動上 hero
+      // 安全過濾：(1) 必須有 image，沒圖的不上 hero（卡片背景會空）；(2) tool 要能 openInModal 才放（純外連工具點了沒反應）
+      // 版型：1 張主圖 + 右上 2 張疊卡（HOME_HERO_LIMIT 控制總數；想加下排小卡就把上限調更大）
+      const articleSlides = articles.filter(a => a.image).map(a => ({
         image: a.image, tag: a.tag || getTag(a.title), title: a.title, summary: a.summary || '', date: a.date || '', type: 'article'
       }));
-      const toolSlides = toolIntros.filter(t => t.featured).map(t => ({
+      const toolSlides = (toolIntros || []).filter(t => t.image && (t.content || t.openInModal)).map(t => ({
         image: t.image, tag: 'AI 工具介紹', title: t.title, summary: t.summary || t.sub || '', date: t.date || '', type: 'tool'
       }));
-      const featuredSlides = [...articleSlides, ...toolSlides]
-        .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      const promptSlides = (prompts || []).filter(p => p.image).map(p => ({
+        image: p.image, tag: 'Prompt 技巧分享', title: p.title, summary: p.summary || '', date: p.date || '', type: 'prompt'
+      }));
+      // 選哪些：依日期 desc 取最新 N 篇（保留 prompt/tool 擠進 hero 的機會）
+      // 排展示順序：article 永遠在前、prompt 中、tool 後；同類型內仍按日期 desc
+      const HERO_TYPE_ORDER = { article: 0, prompt: 1, tool: 2 };
+      const featuredSlides = [...articleSlides, ...toolSlides, ...promptSlides]
+        .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+        .slice(0, HOME_HERO_LIMIT)
+        .sort((a, b) => {
+          const td = (HERO_TYPE_ORDER[a.type] ?? 99) - (HERO_TYPE_ORDER[b.type] ?? 99);
+          return td !== 0 ? td : (b.date || '').localeCompare(a.date || '');
+        });
       if (heroContainer) {
         if (featuredSlides.length >= 1) {
           const [main, ...rest] = featuredSlides;
           const smallCard = a => `
             <div class="hero-small" style="background-image:linear-gradient(180deg,rgba(10,18,40,0.1),rgba(10,18,40,0.85)),url('${a.image}')" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(a.title).replace(/'/g, "%27")}'))">
               <div class="hero-small-content">
-                <span class="slide-tag${a.type === 'tool' ? ' slide-tag--tool' : ''}">${a.tag}</span>
+                <span class="slide-tag${a.type && a.type !== 'article' ? ' slide-tag--' + a.type : ''}">${a.tag}</span>
                 <h3 class="hero-small-title">${a.title}</h3>
               </div>
             </div>`;
@@ -908,7 +931,7 @@ async function initDashboardData() {
             <div class="hero-grid">
               <div class="hero-main" style="background-image:linear-gradient(180deg,rgba(10,18,40,0.05) 0%,rgba(10,18,40,0.3) 50%,rgba(10,18,40,0.9) 100%),url('${main.image}')" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(main.title).replace(/'/g, "%27")}'))">
                 <div class="hero-main-content">
-                  <span class="slide-tag${main.type === 'tool' ? ' slide-tag--tool' : ''}">${main.tag}</span>
+                  <span class="slide-tag${main.type && main.type !== 'article' ? ' slide-tag--' + main.type : ''}">${main.tag}</span>
                   <h2 class="hero-main-title">${main.title}</h2>
                 </div>
               </div>
@@ -1130,7 +1153,7 @@ function renderSummaryItem(it, opts) {
 const USECASE_TAG_ORDER = [
   '圖像生成', '影片製作', '聲音處理', '寫作協助', '即時翻譯',
   '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究',
-  '程式設計', '訪談記錄', '觀念學習'
+  '程式開發', '訪談記錄', '個人化', '觀念學習'
 ];
 
 const CONTENT_TAG_ORDER = [
@@ -1138,8 +1161,11 @@ const CONTENT_TAG_ORDER = [
 ];
 
 // 首頁「10 秒看趨勢」顯示篇數上限。null = 不限制（全部顯示），數字 = 顯示最新 N 篇。
-// 未來想限制時，改成數字即可（例如 HOME_WEEKLY_SUMMARIES_LIMIT = 8）。
-const HOME_WEEKLY_SUMMARIES_LIMIT = null;
+const HOME_WEEKLY_SUMMARIES_LIMIT = 5;
+
+// 首頁 hero 大圖顯示總數（依日期 desc 取最新 N 篇 featured：articles + 工具介紹）。
+// 3 = 1 大主圖 + 2 中排；6 = 1+2+3（下排 3 格）；可依想要的版面密度調
+const HOME_HERO_LIMIT = 3;
 
 function sortUsecaseTags(tags) {
   return (tags || []).slice().sort((a, b) => {

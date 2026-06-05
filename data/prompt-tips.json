@@ -1,6 +1,15 @@
 {
   "items": [
     {
+      "id": "prompt-before-after-path",
+      "date": "2026-06-05",
+      "tag": "基礎入門",
+      "title": "新手入門！指令基礎架構 3「之前 + 之後 + 規劃」",
+      "summary": "用「之前 + 之後 + 規劃」三元素，先讓 AI 理解痛點與目標，再請它規劃中間路徑。",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/prompt-learning-3.png",
+      "content": "<div class=\"prompt-cover\"><img src=\"https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/prompt-learning-3.png\" alt=\"Prompt 基礎架構 3 示意圖\"><p class=\"prompt-cover-caption\">(示意圖 / AI 生成)</p></div><p>AI 逐漸融入每個人的生活，要和它好好交流互動，下好指令（Prompt）很重要。以下跟大家分享一個實用的 Prompt 基礎架構：<strong>「之前 + 之後 + 規劃」</strong>。</p><p>這個架構的精髓在於：先讓 AI 充分理解你的痛點，再告訴它你大致想達成的結果與步驟，最後讓它幫你搭建中間的過程。</p><h4>拆解架構三大核心元素</h4><div class=\"article-list-box\"><p><strong>1. 之前（解釋之前的問題）：</strong>開門見山告訴 AI「你現在面臨的困境或現狀是什麼」。把當下的痛點、限制和真實問題說清楚，AI 才能站在你的立足點幫你思考。</p><p><strong>2. 之後（說明之後的結果）：</strong>清楚描述「你想達成的理想狀態或目標」。直接把你的最終目標、具體指標告訴 AI，讓它知道終點線在哪裡。</p><p><strong>3. 規劃（問實現的路徑）：</strong>向 AI 提問「從之前走到之後的具體方法」。這是整個指令的靈魂，直接請 AI 幫你規劃步驟、策略或詳細計畫。</p></div><h4>情境舉例</h4><p>當你想提升網站的搜尋引擎排名，套用到「之前 + 之後 + 規劃」架構，我們可以這樣設定元素：</p><div class=\"article-list-box\"><p><strong>之前：</strong>我們網站現在在搜尋引擎上很難被人發現。</p><p><strong>之後：</strong>我們想要在 90 天內讓網站的搜尋引擎排名成為前 10 名。</p><p><strong>規劃：</strong>設計一個詳細計劃寫出我們要做的所有事情，並列出前 20 的關鍵詞。</p></div><p>接著再加上一些具體的描述，就可變成一段完整的指令如下：</p><div class=\"prompt-quote\">「我們的網站目前在搜尋引擎上很難被人發現。希望網站的搜尋引擎排名能在 90 天內上升成為前 10 名。請幫我設計一個詳細計劃，寫出我們要做的所有事情，並列出前 20 的關鍵詞。」</div><div class=\"callout-warn\"><strong>要留意的是</strong>，如果架構元素描述不明確，比如「之前」只寫了籠統的形容詞（如流量不太好）、「之後」沒有說明具體指標（如時間、排名等），或是「規劃」只說「幫我改善」卻沒有要求具體計畫，最終得到的回答可能就會偏向廣泛的結果，降低實用性。把現狀與目標明確化，就是能得到滿意解答的關鍵。</div>"
+    },
+    {
       "id": "prompt-017-3",
       "date": "2026-01-29",
       "tag": "基礎入門",

@@ -49,7 +49,7 @@ collections:
               - { name: title, label: 標題, widget: string }
               - { name: date, label: 日期, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false, picker_utc: false }
               - { name: tag, label: '分類 (6 選 1)', widget: select, options: ['模型發布', '新工具', '新功能', '應用技巧', '產業動態', '法律規範'] }
-              - { name: tags, label: '適用情境 (13 選 1-4 個)', widget: select, multiple: true, min: 1, max: 4, options: ['圖像生成', '影片製作', '聲音處理', '寫作協助', '即時翻譯', '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究', '程式設計', '訪談記錄', '觀念學習'] }
+              - { name: tags, label: '適用情境 (14 選,有相關就加,不限上限)', widget: select, multiple: true, min: 1, options: ['圖像生成', '影片製作', '聲音處理', '寫作協助', '即時翻譯', '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究', '程式開發', '訪談記錄', '個人化', '觀念學習'] }
               - { name: summary, label: 摘要 (列表會顯示這段), widget: text }
               - { name: image, label: 封面圖網址, widget: string, hint: '貼 jsDelivr 網址,例:https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/xxx.png' }
               - { name: imageCaption, label: 圖片說明, widget: string, required: false, hint: '封面圖下方以斜體小字顯示' }
@@ -82,7 +82,7 @@ collections:
               - { name: title, label: 標題, widget: string }
               - { name: date, label: 日期, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false, picker_utc: false }
               - { name: tag, label: '分類 (6 選 1)', widget: select, options: ['模型發布', '新工具', '新功能', '應用技巧', '產業動態', '法律規範'] }
-              - { name: tags, label: '適用情境 (13 選 1-4 個)', widget: select, multiple: true, min: 1, max: 4, options: ['圖像生成', '影片製作', '聲音處理', '寫作協助', '即時翻譯', '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究', '程式設計', '訪談記錄', '觀念學習'] }
+              - { name: tags, label: '適用情境 (14 選,有相關就加,不限上限)', widget: select, multiple: true, min: 1, options: ['圖像生成', '影片製作', '聲音處理', '寫作協助', '即時翻譯', '自動化', '工作流整合', '整理資料', '簡報設計', '資料研究', '程式開發', '訪談記錄', '個人化', '觀念學習'] }
               - { name: summary, label: 摘要 (一個段落), widget: text }
               - { name: sourceUrl, label: 來源網址, widget: string, required: false }
 
@@ -116,6 +116,7 @@ collections:
               - { name: content, label: '內文(HTML)', widget: text, hint: '用 HTML 標籤。可用 class：<div class="prompt-cover"> 封面圖+圖說 / <div class="prompt-quote"> Prompt 範例引用 / <div class="callout-warn"> 黃色提醒 / <div class="callout-tip"> 灰色小提示 / <div class="prep-box"> 使用前準備 / <div class="scenario-card"> 編號情境卡片 / <div class="step-card"> 步驟卡片 / <div class="article-list-box"> 條列灰底框' }
               - { name: sourceUrl, label: 來源網址, widget: string, required: false, hint: '選填。留空可在 content 內嵌 <div class="link-group"><a class="news-link">...→</a></div> 排版按鈕' }
               - { name: sourceLabel, label: 來源連結文字, widget: string, required: false, hint: '搭配 sourceUrl 使用，例:官方介紹 →' }
+              - { name: featured, label: 首頁 hero 候選, widget: boolean, default: false, required: false, hint: '勾選後會出現在首頁大圖的候選池(跟 articles / tool-intro 一起依日期 desc 取最新 N 篇)' }
 
   # ============================================
   # 4. AI 工具介紹(data/tool-intro.json)
