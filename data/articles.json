@@ -1,6 +1,23 @@
 {
   "items": [
     {
+      "id": "claude-opus-4-8",
+      "date": "2026-05-28",
+      "tag": "模型發布",
+      "tags": [
+        "程式開發",
+        "自動化",
+        "工作流整合"
+      ],
+      "title": "Anthropic 推出新模型 Claude Opus 4.8　變得更誠實、判斷力更敏銳",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/claude%20opus%204.8.webp",
+      "imageCaption": "Claude opus 4.8 登場。 ( 圖 / 翻攝自 Claude 官網 )",
+      "sourceUrl": "https://www.anthropic.com/news/claude-opus-4-8",
+      "sourceLabel": "Claude Opus 4.8 官方介紹 →",
+      "content": "<p class=\"first-paragraph\">Anthropic 宣布升級旗艦模型至 Claude Opus 4.8，在編碼、推理及執行代理任務的表現上均優於前代 Opus 4.7，也強化了模型誠實度。根據內部評測，其產出程式碼的漏洞逃過偵測的機率，僅為前代模型的四分之一。開發團隊指出，Opus 4.8 能更主動地標註工作中的不確定性，減少過度自信的錯誤回應。</p><h4>六大能力指標奪五項第一　全面超越競爭對手</h4><p>Opus 4.8 在六大模型能力指標中，奪得五項第一，全面超越競爭對手。在「軟體開發代理」上，Opus 4.8 以 69.2% 的高分，擊敗了 GPT-5.5（58.6%）與 Gemini 3.1 Pro（54.2%）；在「多學科推理」測試中，不論是否使用工具，其成績均領先 GPT-5.5 超過 5 個百分點，並在「電腦操作代理」與「知識型工作」等項目中同樣贏過 GPT-5.5 與 Gemini 3.1 Pro。雖然在「終端機編碼」一項，Opus 4.8 以 74.6% 的準確率微幅落後給 GPT-5.5 的 78.2%，但整體數據顯示，Opus 4.8 無論是面對前代升級還是其他公司的最新旗艦模型，都展現出一定的競爭優勢。</p><h4>動態工作流與 Effort 控制　提升大規模任務處理彈性</h4><p>伴隨模型更新，Anthropic 也為 Claude Code 推出「動態工作流（Dynamic Workflows）」預覽功能，讓 Claude 能自主規劃數百個平行運算的子代理，處理數十萬行代碼的大型遷移任務。此外，網頁版 claude.ai 新增「努力程度（Effort）」控制項，用戶可根據任務難度，手動調整模型思考的深度與速度。</p><h4>快速模式上線　速度提升 2.5 倍、價格降至三分之一</h4><p>針對費用與效能，Opus 4.8 同步推出「快速模式」，運作速度提升 2.5 倍，且價格僅需舊版本的三分之一。即日起於 claude.ai 平台與 API 正式上線。</p>",
+      "featured": true
+    },
+    {
       "id": "google-io-2026",
       "date": "2026-05-20",
       "tag": "產業動態",
@@ -35,7 +52,7 @@
       "date": "2026-05-20",
       "tag": "模型發布",
       "tags": [
-        "程式設計",
+        "程式開發",
         "自動化",
         "工作流整合",
         "圖像生成"
@@ -46,7 +63,7 @@
       "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
       "sourceLabel": "Gemini 3.5 官方介紹 →",
       "content": "<p class=\"first-paragraph\">Google 日前在 I/O 大會上發表新一代模型家族 Gemini 3.5，主打讓高階 AI 不只會回答，也能執行更複雜、時間更長的 AI 代理工作流程。第一個推出的版本是 Gemini 3.5 Flash，在代理任務與寫程式表現上有明顯提升，適合處理需要規劃、執行、反覆修正的長流程任務。</p><h4>Gemini 3.5 Flash 上線　速度接近 Flash、能力挑戰旗艦模型</h4><p>Google 表示，Gemini 3.5 Flash 在多項代理與程式任務基準測試中，表現已可接近大型旗艦模型，同時維持 Flash 系列主打的高速度。它在 Terminal-Bench 2.1、GDPval-AA、MCP Atlas 等測試中超越 Gemini 3.1 Pro，也在 CharXiv Reasoning 多模態理解測試中取得 84.2% 成績。Google 也指出，若以每秒輸出 token 來看，3.5 Flash 比其他同級高階模型快 4 倍，強調使用者不必再在品質與延遲之間二選一。</p><h4>長流程代理任務　從數天工作縮短到更短時間</h4><p>Gemini 3.5 Flash 的重點應用，是處理長時間、多步驟的 AI 代理任務。Google 舉例，過去可能需要開發者花數天、稽核人員花數週完成的工作，現在可由 3.5 Flash 協助在更短時間內完成。Google 表示，在這類長流程 AI 代理任務中，3.5 Flash 往往能以不到其他頂尖模型一半的成本完成。它能用於開發新應用、維護程式碼庫、準備財務文件等工作，並可在監督下執行多步驟流程與寫程式任務。這代表 Flash 不只是更快的聊天模型，而是被設計成能實際接手流程的 AI 代理核心。</p><h4>互動式 UI 與圖像生成　可做更豐富的網頁介面</h4><p>延續 Gemini 3 的多模態基礎，Gemini 3.5 Flash 也強化了互動式網頁介面與圖像生成能力。Google 展示它可在 AI Studio 中，為研究論文建立互動動畫與視覺化內容。這代表 3.5 Flash 不只用於文字或程式碼，也能把複雜資訊整理成更容易理解的視覺介面，適合研究展示、資料說明與互動式應用原型。</p><h4>企業實際導入　金融與資料團隊用來拆解複雜流程</h4><p>Google 表示，Gemini 3.5 Flash 的代理能力已開始在開發者與企業場景中產生實際影響。Google 在開發 3.5 系列時，與產業夥伴合作了解工作流程中最耗時、最複雜的部分，應用案例包含銀行與金融科技公司自動化原本需要數週的流程，以及資料科學團隊在複雜資料環境中挖掘洞察。Google 也提到 Shopify 正使用平行子代理分析長時間、大規模的複雜資料，以提升全球商家成長預測的準確度。</p><h4>強化 Google 搜尋　代理處理資訊、生成式介面更動態</h4><p>Gemini 3.5 Flash 也被用於強化 Google 搜尋的 AI 代理能力。Google 表示，搜尋將推出可 24 小時替使用者工作的資訊型 AI 代理，並帶來更動態的生成式介面體驗，例如由搜尋即時建立互動式視覺內容，幫助使用者理解複雜概念。這讓搜尋不只是回答問題，而是能依照問題生成更合適的呈現方式，並在背景持續追蹤資訊。</p><h4>哪裡可以用 Gemini 3.5 Flash？</h4><p>Gemini 3.5 Flash 目前已正式開放使用。一般使用者可透過 Gemini app 與 Google 搜尋 AI Mode 使用；開發者可在 Google Antigravity、Google AI Studio 的 Gemini API，以及 Android Studio 中使用；企業則可透過 Gemini Enterprise Agent Platform 與 Gemini Enterprise 導入。Google 表示，這是 Gemini 3.5 系列的第一步，接下來還會推出 Gemini 3.5 Pro。</p>",
-      "featured": true
+      "featured": false
     },
     {
       "id": "gpt-image-2",
@@ -62,7 +79,7 @@
       "sourceUrl": "https://openai.com/zh-Hant/index/introducing-chatgpt-images-2-0/#textmode",
       "sourceLabel": "GPT Image 2.0 官方完整介紹 →",
       "content": "<p class=\"first-paragraph\">OpenAI 近期發布的圖像生成模型 GPT Image 2.0 掀起網路熱潮，只要透過簡單的指令，就能產出專業級的視覺排版，不僅解決了長久以來 AI 繪圖文字出錯的痛點，產出內容也更高效精準。來看看 GPT Image 2.0 究竟具備哪些能力：</p><h4>GPT Image 2.0 的三大特色</h4><p>GPT Image 2.0 不再只是單純的圖像生成器，其核心進化在於將「邏輯推理」注入「視覺創作」。</p><ul><li><strong>文字渲染「零翻車」</strong>：這是全球首個能精準處理中、英、日三語渲染的模型，準確率突破 95%。對編輯團隊而言，這意味著 AI 生成的圖可直接作為標題封面，無需設計師二度修字，大幅縮短即時新聞的產製流程。</li><li><strong>先想後畫（Thinking Mode）</strong>：該模型具備構圖推理能力。在生成如選舉地圖、經濟走勢等「資訊圖表（Infographic）」時，其地理位置與數據比例具備高度真實參考價值，解決了以往 AI 繪圖「數據造假」的致命傷。</li><li><strong>跨場景連貫性</strong>：透過強大的物件鎖定技術，GPT Image 2.0 能確保虛擬品牌大使或產品特徵在不同報導、分鏡中保持外型一致，為長期的專題報導或影音前置分鏡提供穩定支援。</li></ul><h4>GPT Image 2.0 和 Nano Banana 2 的差異</h4><p>自從 GPT Image 2.0 推出後，其產圖的品質被不少網友稱完勝 Google 的 Nano Banana 2 / Pro 模型。究竟這兩種圖像生成模型差異在哪裡？運用在工作上應該怎麼選？</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">核心定位差異：精品 vs. 量產</h4><p><strong>GPT Image 2</strong>：適合需要絕對精確度與排版美學的專案，如專業雜誌排版或全球行銷活動。它深諳字體權重與留白層次，產出的首張結果通常即可直接採納，專注於「精品級」視覺。</p><p><strong>Nano Banana 2</strong>：憑藉 Flash 架構，Nano Banana 2 是追求極致效率的首選。其平均延遲僅約 0.85 秒，適合大規模自動化生產與社群媒體高頻率發文，能以極低成本快速驗證創意。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">實際應用效果比較</h4><p>使用同一組基礎提示詞的情況下，在整體排版上 GPT Image 2.0 的產出結果更有設計感、更精緻。</p><div style=\"background:rgba(91,91,214,0.06);border-left:3px solid var(--accent);padding:12px 16px;margin:12px 0;font-size:13px;color:var(--text-light)\"><strong>提示詞：</strong>幫我生成一張廣告文宣，商品資訊如下：<br>■ 商品名稱：【享食尚】滴雞精 10 入（45ml/入）<br>■ 產品規格：45ml/10 入/盒、本組共 10 入<br>■ 產品成份：100% 台灣黑羽土雞滴雞精<br>■ 完整產銷履歷認證、食安最高標準<br>■ 獨家禽類粗蛋白萃取專利技術，超高營養質量<br>■ 每 100ml 含 8.7g 蛋白質，有助於組織修復與生長發育<br>■ 18 種胺基酸（內含 8 種人體必需胺基酸）<br>■ 無防腐劑、零脂肪、零膽固醇、口感濃醇無腥味<br>■ 常溫保存，送禮自用第一首選</div><p><strong>原圖素材：</strong></p><p><img src=\"https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/NHtPop4.jpg\" alt=\"原圖素材\" style=\"max-width:100%;border-radius:6px\"></p><p><strong>GPT Image 2.0 成品：</strong></p><p><img src=\"https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/vd6EUvF.png\" alt=\"GPT Image 2.0 成品\" style=\"max-width:100%;border-radius:6px\"></p><p><strong>Nano Banana 2 成品：</strong></p><p><img src=\"https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/H2VXCQH.jpg\" alt=\"Nano Banana 2 成品\" style=\"max-width:100%;border-radius:6px\"></p>",
-      "featured": true
+      "featured": false
     },
     {
       "id": "gpt-5-5",
@@ -80,7 +97,7 @@
       "sourceUrl": "https://openai.com/zh-Hant/index/introducing-gpt-5-5/",
       "sourceLabel": "GPT 5.5 官方完整介紹 →",
       "content": "<p class=\"first-paragraph\">OpenAI 日前正式推出最新旗艦模型 GPT-5.5。這不僅是一次效能微調，更代表著 ChatGPT 從「對話框裡的問答工具」轉型為「跨工具的任務代理（Task Agent）」的關鍵改變。</p><h4>GPT-5.5 進化核心：從「聽令行事」到「自主執行」</h4><p>GPT-5.5 這次最關鍵的提升在於「Agentic（代理性）」能力。過去，使用者需要將複雜任務拆解，逐步對 AI 下指令、搬運資料；現在，GPT-5.5 能夠在減少人工干預的情況下，自主完成一整串工作流程。</p><p>根據官方說明，GPT-5.5 的能力進化可歸納為以下面向：</p><ul><li><strong>電腦操作能力（Computer Use）</strong>：能結合 Codex 展現強大的電腦操作能力，能在不同應用程式之間切換移動，完成多步驟的複雜任務。</li><li><strong>自主編程（Coding）</strong>：深度整合 Codex 環境，能獨立完成撰寫、除錯到測試的完整開發週期。</li><li><strong>研究整合（Research）</strong>：不再只是搜尋資料，GPT-5.5 能主動交叉比對資訊，並直接產出具結構性的研究摘要。</li><li><strong>文件密集任務</strong>：橫跨簡報、試算表、電子郵件與各類文檔，自動處理海量文字的資訊整合，減少人工搬運的動作。</li><li><strong>高效能 Token 運用</strong>：官方強調「用更少 Token 做更多事」，雖然 API 單價提升，但單一任務所需的 Token 效率大幅優化，輸出更精準。</li></ul><p>在費用方面，GPT-5.5 目前優先開放給 Plus（20 美元/月）、Pro（200 美元/月）及團隊用戶使用。雖然 API 輸入訂價翻倍至每百萬 Token 5 美元，但考量到任務成功率與效率的提升，實際付出的成本未必會增加。</p><h4>媒體工作的應用與影響</h4><p>對於媒體同仁與廣大辦公族而言，GPT-5.5 的實際意義在於「交辦任務完成度」的質變。以往需要「複製、貼上、整合」的手工過程，現在只需一個指令「幫我完成這件事」，AI 便能自主跑完後續流程。應用場景舉例：</p><ul><li><strong>從「單點對話」到「帶狀流程」</strong>：過去需要你下指令寫大綱、再下指令寫全文；現在你可以說：「針對這本 50 頁的報告，幫我寫成三篇不同語氣的社群貼文、配好標籤，並直接存入我們的 Google Drive 協作夾。」</li><li><strong>自主研究員</strong>：它能主動開啟瀏覽器查找資料、交叉比對事實、查核假新聞，最後輸出結構化的背景資料夾，而不是只給你一段文字。</li><li><strong>跨軟體操作</strong>：它能模擬人類操作電腦，在 Excel、Word、Email 和專案管理工具（如 Notion / Asana）之間移動資料，處理繁瑣的行政流程。</li><li><strong>自動化編譯</strong>：24 小時監控外媒訊息，自主翻譯、摘要，並自動抓取相關背景數據。</li><li><strong>社群經營</strong>：只要給它一個核心議題，它能自主完成跨平台（FB / IG / Threads）的文案排期與發布。</li><li><strong>數據分析建議</strong>：直接丟入讀者點擊率報表或政府公開資料夾，它能自主分析趨勢、畫出圖表並提供洞察建議。</li></ul>",
-      "featured": true
+      "featured": false
     },
     {
       "id": "hermes-agent",
@@ -89,7 +106,8 @@
       "tags": [
         "自動化",
         "工作流整合",
-        "整理資料"
+        "整理資料",
+        "個人化"
       ],
       "title": "會自我進化的 AI 助理！Hermes Agent 爆紅 內建學習機制越用越聰明",
       "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/fiWEEEB.jpg",
@@ -97,7 +115,7 @@
       "sourceUrl": "https://github.com/nousresearch/hermes-agent",
       "sourceLabel": "Hermes Agent GitHub →",
       "content": "<p class=\"first-paragraph\">由科技公司 Nous Research 開發的開源自進化 AI 助理 Hermes Agent 日前在科技圈爆紅，關鍵的能力在於它解決了 AI 長期以來的「健忘症」痛點，且能透過獨特的學習迴圈機制，實現從單純執行指令到「自進化」的跨越。</p><h4>Hermes Agent 核心定位：模型無關、可自架的 AI 自主代理</h4><p>Hermes Agent 是一款採用 MIT 授權的完全開源工具，可自架，奠基於 Hermes 模型系列（基於 Llama 3.1）。其功能特色強調「自主性」與「跨平台整合」，具備以下基礎特性：</p><ul><li><strong>多平台入口</strong>：支援包含 Telegram、Discord、Slack、WhatsApp 及 Home Assistant 等超過 14 個平台，使用者可透過慣用通訊軟體下達指令。</li><li><strong>靈活後端支援</strong>：支援 OpenRouter、OpenAI、Anthropic 等雲端模型，亦可部署於本地伺服器，並提供 Local、Docker、SSH 等 6 種執行後端。</li><li><strong>工具生態</strong>：內建 40 多種工具（如網頁搜索、瀏覽器自動化、程式執行），並全面支援 MCP（Model Context Protocol，模型上下文協定）標準。</li><li><strong>模型無關</strong>：支援 OpenRouter（擁有 200 個以上的模型）、OpenAI、Anthropic、本地模型。</li></ul><h4>Hermes Agent 關鍵技術：「學習迴圈」與三層記憶系統</h4><p>Hermes Agent 最顯著的功能進步在於其<strong>自進化學習機制</strong>。這並非指修改模型本身的權重，而是透過自動化流程，將每一次成功的任務經驗轉化為可重複利用的知識。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">1. 三層記憶系統</h4><ul><li><strong>永久記憶</strong>：利用 FTS5 全文搜索引擎結合 LLM 摘要，讓 Agent 能跨工作階段（Session），精準召回歷史對話。</li><li><strong>技能文件</strong>：當任務完成後，AI 會自動將解決方案提煉成 Markdown 格式的「技能檔」，供下次調用。</li><li><strong>用戶建模</strong>：持續學習並深化對使用者工作風格、偏好與上下文的理解。</li></ul><h4 style=\"color:#6b4e9d;font-size:1.05em\">2. 五步學習迴圈</h4><p>從「觀察任務」、「提取模式」到「建立技能」，最後透過「精煉」與「定期審查更新」，讓 Agent 隨著使用時間增加而更貼近用戶需求。</p><h4>Hermes Agent 與 OpenClaw 的差異</h4><p>Hermes Agent 跟前陣子爆紅、同樣能自主代理的開源 AI 助理 OpenClaw 有什麼差別呢？其實兩者在技術上有不同取向：OpenClaw 屬於多 Agent 操作系統，適合團隊治理，記憶機制需要手動配置，在安全性方面強調存取控制與團隊管理；而 Hermes Agent 則屬於單一進程，適合個人自架，能自動儲存與提煉記憶，資料完全留存於本地。</p><h4>媒體運用的可能性</h4><p>結合 Hermes Agent 的核心特色，有四大可能的應用場景：</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">1. 自進化「風格校對員」</h4><p><strong>功能特色</strong>：學習迴圈、用戶建模。<br><strong>應用描述</strong>：AI 會自動記憶編輯對文案的修改偏好（如標題風格、用詞禁忌），隨著使用次數增加，它產出的草稿會越來越符合個人「寫作口吻」，實現<strong>越用越像真人編輯</strong>的效果。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">2. 永不失憶的「調查助手」</h4><p><strong>功能特色</strong>：跨工作階段記憶、FTS5 全文搜索。<br><strong>應用描述</strong>：適合長期的專題報導。它能記住數月前對話中的所有細節、網頁連結與原始資料，記者可隨時<strong>精準召回歷史資訊</strong>，確保深度調查的數據連貫性，不再有「AI 健忘症」。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">3. 全天候「跨平台總編」</h4><p><strong>功能特色</strong>：14+ 平台閘道、多後端執行。<br><strong>應用描述</strong>：編輯只需在 Telegram 或 Slack 下達一個指令，Hermes 即可<strong>自主跨工具操作</strong>，同步將稿件轉化為社群貼文、排程至 CMS 系統，並生成對應的配圖或語音，完成一站式發布。</p><h4 style=\"color:#6b4e9d;font-size:1.05em\">4. 知識傳承的「技能庫」</h4><p><strong>功能特色</strong>：自動生成技能文件（Skill Docs）。<br><strong>應用描述</strong>：AI 會將處理複雜任務（如數據清洗、特定格式轉換）的成功經驗自動寫成「技能檔」。這讓組織內部的<strong>工作邏輯得以數位化傳承</strong>，新進人員能直接調用前人累積的自動化技能。</p>",
-      "featured": true
+      "featured": false
     }
   ]
 }

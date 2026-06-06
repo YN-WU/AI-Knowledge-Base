@@ -1,6 +1,72 @@
 {
   "items": [
     {
+      "id": "chatgpt-memory-dreaming-v3",
+      "date": "2026-06-04",
+      "title": "ChatGPT 記憶功能大進化　跨多年對話不再秒忘",
+      "summary": "OpenAI 宣布升級 ChatGPT 記憶系統「Dreaming」到 V3 版本。新系統能自動在後台彙整對話脈絡，不僅解決資訊過時問題，更能主動辨識用戶偏好與長期專案需求，比如能針對攝影器材、旅遊規畫提供精準建議。更新後模型在事實回憶與偏好遵循律顯著提升，且運算效率優化 5 倍，能更流暢地處理跨年度的長週期記憶。即日起優先開放給美國 Plus 與 Pro 用戶，未來數周將陸續推向全球及免費版使用者。",
+      "sourceUrl": "https://openai.com/index/chatgpt-memory-dreaming/",
+      "tag": "新功能",
+      "tags": [
+        "寫作協助",
+        "個人化",
+        "整理資料"
+      ]
+    },
+    {
+      "id": "joyai-echo-framework",
+      "date": "2026-06-03",
+      "title": "京東宣布開源 JoyAI-Echo 框架　AI 長影片生成「不變臉、免重跑」",
+      "summary": "大陸電商公司京東集團旗下 AI 研發單位京東雲發布全新長影音生成框架 JoyAI-Echo，正面對決 AI 長影片生成容易角色變臉、音色亂變、生成速度太慢等痛點，內建跨模態記憶庫，能確保長達 5 分鐘的影片中，角色外型與音色高度一致，更搭載 Director Agent 功能，讓用戶能像與導演對話般「局部微調」影片，無需因小細節而重跑整段內容，效率大幅提升。此外，受惠於 DMD 加速技術，影片生成速度也有感提升 7.5 倍。目前已於 GitHub 全部開源。",
+      "sourceUrl": "https://mp.weixin.qq.com/s/tISrnBhhxZnJmtbyfeB8sg",
+      "tag": "新工具",
+      "tags": [
+        "影片製作",
+        "聲音處理"
+      ]
+    },
+    {
+      "id": "gemma-4-12b",
+      "date": "2026-06-03",
+      "title": "Google 推出全新模型 Gemma 4 12B 　在 16GB VRAM 筆電就能跑",
+      "summary": "Google DeepMind 推出最新一代 Gemma 4 12B，這款模型專為筆電等消費級硬體打造，在小型裝置上也能達成強大的代理型多模態能力。相較於傳統模型，它採用獨特的「無編碼器」統一架構，讓視覺與音訊訊號能直接流入模型核心，不僅減少記憶體佔用，也首次讓中型模型具備原生音訊輸入功能。Gemma 4 12B 的性能已接近容量加倍的 26B 模型，讓使用者僅需 16GB 的 VRAM 就能在本地端執行複雜的推理。目前該模型已在 Apache 2.0 授權下開放下載，支援 Ollama 及 Hugging Face 等平台。",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/",
+      "tag": "模型發布",
+      "tags": [
+        "程式開發",
+        "聲音處理"
+      ]
+    },
+    {
+      "id": "qwen-3-7-plus",
+      "date": "2026-06-02",
+      "title": "Qwen 3.7-Plus 登場　視覺開發與自動化操作全精進",
+      "summary": "阿里雲發布千問系列全新多模態模型 Qwen 3.7-Plus，將視覺理解與自動化任務整合，打造具備自主執行能力的 AI 核心。該模型能感知真實場景、讀取螢幕並操作 GUI，在視覺能力權威評測 Vision Arena 躋身中國第一、全球前五（輸給 Claude Opus 4.7-thinking、Gemini 3 Pro、GPT-5.5 等）。其最大亮點在於視覺化程式開發（Visual Coding），能將設計圖或視頻轉化為可執行代碼，甚至自主完成 App 開發與網頁原型產出，並支援與 Claude Code 等框架搭配使用。此外，官方也推出 Chrome 瀏覽器外掛，可代勞選購伺服器等跨分頁複雜操作。此模型目前已在阿里雲百煉及 Qwen Studio 開放服務。",
+      "sourceUrl": "https://mp.weixin.qq.com/s/Q-eoyZwit8c5EoOppGvQrg",
+      "tag": "模型發布",
+      "tags": [
+        "程式開發",
+        "自動化",
+        "工作流整合"
+      ]
+    },
+    {
+      "id": "codex-roles-sites",
+      "date": "2026-06-02",
+      "title": "Codex 推出六大領域專屬外掛　建網站微調文件更隨手",
+      "summary": "AI 軟體工程代理工具 Codex 宣布推出多項更新，讓非開發者能依據職業類別提升工作效率。官方針對資料分析、創意製作、銷售、產品設計、公開股票投資與投資銀行等六大領域推出專屬外掛，串聯 Figma、Canva、Shutterstock 等百項工具處理專業任務，可協助建立行銷活動看板、製作調整展示型廣告版本、產出產品情境照、可直接用於電子商務的圖片組，或是自動追蹤客戶紀錄、檢視財報等，無需程式碼即可完成跨軟體自動化。<br><br>此外，全新的 Sites 功能讓用戶能將計畫書轉化為互動式分享網頁，並支援透過註解功能精確微調文件或投影片內容。供應情況方面，外掛程式已陸續在支援地區上線，Sites 功能則優先開放給 Business 與 Enterprise 客戶預覽使用。",
+      "sourceUrl": "https://openai.com/zh-Hant/index/codex-for-every-role-tool-workflow/",
+      "tag": "新功能",
+      "tags": [
+        "工作流整合",
+        "程式開發",
+        "自動化",
+        "圖像生成",
+        "整理資料",
+        "資料研究"
+      ]
+    },
+    {
       "id": "claude-legal-industry",
       "date": "2026-05-12",
       "title": "Claude 進軍企業法律市場　串接多個專業流程及判例資料庫",
@@ -21,7 +87,7 @@
       "sourceUrl": "https://www.notion.com/blog/introducing-developer-platform",
       "tag": "新功能",
       "tags": [
-        "程式設計",
+        "程式開發",
         "工作流整合",
         "自動化"
       ]
@@ -46,7 +112,7 @@
       "sourceUrl": "https://openai.com/index/codex-mobile-app/",
       "tag": "新功能",
       "tags": [
-        "程式設計",
+        "程式開發",
         "自動化",
         "工作流整合"
       ]
@@ -60,7 +126,7 @@
       "tag": "應用技巧",
       "tags": [
         "觀念學習",
-        "程式設計",
+        "程式開發",
         "圖像生成"
       ]
     },
@@ -72,7 +138,8 @@
       "sourceUrl": "https://finance.sina.com.cn/tech/digi/2026-05-09/doc-inhxhcxr3659931.shtml",
       "tag": "模型發布",
       "tags": [
-        "聲音處理"
+        "聲音處理",
+        "個人化"
       ]
     },
     {
@@ -96,7 +163,7 @@
       "sourceUrl": "https://developers.openai.com/codex/app/chrome-extension",
       "tag": "新功能",
       "tags": [
-        "程式設計",
+        "程式開發",
         "自動化",
         "整理資料"
       ]
@@ -147,7 +214,7 @@
       "tag": "產業動態",
       "tags": [
         "觀念學習",
-        "程式設計"
+        "程式開發"
       ]
     },
     {
@@ -160,7 +227,8 @@
       "tags": [
         "寫作協助",
         "整理資料",
-        "資料研究"
+        "資料研究",
+        "個人化"
       ]
     },
     {
@@ -295,7 +363,7 @@
       "sourceUrl": "https://api-docs.deepseek.com/news/news260424",
       "tag": "模型發布",
       "tags": [
-        "程式設計",
+        "程式開發",
         "資料研究"
       ]
     },
@@ -309,7 +377,8 @@
       "tags": [
         "工作流整合",
         "寫作協助",
-        "整理資料"
+        "整理資料",
+        "個人化"
       ]
     },
     {
@@ -331,9 +400,10 @@
       "sourceUrl": "https://openai.com/zh-Hant/index/codex-for-almost-everything/",
       "tag": "新功能",
       "tags": [
-        "程式設計",
+        "程式開發",
         "自動化",
-        "工作流整合"
+        "工作流整合",
+        "個人化"
       ]
     },
     {
@@ -344,9 +414,10 @@
       "sourceUrl": "https://www.anthropic.com/news/claude-opus-4-7",
       "tag": "模型發布",
       "tags": [
-        "程式設計",
+        "程式開發",
         "資料研究",
-        "自動化"
+        "自動化",
+        "個人化"
       ]
     }
   ]
