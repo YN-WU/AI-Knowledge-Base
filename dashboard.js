@@ -1829,9 +1829,17 @@ function ogStripHtml(html) {
     .trim();
 }
 
+function ogStripPromptImageCaptions(html) {
+  return String(html || '')
+    .replace(/<div[^>]*>\s*<img[^>]*>[\s\S]*?<\/div>/gi, '')
+    .replace(/<p[^>]*class=["'][^"']*(caption|prompt-cover-caption|prompt-figure-caption|step-figure-caption)[^"']*["'][^>]*>[\s\S]*?<\/p>/gi, '')
+    .replace(/<figcaption[^>]*>[\s\S]*?<\/figcaption>/gi, '');
+}
+
 function ogGetArticlePreview(article, maxChars) {
   // 優先使用 content（網站卡片實際顯示），fallback 到 summary
-  const plain = ogStripHtml(article.content || '') || article.summary || '';
+  const cleanHtml = ogStripPromptImageCaptions(article.content || '');
+  const plain = ogStripHtml(cleanHtml) || article.summary || '';
   return ogTruncate(plain, maxChars);
 }
 
@@ -1859,8 +1867,8 @@ function ogNormalizeItem(item, kind) {
       tag: 'Prompt 技巧分享',  // 統一來源 label
       tags: [],
       title: item.title,
-      content: '',
-      summary: item.sub || item.summary || '',
+      content: item.content || '',
+      summary: item.summary || item.sub || '',
       // Prompt deep-link 用 #prompt-{id}（getArticleHash 認得）
       url: item.id ? `${OG_DASHBOARD}#prompt-${item.id}` : (item.no ? `tvbs-ai-newsletter/issues/${item.no}.html#section-jump-${item.sj || 0}` : OG_DASHBOARD + '#prompt-tips')
     };
