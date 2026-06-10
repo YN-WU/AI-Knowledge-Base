@@ -268,7 +268,7 @@ python -m http.server 8000
 ```
 
 - **`summary` 欄位已於 2026-05 從重點趨勢移除**：原本卡片/搜尋會顯示摘要，現已拿掉（`dashboard.js` 用 `a.summary || ''` 容錯，缺欄位不會壞）。新增文章不用再填 summary。（10 秒看趨勢的 `weekly-summaries.json` 仍保留 summary）
-- **`featured` 欄位現為保留欄位**（2026-06 起 hero 不再看它）：原本 hero 用 `featured: true` 篩,但每加新 article/tool/prompt 都要手動勾、太煩。**現在 hero 自動從 articles + tool-intro + prompt-tips 三池撈,依日期 desc 取最新 `HOME_HERO_LIMIT` 篇**(零維護)。`featured` 欄位保留供未來「強制 override 必上首頁」用
+- **`featured` 欄位現為保留欄位**（2026-06 起 hero 不再看它）：原本 hero 用 `featured: true` 篩,但每加新 article/tool/prompt 都要手動勾、太煩。**現在 hero 自動選文:前 `HERO_ARTICLE_LEAD` 格固定放重點趨勢最新文章,其餘格用 tool-intro + prompt-tips 最新內容依日期 desc 補滿**(零維護)。`featured` 欄位保留供未來「強制 override 必上首頁」用
 - `content` 是完整 HTML，會在 modal 內呈現
 - `image`：用自有圖床的 jsDelivr 網址（見下方「圖片素材」段落），不要用免費圖床
 - **`id` 命名規則**：純語意 slug、全小寫、連字號分隔（如 `gpt-image-2`），**不加期數前綴**。articles / weekly-summaries / tool-intro 三種來源共用同一套 slug 命名空間，全站唯一即可
@@ -320,7 +320,7 @@ python -m http.server 8000
 
 ### 新增「AI 工具介紹」條目
 
-編輯 `data/tool-intro.json`：欄位 `tag` 為單層分類（2026-05 從 `cat` rename）、`openInModal: true` 才會點擊開內文 modal、`featured` 為保留欄位（2026-06 起首頁 hero 改以「三池依日期 desc」自動選,不再看 featured）。
+編輯 `data/tool-intro.json`：欄位 `tag` 為單層分類（2026-05 從 `cat` rename）、`openInModal: true` 才會點擊開內文 modal、`featured` 為保留欄位（2026-06 起首頁 hero 自動選文,不再看 featured；工具排在重點趨勢文章之後的補位格）。
 
 ### 新增新一期電子報（歷史 archive）
 
@@ -374,10 +374,10 @@ TVBS Logo 用 CSS filter 著色：
 
 首頁採 Substack / Medium / Notion 風的 **單欄置中閱讀版型**：
 
-- **首頁中間區塊最大寬度 880px**（`#page-home .reader-flow` 覆寫；2026-06 從 1040 縮窄到 880），文章閱讀頁仍維持 760px 好讀行寬
+- **首頁中間區塊最大寬度 920px**（`#page-home .reader-flow` 覆寫；2026-06 從 1040 → 880 → 920 微調），文章閱讀頁仍維持 760px 好讀行寬
 - 區塊垂直堆疊：Masthead → Hero → 10 秒看趨勢 → 內部工具 → 黑客松
-- **Hero「雜誌式」**：依 `HOME_HERO_LIMIT`（預設 3）從 **articles + tool-intro + prompt-tips 三池**(2026-06 起不再用 featured 篩) 取最新 N 篇—— 3 = 1 大主圖 + 中排 2、6 = 1+2+3、依此類推；手機版單欄堆疊、每張等高。**選好之後再依「article > prompt > tool」優先順序重排**(article 永遠在主圖位、prompt 中、tool 後)。樣式在 `dashboard.css` 的 `.hero-grid` / `.hero-side` / `.hero-bottom`（含 `.reader-flow` 覆寫與 `@media (max-width: 700px)` 手機區塊）
-- **Masthead 上方日期** `#readerIssueMeta`：自動連動「首頁實際呈現的內容」—— hero 取最新 `HOME_HERO_LIMIT` 篇 + 10 秒看趨勢取首頁版上限，從這個子集的最舊~最新日期推算「YYYY.MM.DD ～ MM.DD」
+- **Hero「雜誌式」**：版型為 **1 大主圖（左）+ 右側 3 小卡**,共 `HOME_HERO_LIMIT`（預設 4）格。選文規則：**前 `HERO_ARTICLE_LEAD`（預設 2）格固定放重點趨勢最新文章**(不被 prompt/工具插隊),其餘格用 **tool-intro + prompt-tips** 最新內容依日期 desc 補滿;真的不足才用各池剩餘最新者補齊。右側小卡標題完整顯示不截斷；手機版單欄堆疊、每張等高。樣式在 `dashboard.css` 的 `.hero-grid` / `.hero-side`（含 `.reader-flow` 覆寫與 `@media (max-width: 700px)` 手機區塊）
+- **Masthead 上方日期** `#readerIssueMeta`：自動連動「首頁實際呈現的新聞型內容」—— 只取 **hero 上榜的重點趨勢（`HERO_ARTICLE_LEAD` 篇）+ 10 秒看趨勢首頁版上限（`HOME_WEEKLY_SUMMARIES_LIMIT`）**,工具介紹/Prompt 不納入計算,從這個子集的最舊~最新日期推算「YYYY.MM.DD ～ MM.DD」。`HERO_ARTICLE_LEAD` 是 hero 選文與日期 meta 共用常數,確保兩邊篇數一致
 - 每個區塊間用細短分隔線 `<hr class="reader-divider">` 區分
 - 樣式集中在 dashboard.css 的 `/* Document Reader Mode */` 區段
 - **2026-05 移除 Overview band**（原本顯示「31 則精選 + 涵蓋類型/熱門情境 tag 列」），原因：stat 資訊對讀者沒實際價值、又佔據首頁黃金位置擋住真正內容。masthead 後直接接 hero 大圖，magazine-style 節奏
@@ -512,9 +512,10 @@ TVBS Logo 用 CSS filter 著色：
 `dashboard.js` 頂部兩個常數一起控制首頁的「呈現量」：
 
 - **`HOME_WEEKLY_SUMMARIES_LIMIT`** — 首頁「10 秒看趨勢」顯示篇數（目前 `5`，`null` = 不限制）
-- **`HOME_HERO_LIMIT`** — 首頁 hero 大圖總篇數（目前 `3` = 1 主圖 + 中排 2；`6` = 1+2+3）。**hero 池為 articles + tool + prompt 三池**(不再用 featured 篩,2026-06 起改成「日期 desc 自動選」+「article > prompt > tool 重排」)
+- **`HOME_HERO_LIMIT`** — 首頁 hero 大圖總格數（目前 `4` = 1 大主圖 + 右側 3 小卡）
+- **`HERO_ARTICLE_LEAD`** — hero 固定保留給重點趨勢最新文章的格數（目前 `2`）；其餘格用 tool + prompt 最新補滿（不再用 featured 篩,2026-06）。**masthead 日期 meta 也用這個常數取重點趨勢,確保跟 hero 上榜篇數一致**
 
-兩個都會自動連動 masthead 上方的日期範圍（範圍只算「實際呈現在首頁的子集」）。發完電子報想清空首頁時可以暫時調小。
+`HOME_WEEKLY_SUMMARIES_LIMIT` 與 `HERO_ARTICLE_LEAD` 會自動連動 masthead 上方的日期範圍（**只算首頁呈現的重點趨勢 + 10 秒看趨勢子集,排除工具/Prompt**）。發完電子報想清空首頁時可以暫時調小。
 
 ### 9. CLAUDE.md 是 tag 體系的 source of truth
 
