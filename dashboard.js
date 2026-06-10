@@ -905,16 +905,20 @@ async function initDashboardData() {
       const promptSlides = (prompts || []).filter(p => p.image).map(p => ({
         image: p.image, tag: 'Prompt 技巧分享', title: p.title, summary: p.summary || '', date: p.date || '', type: 'prompt'
       }));
-      // 選哪些：依日期 desc 取最新 N 篇（保留 prompt/tool 擠進 hero 的機會）
-      // 排展示順序：article 永遠在前、prompt 中、tool 後；同類型內仍按日期 desc
-      const HERO_TYPE_ORDER = { article: 0, prompt: 1, tool: 2 };
-      const featuredSlides = [...articleSlides, ...toolSlides, ...promptSlides]
-        .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
-        .slice(0, HOME_HERO_LIMIT)
-        .sort((a, b) => {
-          const td = (HERO_TYPE_ORDER[a.type] ?? 99) - (HERO_TYPE_ORDER[b.type] ?? 99);
-          return td !== 0 ? td : (b.date || '').localeCompare(a.date || '');
-        });
+      // 選哪些：重點趨勢最新 HERO_ARTICLE_LEAD 篇固定佔前面（不被 prompt/工具插隊），
+      // 其餘格子用 prompt + 工具的最新內容依日期 desc 補滿；若仍不足，最後用各池剩餘最新者補齊。
+      const HERO_ARTICLE_LEAD = 2;
+      const byDateDesc = (a, b) => (b.date || '').localeCompare(a.date || '');
+      const leadArticles = articleSlides.slice().sort(byDateDesc).slice(0, HERO_ARTICLE_LEAD);
+      const fillSlides = [...promptSlides, ...toolSlides].sort(byDateDesc)
+        .slice(0, HOME_HERO_LIMIT - leadArticles.length);
+      let featuredSlides = [...leadArticles, ...fillSlides];
+      if (featuredSlides.length < HOME_HERO_LIMIT) {
+        const used = new Set(featuredSlides.map(s => s.title));
+        const topUp = [...articleSlides, ...promptSlides, ...toolSlides]
+          .sort(byDateDesc).filter(s => !used.has(s.title));
+        featuredSlides = [...featuredSlides, ...topUp].slice(0, HOME_HERO_LIMIT);
+      }
       if (heroContainer) {
         if (featuredSlides.length >= 1) {
           const [main, ...rest] = featuredSlides;
@@ -925,8 +929,8 @@ async function initDashboardData() {
                 <h3 class="hero-small-title">${a.title}</h3>
               </div>
             </div>`;
-          const sideCards = rest.slice(0, 2).map(smallCard).join('');
-          const bottomCards = rest.slice(2).map(smallCard).join('');
+          const sideCards = rest.slice(0, 3).map(smallCard).join('');
+          const bottomCards = rest.slice(3).map(smallCard).join('');
           heroContainer.innerHTML = `
             <div class="hero-grid">
               <div class="hero-main" style="background-image:linear-gradient(180deg,rgba(10,18,40,0.05) 0%,rgba(10,18,40,0.3) 50%,rgba(10,18,40,0.9) 100%),url('${main.image}')" onclick="showArticleByTitle(decodeURIComponent('${encodeURIComponent(main.title).replace(/'/g, "%27")}'))">
@@ -1163,9 +1167,9 @@ const CONTENT_TAG_ORDER = [
 // 首頁「10 秒看趨勢」顯示篇數上限。null = 不限制（全部顯示），數字 = 顯示最新 N 篇。
 const HOME_WEEKLY_SUMMARIES_LIMIT = 5;
 
-// 首頁 hero 大圖顯示總數（依日期 desc 取最新 N 篇 featured：articles + 工具介紹）。
-// 3 = 1 大主圖 + 2 中排；6 = 1+2+3（下排 3 格）；可依想要的版面密度調
-const HOME_HERO_LIMIT = 3;
+// 首頁 hero 大圖顯示總數。前 HERO_ARTICLE_LEAD 篇固定是重點趨勢最新文章，其餘用 prompt/工具補滿。
+// 4 = 1 大主圖 + 右側 3 小卡（前 2 篇文章 + 2 篇 prompt/工具）；可依想要的版面密度調
+const HOME_HERO_LIMIT = 4;
 
 function sortUsecaseTags(tags) {
   return (tags || []).slice().sort((a, b) => {

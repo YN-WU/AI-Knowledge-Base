@@ -1,6 +1,22 @@
 {
   "items": [
     {
+      "id": "claude-fable-5-mythos-5",
+      "date": "2026-06-09",
+      "tag": "模型發布",
+      "tags": [
+        "程式開發",
+        "資料研究"
+      ],
+      "title": "「神話級」模型解禁！Claude Fable 5 與 Mythos 5 正式登場　能力全球最強",
+      "image": "https://cdn.jsdelivr.net/gh/YN-WU/ainews-images@main/images/Claude_Fable_5_Claude_Mythos_5.webp",
+      "imageCaption": "Anthropic 正式發布 Claude Fable 5 與 Claude Mythos 5。( 圖 / 翻攝自 Claude 官網)",
+      "sourceUrl": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+      "sourceLabel": "Claude Fable 5 / Mythos 5 官方介紹 →",
+      "content": "<p class=\"first-paragraph\">Anthropic 正式推出兩款全新 Mythos 級別模型 Claude Fable 5 與 Claude Mythos 5。兩款模型底層相同，但在安全設計與應用情境上有所差異：Fable 5 內建防護機制，針對資安攻防、生物化學及模型蒸餾等高風險查詢，會自動降轉至 Claude Opus 4.8 處理；Mythos 5 則無安全限制，但僅開放給可信賴的專業領域夥伴使用。</p><h4>Claude Fable 5 強在哪？</h4><p>Fable 5 是首款面向一般使用者開放的 Mythos 級模型，其性能超越以往所有 Claude 模型，也全面碾壓 GPT-5.5、Gemini 3.1 Pro，在軟體工程、知識工作、視覺理解與科學研究等基準測試中全面領先，也能在自動化環境下自主運作更長時間。主要重點特色如下：</p><h5>強大的上下文處理能力</h5><p>Fable 5 支援數百萬 token 的上下文任務，還能靠記筆記來自我優化，在處理複雜專案時有效降低 token 消耗。</p><h5>軟體開發效率再升級</h5><p>根據實測，Fable 5 處理 5000 萬行的 Ruby 專案全庫轉移僅需一天，傳統人力團隊則要耗時逾兩個月；在代碼質量權威評測 FrontierCode 中，產出代碼質量也居冠。</p><h5>頂尖視覺理解能力</h5><p>Fable 5 能精準解讀科學圖表，可僅憑螢幕截圖還原網頁原始碼，甚至不需任何輔助工具，即可純視覺遊玩《寶可夢》遊戲。</p><h5>動態安全防護機制</h5><p>由於 Fable 5 能力已達「高風險」門檻，Anthropic 導入了動態降級機制。當系統偵測到涉及網路攻擊、生物化學開發或模型蒸餾等敏感請求時，會自動將任務轉交給 Claude Opus 4.8 處理。雖然此舉可能導致約 5% 的正常請求被誤攔截，但能確保基礎安全。</p><h4>Claude Mythos 5 誰能用？</h4><p>至於不具安全限制的 Mythos 5，目前使用上仍受嚴格管制，只透過 Glasswing 計畫與美國政府合作，逐步開放給審核通過的可信任夥伴，包括網路安全專責組織與生物醫學研究機構，專注於極限科學研究與基礎設施防護。Mythos 5 曾在蛋白質設計與基因體研究上進行超過一週的高度自主作業，能自主提出具科學價值的生物學假設，產出的科學模型甚至超越已發表在《Science》期刊的成果。</p><h4>隱私控管與價格方案</h4><p>Anthropic 對 Mythos 級別模型實施 30 天數據保留政策，僅供安全審查與減少誤報使用，不作模型訓練。價格上，兩款模型定價皆大幅調降，輸入與輸出每百萬 token 分別為 10 美元與 50 美元，不到先前預覽版的一半，但仍是最貴的公開模型。Fable 5 即日起在 API 全面開放，Pro、Max、Team 及 Enterprise 方案用戶在 6 月 22 日前可免費試用；6 月 23 日起，由於初期全球運算資源緊繃，將暫時從標準訂閱方案中移除 Fable 5，用戶後續使用需另行購買點數（Usage credits）。</p>",
+      "featured": true
+    },
+    {
       "id": "claude-opus-4-8",
       "date": "2026-05-28",
       "tag": "模型發布",
