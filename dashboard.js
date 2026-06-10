@@ -849,19 +849,17 @@ async function initDashboardData() {
       } : (issuesData.find(it => it.no === "018") || issuesData[0]);
 
       // Document Reader Overview: 月份 meta + 趨勢數量 + 關鍵字 chips
-      // 對齊「首頁實際呈現的內容」：hero 最新 HOME_HERO_LIMIT 篇（articles + tool + prompt 三邊全撈、依日期 desc）+ 10秒看趨勢首頁版上限
-      // 過濾條件跟 featuredSlides 一致，確保算出的日期範圍跟首頁實際顯示的卡片對得上
-      const heroSubsetForMeta = [
-        ...articles.filter(a => a.image),
-        ...(toolIntros || []).filter(t => t.image && (t.content || t.openInModal)),
-        ...((window.__prompts || []).filter(p => p.image))
-      ].sort((a, b) => (b.date || '').localeCompare(a.date || ''))
-       .slice(0, HOME_HERO_LIMIT);
+      // 期間日期只看「首頁實際呈現的重點趨勢 + 10秒看趨勢」，工具介紹/Prompt 不納入計算：
+      //   重點趨勢 = hero 上榜的最新文章（HERO_ARTICLE_LEAD 篇，跟 hero 顯示篇數一致）
+      //   10秒看趨勢 = 首頁版上限（HOME_WEEKLY_SUMMARIES_LIMIT）
+      const articleSubsetForMeta = articles.slice()
+        .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+        .slice(0, HERO_ARTICLE_LEAD);
       const summariesAll = window.__weeklySummaries || [];
       const summarySubsetForMeta = HOME_WEEKLY_SUMMARIES_LIMIT
         ? summariesAll.slice(0, HOME_WEEKLY_SUMMARIES_LIMIT)
         : summariesAll;
-      const overviewSource = [...heroSubsetForMeta, ...summarySubsetForMeta];
+      const overviewSource = [...articleSubsetForMeta, ...summarySubsetForMeta];
 
       // 期間 meta — 從首頁實際呈現的文章 + 10秒趨勢的日期推算「最舊 ～ 最新」
       const readerMetaEl = document.getElementById('readerIssueMeta');
@@ -907,7 +905,6 @@ async function initDashboardData() {
       }));
       // 選哪些：重點趨勢最新 HERO_ARTICLE_LEAD 篇固定佔前面（不被 prompt/工具插隊），
       // 其餘格子用 prompt + 工具的最新內容依日期 desc 補滿；若仍不足，最後用各池剩餘最新者補齊。
-      const HERO_ARTICLE_LEAD = 2;
       const byDateDesc = (a, b) => (b.date || '').localeCompare(a.date || '');
       const leadArticles = articleSlides.slice().sort(byDateDesc).slice(0, HERO_ARTICLE_LEAD);
       const fillSlides = [...promptSlides, ...toolSlides].sort(byDateDesc)
@@ -1170,6 +1167,9 @@ const HOME_WEEKLY_SUMMARIES_LIMIT = 5;
 // 首頁 hero 大圖顯示總數。前 HERO_ARTICLE_LEAD 篇固定是重點趨勢最新文章，其餘用 prompt/工具補滿。
 // 4 = 1 大主圖 + 右側 3 小卡（前 2 篇文章 + 2 篇 prompt/工具）；可依想要的版面密度調
 const HOME_HERO_LIMIT = 4;
+
+// hero 固定保留給「重點趨勢」最新文章的格數。masthead 期間日期也用這個數字取重點趨勢，確保跟 hero 上榜篇數一致。
+const HERO_ARTICLE_LEAD = 2;
 
 function sortUsecaseTags(tags) {
   return (tags || []).slice().sort((a, b) => {
