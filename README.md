@@ -378,6 +378,7 @@ TVBS Logo 用 CSS filter 著色：
 - 區塊垂直堆疊：Masthead → Hero → 10 秒看趨勢 → 內部工具 → 黑客松
 - **Hero「雜誌式」**：版型為 **1 大主圖（左）+ 右側 3 小卡**,共 `HOME_HERO_LIMIT`（預設 4）格。選文規則：**前 `HERO_ARTICLE_LEAD`（預設 2）格固定放重點趨勢最新文章**(不被 prompt/工具插隊),其餘格用 **tool-intro + prompt-tips** 最新內容依日期 desc 補滿;真的不足才用各池剩餘最新者補齊。右側小卡標題完整顯示不截斷；手機版單欄堆疊、每張等高。樣式在 `dashboard.css` 的 `.hero-grid` / `.hero-side`（含 `.reader-flow` 覆寫與 `@media (max-width: 700px)` 手機區塊）
 - **Masthead 上方日期** `#readerIssueMeta`：自動連動「首頁實際呈現的新聞型內容」—— 只取 **hero 上榜的重點趨勢（`HERO_ARTICLE_LEAD` 篇）+ 10 秒看趨勢首頁版上限（`HOME_WEEKLY_SUMMARIES_LIMIT`）**,工具介紹/Prompt 不納入計算,從這個子集的最舊~最新日期推算「YYYY.MM.DD ～ MM.DD」。`HERO_ARTICLE_LEAD` 是 hero 選文與日期 meta 共用常數,確保兩邊篇數一致
+  - **防 FOUC**：HTML 裡 `#readerIssueMeta` 預設**留空**（不寫死月份）—— 因為日期要等 JS fetch 完 JSON 才算得出,若寫死值會在重新整理時閃過舊的（例如「2026 年 5 月號」）再被覆蓋。留空 + `.reader-issue-meta` 的 `min-height` 預留行高,載入空檔只剩 `::before` 小橫線、不跳版
 - 每個區塊間用細短分隔線 `<hr class="reader-divider">` 區分
 - 樣式集中在 dashboard.css 的 `/* Document Reader Mode */` 區段
 - **2026-05 移除 Overview band**（原本顯示「31 則精選 + 涵蓋類型/熱門情境 tag 列」），原因：stat 資訊對讀者沒實際價值、又佔據首頁黃金位置擋住真正內容。masthead 後直接接 hero 大圖，magazine-style 節奏
@@ -395,6 +396,15 @@ TVBS Logo 用 CSS filter 著色：
   - 有選分類時 page-header 底線下方出現「目前篩選分類：xxx」提示色塊（含一鍵清除 ✕），只在手機版顯示
   - **panel 開啟瞬間凍結在當下位置**（不會跟著頁面滾動），且**自動鎖背景 body 滾動**（用 `position: fixed + top: -scrollY` 的 iOS-safe 做法，關閉時還原 scrollY）。內容超過 viewport 高度時 panel 內部捲動，`max-height` 由 JS 即時算
 - **實作位置**：`dashboard.js` 的 `initDualFilter()` / `initSingleFilter()` / `lockBodyScroll()` / `unlockBodyScroll()`、`dashboard.css` 的 `.filter-panel--floating` / `.filter-active-hint` 相關規則
+
+### 10 秒看趨勢分頁：月份分組
+
+`#trendSummariesList` 列表會**依日期 desc 自動插入月份分隔標**（`.list-month-divider`，例如「2026 年 6 月」），方便在內容變多時辨識時間軸：
+
+- **零維護**：月份標從每筆 `date` 即時推算（render loop 比對上一筆,換月才插一條）—— 新增 10 秒趨勢只要填好 `date`,就自動歸到對的月份;**換月份不用手動加標題**。缺 `date` 者歸到結尾「其他」,不會壞版
+- **跟分類篩選相容**：篩選後若某月份底下沒有可見項目,連標題一起收掉（`applyFilter()` 內處理）。此邏輯通用,對沒有月份標的 grid（如重點趨勢）`querySelectorAll('.list-month-divider')` 為空 → 自動 no-op
+- **視覺**：用中性灰（`--text-light`）+ 粗體 + 細底線,不用品牌紫色,避免整列太花俏
+- **實作位置**：`dashboard.js` 渲染 `trendSummariesList` 處（月份標插入）+ `initDualFilter()` 的 `applyFilter`（空月份收合）、`dashboard.css` 的 `.list-month-divider`
 
 ---
 
@@ -511,7 +521,7 @@ TVBS Logo 用 CSS filter 著色：
 
 `dashboard.js` 頂部兩個常數一起控制首頁的「呈現量」：
 
-- **`HOME_WEEKLY_SUMMARIES_LIMIT`** — 首頁「10 秒看趨勢」顯示篇數（目前 `5`，`null` = 不限制）
+- **`HOME_WEEKLY_SUMMARIES_LIMIT`** — 首頁「10 秒看趨勢」顯示篇數（目前 `6`，`null` = 不限制）
 - **`HOME_HERO_LIMIT`** — 首頁 hero 大圖總格數（目前 `4` = 1 大主圖 + 右側 3 小卡）
 - **`HERO_ARTICLE_LEAD`** — hero 固定保留給重點趨勢最新文章的格數（目前 `2`）；其餘格用 tool + prompt 最新補滿（不再用 featured 篩,2026-06）。**masthead 日期 meta 也用這個常數取重點趨勢,確保跟 hero 上榜篇數一致**
 

@@ -1084,10 +1084,25 @@ async function initDashboardData() {
           `;
         }).join('');
       }
-      // 6. 重點摘要列表 (Trend Summaries List) — 緊湊橫向列表
+      // 6. 重點摘要列表 (Trend Summaries List) — 緊湊橫向列表，依日期 desc 自動插入月份分隔標
+      //    月份標從每筆 date 即時推算（換月才插一條），新增內容自動歸到對的月份、零維護；缺 date 者歸到結尾「其他」
       const trendSummariesWrap = document.getElementById('trendSummariesList');
       if (trendSummariesWrap && Array.isArray(window.__weeklySummaries)) {
-        trendSummariesWrap.innerHTML = window.__weeklySummaries.map(it => renderSummaryItem(it, { compact: true })).join('');
+        const sortedSummaries = window.__weeklySummaries.slice()
+          .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        let lastMonthKey = null;
+        const summaryParts = [];
+        sortedSummaries.forEach(it => {
+          const m = (it.date || '').match(/^(\d{4})-(\d{1,2})/);
+          const monthKey = m ? `${m[1]}-${m[2]}` : 'other';
+          if (monthKey !== lastMonthKey) {
+            const label = m ? `${m[1]} 年 ${parseInt(m[2], 10)} 月` : '其他';
+            summaryParts.push(`<div class="list-month-divider">${label}</div>`);
+            lastMonthKey = monthKey;
+          }
+          summaryParts.push(renderSummaryItem(it, { compact: true }));
+        });
+        trendSummariesWrap.innerHTML = summaryParts.join('');
       }
 
       // 初始化兩個分頁的雙層 filter
@@ -1162,7 +1177,7 @@ const CONTENT_TAG_ORDER = [
 ];
 
 // 首頁「10 秒看趨勢」顯示篇數上限。null = 不限制（全部顯示），數字 = 顯示最新 N 篇。
-const HOME_WEEKLY_SUMMARIES_LIMIT = 5;
+const HOME_WEEKLY_SUMMARIES_LIMIT = 6;
 
 // 首頁 hero 大圖顯示總數。前 HERO_ARTICLE_LEAD 篇固定是重點趨勢最新文章，其餘用 prompt/工具補滿。
 // 4 = 1 大主圖 + 右側 3 小卡（前 2 篇文章 + 2 篇 prompt/工具）；可依想要的版面密度調
@@ -1357,6 +1372,17 @@ function initDualFilter(filterContainerId, gridSelector, itemSelector) {
       const cMatch = state.content === '全部' || ct === state.content;
       const uMatch = state.usecase === '全部' || ut.includes(state.usecase);
       item.style.display = (cMatch && uMatch) ? '' : 'none';
+    });
+    // 月份分隔標：該月底下沒有任何可見項目時連標題一起收掉（篩選後不留空月份）。
+    // 沒有月份標的 grid（如重點趨勢）querySelectorAll 為空 → 自動 no-op。
+    grid.querySelectorAll('.list-month-divider').forEach(divider => {
+      let hasVisible = false;
+      let sib = divider.nextElementSibling;
+      while (sib && !sib.classList.contains('list-month-divider')) {
+        if (sib.matches(itemSelector) && sib.style.display !== 'none') { hasVisible = true; break; }
+        sib = sib.nextElementSibling;
+      }
+      divider.style.display = hasVisible ? '' : 'none';
     });
     syncUI();
   };

@@ -3944,6 +3944,20 @@ footer {
 }
 
 /* 緊湊版：橫向 list（10 秒看趨勢 dedicated page）*/
+/* 10 秒看趨勢分頁：月份分隔標（render 時依日期 desc 自動插入，從每筆 date 推算→換月才插一條，零維護） */
+.list-month-divider {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 0.08em;
+  padding: 26px 2px 9px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid var(--border);
+}
+.list-month-divider:first-child {
+  padding-top: 4px;
+}
+
 .summary-list-item--compact {
   grid-template-columns: 1fr auto;
   column-gap: 14px;
@@ -4489,6 +4503,7 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-height: 16px; /* 預留行高：日期由 JS fetch 後才填入，避免空→有值時標題跳動 */
 }
 
 .reader-issue-meta::before {

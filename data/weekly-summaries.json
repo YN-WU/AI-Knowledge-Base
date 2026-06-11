@@ -1,6 +1,17 @@
 {
   "items": [
     {
+      "id": "gemini-3-5-live-translate",
+      "date": "2026-06-09",
+      "title": "Google 推出 Gemini 3.5 Live Translate　即時翻譯同步語調、支援 70 多種語言",
+      "tag": "模型發布",
+      "tags": [
+        "即時翻譯"
+      ],
+      "summary": "Google 推出全新語音翻譯模型 Gemini 3.5 Live Translate，主打近乎零延遲且具備情緒起伏的即時雙向翻譯。與過去轉文字再翻譯的方案不同，新模型能自動偵測 70 多種語言，並維持說話者的音調、節奏與情感，確保對話自然無礙。目前該技術已開放 Gemini Live API 供開發者串接，並率先導入 Google 翻譯 App。Android 用戶更可享有獨家「聽筒模式」，像接電話般私密收聽翻譯結果，而 Google Meet 將於本月針對企業用戶推出可處理 2000 種語言組合的即時口譯功能。",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-live-3-5-translate/"
+    },
+    {
       "id": "chatgpt-memory-dreaming-v3",
       "date": "2026-06-04",
       "title": "ChatGPT 記憶功能大進化　跨多年對話不再秒忘",
